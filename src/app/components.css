@@ -1,0 +1,7 @@
+@tailwind utilities;
+
+@layer utilities {
+	.link {
+		@apply decoration-offset-[3px] font-medium text-blue-500 underline decoration-1 transition-[color,text-decoration] hover:text-blue-700;
+	}
+}

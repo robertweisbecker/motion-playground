@@ -23,22 +23,26 @@
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
+			transform: scale(0.8);
 		}
 		to {
 			opacity: 1;
+			transform: scale(0);
 		}
 	}
 
 	@keyframes fadeOut {
 		from {
 			opacity: 1;
+			transform: scale(1);
 		}
 		to {
 			opacity: 0;
+			transform: scale(0.8);
 		}
 	}
 
-	@keyframes scaleIn {
+	/* @keyframes scaleIn {
 		from {
 			opacity: 0;
 			transform: scale(0);
@@ -46,6 +50,44 @@
 		to {
 			opacity: 1;
 			transform: scale(1);
+		}
+	} */
+
+	@keyframes blink {
+		0% {
+			visibility: visible;
+		}
+		50% {
+			visibility: hidden;
+		}
+		100% {
+			visibility: visible;
+		}
+	}
+
+	@keyframes pulse {
+		50% {
+			opacity: 0;
+		}
+	}
+	@keyframes scaleIn {
+		from {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+	@keyframes scaleOut {
+		from {
+			opacity: 1;
+			transform: scale(1);
+		}
+		to {
+			opacity: 0;
+			transform: scale(0.9);
 		}
 	}
 }

@@ -5,18 +5,17 @@ import * as TabsPrimitive from '@radix-ui/react-tabs';
 
 import { cn } from '@/lib/utils';
 
-function Tabs({
-	className,
-	...props
-}: React.ComponentProps<
-	typeof TabsPrimitive.Root
->) {
+interface CustomTabsProps {
+	stretch?: boolean;
+}
+
+function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Root>) {
 	return (
 		<TabsPrimitive.Root
 			data-slot="tabs"
 			className={cn(
 				// 'flex flex-col gap-2',
-				'bg-background border-border border-border rounded-lg border',
+				'bg-background ring-border w-[calc(100% + --spacing(4) * 2)] -mx-4 overflow-clip rounded-lg shadow-xs ring-1 focus-within:overflow-visible',
 				className,
 			)}
 			{...props}
@@ -24,18 +23,12 @@ function Tabs({
 	);
 }
 
-function TabsList({
-	className,
-	...props
-}: React.ComponentProps<
-	typeof TabsPrimitive.List
->) {
+function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
 	return (
 		<TabsPrimitive.List
 			data-slot="tabs-list"
 			className={cn(
-				// 'bg-muted text-muted-foreground inline-flex h-10 w-fit items-center justify-center rounded-lg p-0.5',
-				'shadow-border-soft relative z-0 flex gap-0 px-2 py-1 shadow-[inset_0_-1px]',
+				'shadow-border/50 rounded-inherit bg-muted group divide-border-border relative z-0 flex flex-row gap-0 divide-solid rounded-t-lg px-0.5 py-0 font-medium shadow-[inset_0_-1px]',
 				className,
 			)}
 			{...props}
@@ -44,17 +37,21 @@ function TabsList({
 }
 
 function TabsTrigger({
+	stretch,
 	className,
 	...props
-}: React.ComponentProps<
-	typeof TabsPrimitive.Trigger
->) {
+}: React.ComponentProps<typeof TabsPrimitive.Trigger> & CustomTabsProps) {
 	return (
 		<TabsPrimitive.Trigger
 			data-slot="tabs-trigger"
 			className={cn(
-				// "text-muted-foreground text-medium hover:text-foreground data-[state=active]:text-foreground focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 border border-transparent py-1 pe-4 text-xl font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-				'text-muted-foreground hover:text-foreground data-[state=active]:text-foreground data-[state=active]:before:bg-secondary text-md relative flex h-8 cursor-pointer items-center justify-center border-0 px-2 text-center break-keep whitespace-nowrap outline-none select-none before:absolute before:inset-x-0 before:inset-y-1 before:-z-1 before:rounded before:-outline-offset-1 before:outline-blue-800 focus-visible:before:outline-2 data-[state=active]:font-medium data-[state=active]:-tracking-[0.0125em]',
+				'peer text-muted-foreground relative flex h-10 cursor-pointer items-center justify-center px-4 break-keep whitespace-nowrap transition-[opacity,scale,translate,background] select-none',
+				'hover:text-foreground',
+				'before:ease before:shadow-border before:absolute before:inset-x-1 before:inset-y-1.5 before:-z-1 before:rounded-xs before:transition-[opacity,scale,translate,background] before:duration-200 data-[state=active]:before:shadow-[0_-1px]',
+				'before:pointer-events-none before:translate-x-3/4 before:scale-x-125 peer-data-[state=active]:before:-translate-x-3/4 first:before:origin-left first:before:translate-x-1/2 last:before:origin-right last:before:-translate-x-1/2',
+				'data-[state=active]:before:bg-accent data-[state=active]:text-foreground data-[state=active]:before:translate-x-0 data-[state=active]:before:scale-x-100',
+				'after:bg-border/75 after:absolute after:inset-x-[-0.5px] after:h-[1em] after:w-px first:after:content-none',
+				stretch && 'w-full',
 				className,
 			)}
 			{...props}
@@ -62,27 +59,14 @@ function TabsTrigger({
 	);
 }
 
-function TabsContent({
-	className,
-	...props
-}: React.ComponentProps<
-	typeof TabsPrimitive.Content
->) {
+function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Content>) {
 	return (
 		<TabsPrimitive.Content
 			data-slot="tabs-content"
-			className={cn(
-				'flex-1 px-3 py-1 outline-none',
-				className,
-			)}
+			className={cn('rounded-b-inherit w-full flex-1 px-4 py-2', className)}
 			{...props}
 		/>
 	);
 }
 
-export {
-	Tabs,
-	TabsList,
-	TabsTrigger,
-	TabsContent,
-};
+export { Tabs, TabsList, TabsTrigger, TabsContent };
