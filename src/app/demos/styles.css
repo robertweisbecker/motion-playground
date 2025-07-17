@@ -5,13 +5,14 @@
 	flex-direction: column;
 	--scale-increment: 0.05;
 	--translate-increment: -12%;
+	--rotate-increment: -0deg;
 	transition-property: transform, height;
 	transition-duration: 1s;
-	position: fixed;
-	bottom: 40px;
+	/* position: fixed; */
+	/* bottom: 40px; */
 	width: 356px;
 
-	&:hover {
+	&.hoverable:hover {
 		/* display: flex; */
 		/* --scale-increment: 0; */
 		/* --translate-increment: calc(-100% + var(--index) - 12px); */
@@ -47,15 +48,19 @@
 	transition-duration: 1s;
 
 	transform-origin: top;
-	& ~ .card:not(:last) {
-		/* box-shadow: none; */
-	}
+	/* & + .card {
+		box-shadow: var(--shadow-2xs);
+	} */
 }
 [data-stacked='true'],
 .stacked {
 	grid-area: 1 / 1;
 	transform: scale(calc(1 - var(--index) * (var(--scale-increment))))
-		translateY(calc(var(--index) * var(--translate-increment)));
+		translateY(calc(var(--index) * var(--translate-increment) * 1))
+		rotate(calc(var(--index) * var(--rotate-increment)));
+	&:nth-child(even) {
+		--rotate-increment: 1deg;
+	}
 }
 [data-stacked='false'] {
 	grid-area: var(--index) + 1 / calc(var(--index));

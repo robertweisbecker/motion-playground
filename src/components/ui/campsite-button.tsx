@@ -5,6 +5,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 import { cn } from '@/lib/utils';
 import { Badge } from './badge';
+import Link from 'next/link';
 
 export const ANIMATIONS = {
 	whileTap: { scale: 0.9 },
@@ -121,7 +122,7 @@ export interface ButtonProps {
 	onMouseLeave?: (event: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void;
 	onMouseDown?: (event: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void;
 	onKeyDownCapture?: (event: React.KeyboardEvent<HTMLButtonElement & HTMLAnchorElement>) => void;
-	// href?: LinkProps['href']
+	href?: string;
 	className?: string;
 	fullWidth?: boolean;
 	iconOnly?: React.ReactNode;
@@ -153,7 +154,7 @@ export const CampsiteButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, 
 			loading,
 			children,
 			disabled,
-			// href,
+			href,
 			iconOnly,
 			variant,
 			className,
@@ -185,65 +186,71 @@ export const CampsiteButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, 
 			throw new Error('You must provide an accessibilityLabel to a button with iconOnly');
 		}
 
-		// if (href) {
-		//   return (
-		//     <Tooltip disableHoverableContent label={tooltip} shortcut={tooltipShortcut}>
-		//       <Link
-		//         id={id}
-		//         href={href}
-		//         className={cn(
-		//           'relative outline-none transition',
-		//           buttonVariants({ variant, fullWidth, loading, size, round }),
-		//           { '!pl-1': leftSlot && size === 'sm' },
-		//           { '!pl-2': leftSlot && size === 'base' },
-		//           { '!pl-4': leftSlot && size === 'large' },
-		//           { '!pr-1': rightSlot && size === 'sm' },
-		//           { '!pr-2': rightSlot && size === 'base' },
-		//           { '!pr-4': rightSlot && size === 'large' },
-		//           { 'w-6.5 p-0': iconOnly && size === 'sm' },
-		//           { 'w-7.5 p-0': iconOnly && size === 'base' },
-		//           { 'w-10 p-0': iconOnly && size === 'large' },
-		//           { 'px-2': !iconOnly && size === 'sm' },
-		//           { 'px-2.5': !iconOnly && size === 'base' },
-		//           { 'px-4.5': !iconOnly && size === 'large' },
-		//           { 'pointer-events-none opacity-50': disabled || loading },
-		//           className
-		//         )}
-		//         ref={ref}
-		//         onFocus={onFocus}
-		//         onBlur={onBlur}
-		//         title={tooltip ? undefined : (title ?? accessibilityLabel)}
-		//         aria-label={accessibilityLabel}
-		//         onClick={(e) => {
-		//           if (onClick) onClick(e as React.MouseEvent<HTMLButtonElement & HTMLAnchorElement>)
-		//           if (href && download) {
-		//             e.preventDefault()
-		//             downloadFile(href as string, download)
-		//           }
-		//         }}
-		//         onKeyDownCapture={onKeyDownCapture}
-		//         target={externalLink ? '_blank' : undefined}
-		//         rel={externalLink ? (allowOpener ? 'opener' : 'noopener noreferrer') : undefined}
-		//         role={role}
-		//         draggable={false}
-		//         {...props}
-		//       >
-		//         {iconOnly && iconOnly}
-		//         <span
-		//           className={cn('relative z-[2] flex items-center', {
-		//             'gap-2': size === 'large',
-		//             'gap-1.5': size === 'base',
-		//             'gap-1': size === 'sm'
-		//           })}
-		//         >
-		//           {leftSlot && <span className='inline-flex flex-none justify-center'>{leftSlot}</span>}
-		//           <span>{children}</span>
-		//           {rightSlot && <span className='inline-flex flex-none justify-center'>{rightSlot}</span>}
-		//         </span>
-		//       </Link>
-		//     </Tooltip>
-		//   )
-		// }
+		if (href) {
+			return (
+				<Tooltip
+					disableHoverableContent
+					// label={tooltip}
+					// shortcut={tooltipShortcut}
+				>
+					<Link
+						id={id}
+						href={href}
+						className={cn(
+							'relative transition outline-none',
+							buttonVariants({ variant, fullWidth, loading, size, round }),
+							{ 'pl-1!': leftSlot && size === 'sm' },
+							{ 'pl-2!': leftSlot && size === 'base' },
+							{ 'pl-4!': leftSlot && size === 'large' },
+							{ 'pr-1!': rightSlot && size === 'sm' },
+							{ 'pr-2!': rightSlot && size === 'base' },
+							{ 'pr-4!': rightSlot && size === 'large' },
+							{ 'w-6.5 p-0': iconOnly && size === 'sm' },
+							{ 'w-7.5 p-0': iconOnly && size === 'base' },
+							{ 'w-10 p-0': iconOnly && size === 'large' },
+							{ 'px-2': !iconOnly && size === 'sm' },
+							{ 'px-2.5': !iconOnly && size === 'base' },
+							{ 'px-4.5': !iconOnly && size === 'large' },
+							{ 'pointer-events-none opacity-50': disabled || loading },
+							className,
+						)}
+						ref={ref}
+						onFocus={onFocus}
+						onBlur={onBlur}
+						title={tooltip ? undefined : (title ?? accessibilityLabel)}
+						aria-label={accessibilityLabel}
+						onClick={(e) => {
+							if (onClick) onClick(e as React.MouseEvent<HTMLButtonElement & HTMLAnchorElement>);
+							if (href && download) {
+								e.preventDefault();
+								downloadFile(href as string, download);
+							}
+						}}
+						onKeyDownCapture={onKeyDownCapture}
+						target={externalLink ? '_blank' : undefined}
+						rel={externalLink ? (allowOpener ? 'opener' : 'noopener noreferrer') : undefined}
+						role={role}
+						draggable={false}
+						{...props}
+					>
+						{iconOnly && iconOnly}
+						<span
+							className={cn('relative z-[2] flex items-center', {
+								'gap-2': size === 'large',
+								'gap-1.5': size === 'base',
+								'gap-1': size === 'sm',
+							})}
+						>
+							{leftSlot && <span className="inline-flex flex-none justify-center">{leftSlot}</span>}
+							<span>{children}</span>
+							{rightSlot && (
+								<span className="inline-flex flex-none justify-center">{rightSlot}</span>
+							)}
+						</span>
+					</Link>
+				</Tooltip>
+			);
+		}
 
 		return (
 			<Tooltip disableHoverableContent>

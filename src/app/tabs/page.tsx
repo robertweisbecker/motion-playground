@@ -1,14 +1,7 @@
-import { cn } from '@/lib/utils';
 import * as Tabs from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Toggle } from '@/components/ui/toggle';
-
-interface StackedComponentProps {
-	length: number;
-	unstack?: boolean;
-	className?: string;
-}
 
 export default function Demo1() {
 	return (

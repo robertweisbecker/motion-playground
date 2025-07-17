@@ -1,19 +1,13 @@
 import Image from 'next/image';
-import { Fragment } from 'react';
 import {
 	AlertCircleIcon,
 	CheckCircle2Icon,
-	ChevronDownIcon,
-	LucideChevronDown,
-	LucideSettings,
 	LucideGalleryHorizontal,
 	LucideStar,
-	LucideSettings2,
-	PopcornIcon,
 } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import {
 	Card,
 	CardAction,

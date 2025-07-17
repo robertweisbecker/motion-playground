@@ -5,9 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Geist, Inter, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import './components.css';
-import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { LucideChevronDown, LucideComponent, LucideDot, LucideHome } from 'lucide-react';
 import { NavLink } from '@/components/ui/nav-link';
 import { Button } from '@/components/ui/button';
@@ -18,10 +16,10 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-const geistSans = Geist({
-	variable: '--font-geist-sans',
-	subsets: ['latin'],
-});
+// const geistSans = Geist({
+// 	variable: '--font-geist-sans',
+// 	subsets: ['latin'],
+// });
 
 const inter = Inter({
 	variable: '--font-inter',
@@ -43,7 +41,6 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	// const pathname = usePathname();
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${inter.variable} ${geistMono.variable} antialiased`}>

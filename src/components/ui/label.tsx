@@ -5,7 +5,7 @@ import * as LabelPrimitive from '@radix-ui/react-label';
 
 import { cn } from '@/lib/utils';
 import { Button } from './button';
-import { LucideCircleQuestionMark, LucideInfo } from 'lucide-react';
+import { LucideInfo } from 'lucide-react';
 import { Popover, PopoverTrigger, PopoverContent } from './popover';
 
 interface LabelProps extends React.ComponentProps<typeof LabelPrimitive.Root> {

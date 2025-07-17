@@ -421,4 +421,7 @@
 			fill: currentColor;
 		}
 	}
+	code {
+		@apply font-mono;
+	}
 }

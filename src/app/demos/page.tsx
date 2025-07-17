@@ -1,6 +1,3 @@
-import Image from 'next/image';
-
-// import './stacked-component.css';
 import './styles.css';
 import { cn } from '@/lib/utils';
 
@@ -37,7 +34,9 @@ export default function Demo1() {
 	return (
 		<div className="mx-auto min-h-screen max-w-3xl p-8 pb-20 sm:p-20">
 			<main className="flex w-full flex-col gap-8 sm:items-start">
-				<h1>Demo</h1>
+				<h1>
+					<span className="text-muted-foreground">Experiment: </span>Stack
+				</h1>
 				<h2>Stacked Cards</h2>
 				<code>length</code>
 
