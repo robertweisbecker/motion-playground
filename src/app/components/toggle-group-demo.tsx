@@ -4,7 +4,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 export function ToggleGroupDemo() {
 	return (
-		<ToggleGroup variant="ghost" type="multiple">
+		<ToggleGroup variant="base" type="multiple">
 			<ToggleGroupItem value="bold" aria-label="Toggle bold">
 				<Bold className="h-4 w-4" />
 			</ToggleGroupItem>
