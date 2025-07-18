@@ -20,118 +20,13 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { Toggle } from '@/components/ui/toggle';
-import * as Menu from '@/components/ui/dropdown-menu';
-
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ButtonDemo } from './button-demo';
 import { ToggleGroupDemo } from './toggle-group-demo';
-
-function DropdownMenuDemo() {
-  return (
-    <Menu.DropdownMenu>
-      <Menu.DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
-      </Menu.DropdownMenuTrigger>
-      <Menu.DropdownMenuContent className="w-56" align="start">
-        <Menu.DropdownMenuLabel>My Account</Menu.DropdownMenuLabel>
-        <Menu.DropdownMenuGroup>
-          <Menu.DropdownMenuItem>
-            Profile
-            <Menu.DropdownMenuShortcut>⇧⌘P</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-          <Menu.DropdownMenuItem>
-            Billing
-            <Menu.DropdownMenuShortcut>⌘B</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-          <Menu.DropdownMenuItem>
-            Settings
-            <Menu.DropdownMenuShortcut>⌘S</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-          <Menu.DropdownMenuItem>
-            Keyboard shortcuts
-            <Menu.DropdownMenuShortcut>⌘K</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-        </Menu.DropdownMenuGroup>
-        <Menu.DropdownMenuSeparator />
-        <Menu.DropdownMenuGroup>
-          <Menu.DropdownMenuItem>Team</Menu.DropdownMenuItem>
-          <Menu.DropdownMenuSub>
-            <Menu.DropdownMenuSubTrigger>Invite users</Menu.DropdownMenuSubTrigger>
-            <Menu.DropdownMenuPortal>
-              <Menu.DropdownMenuSubContent>
-                <Menu.DropdownMenuItem>Email</Menu.DropdownMenuItem>
-                <Menu.DropdownMenuItem>Message</Menu.DropdownMenuItem>
-                <Menu.DropdownMenuSeparator />
-                <Menu.DropdownMenuItem>More...</Menu.DropdownMenuItem>
-              </Menu.DropdownMenuSubContent>
-            </Menu.DropdownMenuPortal>
-          </Menu.DropdownMenuSub>
-          <Menu.DropdownMenuItem>
-            New Team
-            <Menu.DropdownMenuShortcut>⌘+T</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-        </Menu.DropdownMenuGroup>
-        <Menu.DropdownMenuSeparator />
-        <Menu.DropdownMenuItem>GitHub</Menu.DropdownMenuItem>
-        <Menu.DropdownMenuItem>Support</Menu.DropdownMenuItem>
-        <Menu.DropdownMenuItem disabled>API</Menu.DropdownMenuItem>
-        <Menu.DropdownMenuSeparator />
-        <Menu.DropdownMenuItem>
-          Log out
-          <Menu.DropdownMenuShortcut>⇧⌘Q</Menu.DropdownMenuShortcut>
-        </Menu.DropdownMenuItem>
-      </Menu.DropdownMenuContent>
-    </Menu.DropdownMenu>
-  );
-}
-
-function InputDemo() {
-  return (
-    <div className="w-full">
-      <h2 className="mb-4">Input</h2>
-      <div className="flex flex-col gap-4">
-        <div className="grid w-full max-w-sm items-center gap-1">
-          <Label htmlFor="email">Email</Label>
-          <Input type="email" id="email" placeholder="Email" />
-          <p className="text-xs">Description</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ToggleDemo() {
-  return (
-    <div className="w-full">
-      <h2 className="mb-4">Toggle</h2>
-      <div className="flex flex-row gap-2">
-        <Toggle variant="base">
-          <LucideStar />
-        </Toggle>
-        <Toggle variant="base">Toggle me</Toggle>
-      </div>
-    </div>
-  );
-}
-
-function TooltipDemo() {
-  return (
-    <div className="w-full">
-      <h2 className="mb-4">Tooltip</h2>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button variant="outline">Hover</Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Add to library</p>
-        </TooltipContent>
-      </Tooltip>
-    </div>
-  );
-}
+import { ToggleDemo } from './toggle-demo';
+import { DropdownMenuDemo } from './dropdown-demo';
+import { InputDemo } from './input-demo';
+import { TooltipDemo } from './tooltip-demo';
 
 export default function Components() {
   const buttonDemo = [

@@ -1,0 +1,18 @@
+.Group {
+  --item-size: calc(var(--spacing) * 8);
+  --padding: 2px;
+  --gap: 1px;
+  --items: 4;
+  &:hover {
+    animation: toggleWrapper 200ms ease forwards;
+  }
+}
+
+@keyframes toggleWrapper {
+  from {
+    width: calc(var(--spacing) * 9);
+  }
+  to {
+    width: (calc((var(--item-size) + var(--gap)) * 4) + 2 * var(--padding));
+  }
+}

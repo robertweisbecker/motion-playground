@@ -36,11 +36,11 @@ const buttonVariants = cva(
           'data-[state=open]:bg-gray-100 data-[state=open]:text-foreground data-[state=on]:inset-shadow-2xs',
         ],
         primary: [
-          'bg-primary text-primary-foreground shadow-button text-shadow-2xs ring-1 ring-inset ring-primary/50',
-          'hover:bg-gray-800',
-          'active:bg-gray-700 active:shadow-none active:inset-shadow-sm',
+          'bg-primary text-primary-foreground shadow-button-highlight text-shadow-2xs ring-1 ring-inset ring-primary/50',
+          'hover:bg-gray-700',
+          'active:bg-gray-900 active:inset-shadow-xs active:shadow-none',
           'data-[state=on]:bg-gray-700 data-[state=on]:shadow-none data-[state=on]:inset-shadow-xs',
-          'data-[state=open]:bg-gray-700 data-[state=open]:shadow-none data-[state=open]:inset-shadow-sm',
+          'data-[state=open]:bg-gray-700 data-[state=open]:shadow-none data-[state=open]:inset-shadow-xs',
           'not-disabled:active:pt-px',
           'disabled:bg-gray-400',
         ],
@@ -60,8 +60,8 @@ const buttonVariants = cva(
         ],
         secondary: [
           'bg-secondary text-secondary-foreground dark:text-shadow-2xs',
-          'hover:bg-gray-200',
-          'active:bg-gray-300',
+          'hover:bg-gray-300',
+          'active:bg-gray-400',
         ],
         ghost: [
           'text-foreground shadow-none',
