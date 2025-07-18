@@ -7,27 +7,29 @@ import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
 	[
-		'ease-out transition-[box-shadow,color,background	] duration-150',
+		'ease-out transition-colors duration-150',
 		'inline-flex items-center justify-center whitespace-nowrap font-medium shrink-0 relative',
-		'[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:not-only:first:-ms-[0.125em] [&_svg]:not-only:last:-me-[0.125em]',
+		'[&_svg]:pointer-events-none [&_svg]:shrink-0',
 		'before:rounded-[inherit] before:absolute after:rounded-[inherit] after:absolute',
 		'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:z-1',
 		'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
 		'[&]:has-[data-slot="badge"]:-me-2',
-		'disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed',
+		'disabled:opacity-30 disabled:cursor-not-allowed disabled:shadow-none! disabled:text-shadow-none! disabled:inset-shadow-none',
 	],
 	{
 		variants: {
 			size: {
-				default: ['h-8 min-w-9 rounded-md px-2.5 text-md gap-2 text-sm'],
+				default: ['h-9 min-w-9 rounded-md px-2.5 text-md gap-2 text-sm'],
 				sm: 'h-7 min-w-7 rounded-sm gap-1 px-2 has-[>svg]:px-2 text-sm',
-				lg: 'h-10 min-w-10 rounded-md px-4 has-[>svg]:px-4 gap-2 text-md',
+				lg: 'h-10 min-w-10 rounded-md px-4 gap-2 text-md',
+				xl: 'h-12 min-w-12 rounded-lg px-4 gap-2 text-lg',
 				xs: 'h-6 min-w-6 rounded-full p-1 text-sm',
-				icon: 'size-8 rounded-md',
+				icon: 'size-8 rounded-md aspect-square',
+				'icon-lg': 'size-10 rounded-lg aspect-square',
 			},
 			variant: {
 				default: [
-					'bg-gray-50 text-gray-600 border rounded-md',
+					'bg-muted text-muted-foreground border rounded-md border-border',
 					'hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-background',
 					'active:bg-gray-100 active:inset-shadow-2xs',
 					'data-[state=on]:bg-gray-100 data-[state=on]:text-foreground data-[state=on]:inset-shadow-2xs',
@@ -35,17 +37,17 @@ const buttonVariants = cva(
 				],
 				primary: [
 					'bg-primary text-primary-foreground shadow-button text-shadow-2xs ring-1 ring-inset ring-primary',
-					'hover:bg-gray-700',
+					'hover:not-disabled:bg-gray-700',
 					'active:bg-gray-800 active:shadow-none active:inset-shadow-sm',
-					'active:pt-px',
+					'not-disabled:active:pt-px',
+					'disabled:bg-gray-400',
 				],
 				destructive: [
 					'bg-destructive text-shadow-2xs text-white border border-[(in_oklch,var(--color-destructive),var(--color-foreground)_20%)] shadow-button-highlight',
-
-					'hover:bg-[oklch(from_var(--color-destructive)_0.1_1_1)]',
+					'hover:not-disabled:bg-[oklch(from_var(--color-destructive)_0.1_1_1)]',
 					'active:shadow-none active:inset-shadow-sm',
 					'data-[state=on]:shadow-none data-[state=on]:inset-shadow-sm',
-					'active:pt-px',
+					'not-disabled:active:pt-px',
 				],
 				outline: [
 					'text-foreground border border-gray-400',
@@ -76,9 +78,10 @@ const buttonVariants = cva(
 					'active:decoration-current',
 				],
 				elevated: [
-					'bg-card shadow-button-highlight',
-					'hover:bg-secondary hover:text-foreground',
+					'bg-card text-foreground shadow-button-highlight',
+					'hover:bg-secondary ',
 					'active:shadow-none active:inset-shadow-xs',
+					'not-disabled:active:pt-px',
 				],
 				text: [
 					'h-auto! p-0! text-muted-foreground hover:text-foreground self-baseline',
@@ -88,7 +91,7 @@ const buttonVariants = cva(
 				unstyled: '',
 			},
 			iconOnly: {
-				true: 'px-0 aspect-square [&>svg]:size-[1.125em]',
+				true: 'px-0 aspect-square',
 			},
 		},
 		defaultVariants: {
@@ -123,6 +126,8 @@ function Button({
 					iconOnly,
 				}),
 				variant === 'link' && 'px-0',
+				!iconOnly &&
+					'[&_svg]:not-only:first-child:-ms-[0.125em] [&_svg]:not-only:last-child:-me-[0.125em]',
 			)}
 			{...props}
 		></Comp>

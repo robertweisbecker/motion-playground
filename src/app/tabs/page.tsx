@@ -2,6 +2,7 @@ import * as Tabs from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Toggle } from '@/components/ui/toggle';
+import { Code } from '@/components/ui/code';
 
 export default function Demo1() {
 	return (
@@ -34,7 +35,7 @@ export default function Demo1() {
 				<h2>How it works</h2>
 				<ul>
 					<li>
-						Inset a <code>:before</code> element on each trigger to serve as your indicator and
+						Inset a <Code>:before</Code> element on each trigger to serve as your indicator and
 						translateX + 100% to move it beyond the right edge
 						<br />
 						<div className="group p-4 duration-1000 after:transition-transform">
@@ -45,7 +46,7 @@ export default function Demo1() {
 					</li>
 
 					<li>
-						When <code>data-active="true"</code>, set <code>translateX</code> to 0. It should now
+						When <code>data-active="true"</code>, set <Code>translateX</Code> to 0. It should now
 						animate in from the right. <br />
 						<div className="group p-4 duration-1000 after:transition-transform">
 							<Toggle className="peer after:scale-x-full relative duration-1000 after:absolute after:inset-0 after:origin-right after:translate-x-full after:outline after:outline-red-500 after:transition-[scale,translate,transform,background] after:ease-in data-[state=on]:after:translate-x-0 data-[state=on]:after:scale-x-100">

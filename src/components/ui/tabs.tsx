@@ -47,7 +47,7 @@ function TabsTrigger({
 			className={cn(
 				'peer text-muted-foreground relative flex h-10 cursor-pointer items-center justify-center px-4 break-keep whitespace-nowrap transition-[opacity,scale,translate,background] select-none',
 				'hover:text-foreground',
-				'before:ease before:shadow-border before:absolute before:inset-x-1 before:inset-y-1.5 before:-z-1 before:rounded-xs before:transition-[opacity,scale,translate,background] before:duration-200 data-[state=active]:before:shadow-[0_-1px]',
+				'before:ease dark:before:shadow-border before:absolute before:inset-x-1 before:inset-y-1.5 before:-z-1 before:rounded-xs before:transition-[opacity,scale,translate,background] before:duration-200 dark:data-[state=active]:before:shadow-[0_-1px]',
 				'before:pointer-events-none before:translate-x-3/4 before:scale-x-125 peer-data-[state=active]:before:-translate-x-3/4 first:before:origin-left first:before:translate-x-1/2 last:before:origin-right last:before:-translate-x-1/2',
 				'data-[state=active]:before:bg-accent data-[state=active]:text-foreground data-[state=active]:before:translate-x-0 data-[state=active]:before:scale-x-100',
 				'after:bg-border/75 after:absolute after:inset-x-[-0.5px] after:h-[1em] after:w-px first:after:content-none',

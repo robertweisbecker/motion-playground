@@ -1,4 +1,4 @@
-.wrapper {
+.Wrapper {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: calc(var(--spacing) * 2);
@@ -12,11 +12,11 @@
 	/* bottom: 40px; */
 	width: 356px;
 
-	&.hoverable:hover {
-		/* display: flex; */
-		/* --scale-increment: 0; */
-		/* --translate-increment: calc(-100% + var(--index) - 12px); */
-		.card {
+	&.Hoverable:hover {
+		display: flex;
+		--scale-increment: 0;
+		--translate-increment: calc(-100% + var(--index) - 12px);
+		.Card {
 			grid-area: 1 - var(--index) / 1;
 			/* opacity: 1; */
 			box-shadow: var(--shadow-md);
@@ -32,7 +32,7 @@
 	}
 }
 
-.card {
+.Card {
 	width: 356px;
 	height: 74px;
 	background: var(--card);
@@ -40,29 +40,24 @@
 	border-radius: var(--radius-md);
 	box-shadow: var(--shadow-md);
 	padding: calc(var(--spacing) * 4);
-	/* transition: 0.5s ease; */
 	transition:
 		scale 0.2s,
 		opacity 0.1s,
 		transform 0s;
 	transition-duration: 1s;
-
 	transform-origin: top;
-	/* & + .card {
-		box-shadow: var(--shadow-2xs);
-	} */
 }
-[data-stacked='true'],
-.stacked {
+.Card[data-stacked='true'],
+.Stacked {
 	grid-area: 1 / 1;
 	transform: scale(calc(1 - var(--index) * (var(--scale-increment))))
 		translateY(calc(var(--index) * var(--translate-increment) * 1))
 		rotate(calc(var(--index) * var(--rotate-increment)));
 	&:nth-child(even) {
-		--rotate-increment: 1deg;
+		--rotate-increment: -1deg;
 	}
 }
-[data-stacked='false'] {
+.Card[data-stacked='false'] {
 	grid-area: var(--index) + 1 / calc(var(--index));
 	/* transform: translateY(-100%); */
 }

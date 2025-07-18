@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/theme-provider';
 
 import { Geist, Inter, Geist_Mono } from 'next/font/google';
-import './globals.css';
-import './components.css';
+import './styles/globals.css';
+import './styles/components.css';
+import './styles/animations.css';
 import Image from 'next/image';
 import { LucideChevronDown, LucideComponent, LucideDot, LucideHome } from 'lucide-react';
 import { NavLink } from '@/components/ui/nav-link';
@@ -15,6 +16,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { ModeToggle } from '@/components/ui/theme-switcher';
 
 // const geistSans = Geist({
 // 	variable: '--font-geist-sans',
@@ -43,7 +45,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.variable} ${geistMono.variable} antialiased`}>
+			<body className={`${inter.variable} ${geistMono.variable} prose antialiased`}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
@@ -63,67 +65,24 @@ export default function RootLayout({
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<Button variant="ghost">
-									Demos <LucideChevronDown />
+									Pages <LucideChevronDown />
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent>
 								<DropdownMenuItem asChild>
-									<NavLink href="/demos">Stack</NavLink>
+									<NavLink href="/demos">CSS Playground</NavLink>
 								</DropdownMenuItem>
 								<DropdownMenuItem asChild>
-									<NavLink href="/tabs">Tabs</NavLink>
+									<NavLink href="/tabs">Animated Tabs</NavLink>
 								</DropdownMenuItem>
 							</DropdownMenuContent>
 						</DropdownMenu>
+						<span className="ms-auto">
+							<ModeToggle />
+						</span>
 					</nav>
 					{children}
-					<footer className="row-start-3 flex flex-wrap items-center justify-center gap-[24px]">
-						<a
-							className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-							href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<Image
-								aria-hidden
-								src="/motion-playground/file.svg"
-								alt="File icon"
-								width={16}
-								height={16}
-							/>
-							Learn
-						</a>
-						<a
-							className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-							href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<Image
-								aria-hidden
-								src="/motion-playground/window.svg"
-								alt="Window icon"
-								width={16}
-								height={16}
-							/>
-							Examples
-						</a>
-						<a
-							className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-							href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<Image
-								aria-hidden
-								src="/motion-playground/globe.svg"
-								alt="Globe icon"
-								width={16}
-								height={16}
-							/>
-							Go to nextjs.org →
-						</a>
-					</footer>
+					<footer className="row-start-3 flex flex-wrap items-center justify-center gap-[24px]"></footer>
 				</ThemeProvider>
 			</body>
 		</html>
