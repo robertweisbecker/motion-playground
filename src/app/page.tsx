@@ -5,17 +5,19 @@ import { Code } from '@/components/ui/code';
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-screen max-w-4xl flex-col gap-6">
-      <LucideLineSquiggle
-        // strokeWidth={2}
-        // absoluteStrokeWidth
-        // strokeDasharray={2}
-        className={'size-10 text-gray-400'}
-        // strokeLinejoin="miter"
-        strokeLinecap="square"
-      />
-      <h1 className="text-3xl">Experiments</h1>
-      <ul className="flex flex-col gap-4 text-lg md:-ms-4">
+    <div className="flex min-h-screen max-w-3xl flex-col gap-6">
+      <div className="">
+        <LucideLineSquiggle
+          strokeWidth={2}
+          className={'-ms-1 mb-2 size-24 text-gray-300'}
+          // strokeLinejoin="miter"
+          // strokeDashoffset="2"
+          // strokeDasharray={3}
+          // strokeLinecap="square"
+        />
+        <h1 className="text-3xl">Experiments</h1>
+      </div>
+      <ol className="flex flex-col gap-4 text-lg">
         <li>
           <Link className="link" href="/components">
             Components (shadcn x Tailwind)
@@ -46,7 +48,7 @@ export default function Home() {
             Tailwind experiments
           </Link>
         </li>
-      </ul>
+      </ol>
       <Code asChild>
         <a
           href="https://www.github.com/robertweisbecker/motion-playground"
