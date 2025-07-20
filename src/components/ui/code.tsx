@@ -9,7 +9,7 @@ const codeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-secondary text-secondary-foreground rounded-md',
+        default: 'bg-gray-50 text-current rounded-md',
         elevated:
           'bg-gradient-to-b from-card text-accent-foreground to-muted from-60% font-normal  shadow-[0_1px_2px] shadow-input',
       },
