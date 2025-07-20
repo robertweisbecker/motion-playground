@@ -1,10 +1,6 @@
-import Image from 'next/image';
-import {
-  AlertCircleIcon,
-  CheckCircle2Icon,
-  LucideGalleryHorizontal,
-  LucideStar,
-} from 'lucide-react';
+import { AlertCircleIcon, CheckCircle2Icon, GalleryHorizontalIcon } from 'lucide-react';
+
+import { ExclamationCircleIcon, StarIcon } from '@heroicons/react/16/solid';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -29,16 +25,6 @@ import { InputDemo } from './input-demo';
 import { TooltipDemo } from './tooltip-demo';
 
 export default function Components() {
-  const buttonDemo = [
-    'primary',
-    'secondary',
-    'outline',
-    'destructive',
-    'default',
-    'elevated',
-    'ghost',
-    'link',
-  ];
   return (
     <div className="mx-auto min-h-screen max-w-3xl p-8 pb-20 sm:p-20">
       <main className="flex w-full flex-col gap-8 sm:items-start">
@@ -46,27 +32,20 @@ export default function Components() {
 
         <ButtonDemo />
         <Separator />
-        <h3>Callout / Alert</h3>
-        <div className="grid w-full items-start gap-4">
-          <Alert variant={'success'}>
-            <CheckCircle2Icon />
-            <AlertTitle>Success! Your changes have been saved</AlertTitle>
-            <AlertDescription>This is an alert with icon, title and description.</AlertDescription>
-          </Alert>
 
-          <Alert variant="destructive">
-            <AlertCircleIcon />
-            <AlertTitle>Unable to process your payment.</AlertTitle>
-            <AlertDescription>
-              <p>Please verify your billing information and try again.</p>
-              <ul className="list-inside list-disc text-sm">
-                <li>Check your card details</li>
-                <li>Ensure sufficient funds</li>
-                <li>Verify billing address</li>
-              </ul>
-            </AlertDescription>
-          </Alert>
-        </div>
+        <h2 className="col-span-2">Alert</h2>
+        <Alert variant={'success'}>
+          <CheckCircle2Icon />
+          <AlertTitle>Success! Your changes have been saved</AlertTitle>
+          <AlertDescription>This is an alert with icon, title and description.</AlertDescription>
+        </Alert>
+
+        <Alert variant="destructive">
+          <AlertCircleIcon />
+          <AlertTitle>Unable to process your payment.</AlertTitle>
+          <AlertDescription>Please verify your billing information and try again.</AlertDescription>
+        </Alert>
+        <Separator />
         <InputDemo />
         <Separator />
         <ToggleDemo />
@@ -76,35 +55,27 @@ export default function Components() {
         <Separator />
         <h3>Badge</h3>
         <div className="flex gap-2">
-          <Badge>Badge</Badge>
+          <Badge variant="default">Primary</Badge>
           <Badge variant="secondary">Secondary</Badge>
-          <Badge variant="destructive">Destructive</Badge>
-          <Badge variant="destructive" size="dot">
-            Destructive
-          </Badge>
-          <Badge variant="default" color="info" size="dot">
-            info
-          </Badge>
           <Badge variant="outline">Outline</Badge>
-          <Badge variant="outline" color="info">
-            Badge
-          </Badge>
-          <Badge variant="outline" color="error">
-            Badge
-          </Badge>
-          <Badge variant="outline" color="warning">
-            Badge
-          </Badge>
-          <Badge variant="subtle" color="info">
-            Badge
-          </Badge>
-          <Badge variant="subtle" color="error">
-            Badge
-          </Badge>
-          <Badge variant="subtle" color="warning">
-            Badge
-          </Badge>
+          <Badge variant="destructive">Destructive</Badge>
         </div>
+        <div className="flex gap-2">
+          <Badge variant="warning">Warning</Badge>
+          <Badge variant="info">Info</Badge>
+        </div>
+        <div className="flex gap-2">
+          <Badge variant="outline">
+            <ExclamationCircleIcon className="text-amber-600" />
+            Warning
+          </Badge>
+          <Badge variant="outline">
+            <ExclamationCircleIcon className="text-destructive" />
+            Error
+          </Badge>
+          <Badge variant="info">Info</Badge>
+        </div>
+
         <Separator />
         <h3>Card</h3>
         <Card>
@@ -113,7 +84,7 @@ export default function Components() {
             <CardDescription>Card Description</CardDescription>
             <CardAction>
               <Button size="icon">
-                <LucideStar />{' '}
+                <StarIcon />{' '}
               </Button>
             </CardAction>
           </CardHeader>
@@ -142,7 +113,7 @@ export default function Components() {
             <TabsContent value="profile">Change your Profile here.</TabsContent>
             <TabsContent value="password">Change your password here.</TabsContent>
             <TabsContent value="projects">
-              <LucideGalleryHorizontal className="mx-auto size-6" />
+              <GalleryHorizontalIcon className="mx-auto size-6" />
             </TabsContent>
           </Tabs>
         </section>

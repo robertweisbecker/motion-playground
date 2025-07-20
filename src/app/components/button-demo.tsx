@@ -1,6 +1,10 @@
 import { Button, buttonVariants } from '@/components/ui/button';
 import { LucideChevronDown, LucideSettings, LucideStar } from 'lucide-react';
+import { StarIcon } from '@heroicons/react/24/solid';
+import { StarIcon as OutlineStarIcon } from '@heroicons/react/24/outline';
 import { Fragment } from 'react';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import { Code } from '@/components/ui/code';
 
 export function ButtonDemo() {
   const variants = [
@@ -16,7 +20,7 @@ export function ButtonDemo() {
   return (
     <div className="w-full">
       <h2 className="mb-4">Button</h2>
-      <div className="align-start bg-card/50 grid grid-cols-4 justify-items-start gap-4 rounded-md p-4">
+      <div className="align-start grid grid-cols-4 justify-items-start gap-4 rounded-md">
         {variants.map((variant) => (
           <Fragment key={variant}>
             <Button variant={variant as keyof typeof buttonVariants}>
@@ -30,9 +34,16 @@ export function ButtonDemo() {
               {variant.charAt(0).toUpperCase() + variant.slice(1)}
               <LucideChevronDown className="" />
             </Button>
-            <Button size="icon" variant={variant as keyof typeof buttonVariants}>
-              <LucideStar className="lucide-filled" />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button size="icon" variant={variant as keyof typeof buttonVariants}>
+                  <StarIcon />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <Code size="inherit">iconOnly</Code>, {variant}
+              </TooltipContent>
+            </Tooltip>
           </Fragment>
         ))}
       </div>

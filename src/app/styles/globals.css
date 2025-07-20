@@ -10,9 +10,12 @@
 @theme {
   --color-blue: oklch(45% 50% 264deg);
   --color-red: oklch(50% 55% 31deg);
+  --color-blue-500: #0088ff;
+  --color-red-200: rgb(255 56 60 / 14%);
+  --color-red-500: #ff383c;
+
+  /* --color-gray-50: #fcfcfc;
   --color-gray-150: #f0f0f0;
-  --color-gray-750: #313131;
-  --color-gray-50: #fcfcfc;
   --color-gray-100: #f5f5f5;
   --color-gray-150: #f0f0f0;
   --color-gray-200: #e5e5e5;
@@ -25,7 +28,8 @@
   --color-gray-800: #262626;
   --color-gray-850: #1e1e1e;
   --color-gray-900: #171717;
-  --color-gray-950: #0d0d0d;
+  --color-gray-950: #0d0d0d; */
+
   --shadow-ring: inset 0 0 0 1px var(--color-border);
   /* --shadow-button-page:
 		0 -1px 0 0 var(--color-border) inset, 0 0 0 1px rgba(0, 0, 0, 0.1) inset,
@@ -79,6 +83,9 @@
   /* --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
 
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05); */
+  --spacing-button-lg: --spacing(10);
+  --spacing-button: --spacing(8);
+  --spacing-button-sm: --spacing(7);
 }
 /* map semantic to Tailwind */
 @theme inline {
@@ -138,11 +145,12 @@
   --color-card: var(--card);
 
   --radius-2xs: calc(var(--radius) * 0.375);
-  --radius-xs: calc(var(--radius) * 0.625);
-  --radius-sm: calc(var(--radius) * 0.75);
-  --radius-md: calc(var(--radius) * 1);
-  --radius-lg: calc(var(--radius) * 1.5);
-  --radius-xl: calc(var(--radius) * 2.25);
+  --radius-xs: calc(var(--radius) * 0.5);
+  --radius-sm: calc(var(--radius) * 0.625);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: calc(var(--radius) * 1);
+  --radius-xl: calc(var(--radius) * 1.25);
+  --radius-2xl: calc(var(--radius) * 2);
 
   --color-info: var(--color-info);
   --color-warning: var(--color-warning);
@@ -158,11 +166,14 @@
   --drop-shadow-danger: var(--danger-drop);
   --shadow-button-inset: var(--button-inset);
   --shadow-button-hightlight: var(--button-highlight-shadow);
+  --color-invert: var(--invert);
+  --color-invert-foreground: var(--invert-foreground);
+  --color-popover-dark: var(--panel-dark);
 }
 
 /* Semantic */
 :root {
-  --color-gray-50: oklch(98% 0.001 264);
+  --color-gray-50: #f7f8f9;
   --color-gray-100: oklch(12% 9.5% 264deg / 5%);
   --color-gray-200: oklch(12% 9% 264deg / 8%);
   --color-gray-300: oklch(12% 8.5% 264deg / 17%);
@@ -197,27 +208,29 @@
 
   --radius: 0.5rem;
   --background: #fafafa;
+  --background: #f2f2f7;
   --foreground: var(--color-gray-900);
   --card: var(--color-white);
   --card-foreground: var(--foreground);
   --popover: var(--color-gray-50);
   --popover-foreground: var(--color-gray-800);
+  --popover-dark: var(--color-gray-700);
 
-  --primary: var(--color-gray-800);
+  --primary: var(--color-gray-700);
   --primary-foreground: var(--color-gray-50);
 
-  --secondary: var(--color-gray-200);
-  --secondary-foreground: var(--color-gray-900);
+  --secondary: var(--color-gray-100);
+  --secondary-foreground: var(--color-gray-600);
 
   --muted: var(--color-gray-50);
   --muted-foreground: var(--color-gray-600);
 
   --accent: var(--color-gray-100);
-  --accent-foreground: var(--color-gray-800);
+  --accent-foreground: var(--color-gray-700);
   --destructive: var(--color-red);
 
   --border: var(--color-gray-200);
-  --input: var(--color-gray-400);
+  --input: var(--color-gray-300);
   --ring: var(--color-blue);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -280,6 +293,7 @@
   --card-foreground: var(--foreground);
   --popover: var(--color-gray-200);
   --popover-foreground: var(--foreground);
+  --popover-dark: var(--color-gray-700);
   --primary: var(--color-gray-800);
   --primary-foreground: var(--color-gray-50);
   --secondary: var(--color-gray-100);
@@ -348,7 +362,7 @@
     @apply border-border selection:bg-current/20;
   }
   body {
-    @apply bg-background text-muted-foreground;
+    @apply bg-background text-foreground;
     /* color-scheme: light dark; */
     scrollbar-width: thin;
   }
@@ -356,37 +370,12 @@
   button {
     @apply focus-visible:outline-ring focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed;
   }
-  :where(h1, h2, h3, h4, h5, h6) {
-    @apply text-foreground mt-[0.8em] mb-[1.2em] leading-tight font-medium;
-  }
-
-  h1 {
-    @apply text-3xl font-medium tracking-[-0.0175em];
-  }
-  h2 {
-    @apply text-2xl font-medium tracking-[-0.01em];
-  }
-  h3 {
-    @apply text-xl font-medium;
-  }
-  h4 {
-    @apply text-base font-medium;
-  }
-  h5 {
-    @apply text-base;
-  }
-  h6 {
-    @apply text-sm;
-  }
-  :where(p, dl, ol, ul, pre):not[class*=''] {
-    @apply mt-[0.8em] mb-[1.2em];
-  }
 
   ul,
   ol {
-    @apply mt-[0.8em] flex list-outside flex-col gap-[0.8em] ps-[1em] marker:text-current/40 marker:tabular-nums;
+    @apply flex list-outside flex-col gap-[0.5em] ps-[1em] marker:text-current/40 marker:tabular-nums;
     &:not(:last-child) {
-      @apply mb-[1.2em];
+      @apply mb-[1em];
     }
   }
   ul {
@@ -398,7 +387,8 @@
   .link {
     @apply text-foreground font-medium underline decoration-current/40 decoration-1 underline-offset-[3px];
   }
-  .lucide {
+  .lucide,
+  svg[data-slot='icon'] {
     font-size: inherit;
     width: 1em;
     height: 1em;
@@ -428,7 +418,39 @@
   .text-md {
     @apply text-base;
   }
+}
+
+@layer components {
   section {
-    @apply my-10;
+    @apply my-4;
   }
+  :where(h1, h2, h3, h4, h5, h6) {
+    @apply text-foreground leading-tight font-medium;
+  }
+  .prose > :where(h1, h2, h3, h4, h5, h6, p) {
+    @apply mt-[0.8em] mb-[0.8em];
+  }
+
+  h1 {
+    @apply text-xl font-[650] tracking-[-0.015em];
+  }
+  h2 {
+    @apply text-lg font-[550] tracking-[-0.01em];
+    /* @apply text-2xl; */
+  }
+  h3 {
+    @apply text-lg;
+  }
+  h4 {
+    @apply text-base;
+  }
+  h5 {
+    @apply text-base;
+  }
+  h6 {
+    @apply text-sm;
+  }
+  /* :where(p, dl, ol, ul, pre):not:has([class*='']) {
+    @apply mt-[0.8em] mb-[1.2em];
+  } */
 }

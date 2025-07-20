@@ -1,11 +1,12 @@
-@tailwind utilities;
-@layer utilities {
-	.link {
-		@apply font-medium text-blue-500 underline decoration-1 underline-offset-[3px] transition-[color,text-decoration] hover:text-blue-700;
-	}
-	.prose {
-		section {
-			@apply my-20 bg-red-500!;
-		}
-	}
+@tailwind components;
+
+@layer components {
+  .link {
+    @apply font-medium text-blue-500 underline decoration-1 underline-offset-[3px] transition-[color,text-decoration] hover:text-blue-700;
+  }
+  .prose {
+    section {
+      @apply my-20 bg-red-500!;
+    }
+  }
 }

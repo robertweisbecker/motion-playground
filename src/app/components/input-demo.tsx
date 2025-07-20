@@ -1,5 +1,6 @@
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { Paragraph } from '@/components/ui/paragraph';
 
 export function InputDemo() {
   return (
@@ -10,6 +11,13 @@ export function InputDemo() {
           <Label htmlFor="email">Email</Label>
           <Input type="email" id="email" placeholder="Email" />
           <p className="text-xs">Description</p>
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1">
+          <Label htmlFor="text-input" info={"Here's some info"}>
+            Label
+          </Label>
+          <Input type="text" id="text-input" placeholder="Placeholder" />
+          <Paragraph variant="caption">Description</Paragraph>
         </div>
       </div>
     </div>

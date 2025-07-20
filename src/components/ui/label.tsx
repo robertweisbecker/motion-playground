@@ -14,7 +14,7 @@ interface LabelProps extends React.ComponentProps<typeof LabelPrimitive.Root> {
   required?: boolean;
 }
 
-function Label({ className, label, info, required, ...props }: LabelProps) {
+function Label({ className, children, label, info, required, ...props }: LabelProps) {
   return (
     <LabelPrimitive.Root
       data-slot="label"
@@ -24,7 +24,7 @@ function Label({ className, label, info, required, ...props }: LabelProps) {
       )}
       {...props}
     >
-      {label || props.children}
+      {label || children}
       {required ? <span className="text-destructive">*</span> : null}
       {info && (
         <Popover>
@@ -33,7 +33,7 @@ function Label({ className, label, info, required, ...props }: LabelProps) {
               <LucideInfo />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="text-sm" sideOffset={1} align="end">
+          <PopoverContent className="text-sm" sideOffset={4} align="end" side="top">
             {info}
           </PopoverContent>
         </Popover>

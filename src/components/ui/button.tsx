@@ -19,25 +19,25 @@ const buttonVariants = cva(
   {
     variants: {
       size: {
-        default: ['h-9 min-w-9 rounded-md px-2.5 text-md gap-2 text-sm'],
+        default: ['h-button min-w-button rounded-md px-2.5 text-md gap-1.5 text-sm'],
         sm: 'h-7 min-w-7 rounded-sm gap-1 px-2 has-[>svg]:px-2 text-sm',
         lg: 'h-10 min-w-10 rounded-md px-4 gap-2 text-md',
         xl: 'h-12 min-w-12 rounded-lg px-4 gap-2 text-lg',
         xs: 'h-6 min-w-6 rounded-full p-1 text-sm',
-        icon: 'size-8 rounded-md aspect-square',
-        'icon-lg': 'size-10 rounded-lg aspect-square',
+        icon: 'size-button rounded-md aspect-square',
+        'icon-lg': 'size-button-lg rounded-lg aspect-square',
       },
       variant: {
         default: [
           'bg-muted text-muted-foreground border rounded-md border-border',
-          'hover:bg-gray-100 hover:text-gray-900',
-          'active:bg-gray-200 active:inset-shadow-2xs',
+          'hover:bg-gray-200 hover:text-foreground',
+          'active:bg-gray-300 active:inset-shadow-2xs',
           'data-[state=on]:bg-gray-100 data-[state=on]:text-foreground data-[state=on]:inset-shadow-2xs',
           'data-[state=open]:bg-gray-100 data-[state=open]:text-foreground data-[state=on]:inset-shadow-2xs',
         ],
         primary: [
           'bg-primary text-primary-foreground shadow-button-highlight text-shadow-2xs ring-1 ring-inset ring-primary/50',
-          'hover:bg-gray-700',
+          'hover:bg-gray-800',
           'active:bg-gray-900 active:inset-shadow-xs active:shadow-none',
           'data-[state=on]:bg-gray-700 data-[state=on]:shadow-none data-[state=on]:inset-shadow-xs',
           'data-[state=open]:bg-gray-700 data-[state=open]:shadow-none data-[state=open]:inset-shadow-xs',
@@ -60,8 +60,8 @@ const buttonVariants = cva(
         ],
         secondary: [
           'bg-secondary text-secondary-foreground dark:text-shadow-2xs',
-          'hover:bg-gray-300',
-          'active:bg-gray-400',
+          'hover:bg-gray-200',
+          'active:bg-gray-300',
         ],
         ghost: [
           'text-foreground shadow-none',
@@ -120,6 +120,8 @@ function Button({
   return (
     <Comp
       data-slot="button"
+      data-size={size}
+      data-icon={iconOnly}
       className={cn(
         buttonVariants({
           variant,

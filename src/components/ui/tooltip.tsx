@@ -42,8 +42,9 @@ function TooltipContent({
         data-slot="tooltip-content"
         sideOffset={sideOffset}
         className={cn(
-          'animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 bg-foreground/80 text-background z-100 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-sm px-1.5 py-0.5 text-sm leading-snug text-balance',
-          'shadow-[inset_0px_0px_0px_0.5px_rgb(255_255_255_/_0.02),inset_0px_0.5px_0px_rgb(255_255_255_/_0.04),_inset_0px_0px_0px_1px_rgb(255_255_255_/_0.02),_0px_0px_0px_0.5px_rgb(0_0_0_/_0.24)]',
+          'animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-2 backdrop-blur-2xs dark:bg-popover/70 z-100 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md bg-zinc-950/60 px-1.5 py-1 text-xs leading-tight font-[450] text-balance text-white text-shadow-xs',
+          'shadow-[inset_0px_0px_0px_0.5px_rgb(255_255_255_/_0.02),inset_0px_0.5px_0px_rgb(255_255_255_/_0.04),_inset_0px_0px_0px_1px_rgb(255_255_255_/_0.02),_0px_0px_0px_0.5px_rgb(0_0_0_/_0.24),var(--shadow-lg)]',
+          // 'peer-hover:data-[side=left]:slide-in-from-right-0',
           'backdrop-blur-sm',
           className,
         )}

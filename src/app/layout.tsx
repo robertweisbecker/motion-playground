@@ -45,14 +45,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${geistMono.variable} prose min-h-screen antialiased`}>
+      <body
+        className={`${inter.variable} ${geistMono.variable} prose relative min-h-screen antialiased`}
+      >
+        {/* @TODO: decide on antialiased or not */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="flex gap-px p-2 text-xl">
+          <nav className="from-background sm:px-6l sticky top-0 z-10 flex items-center justify-between gap-x-0 bg-gradient-to-b from-20% to-transparent px-4 py-4">
+            <div className="from-background to-background/0 pointer-events-none absolute -inset-2 z-0 h-[120px] bg-gradient-to-b from-0% to-50% mask-b-from-40% mask-b-to-100% blur-xs backdrop-blur-xs"></div>
             <Button asChild variant="ghost">
               <NavLink href="/" label="Home" />
             </Button>
@@ -65,7 +69,7 @@ export default function RootLayout({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost">
-                  Pages <LucideChevronDown />
+                  Experiments <LucideChevronDown />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
@@ -75,13 +79,16 @@ export default function RootLayout({
                 <DropdownMenuItem asChild>
                   <NavLink href="/tabs">Animated Tabs</NavLink>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <NavLink href="/experiment-tailwind">Tailwind Playground</NavLink>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <span className="ms-auto">
               <ModeToggle />
             </span>
           </nav>
-          {children}
+          <main className="mx-auto flex max-w-4xl flex-col p-8 pb-20 sm:p-20">{children}</main>
           <footer className="row-start-3 flex flex-wrap items-center justify-center gap-[24px]"></footer>
         </ThemeProvider>
       </body>

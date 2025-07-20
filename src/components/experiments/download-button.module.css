@@ -1,0 +1,82 @@
+/**
+ *
+ * Download Button
+ *
+**/
+.IconWrapper {
+  display: inline-grid;
+  place-items: center;
+  &:first-child {
+    margin-left: 0.125em;
+  }
+  &:last-child {
+    margin-right: 0.125em;
+  }
+}
+
+.Icon {
+  grid-area: 1 / 1;
+  transition: 200ms var(--ease-in-out-circ);
+  transition-property: transform, opacity;
+  opacity: 0.8;
+  &:first-of-type {
+    z-index: -1;
+  }
+}
+
+.DownloadButton {
+  --button-height: var(--spacing-button);
+  overflow: hidden;
+
+  &[data-direction='down'] {
+    .Icon:first-of-type {
+      transform: translateY(calc(var(--button-height) * -1));
+    }
+  }
+  &[data-direction='up'] {
+    .Icon:first-of-type {
+      transform: translateY(calc(var(--button-height) * 1));
+    }
+  }
+  &[data-direction='right'] {
+    .Icon:first-of-type {
+      transform: translateX(-100%);
+    }
+  }
+  &[data-direction='left'] {
+    .Icon:first-of-type {
+      transform: translateX(100%);
+    }
+  }
+
+  &:hover {
+    .Icon:first-of-type {
+      transform: none;
+      opacity: 1;
+    }
+    &[data-direction='down'] {
+      .Icon:nth-of-type(2) {
+        transform: translateY(var(--button-height)) scale(0.5);
+        opacity: 0;
+      }
+    }
+    &[data-direction='up'] {
+      .Icon:nth-of-type(2) {
+        transform: translateY(calc(var(--button-height) * -1)) scale(0.5);
+        opacity: 0;
+      }
+    }
+    &[data-direction='right'] {
+      .Icon:nth-of-type(2) {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+    &[data-direction='left'] {
+      .Icon:nth-of-type(2) {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+    }
+  }
+}

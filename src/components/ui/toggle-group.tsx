@@ -16,6 +16,7 @@ function ToggleGroup({
   className,
   variant,
   size,
+  orientation = 'horizontal',
   children,
   ...props
 }: React.ComponentProps<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof toggleVariants>) {
@@ -24,8 +25,10 @@ function ToggleGroup({
       data-slot="toggle-group"
       data-variant={variant}
       data-size={size}
+      data-orientation={orientation}
       className={cn(
         'group/toggle-group flex w-fit items-center rounded-md p-0.5',
+        'data-[orientation=vertical]:flex-col',
         variant !== 'outline' && 'bg-muted ring-border gap-px shadow-sm ring-[0.5px]',
         className,
       )}

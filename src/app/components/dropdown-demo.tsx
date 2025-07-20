@@ -1,61 +1,74 @@
-import * as Menu from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 
 export function DropdownMenuDemo() {
   return (
-    <Menu.DropdownMenu>
-      <Menu.DropdownMenuTrigger asChild>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
         <Button variant="outline">Open</Button>
-      </Menu.DropdownMenuTrigger>
-      <Menu.DropdownMenuContent className="w-56" align="start">
-        <Menu.DropdownMenuLabel>My Account</Menu.DropdownMenuLabel>
-        <Menu.DropdownMenuGroup>
-          <Menu.DropdownMenuItem>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" align="start">
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
             Profile
-            <Menu.DropdownMenuShortcut>⇧⌘P</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-          <Menu.DropdownMenuItem>
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
             Billing
-            <Menu.DropdownMenuShortcut>⌘B</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-          <Menu.DropdownMenuItem>
+            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
             Settings
-            <Menu.DropdownMenuShortcut>⌘S</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-          <Menu.DropdownMenuItem>
+            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
             Keyboard shortcuts
-            <Menu.DropdownMenuShortcut>⌘K</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-        </Menu.DropdownMenuGroup>
-        <Menu.DropdownMenuSeparator />
-        <Menu.DropdownMenuGroup>
-          <Menu.DropdownMenuItem>Team</Menu.DropdownMenuItem>
-          <Menu.DropdownMenuSub>
-            <Menu.DropdownMenuSubTrigger>Invite users</Menu.DropdownMenuSubTrigger>
-            <Menu.DropdownMenuPortal>
-              <Menu.DropdownMenuSubContent>
-                <Menu.DropdownMenuItem>Email</Menu.DropdownMenuItem>
-                <Menu.DropdownMenuItem>Message</Menu.DropdownMenuItem>
-                <Menu.DropdownMenuSeparator />
-                <Menu.DropdownMenuItem>More...</Menu.DropdownMenuItem>
-              </Menu.DropdownMenuSubContent>
-            </Menu.DropdownMenuPortal>
-          </Menu.DropdownMenuSub>
-          <Menu.DropdownMenuItem>
+            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>Team</DropdownMenuItem>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent>
+                <DropdownMenuItem>Email</DropdownMenuItem>
+                <DropdownMenuItem>Message</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>More...</DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
+          <DropdownMenuItem>
             New Team
-            <Menu.DropdownMenuShortcut>⌘+T</Menu.DropdownMenuShortcut>
-          </Menu.DropdownMenuItem>
-        </Menu.DropdownMenuGroup>
-        <Menu.DropdownMenuSeparator />
-        <Menu.DropdownMenuItem>GitHub</Menu.DropdownMenuItem>
-        <Menu.DropdownMenuItem>Support</Menu.DropdownMenuItem>
-        <Menu.DropdownMenuItem disabled>API</Menu.DropdownMenuItem>
-        <Menu.DropdownMenuSeparator />
-        <Menu.DropdownMenuItem>
+            <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>GitHub</DropdownMenuItem>
+        <DropdownMenuItem>Support</DropdownMenuItem>
+        <DropdownMenuItem disabled>API</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
           Log out
-          <Menu.DropdownMenuShortcut>⇧⌘Q</Menu.DropdownMenuShortcut>
-        </Menu.DropdownMenuItem>
-      </Menu.DropdownMenuContent>
-    </Menu.DropdownMenu>
+          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

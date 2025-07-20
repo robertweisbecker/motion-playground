@@ -41,13 +41,13 @@ function DropdownMenuContent({
         data-slot="dropdown-menu-content"
         sideOffset={sideOffset}
         className={cn(
-          'bg-popover text-popover-foreground dark:ring-border backdrop-blur-md dark:ring-1 dark:ring-inset',
+          'bg-invert/80 text-invert-foreground inset-ring-invert/20 inset-ring-1 backdrop-blur-md',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
           'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
           'data-[side=bottom]:slide-in-from-top-2", "data-[side=left]:slide-in-from-right-2", "data-[side=right]:slide-in-from-left-2", "data-[side=top]:slide-in-from-bottom-2',
           'z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem]',
           'origin-(--radix-dropdown-menu-content-transform-origin)',
-          'overflow-x-hidden overflow-y-auto rounded-xl p-2 shadow-2xl',
+          'overflow-x-hidden overflow-y-auto rounded-2xl p-2 shadow-2xl',
           'overflow-visible',
           className,
         )}
@@ -73,23 +73,21 @@ function DropdownMenuGroup({
 const itemClasses = [
   'before:absolute before:inset-0 before:rounded-md before:pointer-events-none',
   'before:opacity-0 before:-z-1',
-  // 'first:peer-hover:before:translate-y-0',
-  // 'before:translate-x-full',
-  'group-hover:first-of-type:before:bg-red-500!',
-  // 'last-of-type:before:bg-red-500!',
-  'last-of-type:before:-translate-y-1',
-  'first-of-type:before:translate-y-1',
-  'peer-data-[slot=dropdown-menu-separator]:before:font-bold!',
-  // 'first-of-type:peer-hover:before:translate-y-1/4',
-  'hover:before:opacity-100',
-  'focus:before:translate-y-1/4 hover:before:translate-y-0',
-  'peer-hover:before:translate-y-1/4 peer-focus:before:-translate-y-1/4 peer-active:before:translate-y-0',
-  'before:transition-[transform,translate]',
-  'before:bg-blue-600',
-  'before:duration-100 before:ease-in',
-  'group:first-child:text-red-500',
-  'peer-has-[role="separator"]:text-green-500!',
-  // ':is:[(data-slot="dropdown-menu-separator")+div]:text-green-500!',
+
+  // 'group-hover:first-of-type:before:bg-red-500!',
+
+  // 'last-of-type:before:-translate-y-1',
+  // 'first-of-type:before:translate-y-1',
+  // 'peer-data-[slot=dropdown-menu-separator]:before:font-bold!',
+
+  // 'hover:before:opacity-100',
+  // 'focus:before:translate-y-0 hover:before:translate-y-0',
+  // 'peer-hover:before:translate-y-1/4 peer-focus:before:-translate-y-1/4 peer-active:before:translate-y-0',
+  // 'before:transition-[transform,translate]',
+  // 'before:bg-blue-500',
+  // 'before:duration-100 before:ease-in',
+  // 'group:first-child:text-red-500',
+  // 'peer-has-[role="separator"]:text-green-500!',
 ];
 
 function DropdownMenuItem({
@@ -111,10 +109,10 @@ function DropdownMenuItem({
         'hover:bg-current/16 hover:text-current',
         'data-[variant=destructive]:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive',
         'data-[inset]:pl-8',
-        'data-[disabled]:text-muted-foreground data-[disabled]:pointer-events-none',
+        'data-[disabled]:pointer-events-none data-[disabled]:text-current/40',
         'peer relative flex cursor-default items-center gap-2 rounded-md px-2.5 py-1.5 text-sm outline-hidden select-none',
         "[&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        itemClasses,
+        // itemClasses,
         className,
       )}
       {...props}
@@ -211,7 +209,7 @@ function DropdownMenuSeparator({
   return (
     <DropdownMenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
-      className={cn('bg-border peer -mx-1 my-1 h-px', className)}
+      className={cn('peer -mx-2 my-1 h-px bg-current/10', className)}
       {...props}
     />
   );
@@ -245,7 +243,7 @@ function DropdownMenuSubTrigger({
       data-inset={inset}
       className={cn(
         'peer relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-hidden select-none focus:bg-current/10 focus:text-current data-[inset]:pl-8 data-[state=open]:bg-current/10 data-[state=open]:text-current',
-        itemClasses,
+        // itemClasses,
         className,
       )}
       {...props}
@@ -264,21 +262,22 @@ function DropdownMenuSubContent({
     <DropdownMenuPrimitive.SubContent
       data-slot="dropdown-menu-sub-content"
       className={cn(
-        // 'data-[state=open]:animate-in data-[state=closed]:animate-out',
-        // 'data-[state=open]:fade-in-100 data-[state=closed]:fade-out-0',
-        // // 'data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95',
-        // 'data-[side=bottom]:slide-in-from-top-2',
-        // 'data-[side=left]:slide-in-from-right-2',
-        // 'data-[side=right]:slide-in-from-left-1',
-        // 'data-[side=top]:slide-in-from-bottom-2',
-        'opacity-100 data-[state=open]:opacity-0',
-        'data-[state=closed]:translate-x-0 data-[state=open]:translate-x-10',
-        // 'data-[side=left]:slide-in-from-right-2',
-        // 'data-[side=right]:slide-in-from-left-1',
-        // 'data-[side=top]:slide-in-from-bottom-2',
-        'ease transition-[transform,translate,opacity] duration-500',
-        'z-50 min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-lg p-1 shadow-2xl',
-        'bg-popover text-popover-foreground dark:ring-border backdrop-blur-md dark:ring-1 dark:ring-inset',
+        'data-[state=open]:animate-in data-[state=closed]:animate-out',
+        'data-[state=open]:fade-in-100 data-[state=closed]:fade-out-0',
+        'data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95',
+        'data-[side=bottom]:slide-in-from-top-2',
+        'data-[side=left]:slide-in-from-right-2',
+        'data-[side=right]:slide-in-from-left-1',
+        'data-[side=top]:slide-in-from-bottom-2',
+        'opacity-0 data-[state=open]:opacity-100',
+        // 'data-[state=closed]:-translate-x-2 data-[state=open]:translate-x-0',
+        'data-[side=left]:slide-in-from-right-2',
+        'data-[side=right]:slide-in-from-left-1',
+        'data-[side=top]:slide-in-from-bottom-2',
+        'ease transition-[transform,translate,opacity] duration-100',
+        'z-50 min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-xl p-1 shadow-2xl',
+        // 'text-popover-foreground dark:ring-border bg-inherit backdrop-blur-md dark:ring-1 dark:ring-inset',
+        'bg-invert/80 text-invert-foreground inset-ring-invert/20 mx-1 -my-1 inset-ring-1 backdrop-blur-md',
         className,
       )}
       {...props}
