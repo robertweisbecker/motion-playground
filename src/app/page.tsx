@@ -5,7 +5,7 @@ import { Code } from '@/components/ui/code';
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-screen max-w-3xl flex-col gap-6">
+    <div className="mx-auto flex min-h-screen max-w-4xl flex-col gap-6">
       <LucideLineSquiggle
         // strokeWidth={2}
         // absoluteStrokeWidth
