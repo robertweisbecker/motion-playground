@@ -20,7 +20,7 @@ export function ButtonDemo() {
   return (
     <div className="w-full">
       <h2 className="mb-4">Button</h2>
-      <div className="align-start grid grid-cols-4 justify-items-start gap-4 rounded-md">
+      <div className="align-start grid grid-cols-2 justify-items-start gap-4 rounded-md md:grid-cols-4">
         {variants.map((variant) => (
           <Fragment key={variant}>
             <Button variant={variant as keyof typeof buttonVariants}>
