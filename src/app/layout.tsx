@@ -74,10 +74,16 @@ export default function RootLayout({
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem asChild>
-                  <NavLink href="/demos">CSS Playground</NavLink>
+                  <NavLink href="/tabs">Tab Indicator</NavLink>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <NavLink href="/tabs">Animated Tabs</NavLink>
+                  <NavLink href="/experiment-button">Button Hover</NavLink>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <NavLink href="/experiment-toast">Toast</NavLink>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <NavLink href="/demos">CSS Playground</NavLink>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <NavLink href="/experiment-tailwind">Tailwind Playground</NavLink>

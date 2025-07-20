@@ -19,7 +19,7 @@ export default function ToastPage() {
       <main className="flex w-full flex-col gap-4">
         <h1>Experiment: Toast</h1>
         <section>
-          <h2>Stack</h2>
+          <h2 className="mb-4">Stack</h2>
           <StackedComponent length={3} />
         </section>
         <section>

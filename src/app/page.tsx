@@ -19,23 +19,38 @@ export default function Home() {
         <ul className="flex flex-col gap-2 text-lg">
           <li>
             <Link className="link" href="/components">
-              Components
+              Components (shadcn x Tailwind)
+            </Link>
+          </li>
+          <li>
+            <Link className="link" href="/experiment-button">
+              Button + Icon Hover
             </Link>
           </li>
           <li>
             <Link className="link" href="/demos">
-              CSS Animation Playground
+              CSS Transitions
             </Link>
           </li>
           <li>
             <Link className="link" href="/tabs">
-              Faux elastic tab indicator
+              Tab Indicator
+            </Link>
+          </li>
+          <li>
+            <Link className="link" href="/experiment-toast">
+              Toasts
+            </Link>
+          </li>
+          <li>
+            <Link className="link" href="/experiment-tailwind">
+              Tailwind experiments
             </Link>
           </li>
         </ul>
         <Code asChild>
           <a
-            href="github.com/robertweisbecker/motion-playground"
+            href="https://www.github.com/robertweisbecker/motion-playground"
             rel="noreferrer"
             target="_blank"
             className="link decoration-current/20"

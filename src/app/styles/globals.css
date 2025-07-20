@@ -435,7 +435,7 @@
     @apply text-xl font-[650] tracking-[-0.015em];
   }
   h2 {
-    @apply text-lg font-[550] tracking-[-0.01em];
+    @apply mb-3 text-lg font-[550] tracking-[-0.01em];
     /* @apply text-2xl; */
   }
   h3 {

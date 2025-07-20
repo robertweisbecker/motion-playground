@@ -16,9 +16,14 @@ const toggleVariants = cva(
   {
     variants: {
       variant: {
-        default: 'aria-checked:bg-accent aria-checked:text-accent-foreground',
-        ghost:
+        default: [
+          'aria-checked:bg-accent aria-checked:text-accent-foreground',
+          'aria-pressed:bg-accent aria-pressed:text-accent-foreground',
+        ],
+        ghost: [
           'aria-checked:bg-secondary text-muted-foreground hover:bg-accent aria-checked:text-foreground',
+          'aria-pressed:bg-secondary aria-pressed:text-foreground',
+        ],
         outline: 'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
         destructive: '',
         unstyled: '',
@@ -26,9 +31,11 @@ const toggleVariants = cva(
           'rounded-sm!',
           'text-gray-600 hover:bg-gray-100',
           'focus-visible:bg-none focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-blue-800',
-          'active:bg-gray-200 aria-checked:bg-gray-100 aria-checked:text-gray-900',
+          'active:bg-gray-200',
           'aria-checked:ring-inset aria-checked:ring-1 aria-checked:ring-current/4',
-          'active:bg-gray-200 aria-checked:bg-blue-500/12 aria-checked:text-blue-500',
+          'aria-pressed:ring-inset aria-pressed:ring-1 aria-pressed:ring-current/4',
+          'aria-checked:bg-blue-500/12 aria-checked:text-blue-600',
+          ' aria-pressed:bg-blue-500/12 aria-pressed:text-blue-600',
         ],
       },
       size: {
