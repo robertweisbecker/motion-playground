@@ -1,7 +1,7 @@
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 
-export function TooltipDemo() {
+export function TooltipExample() {
   return (
     <div className="w-full">
       <h2 className="mb-4">Tooltip</h2>

@@ -19,7 +19,7 @@ const buttonVariants = cva(
   {
     variants: {
       size: {
-        default: ['h-button min-w-button rounded-md px-2.5 text-md gap-1.5 text-sm'],
+        default: ['h-button min-w-button rounded-lg px-2.5 text-md gap-1.5 text-sm'],
         sm: 'h-7 min-w-7 rounded-sm gap-1 px-2 has-[>svg]:px-2 text-sm',
         lg: 'h-10 min-w-10 rounded-md px-4 gap-2 text-md',
         xl: 'h-12 min-w-12 rounded-lg px-4 gap-2 text-lg',

@@ -8,7 +8,7 @@ const toggleVariants = cva(
   [
     'inline-flex items-center justify-center gap-1',
     'select-none transition-colors',
-    'font-medium whitespace-nowrap truncate',
+    'font-medium whitespace-nowrap',
     "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 ",
     'aria-invalid:outline-destructive',
     'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-none disabled:text-gray-400',
@@ -17,18 +17,27 @@ const toggleVariants = cva(
     variants: {
       variant: {
         default: [
-          'aria-checked:bg-accent aria-checked:text-accent-foreground',
-          'aria-pressed:bg-accent aria-pressed:text-accent-foreground',
+          'bg-gray-50',
+          'hover:bg-gray-200 hover:text-foreground',
+          'aria-checked:bg-gray-100 aria-checked:text-accent-foreground',
+          'aria-pressed:bg-gray-100 aria-pressed:text-accent-foreground',
         ],
         ghost: [
-          'aria-checked:bg-secondary text-muted-foreground hover:bg-accent aria-checked:text-foreground',
-          'aria-pressed:bg-secondary aria-pressed:text-foreground',
+          'text-muted-foreground',
+          'aria-checked:bg-gray-100 aria-checked:text-foreground',
+          'aria-pressed:bg-gray-100 aria-pressed:text-foreground',
+          'hover:bg-gray-200 hover:text-foreground',
         ],
-        outline: 'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
+        outline: [
+          'border border-input bg-transparent',
+          'hover:bg-accent hover:text-accent-foreground',
+          'aria-pressed:bg-secondary aria-pressed:text-foreground',
+          'aria-checked:bg-secondary aria-checked:text-foreground',
+        ],
         destructive: '',
         unstyled: '',
         base: [
-          'rounded-sm!',
+          // 'rounded-sm!',
           'text-gray-600 hover:bg-gray-100',
           'focus-visible:bg-none focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-blue-800',
           'active:bg-gray-200',
@@ -45,7 +54,7 @@ const toggleVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'ghost',
+      variant: 'default',
       size: 'default',
     },
   },

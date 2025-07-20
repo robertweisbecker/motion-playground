@@ -27,9 +27,10 @@ function ToggleGroup({
       data-size={size}
       data-orientation={orientation}
       className={cn(
-        'group/toggle-group flex w-fit items-center rounded-md p-0.5',
+        'group/toggle-group inline-flex w-auto grow-0 items-center rounded-lg p-0.5',
         'data-[orientation=vertical]:flex-col',
-        variant !== 'outline' && 'bg-muted ring-border gap-px shadow-sm ring-[0.5px]',
+        (variant === 'ghost' || variant === 'base') && 'bg-muted ring-border gap-px ring-[0.5px]',
+        variant === 'default' && 'bg-card ring-border gap-px shadow-sm ring-[0.5px]',
         className,
       )}
       {...props}
@@ -60,7 +61,7 @@ function ToggleGroupItem({
           variant: context.variant || variant,
           size: context.size || size,
         }),
-        'peer min-w-0 flex-1 shrink-0 focus:z-10 focus-visible:z-10',
+        'peer min-w-0 shrink-0 focus:z-10 focus-visible:z-10',
         // 'peer-data-[state=on]:rounded-l-none',
         variant === 'outline' &&
           'first:rounded-l-inherit last:rounded-r-inherit rounded-none border-l-0 first:border-l',

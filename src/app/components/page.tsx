@@ -1,7 +1,5 @@
 import { AlertCircleIcon, CheckCircle2Icon, GalleryHorizontalIcon } from 'lucide-react';
-
 import { ExclamationCircleIcon, StarIcon } from '@heroicons/react/16/solid';
-
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import {
@@ -16,20 +14,18 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Toggle } from '@/components/ui/toggle';
-import { ButtonDemo } from './button-demo';
-import { ToggleGroupDemo } from './toggle-group-demo';
-import { ToggleDemo } from './toggle-demo';
-import { DropdownMenuDemo } from './dropdown-demo';
-import { InputDemo } from './input-demo';
-import { TooltipDemo } from './tooltip-demo';
+import { ButtonExample } from './button-example';
+import { ToggleExample } from './toggle-example';
+import { DropdownExample } from './dropdown-example';
+import { InputExample } from './input-example';
+import { TooltipExample } from './tooltip-example';
 
 export default function Components() {
   return (
     <div className="flex max-w-3xl flex-col items-start gap-4">
       <h1>Components</h1>
 
-      <ButtonDemo />
+      <ButtonExample />
       <Separator />
 
       <h2 className="col-span-2">Alert</h2>
@@ -45,14 +41,14 @@ export default function Components() {
         <AlertDescription>Please verify your billing information and try again.</AlertDescription>
       </Alert>
       <Separator />
-      <InputDemo />
+      <InputExample />
       <Separator />
-      <ToggleDemo />
+      <ToggleExample />
       <Separator />
-      <TooltipDemo />
+      <TooltipExample />
 
       <Separator />
-      <h3>Badge</h3>
+      <h2>Badge</h2>
       <div className="flex gap-2">
         <Badge variant="default">Primary</Badge>
         <Badge variant="secondary">Secondary</Badge>
@@ -76,30 +72,34 @@ export default function Components() {
       </div>
 
       <Separator />
-      <h3>Card</h3>
-      <Card>
-        <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-          <CardAction>
-            <Button size="icon">
-              <StarIcon />{' '}
-            </Button>
-          </CardAction>
-        </CardHeader>
-        <CardContent>
-          <p>Card Content</p>
-        </CardContent>
-        <CardFooter className="animation-pulse">
-          <p>Card Footer</p>
-        </CardFooter>
-      </Card>
+      <section>
+        <h2>Card</h2>
+        <Card>
+          <CardHeader>
+            <CardTitle>Card Title</CardTitle>
+            <CardDescription>Card Description</CardDescription>
+            <CardAction>
+              <Button size="icon">
+                <StarIcon />{' '}
+              </Button>
+            </CardAction>
+          </CardHeader>
+          <CardContent>
+            <p>Card Content</p>
+          </CardContent>
+          <CardFooter className="animation-pulse">
+            <p>Card Footer</p>
+          </CardFooter>
+        </Card>
+      </section>
       <Separator />
-      <h3>Dropdown Menu</h3>
-      <DropdownMenuDemo />
+      <section>
+        <h2>Dropdown Menu</h2>
+        <DropdownExample />
+      </section>
       <Separator />
-      <h3>Tabs</h3>
       <section className="w-full">
+        <h2>Tabs</h2>
         <Tabs defaultValue="account">
           <TabsList>
             <TabsTrigger value="account">Account</TabsTrigger>
@@ -117,9 +117,6 @@ export default function Components() {
         </Tabs>
       </section>
       <Separator />
-      <h2>Toggle Group</h2>
-      <ToggleGroupDemo />
-      <Toggle variant={'base'}>Toggle</Toggle>
     </div>
   );
 }

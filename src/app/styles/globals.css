@@ -422,24 +422,24 @@
 
 @layer components {
   section {
-    @apply my-4;
+    @apply my-4 w-full;
   }
   :where(h1, h2, h3, h4, h5, h6) {
     @apply text-foreground leading-tight font-medium;
   }
   .prose > :where(h1, h2, h3, h4, h5, h6, p) {
-    @apply mt-[0.8em] mb-[0.8em];
+    @apply mt-[0.8em] mb-[1em];
   }
 
   h1 {
-    @apply text-xl font-[650] tracking-[-0.015em];
+    @apply mb-[1em] text-xl font-[650] tracking-[-0.015em];
   }
   h2 {
-    @apply mb-3 text-lg font-[550] tracking-[-0.01em];
+    @apply mb-3 text-lg font-semibold tracking-[-0.01em];
     /* @apply text-2xl; */
   }
   h3 {
-    @apply text-lg;
+    @apply text-base font-[550];
   }
   h4 {
     @apply text-base;

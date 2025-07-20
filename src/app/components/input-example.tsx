@@ -2,7 +2,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Paragraph } from '@/components/ui/paragraph';
 
-export function InputDemo() {
+export function InputExample() {
   return (
     <div className="w-full">
       <h2 className="mb-4">Input</h2>

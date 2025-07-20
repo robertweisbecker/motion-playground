@@ -24,27 +24,27 @@ export default function Home() {
           </Link>
         </li>
         <li>
-          <Link className="link" href="/experiment-button">
+          <Link className="link" href="/experiments/button-hover">
             Button + Icon Hover
           </Link>
         </li>
         <li>
-          <Link className="link" href="/demos">
-            CSS Transitions
+          <Link className="link" href="/experiments/card-transitions">
+            Card Transitions
           </Link>
         </li>
         <li>
-          <Link className="link" href="/tabs">
+          <Link className="link" href="/demos/tab-indicator">
             Tab Indicator
           </Link>
         </li>
         <li>
-          <Link className="link" href="/experiment-toast">
+          <Link className="link" href="/demos/toast">
             Toasts
           </Link>
         </li>
         <li>
-          <Link className="link" href="/experiment-tailwind">
+          <Link className="link" href="/experiments/tailwind">
             Tailwind experiments
           </Link>
         </li>

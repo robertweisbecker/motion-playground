@@ -34,7 +34,7 @@ export function ModeToggle() {
         orientation="vertical"
         variant="ghost"
         type="single"
-        title="Color mode"
+        // title="Color mode"
         defaultValue="system"
         className={cn(
           'rounded-full',

@@ -13,7 +13,10 @@ import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { ModeToggle } from '@/components/ui/theme-switcher';
@@ -56,7 +59,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <nav className="from-background sm:px-6l sticky top-0 z-10 flex items-center justify-between gap-x-0 bg-gradient-to-b from-20% to-transparent px-4 py-4">
-            <div className="from-background to-background/0 pointer-events-none absolute -inset-2 z-0 h-[120px] bg-gradient-to-b from-0% to-50% mask-b-from-40% mask-b-to-100% blur-xs backdrop-blur-xs"></div>
+            <div className="from-background to-background/0 pointer-events-none absolute -inset-2 z-0 h-[80px] bg-gradient-to-b from-0% to-50% mask-b-from-40% mask-b-to-100% blur-xs backdrop-blur-xs"></div>
             <Button asChild variant="ghost">
               <NavLink href="/" label="Home" />
             </Button>
@@ -69,32 +72,39 @@ export default function RootLayout({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost">
-                  Experiments <LucideChevronDown />
+                  Pages <LucideChevronDown />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem asChild>
-                  <NavLink href="/tabs">Tab Indicator</NavLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <NavLink href="/experiment-button">Button Hover</NavLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <NavLink href="/experiment-toast">Toast</NavLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <NavLink href="/demos">CSS Playground</NavLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <NavLink href="/experiment-tailwind">Tailwind Playground</NavLink>
-                </DropdownMenuItem>
+                <DropdownMenuGroup>
+                  <DropdownMenuLabel>Demos</DropdownMenuLabel>
+                  <DropdownMenuItem asChild>
+                    <NavLink href="/demos/tab-indicator">Tab Indicator</NavLink>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <NavLink href="/demos/button-hover">Button Hover</NavLink>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <NavLink href="/demos/toast">Toast</NavLink>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuLabel>Experiments</DropdownMenuLabel>
+                  <DropdownMenuItem asChild>
+                    <NavLink href="/experiments/card-transitions">Card Transitions</NavLink>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <NavLink href="/experiments/tailwind">Tailwind Playground</NavLink>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
             <span className="ms-auto">
               <ModeToggle />
             </span>
           </nav>
-          <main className="mx-auto flex max-w-4xl flex-col p-8 pb-20 sm:p-20">{children}</main>
+          <main className="mx-auto flex max-w-3xl flex-col p-8 pb-20 sm:p-20">{children}</main>
           <footer className="row-start-3 flex flex-wrap items-center justify-center gap-[24px]"></footer>
         </ThemeProvider>
       </body>

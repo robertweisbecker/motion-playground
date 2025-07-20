@@ -15,7 +15,7 @@ function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive
       data-slot="tabs"
       className={cn(
         // 'flex flex-col gap-2',
-        'bg-background ring-border w-[calc(100% + --spacing(4) * 2)] -mx-4 overflow-clip rounded-lg shadow-xs ring-1 focus-within:overflow-visible',
+        'bg-card ring-border w-[calc(100% + --spacing(4) * 2)] -mx-4 overflow-clip rounded-lg shadow-xs ring-1 focus-within:overflow-visible',
         className,
       )}
       {...props}
@@ -28,7 +28,7 @@ function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimi
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        'shadow-border/50 rounded-inherit bg-muted group divide-border-border relative z-0 flex flex-row gap-0 divide-solid rounded-t-lg px-0.5 py-0 font-medium shadow-[inset_0_-1px]',
+        'shadow-border/50 rounded-inherit group divide-border-border relative z-0 flex flex-row gap-0 divide-solid rounded-t-lg px-0.5 py-0 font-medium shadow-[inset_0_-1px]',
         className,
       )}
       {...props}

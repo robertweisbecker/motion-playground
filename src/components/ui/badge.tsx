@@ -36,7 +36,7 @@ const badgeVariants = cva(
         pill: 'rounded-full',
       },
       size: {
-        default: 'text-sm leading-5 font-medium min-w-4.5 px-1.5 py-0.5 gap-1 rounded-md',
+        default: 'text-xs leading-5 font-medium min-w-4.5 px-1.5 py-0 gap-1 rounded-md',
         dot: 'size-2 p-0 border-0 my-auto overflow-hidden [&_span]:invisible rounded-full',
       },
       color: {

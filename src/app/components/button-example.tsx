@@ -1,12 +1,11 @@
 import { Button, buttonVariants } from '@/components/ui/button';
-import { LucideChevronDown, LucideSettings, LucideStar } from 'lucide-react';
+import { LucideChevronDown, LucideSettings } from 'lucide-react';
 import { StarIcon } from '@heroicons/react/24/solid';
-import { StarIcon as OutlineStarIcon } from '@heroicons/react/24/outline';
 import { Fragment } from 'react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { Code } from '@/components/ui/code';
 
-export function ButtonDemo() {
+export function ButtonExample() {
   const variants = [
     'default',
     'elevated',

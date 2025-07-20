@@ -1,19 +1,8 @@
-import {
-  ArrowDownToLineIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ArrowUpFromLineIcon,
-  ArrowUpRightIcon,
-} from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { ArrowUpRightIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Separator } from '@/components/ui/separator';
-import { CardHover } from '@/components/experiments/card-hover';
-import Toaster from '@/components/experiments/toast';
-import { StackedComponent } from '@/components/experiments/stacked-component';
-import { DownloadButton } from '@/components/experiments/download-button';
-import { Toggle } from '@/components/ui/toggle';
+import { CardHover } from '@/components/experimental/card-hover';
+import { StackedComponent } from '@/components/experimental/stacked-component';
 import { Code } from '@/components/ui/code';
 
 export default function Demo1() {

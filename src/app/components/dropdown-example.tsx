@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 
-export function DropdownMenuDemo() {
+export function DropdownExample() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
