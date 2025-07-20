@@ -5,11 +5,11 @@ import { Code } from '@/components/ui/code';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen max-w-3xl flex-col gap-6">
+    <div className="flex max-w-3xl flex-col gap-6">
       <div className="">
         <LucideLineSquiggle
           strokeWidth={2}
-          className={'-ms-1 mb-2 size-24 text-gray-300'}
+          className={'-ms-1 mb-12 size-24 text-gray-300'}
           // strokeLinejoin="miter"
           // strokeDashoffset="2"
           // strokeDasharray={3}
@@ -49,7 +49,7 @@ export default function Home() {
           </Link>
         </li>
       </ol>
-      <Code asChild>
+      <Code asChild size="default" variant="elevated">
         <a
           href="https://www.github.com/robertweisbecker/motion-playground"
           rel="noreferrer"
