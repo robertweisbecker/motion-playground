@@ -1,38 +1,40 @@
 import { LucideLineSquiggle } from 'lucide-react';
 
 import Link from 'next/link';
-import { Code } from '@/components/ui/code';
+import { Code } from '@/components/code';
+import { Paragraph } from '@/components/paragraph';
+import { Kbd } from '@/components/kbd';
 
 export default function Home() {
   return (
-    <div className="flex max-w-3xl flex-col gap-6">
-      <div className="">
+    <div className="w-full">
+      <div className="relative">
         <LucideLineSquiggle
           strokeWidth={2}
-          className={'-ms-1 mb-12 size-24 text-gray-300'}
-          // strokeLinejoin="miter"
-          // strokeDashoffset="2"
-          // strokeDasharray={3}
-          // strokeLinecap="square"
+          className={'-ms-2 mb-2 size-16 text-gray-300'}
+          strokeLinecap="square"
         />
-        <h1 className="text-3xl">Experiments</h1>
+
+        <h1 className="text-3xl">Playground</h1>
       </div>
-      <ol className="flex flex-col gap-4 text-lg">
+      <ul className="text-lg">
         <li>
           <Link className="link" href="/components">
-            Components (shadcn x Tailwind)
-          </Link>
+            Components
+          </Link>{' '}
+          ∙ shadcn × Tailwind
         </li>
         <li>
           <Link className="link" href="/experiments/button-hover">
-            Button + Icon Hover
+            Animated Button Icons
           </Link>
         </li>
         <li>
           <Link className="link" href="/experiments/card-transitions">
-            Card Transitions
+            Card Transforms
           </Link>
         </li>
+
         <li>
           <Link className="link" href="/demos/tab-indicator">
             Tab Indicator
@@ -48,8 +50,10 @@ export default function Home() {
             Tailwind experiments
           </Link>
         </li>
-      </ol>
-      <Code asChild size="default" variant="elevated">
+      </ul>
+      <Kbd>a</Kbd>
+
+      <Code asChild size="default" variant="default">
         <a
           href="https://www.github.com/robertweisbecker/motion-playground"
           rel="noreferrer"
@@ -73,19 +77,6 @@ export default function Home() {
           motion-playground
         </a>
       </Code>
-      {/* <svg
-					width="1em"
-					height="1em"
-					viewBox="0 0 16 16"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					className="text-9xl"
-				>
-					<path
-						d="M13.25 2.5C14.2165 2.5 15 3.2835 15 4.25V11C15 12.933 13.433 14.5 11.5 14.5H3.25C2.08517 14.5 1.12714 13.6148 1.01172 12.4805L1 12.25V4.25C1 3.2835 1.7835 2.5 2.75 2.5H13.25ZM2 12.25L2.00684 12.3779C2.07092 13.0082 2.60285 13.5 3.25 13.5H11.5C12.8807 13.5 14 12.3807 14 11V5.5H2V12.25ZM12.75 10.5C12.8879 10.5 13.0011 10.6122 12.9844 10.749L12.9531 10.9316C12.7558 11.8287 11.9564 12.5 11 12.5C9.97992 12.5 9.13843 11.7358 9.01562 10.749C8.99888 10.6122 9.11208 10.5 9.25 10.5H12.75ZM10.1074 6.69043C10.2511 6.50785 10.5077 6.44477 10.7236 6.55273C10.9397 6.66078 11.0435 6.90429 10.9834 7.12891L10.9473 7.22363L10.9189 7.29004C10.8618 7.44823 10.8711 7.62405 10.9473 7.77637C11.1466 8.17513 11.1712 8.63564 11.0215 9.0498L10.9473 9.22363L10.8926 9.30957C10.7489 9.49215 10.4923 9.55523 10.2764 9.44727C10.0603 9.33922 9.95645 9.09571 10.0166 8.87109L10.0527 8.77637L10.0811 8.70996C10.1382 8.55177 10.1289 8.37595 10.0527 8.22363C9.85335 7.82487 9.82882 7.36436 9.97852 6.9502L10.0527 6.77637L10.1074 6.69043ZM12.1074 6.69043C12.2511 6.50785 12.5077 6.44477 12.7236 6.55273C12.9397 6.66078 13.0435 6.90429 12.9834 7.12891L12.9473 7.22363L12.9189 7.29004C12.8618 7.44823 12.8711 7.62405 12.9473 7.77637C13.1466 8.17513 13.1712 8.63564 13.0215 9.0498L12.9473 9.22363L12.8926 9.30957C12.7489 9.49215 12.4923 9.55523 12.2764 9.44727C12.0603 9.33922 11.9565 9.09571 12.0166 8.87109L12.0527 8.77637L12.0811 8.70996C12.1382 8.55177 12.1289 8.37595 12.0527 8.22363C11.8534 7.82487 11.8288 7.36436 11.9785 6.9502L12.0527 6.77637L12.1074 6.69043ZM2.5 3.5C2.22386 3.5 2 3.72386 2 4C2 4.27614 2.22386 4.5 2.5 4.5C2.77614 4.5 3 4.27614 3 4C3 3.72386 2.77614 3.5 2.5 3.5ZM4.5 3.5C4.22386 3.5 4 3.72386 4 4C4 4.27614 4.22386 4.5 4.5 4.5C4.77614 4.5 5 4.27614 5 4C5 3.72386 4.77614 3.5 4.5 3.5ZM6.5 3.5C6.22386 3.5 6 3.72386 6 4C6 4.27614 6.22386 4.5 6.5 4.5C6.77614 4.5 7 4.27614 7 4C7 3.72386 6.77614 3.5 6.5 3.5Z"
-						fill="currentColor"
-					/>
-				</svg> */}
     </div>
   );
 }

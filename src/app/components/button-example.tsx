@@ -3,7 +3,7 @@ import { LucideChevronDown, LucideSettings } from 'lucide-react';
 import { StarIcon } from '@heroicons/react/24/solid';
 import { Fragment } from 'react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import { Code } from '@/components/ui/code';
+import { Code } from '@/components/code';
 
 export function ButtonExample() {
   const variants = [
@@ -17,8 +17,7 @@ export function ButtonExample() {
     'destructive',
   ];
   return (
-    <div className="w-full">
-      <h2 className="mb-4">Button</h2>
+    <div className="not-prose w-full">
       <div className="align-start grid grid-cols-2 justify-items-start gap-4 rounded-md md:grid-cols-4">
         {variants.map((variant) => (
           <Fragment key={variant}>
@@ -39,9 +38,7 @@ export function ButtonExample() {
                   <StarIcon />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>
-                <Code size="inherit">iconOnly</Code>, {variant}
-              </TooltipContent>
+              <TooltipContent>iconOnly, {variant}</TooltipContent>
             </Tooltip>
           </Fragment>
         ))}

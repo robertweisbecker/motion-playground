@@ -1,0 +1,88 @@
+.v2 {
+  .h1 {
+    overflow: hidden;
+    margin-top: 0;
+    transition-property: opacity, transform;
+    span {
+      display: inline-block;
+      animation: reveal 1.3s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+      animation-delay: calc(0.03s * var(--index));
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.v1 {
+  .h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    transition-property: opacity, transform;
+    :nth-child(1) {
+      --index: 1;
+    }
+    :nth-child(2) {
+      --index: 2;
+    }
+    :nth-child(3) {
+      --index: 3;
+    }
+    :nth-child(4) {
+      --index: 4;
+    }
+    :nth-child(5) {
+      --index: 5;
+    }
+    :nth-child(6) {
+      --index: 6;
+    }
+    :nth-child(7) {
+      --index: 7;
+    }
+    :nth-child(8) {
+      --index: 8;
+    }
+    :nth-child(9) {
+      --index: 9;
+    }
+    :nth-child(10) {
+      --index: 10;
+    }
+    display: flex;
+    animation: textReveal 1s forwards ease;
+    span {
+      animation: textReveal 1.5s forwards ease;
+      /* animation-delay: calc(var(--index) * 50ms); */
+      /* display: block; */
+      transition-property: opacity, transform;
+    }
+  }
+  .button {
+    width: 100%;
+    margin-top: 24px;
+    position: relative;
+    margin-bottom: -24px;
+  }
+
+  @keyframes textReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(calc(var(--index) * 2 * 4px));
+    }
+    /* 50% {
+    opacity: 0;
+  } */
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+}

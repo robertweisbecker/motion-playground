@@ -51,7 +51,7 @@ function TabsTrigger({
         'before:pointer-events-none before:translate-x-3/4 before:scale-x-125 peer-data-[state=active]:before:-translate-x-3/4 first:before:origin-left first:before:translate-x-1/2 last:before:origin-right last:before:-translate-x-1/2',
         'data-[state=active]:before:bg-accent data-[state=active]:text-foreground data-[state=active]:before:translate-x-0 data-[state=active]:before:scale-x-100',
         'after:bg-border/75 after:absolute after:inset-x-[-0.5px] after:h-[1em] after:w-px first:after:content-none',
-        stretch && 'w-full',
+        stretch && 'w-full grow',
         className,
       )}
       {...props}

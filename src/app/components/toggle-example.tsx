@@ -6,8 +6,7 @@ import { StarIcon as OutlineStarIcon } from '@heroicons/react/24/outline';
 
 export function ToggleExample() {
   return (
-    <div className="grid w-full grid-cols-2 justify-items-start gap-4">
-      <h2 className="col-span-2 mb-4">Toggle</h2>
+    <div className="not-prose bg-muted grid w-full grid-cols-2 justify-items-start gap-4">
       <p>Icon</p>
 
       <Toggle variant="base" className="data-[state=on]:[&_svg]:fill-current">

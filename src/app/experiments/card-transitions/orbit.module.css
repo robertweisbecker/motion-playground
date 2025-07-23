@@ -1,0 +1,46 @@
+.wrapper {
+  --diameter: 96px;
+  transform-style: preserve-3d;
+  position: relative;
+  perspective: 500px;
+  width: var(--diameter);
+  margin: 0 auto;
+}
+.circle {
+  height: var(--diameter);
+  width: var(--diameter);
+  position: relative;
+  border-radius: 50%;
+  background: #21201c;
+  transform-style: preserve-3d;
+  background: radial-gradient(at 25% 25%, white 0%, black 75%);
+}
+
+.orbitingCircle {
+  --inset: calc(var(--diameter) / 3);
+  width: var(--inset);
+  height: var(--inset);
+  position: absolute;
+  /* inset: var(--inset); */
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background: radial-gradient(at 25% 25%, white 0%, black 75%);
+  transition-property: transform, box-shadow;
+  animation: linear orbit 5s infinite forwards;
+  box-shadow: inset -8px -2px 8px 0px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotateY(0deg) translateZ(64px) rotateY(360deg);
+    /* box-shadow: inset 0px 0px 0 8px red; */
+  }
+  50% {
+    box-shadow: inset 16px 0px 4px 8px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(360deg) translateZ(64px) rotateY(0deg);
+    /* box-shadow: inset 4px 4px 0 8px blue; */
+  }
+}

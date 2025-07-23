@@ -33,7 +33,7 @@ function Label({ className, children, label, info, required, ...props }: LabelPr
               <LucideInfo />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="text-sm" sideOffset={4} align="end" side="top">
+          <PopoverContent className="text-sm" sideOffset={-4} align="end" side="top">
             {info}
           </PopoverContent>
         </Popover>

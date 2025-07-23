@@ -41,13 +41,13 @@ function NavLink({ href, children, label, className }: NavLinkProps) {
 				/>
 			)} */}
 
+      {label || children}
       <span
         className={cn(
           'indicator ease -ms-1 h-1.5 w-0 shrink-0 origin-center rounded-md bg-transparent transition-[background,transform,translate,width,height] duration-150',
           // currentPage && 'size-1.5 opacity-100',
         )}
       />
-      {label || children}
     </Link>
   );
 }

@@ -19,9 +19,9 @@ const buttonVariants = cva(
   {
     variants: {
       size: {
-        default: ['h-button min-w-button rounded-lg px-2.5 text-md gap-1.5 text-sm'],
+        default: ['h-button min-w-button rounded-md px-2.5 text-md gap-1.5 text-sm'],
         sm: 'h-7 min-w-7 rounded-sm gap-1 px-2 has-[>svg]:px-2 text-sm',
-        lg: 'h-10 min-w-10 rounded-md px-4 gap-2 text-md',
+        lg: 'h-10 min-w-10 rounded-lg px-4 gap-2 text-base',
         xl: 'h-12 min-w-12 rounded-lg px-4 gap-2 text-lg',
         xs: 'h-6 min-w-6 rounded-full p-1 text-sm',
         icon: 'size-button rounded-md aspect-square',
@@ -29,7 +29,7 @@ const buttonVariants = cva(
       },
       variant: {
         default: [
-          'bg-muted text-muted-foreground border rounded-md border-border',
+          'bg-muted text-muted-foreground border border-border',
           'hover:bg-gray-200 hover:text-foreground',
           'active:bg-gray-300 active:inset-shadow-2xs',
           'data-[state=on]:bg-gray-100 data-[state=on]:text-foreground data-[state=on]:inset-shadow-2xs',
@@ -45,30 +45,29 @@ const buttonVariants = cva(
           'disabled:bg-gray-400',
         ],
         destructive: [
-          'bg-destructive text-shadow-2xs text-primary-foreground border border-[(in_oklch,var(--color-destructive),var(--color-foreground)_20%)] shadow-button-highlight',
-          'hover:not-disabled:bg-[oklch(from_var(--color-destructive)_0.1_1_1)]',
+          'bg-destructive text-shadow-2xs text-primary-foreground border border-[(in_oklch,var(--color-destructive),var(--color-white)_20%)] shadow-button-highlight',
+          'hover:not-disabled:bg-red-400',
           'active:shadow-none active:inset-shadow-sm',
           'data-[state=on]:shadow-none data-[state=on]:inset-shadow-sm',
           'not-disabled:active:pt-px',
         ],
         outline: [
-          'text-foreground border border-gray-400',
-          'hover:bg-gray-100',
-          'active:bg-gray-200',
-          'data-[state=on]:bg-gray-200 data-[state=on]:text-foreground',
-          'data-[state=open]:bg-gray-200 data-[state=open]:text-foreground',
+          'text-foreground border border-gray-300',
+          'hover:bg-gray-100 ',
+          'active:bg-gray-200 active:border-gray-400',
+          'data-toggled:bg-gray-200 data-toggled:text-foreground data-toggled:border-gray-500',
         ],
         secondary: [
-          'bg-secondary text-secondary-foreground dark:text-shadow-2xs',
+          'bg-gray-100 text-secondary-foreground dark:text-shadow-2xs',
           'hover:bg-gray-200',
           'active:bg-gray-300',
+          'data-toggled:bg-gray-300',
         ],
         ghost: [
-          'text-foreground shadow-none',
-          'hover:bg-current/6',
-          'active:bg-current/12',
-          'data-[state=on]:bg-current/12',
-          'data-[state=open]:bg-current/12',
+          'text-muted-foreground shadow-none',
+          'hover:bg-current/8',
+          'active:bg-current/16',
+          'data-toggled:text-foreground',
           // 'data-[state=active]:bg-current/12',
           '[&>svg]:first:not-only:ms-0',
         ],
@@ -80,7 +79,7 @@ const buttonVariants = cva(
           'active:decoration-current',
         ],
         elevated: [
-          'bg-card text-foreground shadow-button-highlight',
+          'bg-popover text-foreground shadow-button-highlight',
           'hover:bg-secondary ',
           'active:shadow-none active:inset-shadow-xs',
           'not-disabled:active:pt-px',
@@ -103,17 +102,26 @@ const buttonVariants = cva(
   },
 );
 
+// interface ButtonProps extends React.ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
+//   startSlot?: React.ReactNode;
+//   endSlot?: React.ReactNode;
+//   asChild?: boolean;
+//   label?: string;
+// }
+
 function Button({
   className,
   variant,
   size,
   iconOnly,
+  // startSlot,
+  // label,
+  // endSlot,
   asChild = false,
   ...props
 }: React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
-    label?: string;
   }) {
   const Comp = asChild ? Slot : 'button';
 
@@ -134,7 +142,7 @@ function Button({
           '[&_svg]:not-only:first-child:-ms-[0.125em] [&_svg]:not-only:last-child:-me-[0.125em]',
       )}
       {...props}
-    ></Comp>
+    />
   );
 }
 

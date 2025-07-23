@@ -27,7 +27,7 @@ function ToggleGroup({
       data-size={size}
       data-orientation={orientation}
       className={cn(
-        'group/toggle-group inline-flex w-auto grow-0 items-center rounded-lg p-0.5',
+        'group/toggle-group inline-flex w-auto grow-0 items-center self-center rounded-lg p-0.5',
         'data-[orientation=vertical]:flex-col',
         (variant === 'ghost' || variant === 'base') && 'bg-muted ring-border gap-px ring-[0.5px]',
         variant === 'default' && 'bg-card ring-border gap-px shadow-sm ring-[0.5px]',

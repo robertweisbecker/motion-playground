@@ -3,17 +3,41 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
-import { DownloadButton } from '@/components/experimental/download-button';
+import { DownloadButton, AnimatedButton } from '@/components/experimental/download-button';
 import { ArrowDownToLineIcon, ArrowUpFromLineIcon } from 'lucide-react';
-import { DocumentTextIcon, DocumentArrowDownIcon } from '@heroicons/react/24/outline';
+import {
+  DocumentTextIcon,
+  DocumentArrowDownIcon,
+  ClipboardDocumentIcon,
+  StarIcon as OutlineStarIcon,
+} from '@heroicons/react/24/outline';
 
-import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/16/solid';
+import {
+  ArrowLongLeftIcon,
+  ArrowLongRightIcon,
+  CheckIcon,
+  StarIcon,
+} from '@heroicons/react/24/solid';
 
 export default function IconButtonPage() {
   return (
     <>
       <h1>Button Hover Effects</h1>
       <h2>Animated Icons</h2>
+      <AnimatedButton
+        label="Copy"
+        direction="right"
+        icon={<ClipboardDocumentIcon />}
+        activeIcon={<CheckIcon />}
+        activeLabel="Copied!"
+      />
+      <AnimatedButton
+        label="Download"
+        direction="right"
+        icon={<OutlineStarIcon />}
+        activeIcon={<StarIcon />}
+      />
+
       <Separator />
       <section>
         <h3>Styling</h3>

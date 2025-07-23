@@ -3,8 +3,7 @@ import { Button } from '@/components/ui/button';
 
 export function TooltipExample() {
   return (
-    <div className="w-full">
-      <h2 className="mb-4">Tooltip</h2>
+    <div className="not-prose w-full">
       <Tooltip>
         <TooltipTrigger asChild>
           <Button variant="outline">Hover</Button>
