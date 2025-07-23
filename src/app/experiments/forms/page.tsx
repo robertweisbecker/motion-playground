@@ -12,7 +12,7 @@ function SelectIcon() {
 }
 export default function FormExperiment() {
   return (
-    <div>
+    <div className="prose">
       Grouped selects + shared focus state
       <fieldset className="flex flex-col gap-1">
         <legend>Time</legend>

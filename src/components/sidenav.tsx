@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -65,13 +65,10 @@ const data = {
           title: 'CSS Animations',
           url: '/experiments/card-transitions',
         },
-        {
-          title: 'Dropdown',
-          url: '#',
-        },
+
         {
           title: 'Forms',
-          url: '#',
+          url: '/experiments/forms',
         },
       ],
     },
@@ -80,6 +77,7 @@ const data = {
 
 export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
+  const router = useRouter();
   // const currentPage = pathname === href;
   return (
     <Sidebar {...props} variant="inset">
@@ -107,13 +105,8 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             <SidebarMenuSub>
                               {item.items.map((item) => (
                                 <SidebarMenuSubItem key={item.title}>
-                                  <SidebarMenuSubButton asChild isActive={item.url === pathname}>
-                                    <Link
-                                      href={item.url}
-                                      className={item.url === pathname ? 'text-red-500' : ''}
-                                    >
-                                      {item.title}
-                                    </Link>
+                                  <SidebarMenuSubButton asChild isActive={pathname === item.url}>
+                                    <Link href={item.url}>{item.title}</Link>
                                   </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
                               ))}
@@ -125,7 +118,7 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   </SidebarMenuItem>
                 ) : (
                   <SidebarMenuItem key={item.title} title={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton asChild isActive={pathname === item.url}>
                       <Link href={item.url}>
                         <span className="min-w-[1em]">{item.icon}</span>
                         {item.title}

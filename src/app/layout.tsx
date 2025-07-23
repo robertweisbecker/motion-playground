@@ -68,7 +68,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff"></meta>
       </head> */}
       <body
-        className={`${inter.variable} ${geistMono.variable} ${Inter_Variable.variable} font-inter-var bg-background relative min-h-screen antialiased`}
+        className={`${inter.variable} ${geistMono.variable} ${Inter_Variable.variable} font-inter-var bg-background relative min-h-screen scroll-smooth antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -81,7 +81,7 @@ export default function RootLayout({
             {/*  renders <main> */}
             <SidebarInset>
               <Header />
-              <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-stretch gap-4 px-4 py-16 sm:px-8 md:px-16">
+              <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col items-stretch gap-4 px-4 py-16 sm:px-8 sm:pb-24 md:px-16">
                 {children}
               </div>
             </SidebarInset>

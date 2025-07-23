@@ -1,4 +1,6 @@
+'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { AlertCircleIcon, CheckCircle2Icon, GalleryHorizontalIcon } from 'lucide-react';
 import { ExclamationCircleIcon, InformationCircleIcon, StarIcon } from '@heroicons/react/16/solid';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -24,22 +26,18 @@ import { TooltipExample } from './tooltip-example';
 import { InfoButton } from '@/components/info-button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import {
-  Sidebar,
-  SidebarContent,
   SidebarGroup,
-  SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@radix-ui/react-collapsible';
-import { usePathname } from 'next/navigation';
-import { NavLink } from '@/components/nav-link';
+
 import { cn } from '@/lib/utils';
 import { Code } from '@/components/code';
 import { Kbd } from '@/components/kbd';
+import { PageNav } from './toc';
+import { DemoContainer } from '@/components/demo-container';
 
 function PopoverExample() {
   return (
@@ -80,111 +78,87 @@ function PopoverExample() {
   );
 }
 
-function TooltipExample2() {
-  return (
-    <div className="wrap flex gap-2 text-center">
-      <div className="col-span-2">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="secondary">Top</Button>
-          </TooltipTrigger>
-          <TooltipContent side="top">Place content for the Tooltip here.</TooltipContent>
-        </Tooltip>
-      </div>
-      <div className="col-span-2">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="secondary">Bottom</Button>
-          </TooltipTrigger>
-          <TooltipContent side="bottom">Place content for the Tooltip here.</TooltipContent>
-        </Tooltip>
-      </div>
-      <div className="col-span-1">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="secondary">Left</Button>
-          </TooltipTrigger>
-          <TooltipContent side="left">Place content for the Tooltip here.</TooltipContent>
-        </Tooltip>
-      </div>
-      <div className="col-span-1">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="secondary">Right</Button>
-          </TooltipTrigger>
-          <TooltipContent side="right">Place content for the Tooltip here.</TooltipContent>
-        </Tooltip>
-      </div>
-    </div>
-  );
-}
 const data = {
   items: [
     {
       title: 'Alert',
-      url: '/components#alert',
+      url: '#alert',
+      depth: 1,
     },
     {
       title: 'Badge',
-      url: '/components#badge',
+      url: '#badge',
+      depth: 1,
     },
     {
       title: 'Button',
-      url: '/components#button',
+      url: '#button',
+      depth: 1,
     },
     {
       title: 'Card',
-      url: '/components#card',
+      url: '#card',
+      depth: 1,
     },
     {
       title: 'Code',
-      url: '/components#code',
-      isDisabled: true,
+      url: '#code',
+      depth: 1,
     },
     {
       title: 'Dropdown',
-      url: '/components#dropdown',
+      url: '#dropdown',
+      depth: 1,
     },
-    {
-      title: 'Info Button',
-      url: '/components#info-button',
-    },
+
     {
       title: 'Input',
-      url: '/components#input',
+      url: '#input',
+      depth: 1,
     },
     {
       title: 'Kbd',
-      url: '/components#kbd',
-      isDisabled: true,
+      url: '#kbd',
+      depth: 1,
     },
     {
       title: 'Paragraph',
-      url: '/components#paragraph',
+      url: '#paragraph',
       isDisabled: true,
+      depth: 1,
     },
     {
       title: 'Popover',
-      url: '/components#popover',
+      url: '#popover',
+      depth: 1,
+    },
+    {
+      title: 'Info Button',
+      url: '#info-button',
+      depth: 2,
     },
     {
       title: 'Tabs',
-      url: '/components#tabs',
+      url: '#tabs',
+      depth: 1,
     },
     {
       title: 'Toggle',
-      url: '/components#toggle',
+      url: '#toggle',
+      depth: 1,
     },
     {
       title: 'Tooltip',
-      url: '/components#tooltip',
+      url: '#tooltip',
+      depth: 1,
     },
   ],
 };
 
 export default function Components() {
+  const router = useRouter();
   return (
-    <div className="gap-10 sm:grid sm:grid-cols-[1fr_160px]">
+    <div className="gap-10 pb-50 sm:grid sm:grid-cols-[1fr_160px]">
       <div
         className={cn(
           'prose z-2',
@@ -194,15 +168,13 @@ export default function Components() {
       >
         <h1 className="text-3xl font-[675] tracking-tight">Components</h1>
         <h2 id="alert">Alert</h2>
-        <section>
+        <DemoContainer>
           <Alert variant={'success'}>
             <CheckCircle2Icon />
             <AlertTitle>Success! Your changes have been saved</AlertTitle>
             <AlertDescription>This is an alert with icon, title and description.</AlertDescription>
           </Alert>
-        </section>
-
-        <section>
+          <br />
           <Alert variant="destructive">
             <AlertCircleIcon />
             <AlertTitle>Unable to process your payment.</AlertTitle>
@@ -210,11 +182,12 @@ export default function Components() {
               Please verify your billing information and try again.
             </AlertDescription>
           </Alert>
-        </section>
+        </DemoContainer>
+
         <hr />
 
         <h2 id="badge">Badge</h2>
-        <section className="flex flex-col gap-4">
+        <DemoContainer>
           <div className="flex gap-2">
             <Badge variant="default">Primary</Badge>
             <Badge variant="secondary">Secondary</Badge>
@@ -257,15 +230,17 @@ export default function Components() {
               Info
             </Badge>
           </div>
-        </section>
+        </DemoContainer>
         <hr />
 
         <h2 id="button">Button</h2>
-        <ButtonExample />
+        <DemoContainer>
+          <ButtonExample />
+        </DemoContainer>
         <hr />
 
         <h2 id="card">Card</h2>
-        <section className="not-prose">
+        <DemoContainer className="not-prose">
           <Card>
             <CardHeader>
               <CardTitle>Card Title</CardTitle>
@@ -284,82 +259,102 @@ export default function Components() {
               <Button>Action</Button>
             </CardFooter>
           </Card>
-        </section>
+        </DemoContainer>
         <hr />
 
         <h2 id="code">Code</h2>
-        <section>
+        <DemoContainer>
           <Code>npx run dev</Code>
-        </section>
+        </DemoContainer>
         <hr />
 
         <h2 id="dropdown">Dropdown Menu</h2>
-        <DropdownExample />
-        <hr />
-
-        <h2 id="info-button">InfoButton</h2>
-        <section>
-          <InfoButton>Some more info here</InfoButton>
-        </section>
+        <DemoContainer>
+          <DropdownExample />
+        </DemoContainer>
         <hr />
 
         <h2 id="input">Input</h2>
-        <InputExample />
+        <DemoContainer>
+          <InputExample />
+        </DemoContainer>
         <hr />
 
         <h2 id="kbd">Kbd</h2>
-        <section className="bg-card flex gap-2 rounded-xl p-6">
+        <DemoContainer>
           <Kbd>⌘</Kbd> <Kbd>⇧</Kbd> <Kbd>P</Kbd>
-        </section>
-        <hr />
-
-        <h2 id="tabs">Tabs</h2>
-        <Tabs defaultValue="account">
-          <TabsList>
-            <TabsTrigger value="account">Account</TabsTrigger>
-            <TabsTrigger value="profile">Profile</TabsTrigger>
-            <TabsTrigger value="password">Password</TabsTrigger>
-
-            <TabsTrigger value="projects">Projects</TabsTrigger>
-          </TabsList>
-          <TabsContent value="account">Make changes to your account here.</TabsContent>
-          <TabsContent value="profile">Change your Profile here.</TabsContent>
-          <TabsContent value="password">Change your password here.</TabsContent>
-          <TabsContent value="projects">
-            <GalleryHorizontalIcon className="mx-auto size-6" />
-          </TabsContent>
-        </Tabs>
-        <hr />
-
-        <h2 id="toggle">Toggle</h2>
-        <ToggleExample />
-        <hr />
-
-        <h2 id="tooltip">Tooltip</h2>
-        <TooltipExample2 />
+        </DemoContainer>
         <hr />
 
         <h2 className="" id="popover">
           Popover
         </h2>
-        <section>
+        <DemoContainer>
           <PopoverExample />
-        </section>
+        </DemoContainer>
+        <h3 id="info-button">InfoButton</h3>
+        <DemoContainer>
+          <InfoButton>Some more info here</InfoButton>
+        </DemoContainer>
+        <hr />
+
+        <h2 id="tabs">Tabs</h2>
+        <DemoContainer>
+          <Tabs defaultValue="account">
+            <TabsList>
+              <TabsTrigger value="account">Account</TabsTrigger>
+              <TabsTrigger value="profile">Profile</TabsTrigger>
+              <TabsTrigger value="password">Password</TabsTrigger>
+
+              <TabsTrigger value="projects">Projects</TabsTrigger>
+            </TabsList>
+            <TabsContent value="account">Make changes to your account here.</TabsContent>
+            <TabsContent value="profile">Change your Profile here.</TabsContent>
+            <TabsContent value="password">Change your password here.</TabsContent>
+            <TabsContent value="projects">
+              <GalleryHorizontalIcon className="mx-auto size-6" />
+            </TabsContent>
+          </Tabs>
+        </DemoContainer>
+        <hr />
+
+        <h2 id="toggle">Toggle</h2>
+        <DemoContainer>
+          <ToggleExample />
+        </DemoContainer>
+        <hr />
+
+        <h2 id="tooltip">Tooltip</h2>
+        <DemoContainer>
+          <TooltipExample />
+        </DemoContainer>
         <hr />
       </div>
       <div>
-        <SidebarMenu className="sticky top-20">
-          <SidebarGroup>
-            <SidebarGroupLabel>Jump to:</SidebarGroupLabel>
-            {data.items.map((item) => (
-              <SidebarMenuItem key={item.title} title={item.title}>
-                <SidebarMenuButton asChild disabled={item.isDisabled} size="sm">
-                  <NavLink href={item.url}>{item.title}</NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarGroup>
-        </SidebarMenu>
+        <div className="sticky top-20">
+          {/* <PageNav items={data.items} /> */}
+
+          <SidebarMenu>
+            <SidebarGroup>
+              <SidebarGroupLabel>Jump to:</SidebarGroupLabel>
+              {data.items.map((item) => (
+                <SidebarMenuItem key={item.title} title={item.title}>
+                  <SidebarMenuButton
+                    disabled={item.isDisabled}
+                    size="sm"
+                    onClick={() => router.replace(item.url, { scroll: true })}
+                    style={{ '--indent': item.depth } as React.CSSProperties}
+                  >
+                    {/* <NavLink href={item.url}>{item.title}</NavLink> */}
+                    <span className={cn(item.depth > 1 && 'pl-[calc(var(--indent)*0.5rem)]')}>
+                      {item.title}
+                    </span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarGroup>
+          </SidebarMenu>
+        </div>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ interface NavLinkProps {
 
 function NavLink({ href, children, label, className }: NavLinkProps) {
   const pathname = usePathname();
+
   const currentPage = pathname === href;
 
   // const activeClass = currentPage && 'text-foreground font-medium bg-accent';

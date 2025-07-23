@@ -417,10 +417,10 @@
       @apply text-foreground mt-[0.8em] mb-[1em];
     } */
     h1 {
-      @apply mb-[1em] text-xl font-[650] tracking-[-0.015em];
+      @apply mb-[1em] text-xl font-[650] tracking-[-0.017em];
     }
     h2 {
-      @apply mb-3 text-lg font-semibold tracking-[-0.005em] tracking-[-0.014em];
+      @apply mb-3 text-lg font-semibold tracking-[-0.014em];
       /* @apply text-2xl; */
     }
     h3 {

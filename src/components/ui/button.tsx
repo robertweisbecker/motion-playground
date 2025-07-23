@@ -70,13 +70,16 @@ const buttonVariants = cva(
           'data-toggled:text-foreground',
           // 'data-[state=active]:bg-current/12',
           '[&>svg]:first:not-only:ms-0',
+          ' disabled:bg-transparent',
         ],
         link: [
           'px-0 py-0! gap-1 [&_svg]:mx-[initial] shadow-none self-baseline',
-          'underline underline-offset-3 decoration-1 decoration-transparent hover:decoration-current/50',
+          'underline underline-offset-3 decoration-1 decoration-transparent',
           'text-blue-600 dark:text-blue-400',
-          'hover:text-blue-700 dark:hover:text-blue-300',
+          'not-disabled:hover:text-blue-700 dark:not-disabled:hover:text-blue-300',
+          'not-disabled:hover:decoration-current/50',
           'active:decoration-current',
+          'disabled:no-underline disabled:bg-transparent',
         ],
         elevated: [
           'bg-popover text-foreground shadow-button-highlight',
