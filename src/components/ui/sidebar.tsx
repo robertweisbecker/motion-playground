@@ -659,7 +659,7 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<'ul'>) {
       data-slot="sidebar-menu-sub"
       data-sidebar="menu-sub"
       className={cn(
-        'border-sidebar-border ms-3 flex min-w-0 translate-x-px flex-col border-l py-0.5 ps-2.5',
+        'border-sidebar-border ms-4 flex min-w-0 translate-x-px flex-col border-l py-2 ps-4',
         'group-data-[collapsible=icon]:hidden',
         className,
       )}

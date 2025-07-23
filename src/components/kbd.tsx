@@ -59,7 +59,7 @@ export function Kbd({ children, size = 'md' }: KbdProps) {
     <kbd
       style={{
         boxShadow:
-          'inset 0 .5px hsla(0,0%,100%,.1),inset 0 1px 5px var(--color-gray-50),0 0 0 .5px var(--color-gray-200),0 2px 1px -1px var(--color-gray-200),0 1px var(--color-gray-200)',
+          'inset 0 .5px hsla(0,0%,100%,.1),inset 0 1px 5px var(--color-gray-50),0 0 0 .5px var(--color-gray-200),0 2px 1px -1px var(--color-gray-200),0 1px var(--color-gray-200) word-spacing-0.25em',
       }}
       className={cn([
         'bg-background text-shadow-[0_0_1px] text-shadow-white/5',

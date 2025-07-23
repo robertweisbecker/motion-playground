@@ -19,7 +19,8 @@ import {
   SidebarMenuSubItem,
   // SidebarRail,
 } from '@/components/ui/sidebar';
-import { ChevronDownIcon, HomeIcon } from '@heroicons/react/20/solid';
+import { HomeIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from 'lucide-react';
 // import { NavLink } from './nav-link';
 // import { cn } from '@/lib/utils';
 
@@ -79,7 +80,7 @@ const data = {
 
 export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
-  // const currentPage = ;
+  // const currentPage = pathname === href;
   return (
     <Sidebar {...props} variant="inset">
       {/* <SidebarHeader>
@@ -97,7 +98,7 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <SidebarMenu className="group">
                         <SidebarMenuButton asChild className="">
                           <CollapsibleTrigger>
-                            <ChevronDownIcon className="transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                            <ChevronDownIcon className="size-4 text-gray-400 transition-transform group-data-[state=open]/collapsible:rotate-180" />
                             {item.title}
                           </CollapsibleTrigger>
                         </SidebarMenuButton>
@@ -106,8 +107,13 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             <SidebarMenuSub>
                               {item.items.map((item) => (
                                 <SidebarMenuSubItem key={item.title}>
-                                  <SidebarMenuSubButton asChild isActive={pathname === item.url}>
-                                    <Link href={item.url}>{item.title}</Link>
+                                  <SidebarMenuSubButton asChild isActive={item.url === pathname}>
+                                    <Link
+                                      href={item.url}
+                                      className={item.url === pathname ? 'text-red-500' : ''}
+                                    >
+                                      {item.title}
+                                    </Link>
                                   </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
                               ))}

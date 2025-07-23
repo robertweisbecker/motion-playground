@@ -7,7 +7,7 @@ import { Kbd } from '@/components/kbd';
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="prose w-full">
       <div className="relative">
         <LucideLineSquiggle
           strokeWidth={2}
@@ -26,11 +26,11 @@ export default function Home() {
         </li>
         <li>
           <Link className="link" href="/experiments/button-hover">
-            Animated Button Icons
+            Hover Icons
           </Link>
         </li>
         <li>
-          <Link className="link" href="/experiments/card-transitions">
+          <Link className="link" href="/experiments/css-animations">
             Card Transforms
           </Link>
         </li>
@@ -51,8 +51,9 @@ export default function Home() {
           </Link>
         </li>
       </ul>
-      <Kbd>a</Kbd>
-
+      <p>
+        Press <Kbd>⌘B</Kbd> + <Kbd>B</Kbd> to toggle sidebar.
+      </p>
       <Code asChild size="default" variant="default">
         <a
           href="https://www.github.com/robertweisbecker/motion-playground"
