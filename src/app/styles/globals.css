@@ -328,7 +328,7 @@
   body {
     @apply bg-background text-foreground;
     font-family:
-      var(--font-inter-var),
+      /* var(--font-inter-var), */
       var(--font-inter),
       system-ui,
       -apple-system,

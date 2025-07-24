@@ -9,6 +9,7 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuBadge,
   SidebarMenuButton,
@@ -80,10 +81,10 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
   console.log(pathname);
   // const currentPage = pathname === href;
   return (
-    <Sidebar {...props} variant="inset">
-      {/* <SidebarHeader>
-        <span className="text-sm font-semibold">Motion Playground</span>
-      </SidebarHeader> */}
+    <Sidebar {...props} variant="sidebar">
+      <SidebarHeader className="md:hidden">
+        <span className="text-sm font-medium">bob.fyi/motion-playground</span>
+      </SidebarHeader>
       <SidebarContent className="gap-0">
         {/* We create a collapsible SidebarGroup for each parent. */}
         <SidebarGroup>

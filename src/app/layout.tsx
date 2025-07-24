@@ -68,7 +68,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff"></meta>
       </head> */}
       <body
-        className={`${inter.variable} ${geistMono.variable} ${Inter_Variable.variable} font-inter-var bg-background relative min-h-screen scroll-smooth antialiased`}
+        className={`${inter.variable} ${geistMono.variable} font-inter bg-background relative min-h-screen scroll-smooth antialiased`}
       >
         <ThemeProvider
           attribute="class"

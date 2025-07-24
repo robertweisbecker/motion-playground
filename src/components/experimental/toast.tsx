@@ -3,6 +3,7 @@ import { Button } from '../ui/button';
 import { Code } from '../code';
 import styles from './toastDemo.module.css';
 import { useEffect, useState } from 'react';
+import { Badge } from '../ui/badge';
 
 interface ToastProps {
   index: number;
@@ -14,7 +15,7 @@ export default function Toaster() {
 
   return (
     <div className={styles.Wrapper}>
-      <div className={styles.Toaster} style={{ ['--total' as string]: toasts }}>
+      <div className={styles.Toaster} style={{ '--total': toasts } as React.CSSProperties}>
         {Array.from({ length: toasts }).map((_, i) => (
           <Toast key={i} index={toasts - (i + 1)} total={toasts} />
         ))}
@@ -38,9 +39,9 @@ export default function Toaster() {
           }}
         >
           Clear
-          <Code size="default" className="-me-1">
+          <Badge size="default" className="-me-1">
             {toasts}
-          </Code>
+          </Badge>
         </Button>
       </div>
     </div>
