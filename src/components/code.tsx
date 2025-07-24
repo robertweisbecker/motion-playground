@@ -14,12 +14,13 @@ const codeVariants = cva(
     // '[font-size-adjust:0.95]',
     'tracking-[-0.007em]',
     '[&>svg]:pointer-events-none',
+    'has-[a]:underline has-[a]:underline-offset-[3px] has-[a]:text-blue-600',
     'not-prose',
   ],
   {
     variants: {
       variant: {
-        default: 'bg-gray-100/50 text-gray-700 rounded-md',
+        default: 'bg-gray-200/50 text-gray-700 rounded-md',
         elevated:
           'bg-gradient-to-b from-card text-accent-foreground to-muted from-60% font-normal  shadow-[0_1px_2px] shadow-input',
       },

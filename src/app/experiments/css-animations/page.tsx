@@ -13,7 +13,7 @@ import { DemoContainer } from '@/components/demo-container';
 
 export default function Demo1() {
   return (
-    <div className="prose">
+    <div className="prose max-w-4xl">
       <h1>CSS Playground</h1>
       <br />
       <Separator />

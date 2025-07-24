@@ -61,7 +61,7 @@ function BannerExample() {
 
 export default function TailwindPage() {
   return (
-    <>
+    <div className="prose max-w-4xl">
       <h1>Styling w/ Tailwind</h1>
       <Separator />
       <h2>Switch / Toggle</h2>
@@ -370,6 +370,6 @@ export default function TailwindPage() {
         </div>
       </div>
       <BannerExample />
-    </>
+    </div>
   );
 }

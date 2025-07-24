@@ -52,7 +52,7 @@ export default function Home() {
         </li>
       </ul>
       <p>
-        Press <Kbd>⌘B</Kbd> + <Kbd>B</Kbd> to toggle sidebar.
+        Press <Kbd>⌘</Kbd> + <Kbd>B</Kbd> to toggle sidebar.
       </p>
       <Code asChild size="default" variant="default">
         <a

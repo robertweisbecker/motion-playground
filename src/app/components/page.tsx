@@ -158,14 +158,30 @@ const data = {
 export default function Components() {
   const router = useRouter();
   return (
-    <div className="gap-10 pb-50 sm:grid sm:grid-cols-[1fr_160px]">
-      <div
-        className={cn(
-          'prose z-2',
-          // '[&_section]:relative [&_section]:my-8',
-          // '[&_section]:before:bg-accent [&_section]:before:absolute [&_section]:before:-inset-3 [&_section]:before:-z-1 [&_section]:before:rounded-2xl',
-        )}
-      >
+    <div className="gap-16 pb-50 sm:grid sm:grid-cols-[160px_1fr]">
+      <div className="sticky top-20">
+        <SidebarMenu id="pageNav">
+          <SidebarGroup>
+            <SidebarGroupLabel>Jump to:</SidebarGroupLabel>
+            {data.items.map((item) => (
+              <SidebarMenuItem key={item.title} title={item.title}>
+                <SidebarMenuButton
+                  disabled={item.isDisabled}
+                  size="sm"
+                  onClick={() => router.replace(item.url, { scroll: true })}
+                  style={{ '--indent': item.depth } as React.CSSProperties}
+                >
+                  {/* <NavLink href={item.url}>{item.title}</NavLink> */}
+                  <span className={cn(item.depth > 1 && 'pl-[calc(var(--indent)*0.5rem)]')}>
+                    {item.title}
+                  </span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarGroup>
+        </SidebarMenu>
+      </div>
+      <div className={cn('prose')}>
         <h1 className="text-3xl font-[675] tracking-tight">Components</h1>
         <h2 id="alert">Alert</h2>
         <DemoContainer>
@@ -329,32 +345,6 @@ export default function Components() {
           <TooltipExample />
         </DemoContainer>
         <hr />
-      </div>
-      <div>
-        <div className="sticky top-20">
-          {/* <PageNav items={data.items} /> */}
-
-          <SidebarMenu>
-            <SidebarGroup>
-              <SidebarGroupLabel>Jump to:</SidebarGroupLabel>
-              {data.items.map((item) => (
-                <SidebarMenuItem key={item.title} title={item.title}>
-                  <SidebarMenuButton
-                    disabled={item.isDisabled}
-                    size="sm"
-                    onClick={() => router.replace(item.url, { scroll: true })}
-                    style={{ '--indent': item.depth } as React.CSSProperties}
-                  >
-                    {/* <NavLink href={item.url}>{item.title}</NavLink> */}
-                    <span className={cn(item.depth > 1 && 'pl-[calc(var(--indent)*0.5rem)]')}>
-                      {item.title}
-                    </span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarGroup>
-          </SidebarMenu>
-        </div>
       </div>
     </div>
   );

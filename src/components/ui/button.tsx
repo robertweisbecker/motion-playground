@@ -29,7 +29,7 @@ const buttonVariants = cva(
       },
       variant: {
         default: [
-          'bg-muted text-muted-foreground border border-border',
+          'bg-muted text-muted-foreground border border-border dark:bg-current/2',
           'hover:bg-gray-200 hover:text-foreground',
           'active:bg-gray-300 active:inset-shadow-2xs',
           'data-[state=on]:bg-gray-100 data-[state=on]:text-foreground data-[state=on]:inset-shadow-2xs',
@@ -52,7 +52,7 @@ const buttonVariants = cva(
           'not-disabled:active:pt-px',
         ],
         outline: [
-          'text-foreground border border-gray-300',
+          'text-foreground border border-gray-300 dark:bg-transparent',
           'hover:bg-gray-100 ',
           'active:bg-gray-200 active:border-gray-400',
           'data-toggled:bg-gray-200 data-toggled:text-foreground data-toggled:border-gray-500',

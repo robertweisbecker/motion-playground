@@ -9,20 +9,18 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  // SidebarGroupLabel,
-  // SidebarHeader,
   SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  // SidebarRail,
 } from '@/components/ui/sidebar';
-import { HomeIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, SwatchIcon } from '@heroicons/react/24/outline';
+
 import { ChevronDownIcon } from 'lucide-react';
-// import { NavLink } from './nav-link';
-// import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 const data = {
   navMain: [
@@ -34,10 +32,11 @@ const data = {
     {
       title: 'Component Playground',
       url: '/components',
+      icon: <SwatchIcon />,
     },
     {
       title: 'Demos',
-      url: '#',
+      url: '/demos',
       items: [
         {
           title: 'Animated Button Icon',
@@ -63,7 +62,7 @@ const data = {
         },
         {
           title: 'CSS Animations',
-          url: '/experiments/card-transitions',
+          url: '/experiments/css-animations',
         },
 
         {
@@ -78,6 +77,7 @@ const data = {
 export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
   const router = useRouter();
+  console.log(pathname);
   // const currentPage = pathname === href;
   return (
     <Sidebar {...props} variant="inset">
@@ -93,11 +93,21 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 item.items ? (
                   <SidebarMenuItem key={item.title} title={item.title}>
                     <Collapsible defaultOpen className="group/collapsible">
-                      <SidebarMenu className="group">
-                        <SidebarMenuButton asChild className="">
+                      <SidebarMenu className="group/menu">
+                        <SidebarMenuButton
+                          asChild
+                          className={cn(
+                            pathname.includes(item.url) &&
+                              'data-[state=closed]:bg-sidebar-accent/70 data-[state=closed]:text-sidebar-accent-foreground data-[state=closed]:font-medium',
+                          )}
+                          // isActive={pathname.includes(item.url)}
+                        >
                           <CollapsibleTrigger>
                             <ChevronDownIcon className="size-4 text-gray-400 transition-transform group-data-[state=open]/collapsible:rotate-180" />
                             {item.title}
+                            <SidebarMenuBadge className="in-data-[state=open]:hidden">
+                              {item.items.length}
+                            </SidebarMenuBadge>
                           </CollapsibleTrigger>
                         </SidebarMenuButton>
                         <CollapsibleContent>

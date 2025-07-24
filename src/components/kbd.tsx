@@ -59,11 +59,11 @@ export function Kbd({ children, size = 'md' }: KbdProps) {
     <kbd
       style={{
         boxShadow:
-          'inset 0 .5px hsla(0,0%,100%,.1),inset 0 1px 5px var(--color-gray-50),0 0 0 .5px var(--color-gray-200),0 2px 1px -1px var(--color-gray-200),0 1px var(--color-gray-200) word-spacing-0.25em',
+          'inset 0 .5px hsla(0,0%,100%,.3),inset 0 1px 5px var(--color-gray-100),0 0 0 .5px var(--color-gray-200),0 2px 1px -1px var(--color-gray-300),0 1px var(--color-gray-200)',
       }}
       className={cn([
-        'bg-background text-shadow-[0_0_1px] text-shadow-white/5',
-        'inline-flex w-auto flex-none items-center justify-center gap-1 self-start px-1.5 py-0 text-xs font-medium whitespace-nowrap tabular-nums select-none',
+        'from-bg-card to-bg-muted bg-gradient-to-b text-shadow-[0_0_1px] text-shadow-white/5',
+        'inline-flex w-auto flex-none items-center justify-center gap-1 self-start px-1.5 pt-0.5 pb-0 text-xs font-medium whitespace-nowrap tabular-nums select-none',
         'font-sans uppercase',
         size === 'sm' && 'h-5 rounded-md',
         size === 'md' && 'h-6 rounded-md',

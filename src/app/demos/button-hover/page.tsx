@@ -21,7 +21,7 @@ import {
 
 export default function IconButtonPage() {
   return (
-    <>
+    <div className="prose max-w-4xl">
       <h1>Button Hover Effects</h1>
       <h2>Animated Icons</h2>
       <AnimatedButton
@@ -129,6 +129,6 @@ export default function IconButtonPage() {
           </Button>
         </div>
       </section>
-    </>
+    </div>
   );
 }

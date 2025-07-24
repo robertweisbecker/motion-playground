@@ -9,7 +9,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 export default function Demo1() {
   return (
-    <>
+    <div className="prose max-w-4xl">
       <div>
         <h1>
           <span className="text-muted-foreground">Demo: </span>Animated Tabs
@@ -113,6 +113,6 @@ export default function Demo1() {
         resizing effect of fancier indicators. It also allows the new indicator to "pick up" the
         momentum of previous indicator that's animating away toward it.
       </p> */}
-    </>
+    </div>
   );
 }
