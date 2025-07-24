@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { AlertCircleIcon, CheckCircle2Icon, GalleryHorizontalIcon } from 'lucide-react';
 import { ExclamationCircleIcon, InformationCircleIcon, StarIcon } from '@heroicons/react/16/solid';
@@ -158,8 +157,8 @@ const data = {
 export default function Components() {
   const router = useRouter();
   return (
-    <div className="gap-16 pb-50 sm:grid sm:grid-cols-[160px_1fr]">
-      <div className="">
+    <div className="gap-16 pb-50 sm:grid sm:grid-cols-[1fr_240px]">
+      <div className="order-last">
         <SidebarMenu id="pageNav" className="sticky top-20">
           <SidebarGroup>
             <SidebarGroupLabel>Jump to:</SidebarGroupLabel>
@@ -181,7 +180,7 @@ export default function Components() {
           </SidebarGroup>
         </SidebarMenu>
       </div>
-      <div className={cn('prose')}>
+      <div className={cn('prose col-start-1 mx-auto')}>
         <h1 className="text-3xl font-[675] tracking-tight">Components</h1>
         <h2 id="alert">Alert</h2>
         <DemoContainer>

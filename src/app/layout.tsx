@@ -1,9 +1,9 @@
 // 'use client';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Geist, Inter, Geist_Mono } from 'next/font/google';
+import { Mona_Sans, Inter, Geist_Mono, Onest } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
-import '../fonts/interVariable.css';
+
 import './styles/globals.css';
 import './styles/components.css';
 
@@ -17,10 +17,15 @@ import { SideNav } from '@/components/sidenav';
 
 import { Header } from '@/components/header';
 
-// const geistSans = Geist({
-// 	variable: '--font-geist-sans',
-// 	subsets: ['latin'],
-// });
+const monaSans = Mona_Sans({
+  variable: '--font-mona',
+  subsets: ['latin'],
+});
+
+const onest = Onest({
+  variable: '--font-onest',
+  subsets: ['latin'],
+});
 
 const inter = Inter({
   variable: '--font-inter',
@@ -34,9 +39,10 @@ const geistMono = Geist_Mono({
 
 const Inter_Variable = localFont({
   variable: '--font-inter-var',
+  display: 'swap',
   src: [
-    { path: '../fonts/InterVariable.woff2', style: 'normal' },
-    { path: '../fonts/InterVariable-Italic.woff2', style: 'italic' },
+    { path: './fonts/InterVariable.woff2', style: 'normal' },
+    { path: './fonts/InterVariable-Italic.woff2', style: 'italic' },
   ],
 });
 
@@ -68,7 +74,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff"></meta>
       </head> */}
       <body
-        className={`${inter.variable} ${geistMono.variable} font-inter bg-background relative min-h-screen scroll-smooth antialiased`}
+        className={`${inter.variable} ${Inter_Variable.variable} bg-background relative min-h-screen scroll-smooth antialiased`}
       >
         <ThemeProvider
           attribute="class"

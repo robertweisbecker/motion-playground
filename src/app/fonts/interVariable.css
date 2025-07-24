@@ -1,8 +1,6 @@
 /* Variable fonts usage:
-:root { font-family: "Inter", sans-serif; }
-@supports (font-variation-settings: normal) {
-  :root { font-family: "InterVariable", sans-serif; font-optical-sizing: auto; }
 } */
+
 @font-face {
   font-family: InterVariable;
   font-style: normal;
@@ -64,5 +62,14 @@
     square-quotes: 8; /* Square quotes */
     circled-characters: 5; /* Circled characters */
     squared-characters: 6; /* Squared characters */
+  }
+}
+:root {
+  font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'InterVariable', sans-serif;
+    font-optical-sizing: auto;
   }
 }

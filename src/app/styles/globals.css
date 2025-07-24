@@ -7,6 +7,7 @@
 @plugin "@tailwindcss/typography";
 
 @import './animations.css';
+@import '../fonts/interVariable.css';
 
 @custom-variant dark (&:is(.dark *));
 @custom-variant data-toggled (&[data-state~="expanded"], &[data-state~="on"], &[data-state~="pressed"], &[data-state~="active"], &[data-state~="open"]);
@@ -69,8 +70,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-inter-var: 'Inter Variable';
-  --font-sans: var(--font-inter);
+
   /* --font-mono: var(--font-mono); */
 
   --color-blue: var(--color-blue-800);
@@ -155,6 +155,8 @@
 
 /* Semantic */
 :root {
+  --font-inter-var: 'InterVariable';
+  --font-sans: var(--font-inter-var), system-ui;
   color-scheme: light;
   --color-gray-50: #f7f8f9;
   --color-gray-100: oklch(12% 9.5% 264deg / 5%);
@@ -328,7 +330,7 @@
   body {
     @apply bg-background text-foreground;
     font-family:
-      /* var(--font-inter-var), */
+      var(--font-inter-var),
       var(--font-inter),
       system-ui,
       -apple-system,
@@ -431,7 +433,7 @@
   h4,
   h5,
   h6 {
-    @apply scroll-mt-20 font-medium;
+    @apply scroll-mt-20;
   }
   --tw-prose-body: var(--color-gray-600);
   --tw-prose-headings: var(--color-foreground);
@@ -469,7 +471,4 @@
   --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
   --tw-prose-invert-th-borders: oklch(44.6% 0.03 256.802);
   --tw-prose-invert-td-borders: oklch(37.3% 0.034 259.733);
-  h1 {
-    @apply font-semibold;
-  }
 }

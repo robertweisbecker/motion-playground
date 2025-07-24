@@ -2,7 +2,6 @@ import { LucideLineSquiggle } from 'lucide-react';
 
 import Link from 'next/link';
 import { Code } from '@/components/code';
-import { Paragraph } from '@/components/paragraph';
 import { Kbd } from '@/components/kbd';
 
 export default function Home() {
