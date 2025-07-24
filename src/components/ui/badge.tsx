@@ -13,7 +13,7 @@ const badgeVariants = cva(
         default:
           'bg-accent text-accent-foreground [a&]:hover:bg-primary-hover [a&]:hover:text-primary-foreground',
         secondary: 'bg-secondary text-secondary-foreground [a&]:hover:bg-secondary-hover',
-        destructive: 'bg-destructive text-white',
+        destructive: 'bg-destructive text-primary-foreground',
         outline:
           'ring ring-current/16 shadow-sm bg-card text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
         subtle: 'text-inherit bg-[currentColor]/12 [a&]:hover:bg-[currentColor]/20 ring-0',

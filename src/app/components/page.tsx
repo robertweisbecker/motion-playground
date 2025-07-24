@@ -159,8 +159,8 @@ export default function Components() {
   const router = useRouter();
   return (
     <div className="gap-16 pb-50 sm:grid sm:grid-cols-[160px_1fr]">
-      <div className="sticky top-20">
-        <SidebarMenu id="pageNav">
+      <div className="">
+        <SidebarMenu id="pageNav" className="sticky top-20">
           <SidebarGroup>
             <SidebarGroupLabel>Jump to:</SidebarGroupLabel>
             {data.items.map((item) => (
