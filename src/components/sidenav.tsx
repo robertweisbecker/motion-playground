@@ -130,7 +130,7 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuItem key={item.title} title={item.title}>
                     <SidebarMenuButton asChild isActive={pathname === item.url}>
                       <Link href={item.url}>
-                        <span className="min-w-[1em]">{item.icon}</span>
+                        <span className="min-w-5 text-center">{item.icon}</span>
                         {item.title}
                       </Link>
                     </SidebarMenuButton>
