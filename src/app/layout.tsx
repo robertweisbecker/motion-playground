@@ -74,7 +74,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff"></meta>
       </head> */}
       <body
-        className={`${inter.variable} ${Inter_Variable.variable} bg-background relative min-h-screen scroll-smooth antialiased`}
+        className={`${inter.variable} ${Inter_Variable.variable} bg-background relative min-h-screen max-w-screen overflow-x-clip scroll-smooth antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -82,12 +82,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
+          <SidebarProvider className="">
             <SideNav />
             {/*  renders <main> */}
             <SidebarInset>
               <Header />
-              <div className="mx-auto flex w-full flex-1 flex-col items-stretch gap-4 px-4 py-16 sm:px-8 sm:pb-24 md:px-16">
+              <div className="mx-auto flex w-[calc(100vw-var(--sidebar-width))] max-w-5xl flex-1 flex-col items-stretch gap-4 px-4 py-16 sm:px-8 sm:pb-24 md:px-16">
                 {children}
               </div>
             </SidebarInset>

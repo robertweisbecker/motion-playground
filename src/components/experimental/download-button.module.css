@@ -17,7 +17,7 @@
 
 .Icon {
   grid-area: 1 / 1;
-  transition: 200ms var(--ease-in-out-circ);
+  transition: 200ms var(--ease-in-out-quad);
   transition-property: transform, opacity;
   opacity: 0.8;
   &:first-of-type {

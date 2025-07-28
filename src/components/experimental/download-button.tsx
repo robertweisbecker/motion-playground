@@ -75,35 +75,35 @@ export function AnimatedButton({
   size,
   ...props
 }: DownloadButtonProps) {
-  const iconClasses =
-    'col-start-1 row-start-1 duration-200 ease-out transition-[transform,scale,opacity,filter] origin-center';
+  const baseIconClasses =
+    'col-start-1 row-start-1 duration-150 ease-out transition-[transform,scale,opacity,filter] origin-center group-active/button:scale-75';
+  const baseLabelClasses = ' ease transition-[filter,blur,opacity] duration-100';
+  const hiddenLabelClasses = ['opacity-0', 'scale-100', 'blur-xs'];
+  const visibleLabelClasses = ['opacity-100', 'scale-100', 'blur-none'];
+
   function IconContainer() {
     return (
-      <span className={cn('group/icon grid')}>
-        <span
+      <span className={cn('group/icon grid', iconSide === 'end' && 'ml-auto')}>
+        <div
           className={cn(
-            iconClasses,
-            'opacity-0',
-            'scale-50',
-            'blur-xs',
-            'group-data-[state=on]/button:scale-100 group-data-[state=on]/button:opacity-100 group-data-[state=on]/button:blur-none',
+            baseIconClasses,
+            'opacity-0 group-data-[state=on]/button:opacity-100',
+            'scale-50 group-data-[state=on]/button:scale-100',
+            'blur-xs group-data-[state=on]/button:blur-none',
           )}
         >
           {activeIcon ? activeIcon : icon}
-        </span>
-        <span
+        </div>
+        <div
           className={cn(
-            iconClasses,
-            'opacity-100',
-            'scale-100',
-            'blur-none',
-            'duration-150',
-            'group-data-[state=on]/button:scale-50 group-data-[state=on]/button:opacity-0 group-data-[state=on]/button:blur-xs',
-            'group-active/button:scale-95',
+            baseIconClasses,
+            'opacity-100 group-data-[state=on]/button:opacity-0',
+            'scale-100 group-data-[state=on]/button:scale-50',
+            'blur-none group-data-[state=on]/button:blur-xs',
           )}
         >
           {icon}
-        </span>
+        </div>
       </span>
     );
   }
@@ -125,37 +125,39 @@ export function AnimatedButton({
     );
   } else
     return (
-      <Toggle className={cn('group/button')} size="lg" data-direction={direction}>
+      <Toggle className={cn('group/button relative')} size="lg" data-direction={direction}>
         {iconSide === 'start' && <IconContainer />}
-
-        {activeLabel && (
+        <div className="relative">
+          {activeLabel && (
+            <span
+              className={cn(
+                baseLabelClasses,
+                'absolute left-0',
+                hiddenLabelClasses,
+                visibleLabelClasses.map((value) => `group-data-[state=on]/button:${value}`),
+              )}
+            >
+              {activeLabel}
+            </span>
+          )}
           <span
+            data-content={activeLabel ? activeLabel : ''}
             className={cn(
-              'ease transform-all duration-200',
-              'absolute opacity-0',
-              'scale-50',
-              'blur-xs',
-              'group-data-[state=on]/button:relative group-data-[state=on]/button:scale-100 group-data-[state=on]/button:opacity-100 group-data-[state=on]/button:blur-none',
-              iconClasses,
+              baseLabelClasses,
+              visibleLabelClasses,
+
+              activeLabel && [
+                'after:invisible after:block after:h-0 after:content-[attr(data-content)]',
+                // 'group-data-[state=on]/button:absolute group-data-[state=on]/button:scale-50 group-data-[state=on]/button:opacity-0 group-data-[state=on]/button:blur-xs',
+                hiddenLabelClasses.map((value) => `group-data-[state=on]/button:${value}`),
+                // visibleLabelClasses.map((value) => `group-data-[state=off]/button:${value}`),
+              ],
             )}
           >
-            {activeLabel}
+            {label}
           </span>
-        )}
-        <span
-          className={cn(
-            'ease transform-all duration-200',
-            'relative',
-            'opacity-100',
-            'scale-100',
-            'blur-none',
-            activeLabel &&
-              'group-data-[state=on]/button:absolute group-data-[state=on]/button:scale-50 group-data-[state=on]/button:opacity-0 group-data-[state=on]/button:blur-xs',
-            iconClasses,
-          )}
-        >
-          {label}
-        </span>
+        </div>
+
         {iconSide === 'end' && <IconContainer />}
       </Toggle>
     );

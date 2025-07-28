@@ -18,9 +18,8 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
-import { HomeIcon, SwatchIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, SwatchIcon, ChevronDownIcon } from '@heroicons/react/16/solid';
 
-import { ChevronDownIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const data = {
@@ -58,17 +57,21 @@ const data = {
       url: '#',
       items: [
         {
-          title: 'Tailwind Testing',
-          url: '/experiments/tailwind',
+          title: 'Framer Motion',
+          url: '/experiments/framer-motion',
         },
         {
           title: 'CSS Animations',
           url: '/experiments/css-animations',
         },
-
         {
           title: 'Forms',
           url: '/experiments/forms',
+        },
+
+        {
+          title: 'Tailwind Testing',
+          url: '/experiments/tailwind',
         },
       ],
     },
@@ -79,14 +82,13 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
   const router = useRouter();
   console.log(pathname);
-  // const currentPage = pathname === href;
+
   return (
     <Sidebar {...props} variant="sidebar">
-      <SidebarHeader className="md:hidden">
+      <SidebarHeader className="sm:sr-only">
         <span className="text-sm font-medium">bob.fyi/motion-playground</span>
       </SidebarHeader>
-      <SidebarContent className="gap-0">
-        {/* We create a collapsible SidebarGroup for each parent. */}
+      <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -101,10 +103,18 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             pathname.includes(item.url) &&
                               'data-[state=closed]:bg-sidebar-accent/70 data-[state=closed]:text-sidebar-accent-foreground data-[state=closed]:font-medium',
                           )}
-                          // isActive={pathname.includes(item.url)}
                         >
                           <CollapsibleTrigger>
-                            <ChevronDownIcon className="size-4 text-gray-400 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                            <span
+                              className={cn(
+                                'shadow-sidebar-border grid size-5 place-items-center rounded-full opacity-60',
+                                'group-data-open/collapsible:opacity-100',
+                                // 'group-data-open/collapsible:bg-accent/50',
+                                // 'group-data-open/collapsible:shadow-[inset_0_1px,inset_0_0_0_1px]',
+                              )}
+                            >
+                              <ChevronDownIcon className="ease h-4 w-4 transition-all group-data-open/collapsible:rotate-180" />
+                            </span>
                             {item.title}
                             <SidebarMenuBadge className="in-data-[state=open]:hidden">
                               {item.items.length}
@@ -129,9 +139,15 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   </SidebarMenuItem>
                 ) : (
                   <SidebarMenuItem key={item.title} title={item.title}>
-                    <SidebarMenuButton asChild isActive={pathname === item.url}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === item.url}
+                      className="data-[active=true]:[&>span]:bg-sidebar-primary data-[active=true]:[&>span]:text-sidebar-primary-foreground data-[active=true]:[&>span]:shadow-button-highlight data-[active=true]:[&>span]:-ring-offset-1 data-[active=true]:[&>span]:ring-1"
+                    >
                       <Link href={item.url}>
-                        <span className="min-w-5 text-center">{item.icon}</span>
+                        <span className="shadow-button-base size-5 rounded-xs text-center ring-[color-mix(in_oklch,var(--color-sidebar-primary)_80%,var(--color-black))]">
+                          {item.icon}
+                        </span>
                         {item.title}
                       </Link>
                     </SidebarMenuButton>

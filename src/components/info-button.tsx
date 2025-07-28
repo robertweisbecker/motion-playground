@@ -1,7 +1,10 @@
+import { useRef, createRef } from 'react';
+import { useHover } from 'usehooks-ts';
+import { cn } from '@/lib/utils';
+
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Button } from './ui/button';
-import { cn } from '@/lib/utils';
 
 interface InfoButtonProps {
   children: React.ReactNode;
@@ -17,10 +20,15 @@ export function InfoButton({
   className,
   ...props
 }: InfoButtonProps) {
+  // hoverRef = createRef<HTMLButtonElement>();
+  // const hoverRef = useRef(null);
+  // const isHover = useHover(hoverRef);
+
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
+          // ref={hoverRef}
           iconOnly
           size={size}
           variant={variant}

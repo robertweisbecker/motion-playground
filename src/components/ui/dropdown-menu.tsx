@@ -41,7 +41,7 @@ function DropdownMenuContent({
         data-slot="dropdown-menu-content"
         sideOffset={sideOffset}
         className={cn(
-          'bg-invert/80 text-invert-foreground inset-ring-invert/20 inset-ring-1 backdrop-blur-md',
+          'bg-gray-900/80 text-gray-50 ring-1 ring-gray-600 backdrop-blur-md dark:ring-inset',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
           'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
           'data-[side=bottom]:slide-in-from-top-2", "data-[side=left]:slide-in-from-right-2", "data-[side=right]:slide-in-from-left-2", "data-[side=top]:slide-in-from-bottom-2',
@@ -262,22 +262,24 @@ function DropdownMenuSubContent({
     <DropdownMenuPrimitive.SubContent
       data-slot="dropdown-menu-sub-content"
       className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out',
-        'data-[state=open]:fade-in-100 data-[state=closed]:fade-out-0',
-        'data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95',
+        'data-[state=open]:animate-in',
+        'data-[state=closed]:animate-out',
+        // 'data-[state=open]:fade-in-100',
+        'data-[state=closed]:fade-out-0',
+        // 'data-[state=open]:zoom-in-95',
+        'data-[state=closed]:zoom-out-95',
         'data-[side=bottom]:slide-in-from-top-2',
-        'data-[side=left]:slide-in-from-right-2',
-        'data-[side=right]:slide-in-from-left-1',
+        'data-[side=left]:slide-in-from-right-0',
+        'data-[side=right]:slide-in-from-left-0',
         'data-[side=top]:slide-in-from-bottom-2',
-        'opacity-0 data-[state=open]:opacity-100',
-        // 'data-[state=closed]:-translate-x-2 data-[state=open]:translate-x-0',
-        'data-[side=left]:slide-in-from-right-2',
-        'data-[side=right]:slide-in-from-left-1',
-        'data-[side=top]:slide-in-from-bottom-2',
-        'ease transition-[transform,translate,opacity] duration-100',
+        'opacity-100 data-[state=open]:opacity-100',
+        'data-[state=closed]:-translate-x-2 data-[state=open]:translate-x-0',
+
+        'ease transition-[transform,translate,opacity] duration-200',
         'z-50 min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-xl p-1 shadow-2xl',
         // 'text-popover-foreground dark:ring-border bg-inherit backdrop-blur-md dark:ring-1 dark:ring-inset',
-        'bg-invert/80 text-invert-foreground inset-ring-invert/20 mx-1 -my-1 inset-ring-1 backdrop-blur-md',
+        'mx-0.5 -my-1',
+        'bg-gray-900/80 text-gray-50 ring-1 ring-gray-600 backdrop-blur-md dark:ring-inset',
         className,
       )}
       {...props}

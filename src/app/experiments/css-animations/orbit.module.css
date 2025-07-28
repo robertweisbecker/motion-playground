@@ -28,19 +28,26 @@
   background: radial-gradient(at 25% 25%, white 0%, black 75%);
   transition-property: transform, box-shadow;
   animation: linear orbit 5s infinite forwards;
-  box-shadow: inset -8px -2px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    inset -8px -2px 8px 0px rgba(0, 0, 0, 0.5),
+    var(--shadow-md);
 }
 
 @keyframes orbit {
   0% {
-    transform: translate(-50%, -50%) rotateY(0deg) translateZ(64px) rotateY(360deg);
+    transform: translate(-50%, -50%) rotateY(0deg) translateZ(64px)
+      rotateY(360deg);
     /* box-shadow: inset 0px 0px 0 8px red; */
   }
-  50% {
-    box-shadow: inset 16px 0px 4px 8px rgba(255, 255, 255, 0.5);
+  33% {
+    box-shadow: inset -24px 0px 16px 8px rgba(0, 0, 0, 0.75);
+  }
+  67% {
+    box-shadow: inset -8px -8px 16px 0px rgba(255, 255, 255, 0.25);
   }
   100% {
-    transform: translate(-50%, -50%) rotateY(360deg) translateZ(64px) rotateY(0deg);
+    transform: translate(-50%, -50%) rotateY(360deg) translateZ(64px)
+      rotateY(0deg);
     /* box-shadow: inset 4px 4px 0 8px blue; */
   }
 }

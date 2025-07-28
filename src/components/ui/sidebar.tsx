@@ -20,6 +20,8 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Bars3CenterLeftIcon } from '@heroicons/react/16/solid';
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from './drawer';
+import { SidebarIcon } from '@/app/icons/icons';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -175,26 +177,32 @@ function Sidebar({
 
   if (isMobile) {
     return (
-      <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
-        <SheetContent
+      <Drawer
+        open={openMobile}
+        onOpenChange={setOpenMobile}
+        direction={side}
+        dismissible={true}
+        modal={false}
+      >
+        <DrawerContent
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) rounded-2xl p-0 [&>button]:hidden"
+          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0"
           style={
             {
               '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
             } as React.CSSProperties
           }
-          side={side}
         >
-          <SheetHeader className="sr-only">
-            <SheetTitle>Sidebar</SheetTitle>
-            <SheetDescription>Displays the mobile sidebar.</SheetDescription>
-          </SheetHeader>
-          <div className="flex h-full w-full flex-col">{children}</div>
-        </SheetContent>
-      </Sheet>
+          <DrawerHeader className="sr-only">
+            <DrawerTitle>Menu</DrawerTitle>
+          </DrawerHeader>
+          {/* <div className="flex h-full w-full flex-col"> */}
+          {children}
+          {/* </div> */}
+        </DrawerContent>
+      </Drawer>
     );
   }
 
@@ -224,7 +232,7 @@ function Sidebar({
         className={cn(
           'fixed inset-y-0 z-0 hidden h-svh w-(--sidebar-width) overflow-x-visible transition-[left,right,width] duration-400 ease-out md:flex',
           side === 'left'
-            ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
+            ? 'top-2 bottom-2 left-0 h-[calc(100svh-1rem)] group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
           // Adjust the padding for floating and inset variants.
           variant === 'floating' || variant === 'inset'
@@ -237,7 +245,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="group-data-[variant=floating]:outline-sidebar-border flex h-full w-full flex-col overflow-x-visible group-data-[variant=floating]:rounded-2xl group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
+          className="group-data-[variant=floating]:outline-sidebar-border bg-sidebar flex h-full w-full flex-col overflow-x-visible group-data-[variant=floating]:rounded-2xl group-data-[variant=floating]:border group-data-[variant=floating]:shadow-lg group-data-[variant=sidebar]:rounded-r-xl"
         >
           {children}
         </div>
@@ -253,9 +261,10 @@ function Sidebar({
 function SidebarTrigger({
   className,
   onClick,
-  icon = <Bars3CenterLeftIcon />,
+  icon = <SidebarIcon />,
   closeIcon,
   variant = 'ghost',
+  size = 'icon-lg',
   ...props
 }: React.ComponentProps<typeof Button> & {
   icon?: React.ReactNode;
@@ -269,7 +278,7 @@ function SidebarTrigger({
       data-slot="sidebar-trigger"
       data-state={state}
       variant={variant}
-      size="icon"
+      size={size}
       iconOnly
       className={cn('', className)}
       onClick={(event) => {
@@ -501,7 +510,7 @@ const sidebarMenuButtonVariants = cva(
     'peer/menu-button flex w-full relative items-center justify-start truncate gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding]',
     'hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground focus-visible:ring-2',
     'active:bg-sidebar-accent active:text-sidebar-accent-foreground',
-    'disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent  data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:min-w-5 [&>svg]:shrink-0',
+    'disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent  data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:min-w-4 [&>svg]:shrink-0',
   ],
   {
     variants: {
@@ -676,7 +685,7 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<'ul'>) {
       className={cn(
         'relative flex min-w-0 translate-x-px flex-col py-0.5 ps-0',
         'group-data-[collapsible=icon]:hidden',
-        'before:bg-border before:absolute before:-inset-y-0.5 before:left-4 before:w-px',
+        'before:bg-border before:absolute before:-top-0.5 before:left-4 before:h-full before:w-px',
         className,
       )}
       {...props}
@@ -722,6 +731,9 @@ function SidebarMenuSubButton({
         sidebarMenuButtonVariants({ variant, size }),
         'relative ps-9 text-sm font-normal',
         'before:absolute before:inset-y-2 before:left-3.5 before:ms-px before:w-[3px] before:rounded-full before:bg-transparent',
+        'data-[active=true]:before:inset-ring-[0.5px] data-[active=true]:before:inset-ring-current/50',
+        'data-[active=true]:before:ring-[0.5px] data-[active=true]:before:ring-current',
+        'data-[active=true]:before:shadow-[inset_1px_0_hsl(0_0_100/50%),inset_0px_1px_1px_hsl(0_0_100/70%),inset_-1px_1px_1px_hsl(0_0_0/50%),2px_1px_4px_1px_hsl(0_0_0/20%)] dark:data-[active=true]:before:shadow-[0_0_12px_1px_hsl(0_0_100_/_80%),inset_-1px_-1px_1px_hsl(0_0_0/50%)]',
         isActive && 'before:bg-current',
 
         size === 'sm' && 'text-xs',

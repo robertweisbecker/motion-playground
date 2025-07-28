@@ -9,10 +9,11 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: 'bg-accent text-accent-foreground',
-        destructive: 'text-red bg-red-400/15 [&>svg]:text-current/80',
+        destructive: 'text-red bg-destructive/15 [&>svg]:text-current/80',
         info: 'bg-blue-200/30 text-blue [&>svg]:text-current/80',
         warning: 'bg-yellow-400/12 text-yellow-800 [&>svg]:text-current/80 dark:text-yellow-300',
-        success: 'bg-green-700/10 text-green-800 [&>svg]:text-green-600 dark:text-green-300',
+        success:
+          'bg-green-200 dark:bg-green-800/20 text-green-800  [&>svg]:text-green-600 dark:text-green-300',
         outline: 'ring-1 ring-border bg-card text-foreground [&>svg]:text-muted-foreground',
         plain: 'p-0 bg-card',
       },

@@ -1,30 +1,59 @@
 @import 'tailwindcss';
+/* @import './typography.css'; */
+/* @import 'tailwindcss'; */
 @import 'tw-animate-css';
-@tailwind utilities;
+/* @tailwind utilities;
 @layer base;
 @layer components;
-@layer utilities;
-@plugin "@tailwindcss/typography";
+@layer utilities; */
+/* @plugin "@tailwindcss/typography"; */
+@import './typography.css' layer(utilities);
 
 @import './animations.css';
 @import '../fonts/interVariable.css';
 
 @custom-variant dark (&:is(.dark *));
-@custom-variant data-toggled (&[data-state~="expanded"], &[data-state~="on"], &[data-state~="pressed"], &[data-state~="active"], &[data-state~="open"]);
+@custom-variant data-toggled (&[data-state="expanded"], &[data-state="on"], &[data-state="pressed"], &[data-state="active"], &[data-state="open"], &[aria-pressed="true"], &[aria-checked="true"]);
+@custom-variant data-open (&[data-state="expanded"], &[data-state="open"]);
 
 /* Tailwind overrides */
 @theme {
   --shadow-outline: inset 0 0 0 1px var(--color-border);
   --shadow-button-highlight: var(--button-highlight-shadow);
+  --shadow-glass:
+    0px 0px 1.5px rgba(0, 0, 0, 0.1), 0px 0.65px 5px rgba(0, 0, 0, 0.12),
+    inset 0.65px 0.65px 1px -0.65px rgba(255, 255, 255, 0.8),
+    inset -0.65px -0.65px 2px -0.65px rgba(255, 255, 255, 0.4);
 
-  --inset-shadow-pressed: inset 0 1px 0 -0.5px rgba(0 0 0 / 12%), inset 0 1.5px 2px 0 rgba(0 0 0 / 2%), inset 0 1.5px 2px 0 rgba(0 0 0 / 10%);
-  --shadow-sm: 0px 3px 6px -3px rgb(0 0 0 / 0.05), 0px 2px 4px -2px rgb(0 0 0 / 0.05), 0px 1px 2px -1px rgb(0 0 0 / 0.05), 0px 1px 1px -1px rgb(0 0 0 / 0.05), 0px 1px 0px -1px rgb(0 0 0 / 0.05);
+  --inset-shadow-pressed:
+    inset 0 1px 0 -0.5px rgba(0 0 0 / 12%),
+    inset 0 1.5px 2px 0 rgba(0 0 0 / 2%), inset 0 1.5px 2px 0 rgba(0 0 0 / 10%);
+  --shadow-xs:
+    0 1px 1px -1px rgb(0 0 0 / 0.08), 0 2px 2px -1px rgb(0 0 0 / 0.08),
+    0 0 0 1px rgb(0 0 0 / 0.06);
+  --shadow-sm:
+    0 3px 6px -3px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05),
+    0 1px 2px -1px rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.1),
+    0 0 0.5px 0.5px var(--color-gray-50);
   --shadow-md:
-    rgba(0, 0, 0, 0.08) 0px 8px 10px -5px, rgba(0, 0, 0, 0.03) 0px 5px 5px -2.5px, rgba(0, 0, 0, 0.02) 0px 3px 3px -1.5px, rgba(0, 0, 0, 0.02) 0px 2px 2px -1px, rgba(0, 0, 0, 0.03) 0px 1px 1px -0.5px,
-    rgba(0, 0, 0, 0.04) 0px 0.5px 0.5px 0px, var(--color-border-soft) 0px 0px 0px 1px;
-  --inset-shadow-2xs: inset 0 1px 1px 0 rgba(0 0 0 / 8%), inset 0 0.5px 2px 0 rgba(0 0 0 / 12%), inset 0 0 0 1px rgba(0 0 0 / 12%);
-  --inset-shadow-xs: inset 0 2px 1px -0.5px rgba(0 0 0 / 12%), inset 0 0px 0px 0.5px rgba(0 0 0 / 12%), 0 0px 0px 0.5px var(--color-background), inset 0 4px 2px 0px rgba(0 0 0 / 5%);
-  --inset-shadow-sm: inset 0 8px 4px -2px rgba(0 0 0 / 10%), inset 3px 1px 1px -1.5px rgba(0 0 0 / 5%), inset -3px 1px 1px -1.5px rgba(0 0 0 / 5%), inset 0 2px 1px 1px rgba(0 0 0 / 5%);
+    0 4px 10px -2px rgb(0 0 0 / 0.12), 0 6px 6px -3px rgb(0 0 0 / 0.06),
+    0 3px 3px -1.5px rgb(0 0 0 / 0.04), 0 1px 1px -0.5px rgb(0 0 0 / 0.04),
+    0 0.5px 0.5px 0 rgb(0 0 0 / 0.04), 0 0 1px 0.5px var(--color-gray-100);
+  --inset-shadow-2xs:
+    inset 0 2px 0px -1px rgba(0 0 0 / 5%),
+    inset 2px 0px 2px -1px rgba(0 0 0 / 5%),
+    inset 0px 2px 2px -1px rgba(0 0 0 / 5%),
+    inset 0px 2px 2px 0px rgba(0 0 0 / 5%);
+  --inset-shadow-xs:
+    inset 0 2px 1px -0.5px rgba(0 0 0 / 12%),
+    inset 0 0 0 0.5px rgba(0 0 0 / 12%),
+    0 0 0 0.5px color-mix(in oklch, currentColor 20%, transparent),
+    inset 0 4px 2px 0px rgba(0 0 0 / 5%);
+  --inset-shadow-sm:
+    inset 0 8px 4px -2px rgba(0 0 0 / 10%),
+    inset 3px 1px 1px -1.5px rgba(0 0 0 / 5%),
+    inset -3px 1px 1px -1.5px rgba(0 0 0 / 5%),
+    inset 0 2px 1px 1px rgba(0 0 0 / 5%);
   --drop-shadow-button: var(--button-drop-shadow);
   --color-button-shadow: var(--button-drop-shadow);
   /* --shadow-button:
@@ -98,7 +127,7 @@
   --color-border-soft: var(--border-soft); /* Custom */
 
   --color-destructive: var(--destructive);
-  --color-destructive-secondary: --alpha(var(--destructive-secondary) / 14%); /* Custom */
+  /* Custom */
 
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -129,10 +158,11 @@
   --radius-2xs: calc(var(--radius) * 0.375);
   --radius-xs: calc(var(--radius) * 0.5);
   --radius-sm: calc(var(--radius) * 0.625);
-  --radius-md: calc(var(--radius) * 0.75);
-  --radius-lg: calc(var(--radius) * 1);
-  --radius-xl: calc(var(--radius) * 1.25);
-  --radius-2xl: calc(var(--radius) * 2);
+  --radius-md: calc(var(--radius) * 1);
+  --radius-lg: calc(var(--radius) * 1.25);
+  --radius-xl: calc(var(--radius) * 1.75);
+  --radius-2xl: calc(var(--radius) * 2.75);
+  --radius-3xl: calc(var(--radius) * 3.75);
 
   --color-info: var(--color-info); /* Custom */
   --color-warning: var(--color-warning); /* Custom */
@@ -151,14 +181,20 @@
   --color-invert: var(--invert);
   --color-invert-foreground: var(--invert-foreground);
   --color-popover-dark: var(--panel-dark);
+  --color-hover: var(--hover);
+  --color-active: var(--accent);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-active: var(--destructive-active);
 }
 
 /* Semantic */
 :root {
   --font-inter-var: 'InterVariable';
   --font-sans: var(--font-inter-var), system-ui;
-  color-scheme: light;
-  --color-gray-50: #f7f8f9;
+
+  --color-gray-25: oklch(97.865% 0.00181 249.239);
+  --color-gray-50: oklch(97.267% 0.00181 249.229);
+  --color-gray-75: oklch(97% 0.0013 264);
   --color-gray-100: oklch(12% 9.5% 264deg / 5%);
   --color-gray-200: oklch(12% 9% 264deg / 8%);
   --color-gray-300: oklch(12% 8.5% 264deg / 17%);
@@ -171,40 +207,63 @@
   --color-gray-950: oklch(12% 5% 264deg / 95%);
 
   --color-red-200: rgb(255 56 60 / 14%);
-  --color-red-400: #ff383c;
-  --color-red-500: #e9152d;
+  --color-red-400: oklch(65.317% 0.23282 25.725);
+  --color-red-500: oklch(59.38% 0.2332 24.663);
+  --color-red: oklch(59.423% 0.23279 24.517);
   --color-red-800: oklch(50% 55% 31deg);
+  --color-orange: hsla(25, 100%, 39%, 1);
+  --color-yellow: hsla(40, 100%, 32%, 1);
+  --color-green: hsla(142, 100%, 27%, 1);
+  --color-mint: hsla(173, 100%, 26%, 1);
+  --color-teal: hsla(189, 100%, 30%, 1);
+  --color-cyan: hsla(197, 100%, 34%, 1);
+  --color-indigo: hsla(245, 69%, 58%, 1);
+  --color-purple: hsla(293, 61%, 47%, 1);
+  --color-pink: hsla(343, 86%, 49%, 1);
+  --color-brown: hsla(25, 30%, 45%, 1);
 
-  --color-blue-500: #0088ff;
-  --color-blue-800: oklch(45% 50% 264deg);
+  --color-blue: oklch(63.207% 0.20187 254.106);
+  --color-blue-500: oklch(57.161% 0.21605 260.88);
+  --color-blue-600: oklch(44.964% 0.20104 264.14);
 
   --button-shadow:
-    inset 0px 1px 0px 0px rgb(255 255 255 / 1), 0px 0px 0px 1px rgb(0 0 0 / 0.06), 0px 1px 0px 0px rgb(0 0 0 / 0.08), 0px 2px 2px 0px rgb(0 0 0 / 0.04), 0px 3px 3px 0px rgb(0 0 0 / 0.02),
+    inset 0px 1px 0px 0px rgb(255 255 255 / 1),
+    0px 0px 0px 1px rgb(0 0 0 / 0.06), 0px 1px 0px 0px rgb(0 0 0 / 0.08),
+    0px 2px 2px 0px rgb(0 0 0 / 0.04), 0px 3px 3px 0px rgb(0 0 0 / 0.02),
     0px 4px 4px 0px rgb(0 0 0 / 0.01);
   --button-base-shadow:
-    0px 1px 1px -1px rgb(0 0 0 / 0.08), 0px 2px 2px -1px rgb(0 0 0 / 0.08), 0px 0px 0px 1px rgb(0 0 0 / 0.06), inset 0px 1px 0px #fff, inset 0px 1px 2px 1px #fff, inset 0px 1px 2px rgb(0 0 0 / 0.06);
+    0px 1px 1px -1px rgb(0 0 0 / 0.08), 0px 2px 2px -1px rgb(0 0 0 / 0.08),
+    0px 0px 0px 1px rgb(0 0 0 / 0.06), inset 0px 1px 0px #fff,
+    inset 0px 1px 2px 1px #fff, inset 0px 1px 2px rgb(0 0 0 / 0.06);
   --button-primary-shadow:
-    0px 1px 1px -1px rgb(0 0 0 / 0.08), 0px 2px 2px -1px rgb(0 0 0 / 0.08), 0px 0px 0px 1px rgb(0 0 0 / 0.06), inset 0px 1px 0px #fff, inset 0px 0px 2px 1px #fff, inset 0px 1px 2px rgb(0 0 0 / 0.06),
+    0px 1px 1px -1px rgb(0 0 0 / 0.08), 0px 2px 2px -1px rgb(0 0 0 / 0.08),
+    0px 0px 0px 1px rgb(0 0 0 / 0.06),
+    inset 0px 1px 0px rgba(255, 255, 255, 0.2),
+    inset 0px 0px 2px 1px rgba(255, 255, 255, 0.1),
+    inset 0px 1px 2px rgb(0 0 0 / 0.06),
     inset 0px -4px 8px -4px rgb(0 0 0 / 0.06);
   --button-inset:
-    0px 0px 0px 0.5px rgb(0 0 0 / 0.12), 0px 1px 1px -1px rgb(0 0 0 / 0.32), 0px 2px 2px -1px rgb(0 0 0 / 0.12), inset 0px 0.5px 0px rgb(255 255 255 / 0.4), inset 0px 0px 1px 0px rgb(0 0 0 / 0.2),
+    0px 0px 0px 0.5px rgb(0 0 0 / 0.12), 0px 1px 1px -1px rgb(0 0 0 / 0.32),
+    0px 2px 2px -1px rgb(0 0 0 / 0.12),
+    inset 0px 0.5px 0px rgb(255 255 255 / 0.4),
+    inset 0px 0px 1px 0px rgb(0 0 0 / 0.2),
     inset 0px -6px 12px -4px rgb(0 0 0 / 0.12);
 
   --radius: 0.5rem;
-  --background: #fbfbfb;
+  --background: #fbfcfc;
   --foreground: var(--color-gray-900);
   --card: var(--color-white);
   --card-foreground: var(--foreground);
   --popover: var(--color-white);
   --popover-foreground: var(--color-gray-800);
-  --primary: var(--color-gray-700);
+  --primary: var(--color-blue-500);
   --primary-foreground: var(--color-gray-50);
   --secondary: var(--color-gray-100);
-  --secondary-foreground: var(--color-gray-600);
-  --muted: var(--color-gray-50);
+  --secondary-foreground: var(--color-gray-700);
+  --muted: var(--color-gray-75);
   --muted-foreground: var(--color-gray-600);
-  --accent: var(--color-gray-100);
-  --accent-foreground: var(--color-gray-700);
+  --accent: var(--color-blue-200);
+  --accent-foreground: var(--color-blue-600);
   --destructive: var(--color-red-500);
   /* Border */
   --border: var(--color-gray-200);
@@ -220,41 +279,53 @@
   --sidebar: var(--muted);
   --sidebar-foreground: var(--color-gray-600);
   --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-primary-foreground: var(--color-white);
   --sidebar-accent: var(--secondary);
   --sidebar-accent-foreground: var(--foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
   /* custom */
-  --info: var(--color-blue-100);
-  --warning: var(--color-amber-100);
-  --info-foreground: var(--color-blue);
-  --warning-foreground: var(--color-amber-800);
+
   --border-soft: var(--color-gray-100);
   --border-strong: var(--color-gray-300);
-  --primary-hover: var(--color-gray-800);
-  --primary-active: var(--color-gray-900);
-  --secondary-hover: var(--color-gray-150);
-  --secondary-active: var(--color-gray-200);
-  --muted-hover: var(--color-gray-100);
-  --muted-active: var(--color-gray-200);
-  --accent-hover: var(--color-gray-200);
-  --accent-active: var(--color-gray-300);
-  --invert: var(--color-gray-900);
-  --invert-foreground: var(--color-gray-50);
-  --popover-dark: var(--color-gray-700);
-  --button-highlight-shadow: inset 0 -1.5px 0px 0px var(--color-gray-300), inset 0 0 0 1px var(--color-border), inset 0 1px 0 0.5px color-mix(in oklch, var(--color-background) 30%, transparent);
+  --primary-hover: oklch(from var(--primary) calc(l - 0.05) c h);
+  --primary-active: oklch(from var(--primary) calc(l - 0.1) c h);
+  --secondary-hover: oklch(from var(--secondary) calc(l - 0.05) c h);
+  --secondary-active: oklch(from var(--secondary) calc(l - 0.05) c h);
+  --muted-hover: oklch(from var(--muted) calc(l - 0.05) c h);
+  --muted-active: oklch(from var(--muted) calc(l - 0.1) c h);
+  --accent-hover: oklch(from var(--accent) calc(l - 0.05) c h);
+  --accent-active: oklch(from var(--accent) calc(l - 0.1) c h);
+  --destructive-hover: oklch(from var(--destructive) calc(l - 0.05) c h);
+  --destructive-active: oklch(from var(--destructive) calc(l - 0.1) c h);
+
+  --button-highlight-shadow:
+    inset 0 1px 0.5px 0px color-mix(in oklch, white 20%, transparent),
+    inset 0 -2px 0px -1px hsl(0 0 0 / 20%),
+    inset 0 0 0 1px
+      color-mix(in oklch, var(--color-foreground) 20%, transparent);
+
+  --destructive: var(--color-red);
+  --ring: var(--color-blue);
+
+  --foreground: hsla(0, 0%, 0%, 1);
+  --secondary-foreground: oklch(35.926% 0.01374 285.653 / 0.8);
+  --muted-foreground: hsla(240, 6%, 25%, 0.7);
+  --sidebar-foreground: hsla(240, 6%, 25%, 0.7);
+
+  --border-strong: var(--color-gray-300);
 }
+
 .dark {
-  color-scheme: dark;
   --color-red-400: #ff4245;
   --color-red-500: #ff6165;
   --color-red-800: oklch(80% 55% 31deg);
   --color-blue-400: #0091ff;
   --color-blue-500: #5cb8ff;
   --color-blue-800: oklch(69% 50% 264deg);
-
-  --color-gray-50: oklch(18% 1% 264deg);
+  --color-gray-25: oklch(18% 1% 264deg);
+  --color-gray-50: oklch(19% 0.002 264);
+  --color-gray-75: oklch(21.779% 2% 264deg);
   --color-gray-100: oklch(28% 3% 264deg / 65%);
   --color-gray-200: oklch(31% 3% 264deg / 80%);
   --color-gray-300: oklch(35% 3% 264deg / 80%);
@@ -266,21 +337,21 @@
   --color-gray-900: oklch(95% 2% 264deg / 90%);
   --color-gray-950: oklch(94% 1.5% 264deg / 95%);
 
-  --background: var(--color-black);
+  --background: var(--color-gray-25);
   --foreground: var(--color-gray-900);
-  --card: var(--color-zinc-900);
+  --card: var(--color-gray-50);
   --card-foreground: var(--foreground);
-  --popover: var(--color-gray-300);
+  --popover: var(--color-gray-75);
   --popover-foreground: var(--foreground);
   --popover-dark: var(--color-gray-700);
-  --primary: var(--color-gray-800);
+  --primary: var(--color-blue-800);
   --primary-foreground: var(--color-gray-50);
   --secondary: var(--color-gray-100);
   --secondary-foreground: var(--color-gray-800);
-  --muted: var(--color-gray-50);
+  --muted: var(--color-black);
   --muted-foreground: var(--color-gray-600);
-  --accent: var(--color-gray-100);
-  --accent-foreground: var(--foreground);
+  --accent: color-mix(in oklch, var(--color-blue-950) 80%, transparent);
+  --accent-foreground: var(--color-blue-400);
 
   --destructive: var(--color-red-500);
   --destructive-foreground: var(--color-gray-900);
@@ -295,9 +366,9 @@
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
 
-  --sidebar: var(--color-zinc-950);
+  --sidebar: var(--color-black);
   --sidebar-foreground: var(--color-gray-600);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--color-gray-50);
   --sidebar-accent: var(--secondary);
   --sidebar-accent-foreground: var(--color-gray-900);
@@ -310,18 +381,30 @@
 	--info: var(--color-blue-800);
 	--warning: var(--color-amber-400);  */
   --button-shadow:
-    0px -1px 0px 0px rgb(255 255 255 / 0.04), 0px 0px 0px 1px rgb(255 255 255 / 0.12), 0px 0px 1px 0px rgb(0 0 0 / 0.04), 0px 2px 2px 0px rgb(0 0 0 / 0.04), 0px 4px 2px 0px rgb(0 0 0 / 0.04),
+    0px -1px 0px 0px rgb(255 255 255 / 0.04),
+    0px 0px 0px 1px rgb(255 255 255 / 0.12), 0px 0px 1px 0px rgb(0 0 0 / 0.04),
+    0px 2px 2px 0px rgb(0 0 0 / 0.04), 0px 4px 2px 0px rgb(0 0 0 / 0.04),
     0px 6px 3px 0px rgb(0 0 0 / 0.04);
-  --popover-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08), 0px 0px 10px rgba(0, 0, 0, 0.12), 0px 0px 24px rgba(0, 0, 0, 0.16), 0px 0px 80px rgba(0, 0, 0, 0.2);
+  --popover-shadow:
+    0px 0px 4px rgba(0, 0, 0, 0.08), 0px 0px 10px rgba(0, 0, 0, 0.12),
+    0px 0px 24px rgba(0, 0, 0, 0.16), 0px 0px 80px rgba(0, 0, 0, 0.2);
   --button-base-shadow:
-    0px 0px 0px 0.5px rgb(0 0 0 / 0.4), 0px 1px 1px -1px rgb(0 0 0 / 0.12), 0px 2px 2px -1px rgb(0 0 0 / 0.12), inset 0px 0.5px 0px rgb(255 255 255 / 0.06),
-    inset 0px 0px 1px 0px rgb(255 255 255 / 0.16), inset 0px -6px 12px -4px rgb(0 0 0 / 0.16);
-  --button-primary-shadow:
-    0px 1px 1px -1px rgb(0 0 0 / 0.08), 0px 2px 2px -1px rgb(0 0 0 / 0.08), 0px 0px 0px 1px rgb(0 0 0 / 0.06), inset 0px 1px 0px #fff, inset 0px 0px 2px 1px #fff, inset 0px 1px 2px rgb(0 0 0 / 0.06),
-    inset 0px -4px 8px -4px rgb(0 0 0 / 0.06);
+    0px 0px 0px 0.5px rgb(0 0 0 / 0.4), 0px 1px 1px -1px rgb(0 0 0 / 0.12),
+    0px 2px 2px -1px rgb(0 0 0 / 0.12),
+    inset 0px 0.5px 0px rgb(255 255 255 / 0.06),
+    inset 0px 0px 1px 0px rgb(255 255 255 / 0.16),
+    inset 0px -6px 12px -4px rgb(0 0 0 / 0.16);
+  /* --button-primary-shadow:
+    0px 1px 1px -1px rgb(0 0 0 / 0.08), 0px 2px 2px -1px rgb(0 0 0 / 0.08),
+    0px 0px 0px 1px rgb(0 0 0 / 0.06), inset 0px 1px 0px #fff,
+    inset 0px 0px 2px 1px #fff, inset 0px 1px 2px rgb(0 0 0 / 0.06),
+    inset 0px -4px 8px -4px rgb(0 0 0 / 0.06); */
   --inset-shadow-color: --alpha(--background / 40%);
   --button-highlight-shadow:
-    0 0 0 0.5px var(--color-background), inset 0 1px 0px 0px --alpha(white / 7%), inset 0 1px 0.5px 0.5px --alpha(white / 4%), inset 0 -8px 16px -4px --alpha(var(--background) / 10%);
+    0 0 0 0.5px var(--color-background),
+    inset 0 1px 0px 0px --alpha(white / 7%),
+    inset 0 1px 0.5px 0.5px --alpha(white / 4%),
+    inset 0 -8px 16px -4px --alpha(var(--background) / 10%);
 }
 @layer base {
   * {
@@ -330,22 +413,13 @@
   body {
     @apply bg-background text-foreground;
     font-family:
-      var(--font-inter-var),
-      var(--font-inter),
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      'Open Sans',
-      'Helvetica Neue',
-      sans-serif;
+      var(--font-inter-var), var(--font-inter), system-ui, sans-serif;
     scrollbar-width: thin;
     font-feature-settings: 'ss01', 'ss03', 'cv10';
+    @apply after:inset-ring-border/10 relative p-px after:pointer-events-none after:fixed after:inset-0 after:z-[100] after:rounded-md after:inset-ring-2;
   }
+}
+@layer components {
   a,
   button {
     @apply focus-visible:outline-ring focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed;
@@ -376,99 +450,67 @@
       fill: currentColor;
     }
   }
-  code {
+  /* code {
     @apply font-mono;
-  }
+  } */
 }
 
-@layer utilities {
+/* @layer utilities {
   .text-md {
     @apply text-base;
   }
-}
-@layer components {
-  section {
-    @apply my-4 w-full;
-  }
+} */
 
-  /* ul,
-    ol {
-      @apply flex list-outside flex-col gap-[0.5em] ps-[1em] marker:text-current/40 marker:tabular-nums;
-      &:not(:last-child) {
-        @apply mb-[1em];
-      }
-    }
-    ul {
-      @apply list-[square];
-    }
-    ol {
-      @apply list-decimal;
-    } */
-  /* } */
-  .not-prose {
-    h1 {
-      @apply mb-[1em] text-2xl font-[650] tracking-[-0.017em];
-    }
-    h2 {
-      @apply mb-3 text-xl font-semibold tracking-[-0.014em];
-    }
-    h3 {
-      @apply text-base font-[550] tracking-[-0.0112m];
-    }
-    h4 {
-      @apply text-base;
-    }
-    h5 {
-      @apply text-base;
-    }
-    h6 {
-      @apply text-sm;
-    }
-  }
+@utility line-t {
+  @apply before:bg-border relative before:absolute before:top-0 before:-left-[100vw] before:h-px before:w-[200vw] dark:before:bg-white/10;
 }
-.prose {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply scroll-mt-20;
-  }
-  --tw-prose-body: var(--color-gray-600);
-  --tw-prose-headings: var(--color-foreground);
-  --tw-prose-lead: var(--color-foreground);
-  --tw-prose-links: var(--color-blue);
-  --tw-prose-bold: var(--color-gray-700);
-  --tw-prose-counters: var(--color-gray-500);
-  --tw-prose-bullets: var(--color-gray-300);
-  --tw-prose-hr: var(--color-border);
-  --tw-prose-quotes: var(--color-gray-700);
-  --tw-prose-quote-borders: var(--color-border);
-  --tw-prose-captions: var(--color-gray-500);
-  --tw-prose-kbd: var(--color-gray-700);
-  --tw-prose-kbd-shadows: NaN NaN NaN;
-  --tw-prose-code: oklch(21% 0.034 264.665);
-  --tw-prose-pre-code: var(--color-border);
-  --tw-prose-pre-bg: oklch(27.8% 0.033 256.848);
-  --tw-prose-th-borders: var(--color-gray-300);
-  --tw-prose-td-borders: var(--color-border);
-  --tw-prose-invert-body: var(--color-gray-300);
-  --tw-prose-invert-headings: var(--color-gray-50);
-  --tw-prose-invert-lead: var(--color-gray-50);
-  --tw-prose-invert-links: var(--color-gray-50);
-  --tw-prose-invert-bold: var(--color-gray-50);
-  --tw-prose-invert-counters: oklch(70.7% 0.022 261.325);
-  --tw-prose-invert-bullets: oklch(44.6% 0.03 256.802);
-  --tw-prose-invert-hr: oklch(37.3% 0.034 259.733);
-  --tw-prose-invert-quotes: oklch(96.7% 0.003 264.542);
-  --tw-prose-invert-quote-borders: oklch(37.3% 0.034 259.733);
-  --tw-prose-invert-captions: oklch(70.7% 0.022 261.325);
-  --tw-prose-invert-kbd: var(--color-gray-50);
-  --tw-prose-invert-kbd-shadows: 255 255 255;
-  --tw-prose-invert-code: var(--color-gray-50);
-  --tw-prose-invert-pre-code: oklch(87.2% 0.01 258.338);
-  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
-  --tw-prose-invert-th-borders: oklch(44.6% 0.03 256.802);
-  --tw-prose-invert-td-borders: oklch(37.3% 0.034 259.733);
+
+@utility line-b {
+  @apply after:bg-border relative after:absolute after:bottom-0 after:-left-[100vw] after:h-px after:w-[200vw] dark:after:bg-white/10;
+}
+
+@utility line-y {
+  @apply relative;
+  @apply before:bg-border before:absolute before:top-0 before:-left-[100vw] before:h-px before:w-[200vw] dark:before:bg-white/10;
+  @apply after:bg-border after:absolute after:bottom-0 after:-left-[100vw] after:h-px after:w-[200vw] dark:after:bg-white/10;
+}
+
+@utility line-t/half {
+  @apply before:bg-border relative before:absolute before:top-0 before:right-0 before:h-px before:w-screen dark:before:bg-white/10;
+}
+
+@utility line-b/half {
+  @apply after:bg-border relative after:absolute after:right-0 after:bottom-0 after:h-px after:w-screen dark:after:bg-white/10;
+}
+
+@utility line-y/half {
+  @apply relative;
+  @apply before:bg-border before:absolute before:top-0 before:right-0 before:h-px before:w-screen dark:before:bg-white/10;
+  @apply after:bg-border after:absolute after:right-0 after:bottom-0 after:h-px after:w-screen dark:after:bg-white/10;
+}
+
+@utility line-x {
+  @apply relative;
+  @apply before:absolute before:bottom-0 before:left-0 before:h-screen before:w-px before:bg-indigo-500 dark:before:bg-white/10;
+  @apply after:absolute after:right-0 after:bottom-0 after:h-screen after:w-px after:bg-red-500 dark:after:bg-white/10;
+}
+
+@utility line-middle {
+  @apply relative;
+  @apply before:absolute before:bottom-0 before:left-1/2 before:-mx-px before:h-screen before:w-px before:border-l before:border-dashed before:border-red-500 dark:before:bg-white/10;
+  @apply after:absolute after:top-1/2 after:right-0 after:-my-px after:h-px after:w-screen after:border-t after:border-dashed after:border-red-500 dark:after:bg-white/10;
+}
+
+@utility line-l {
+  @apply relative;
+  @apply before:border-border before:absolute before:top-0 before:left-0 before:-mx-px before:h-screen before:border-l;
+}
+
+@utility bg-glass {
+  @apply bg-gray-500 backdrop-blur-sm;
+  box-shadow:
+    0px 0px 1.5px rgba(0, 0, 0, 0.1),
+    0px 0.65px 5px rgba(0, 0, 0, 0.12),
+    inset 0.65px 0.65px 1px -0.65px rgba(255, 255, 255, 0.8),
+    inset -0.65px -0.65px 2px -0.65px rgba(255, 255, 255, 0.4);
 }

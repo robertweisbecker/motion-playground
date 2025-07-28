@@ -1,9 +1,11 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 import { AlertCircleIcon, CheckCircle2Icon, GalleryHorizontalIcon } from 'lucide-react';
 import { ExclamationCircleIcon, InformationCircleIcon, StarIcon } from '@heroicons/react/16/solid';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { PopoverExample } from './popover-example';
 import {
   Card,
   CardAction,
@@ -14,16 +16,14 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Separator } from '@/components/ui/separator';
+
 import { Badge } from '@/components/ui/badge';
-import { ButtonExample } from './button-example';
+import { ButtonExample, IconButtonExample } from './button-example';
 import { ToggleExample } from './toggle-example';
 import { DropdownExample } from './dropdown-example';
 import { InputExample } from './input-example';
 import { TooltipExample } from './tooltip-example';
 import { InfoButton } from '@/components/info-button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -32,56 +32,24 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 
-import { cn } from '@/lib/utils';
 import { Code } from '@/components/code';
 import { Kbd } from '@/components/kbd';
-import { PageNav } from './toc';
+// import { PageNav } from './toc';
 import { DemoContainer } from '@/components/demo-container';
-
-function PopoverExample() {
-  return (
-    <div className="mx-auto grid auto-cols-min gap-2 text-center">
-      <div className="col-span-2">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="secondary">Top</Button>
-          </PopoverTrigger>
-          <PopoverContent side="top">Place content for the popover here.</PopoverContent>
-        </Popover>
-      </div>
-      <div className="col-span-1">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="secondary">Left</Button>
-          </PopoverTrigger>
-          <PopoverContent side="left">Place content for the popover here.</PopoverContent>
-        </Popover>
-      </div>
-      <div className="col-span-1">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="secondary">Right</Button>
-          </PopoverTrigger>
-          <PopoverContent side="right">Place content for the popover here.</PopoverContent>
-        </Popover>
-      </div>
-      <div className="col-span-2">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="secondary">Bottom</Button>
-          </PopoverTrigger>
-          <PopoverContent side="bottom">Place content for the popover here.</PopoverContent>
-        </Popover>
-      </div>
-    </div>
-  );
-}
+import { Heading } from '@/components/heading';
+import { HeadingExampleColor, HeadingExampleSize } from './heading-example';
+import { Spinner } from '@/components/experimental/spinner';
 
 const data = {
   items: [
     {
       title: 'Alert',
       url: '#alert',
+      depth: 1,
+    },
+    {
+      title: 'Avatar',
+      url: '#avatar',
       depth: 1,
     },
     {
@@ -109,7 +77,11 @@ const data = {
       url: '#dropdown',
       depth: 1,
     },
-
+    {
+      title: 'Heading',
+      url: '#heading',
+      depth: 1,
+    },
     {
       title: 'Input',
       url: '#input',
@@ -135,6 +107,11 @@ const data = {
       title: 'Info Button',
       url: '#info-button',
       depth: 2,
+    },
+    {
+      title: 'Spinner',
+      url: '#spinner',
+      depth: 1,
     },
     {
       title: 'Tabs',
@@ -180,8 +157,11 @@ export default function Components() {
           </SidebarGroup>
         </SidebarMenu>
       </div>
-      <div className={cn('prose col-start-1 mx-auto')}>
-        <h1 className="text-3xl font-[675] tracking-tight">Components</h1>
+
+      <div className={cn('prose col-start-1 mx-auto w-full max-w-4xl')}>
+        <Heading as="h1">Components</Heading>
+
+        <hr />
         <h2 id="alert">Alert</h2>
         <DemoContainer>
           <Alert variant={'success'}>
@@ -198,10 +178,10 @@ export default function Components() {
             </AlertDescription>
           </Alert>
         </DemoContainer>
-
         <hr />
 
         <h2 id="badge">Badge</h2>
+        <h3>Hello</h3>
         <DemoContainer>
           <div className="flex gap-2">
             <Badge variant="default">Primary</Badge>
@@ -252,6 +232,9 @@ export default function Components() {
         <DemoContainer>
           <ButtonExample />
         </DemoContainer>
+        <DemoContainer>
+          <IconButtonExample />
+        </DemoContainer>
         <hr />
 
         <h2 id="card">Card</h2>
@@ -289,6 +272,15 @@ export default function Components() {
         </DemoContainer>
         <hr />
 
+        <Heading as="h2">Heading</Heading>
+        <DemoContainer>
+          <HeadingExampleSize />
+        </DemoContainer>
+        <Heading as="h3">Color</Heading>
+        <DemoContainer>
+          <HeadingExampleColor />
+        </DemoContainer>
+
         <h2 id="input">Input</h2>
         <DemoContainer>
           <InputExample />
@@ -312,6 +304,16 @@ export default function Components() {
           <InfoButton>Some more info here</InfoButton>
         </DemoContainer>
         <hr />
+
+        <h2 id="spinner">
+          Spinner{' '}
+          <Badge variant="default" color="warning">
+            Experimental
+          </Badge>
+        </h2>
+        <DemoContainer>
+          <Spinner />
+        </DemoContainer>
 
         <h2 id="tabs">Tabs</h2>
         <DemoContainer>

@@ -6,10 +6,12 @@ import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { XMarkIcon } from '@heroicons/react/20/solid';
+import { PencilIcon } from '@heroicons/react/24/solid';
+import { Button } from '@/components/ui/button';
 
 function BannerExample() {
   return (
-    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+    <div className="not-prose relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
       <div
         aria-hidden="true"
         className="absolute top-1/2 left-[max(-7rem,calc(50%-52rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"
@@ -44,7 +46,7 @@ function BannerExample() {
         </p>
         <a
           href="#"
-          className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-xs hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          className="text-foreground/80 flex-none rounded-full bg-gray-50/8 px-3.5 py-1 text-sm font-semibold shadow-[0px_0px_1.5px_rgba(0,0,0,0.1),0px_0.65px_5px_rgba(0,0,0,0.12),inset_0.65px_0.65px_1px_-0.65px_rgba(255,255,255,0.8),inset_-0.65px_-0.65px_2px_-0.65px_rgba(255,255,255,0.8)] backdrop-blur-sm hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
           Register now <span aria-hidden="true">&rarr;</span>
         </a>
@@ -67,8 +69,8 @@ export default function TailwindPage() {
       <h2>Switch / Toggle</h2>
       <Paragraph>iOS 26</Paragraph>
       <Paragraph>Radix unstyled</Paragraph>
-      <SwitchPrimitive.Root className="peer flex h-7 w-16 flex-row rounded-full bg-gray-200 p-0.5 data-[state=checked]:bg-green-500 active:[&>span]:scale-115">
-        <SwitchPrimitive.Thumb className="ease h-6 w-10 rounded-full bg-white shadow-sm inset-ring inset-ring-white transition-transform hover:bg-white/80 data-[state=checked]:translate-x-[20px] data-[state=unchecked]:origin-right [state=check]:origin-left"></SwitchPrimitive.Thumb>
+      <SwitchPrimitive.Root className="group flex h-7 w-16 flex-row rounded-full bg-gray-200 p-0.5 data-[state=checked]:bg-green-500">
+        <SwitchPrimitive.Thumb className="ease hover:shadow-glass group-hover:shadow-glass h-6 w-10 origin-center rounded-full bg-white backdrop-blur-xs transition-transform group-active:translate-x-1 group-active:scale-130 group-active:bg-white/2 data-[state=checked]:translate-x-[20px]"></SwitchPrimitive.Thumb>
       </SwitchPrimitive.Root>
       <Paragraph>Button with classes</Paragraph>
       <button className="hover: flex h-7 w-16 flex-row rounded-full bg-green-500 p-0.5">
@@ -273,7 +275,7 @@ export default function TailwindPage() {
         </Card.CardContent>
       </Card.Card>
       <br />
-      <div className="grid grid-cols-1 rounded-4xl shadow-[inset_0_0_2px_1px_#ffffff4d] ring-1 ring-current/5 max-lg:mx-auto max-lg:w-full max-lg:max-w-md">
+      <div className="max-lg:max-w-md. not-prose grid grid-cols-1 rounded-4xl shadow-[inset_0_0_2px_1px_#ffffff4d] ring-1 ring-current/5 max-lg:mx-auto max-lg:w-full">
         <div className="grid grid-cols-1 rounded-4xl p-2 shadow-md shadow-current/5">
           <div className="bg-card rounded-3xl p-10 pb-9 shadow-2xl ring-1 ring-current/5">
             <h2 className="font-mono text-xs/5 font-semibold tracking-widest text-gray-500 uppercase data-dark:text-gray-400">
@@ -370,6 +372,72 @@ export default function TailwindPage() {
         </div>
       </div>
       <BannerExample />
+      <br />
+      <div
+        className={cn(
+          'grid grid-flow-col-dense gap-2 rounded-xl bg-zinc-500 p-10',
+          'bg-gradient-to-br from-yellow-500 to-pink-700',
+        )}
+      >
+        <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(15,15,15,0.32)] text-[#fff]/80 shadow-[0px_0px_1.5px_rgba(0,0,0,0.1),0px_0.65px_5px_rgba(0,0,0,0.12),inset_0.65px_0.65px_1px_-0.65px_rgba(255,255,255,0.8),inset_-0.65px_-0.65px_2px_-0.65px_rgba(255,255,255,0.4)] backdrop-blur-sm">
+          <PencilIcon />
+        </button>
+
+        <button
+          className={cn(
+            'transition-shadow',
+            'flex h-10 w-10 items-center justify-center rounded-full',
+            'bg-gray-300 text-[#fff]/80 backdrop-blur-sm',
+            'shadow-[0px_0px_1.5px_rgba(0,0,0,0.1),0px_0.65px_5px_rgba(0,0,0,0.12),inset_0.65px_0.65px_1px_-0.65px_rgba(255,255,255,0.8),inset_-0.65px_-0.65px_2px_-0.65px_rgba(255,255,255,0.4)]',
+            'hover:bg-gray-400',
+            'hover:shadow-[0px_0px_1.5px_rgba(0,0,0,0.1),0px_0.65px_5px_rgba(0,0,0,0.12),inset_0.65px_0.65px_1px_-0.65px_rgba(255,255,255,0.8),inset_-0.65px_-0.65px_2px_-0.65px_rgba(255,255,255,0.4)]',
+            'active:bg-gray-500',
+          )}
+        >
+          <PencilIcon />
+        </button>
+
+        <div
+          className={cn('size-10 rounded-xl bg-gray-300', 'shadow-[0px_0px_1.5px_rgba(0,0,0,0.1)]')}
+        ></div>
+        <div
+          className={cn(
+            'size-10 rounded-xl bg-gray-300',
+            'shadow-[inset_0.65px_0.65px_1px_-0.65px_rgba(255,255,255,0.8)]',
+          )}
+        ></div>
+        <div
+          className={cn(
+            'size-10 rounded-xl bg-gray-300',
+            'shadow-[inset_-0.65px_-0.65px_2px_-0.65px_rgba(255,255,255,0.4)]',
+          )}
+        ></div>
+
+        <div
+          className={cn(
+            'grid size-10 place-items-center rounded-full bg-gray-200 text-gray-50',
+            'shadow-[inset_-1.5px_-1.5px_3px_-1.5px_hsl(0_0_100/30%),inset_-12px_0_64px_-16px_hsl(0_0_0/25%),inset_1px_1px_.5px_-.5px_hsl(0_0_100/50%),inset_0_0_.5px_0_hsl(0_0_100/40%),0_-1px_8px_-4px_hsl(0_0_0/40%)]',
+          )}
+        >
+          <PencilIcon />
+        </div>
+        <div
+          className={cn(
+            'grid size-10 place-items-center rounded-full bg-white/5 text-gray-600',
+            'shadow-[inset_-1.5px_-1.5px_3px_-1.5px_hsl(0_0_100/30%),inset_-12px_0_64px_-16px_hsl(0_0_100/1%),inset_1px_1px_.5px_-.5px_hsl(0_0_100/50%),inset_0_0_.5px_0_hsl(0_0_100/40%),0_-1px_8px_-4px_hsl(0_0_0/40%)]',
+          )}
+        >
+          <PencilIcon />
+        </div>
+      </div>
+      <div
+        className={cn(
+          'grid size-10 place-items-center rounded-full bg-gray-300/15 text-gray-600',
+          'shadow-[inset_-1.5px_-1.5px_3px_-1.5px_hsl(0_0_100/30%),inset_-12px_0_64px_-16px_hsl(0_0_100/1%),inset_1px_1px_.5px_-.5px_hsl(0_0_100/50%),inset_0_0_.5px_0_hsl(0_0_100/40%),0_0px_.5px_hsl(0_0_0/40%),var(--shadow-sm)]',
+        )}
+      >
+        <PencilIcon />
+      </div>
     </div>
   );
 }

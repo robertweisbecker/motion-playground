@@ -15,7 +15,7 @@ function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive
       data-slot="tabs"
       className={cn(
         // 'flex flex-col gap-2',
-        'bg-card ring-border w-[calc(100% + --spacing(4) * 2)] -mx-4 overflow-clip rounded-lg shadow-xs ring-1 focus-within:overflow-visible',
+        'bg-card ring-border w-[calc(100% + --spacing(4) * 2)] -mx-4 rounded-lg shadow-xs ring-1 focus-within:overflow-visible',
         className,
       )}
       {...props}
@@ -28,7 +28,8 @@ function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimi
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        'shadow-border/50 rounded-inherit group divide-border-border relative z-0 flex flex-row gap-0 divide-solid rounded-t-lg px-0.5 py-0 font-medium shadow-[inset_0_-1px]',
+        'shadow-border rounded-inherit group divide-border-border relative z-0 flex flex-row gap-0 divide-solid rounded-t-lg px-0.5 py-0 font-medium shadow-[inset_0_-1px]',
+        'overflow-auto',
         className,
       )}
       {...props}
@@ -49,9 +50,10 @@ function TabsTrigger({
         'hover:text-foreground',
         'before:ease dark:before:shadow-border before:absolute before:inset-x-1 before:inset-y-1.5 before:-z-1 before:rounded-xs before:transition-[opacity,scale,translate,background] before:duration-200 dark:data-[state=active]:before:shadow-[0_-1px]',
         'before:pointer-events-none before:translate-x-3/4 before:scale-x-125 peer-data-[state=active]:before:-translate-x-3/4 first:before:origin-left first:before:translate-x-1/2 last:before:origin-right last:before:-translate-x-1/2',
-        'data-[state=active]:before:bg-accent data-[state=active]:text-foreground data-[state=active]:before:translate-x-0 data-[state=active]:before:scale-x-100',
+        'data-[state=active]:before:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:before:translate-x-0 data-[state=active]:before:scale-x-100',
         'after:bg-border/75 after:absolute after:inset-x-[-0.5px] after:h-[1em] after:w-px first:after:content-none',
-        stretch && 'w-full grow',
+        'data-[state=inactive]:after:-z-1',
+        stretch && 'w-full flex-1',
         className,
       )}
       {...props}

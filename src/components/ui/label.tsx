@@ -29,7 +29,7 @@ function Label({ className, children, label, info, required, ...props }: LabelPr
       {info && (
         <Popover>
           <PopoverTrigger asChild>
-            <Button size="xs" variant="ghost" className="-m-1 ms-auto">
+            <Button size="xs" iconOnly variant="ghost" className="-m-1 ms-auto">
               <LucideInfo />
             </Button>
           </PopoverTrigger>

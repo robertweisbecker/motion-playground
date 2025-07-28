@@ -38,9 +38,9 @@ export default function Demo1() {
         </Tabs.Tabs>
       </section>
       <Separator className="my-10" />
-      <br />
+
       <h2>How it works</h2>
-      <br />
+
       <ul>
         <li>
           Since we're not adding DOM elements here, we'll add a pseudoelement to each trigger to
@@ -48,7 +48,7 @@ export default function Demo1() {
           <Code>translateX(100%)</Code> to move it beyond the right edge (not the left – more on
           that below).
           <br />
-          <div className="group bg-card -mx-4 my-4 rounded-md border p-4">
+          <div className="group bg-muted not-prose -mx-4 my-4 rounded-md border p-4">
             <Button className="peer after:scale-x-full relative after:absolute after:inset-0 after:origin-right after:translate-x-full after:outline after:outline-red-500">
               Offset :after
             </Button>
@@ -58,7 +58,7 @@ export default function Demo1() {
         <li>
           When active, toggle <Code>translateX</Code> back to 0. Adding a duration and easing will
           now make it in from the right. <br />
-          <div className="group bg-card -mx-4 my-4 rounded-md border p-4">
+          <div className="group bg-muted not-prose -mx-4 my-4 rounded-md border p-4">
             <Button className="peer relative mx-auto after:pointer-events-none after:absolute after:inset-0 after:origin-right after:translate-x-full after:outline after:outline-red-500 after:transition-[scale,translate,transform,background] after:ease-in active:after:translate-x-0">
               Trigger (click me!)
             </Button>
@@ -68,11 +68,9 @@ export default function Demo1() {
           Tailwind gives us group and peer selectors, which we can use here. Peer only works on
           previous siblings, which is why we've translated it right initially. So when a (previous)
           peer is active, we now want the indicator to move in from the left instead. To do that,
-          conditionally change its translation to -100% based on the peer state.
-          <br />
-          <br />
-          Click the trigger when the peer is toggled on and off to see the difference:
-          <div className="group bg-card -mx-4 my-4 flex gap-4 rounded-md border p-4">
+          conditionally change its translation to -100% based on the peer state. Click the trigger
+          when the peer is toggled on and off to see the difference:
+          <div className="group bg-muted not-prose -mx-4 my-4 flex gap-4 rounded-md border p-4">
             <Toggle className="peer" variant="outline">
               Toggle peer
             </Toggle>
@@ -87,7 +85,7 @@ export default function Demo1() {
           see how they overlap when adjacent siblings are selected. This is what gives the illusion
           of a single indicator in the final version.
         </li>
-        <div className="group bg-card -mx-4 my-4 rounded-md border p-4 pb-10">
+        <div className="group bg-muted not-prose -mx-4 my-4 rounded-md border p-4 pb-10">
           <ToggleGroup type="single" variant={'ghost'}>
             <ToggleGroupItem value="0">None</ToggleGroupItem>
             <ToggleGroupItem

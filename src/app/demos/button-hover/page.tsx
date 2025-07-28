@@ -12,12 +12,9 @@ import {
   StarIcon as OutlineStarIcon,
 } from '@heroicons/react/24/outline';
 
-import {
-  ArrowLongLeftIcon,
-  ArrowLongRightIcon,
-  CheckIcon,
-  StarIcon,
-} from '@heroicons/react/24/solid';
+import { ArrowLongLeftIcon, ArrowLongRightIcon, StarIcon } from '@heroicons/react/24/solid';
+
+import { CheckIcon } from '@heroicons/react/16/solid';
 
 export default function IconButtonPage() {
   return (
@@ -26,13 +23,15 @@ export default function IconButtonPage() {
       <h2>Animated Icons</h2>
       <AnimatedButton
         label="Copy"
-        direction="right"
+        direction="left"
         icon={<ClipboardDocumentIcon />}
         activeIcon={<CheckIcon />}
         activeLabel="Copied!"
+        className="block w-full"
       />
+      <hr />
       <AnimatedButton
-        label="Download"
+        label="Favorite"
         direction="right"
         icon={<OutlineStarIcon />}
         activeIcon={<StarIcon />}

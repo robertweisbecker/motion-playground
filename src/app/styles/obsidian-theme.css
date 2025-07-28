@@ -1,0 +1,36 @@
+:root {
+  --color-base: hsl(0 0 96);
+  --color-accent: hsl(201 17 50);
+  --color-red: #d04255;
+  --color-orange: #d5763f;
+  --color-yellow: #e5b567;
+  --color-green: #a8c373;
+  --color-cyan: #73bbb2;
+  --color-blue: #6c99bb;
+  --color-purple: #9e86c8;
+  --color-pink: #b05279;
+
+  --background: white;
+  --secondary: hsl(var(--base-h), var(--base-s), var(--base-l));
+  --muted: hsla(var(--base-h), var(--base-s), calc(var(--base-l) - 50%), 0.12);
+  --hl1: hsla(var(--accent-h), 50%, calc(var(--base-l) - 20%), 30%);
+  --highlight: rgba(255, 225, 0, 0.5);
+
+  --base-h: 0;
+  --base-s: 0%;
+  --base-l: 96%;
+  --accent-h: 201;
+  --accent-s: 17%;
+  --accent-l: 50%;
+  --ui1: hsl(0 0 calc(var(--base-l) - 6%));
+  --ui2: hsl(0 0 calc(var(--base-l) - 12%));
+  --ui3: hsl(0 0 calc(var(--base-l) - 20%));
+}
+
+body {
+}
+
+.dark {
+  --accent-l: 60%;
+  --base-l: 15%;
+}

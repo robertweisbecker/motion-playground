@@ -25,7 +25,7 @@ export function ModeToggle() {
 
   return (
     <ToggleGroup
-      variant="ghost"
+      variant="elevated"
       type="single"
       defaultValue="system"
       className={cn('w-auto flex-0 rounded-full')}

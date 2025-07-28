@@ -4,37 +4,33 @@ import { useState } from 'react';
 import { TextReveal } from './text-reveal';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { CardHover } from '@/components/experimental/card-hover';
+import { CardHover, CardHover2 } from '@/components/experimental/card-hover';
 import { StackedComponent } from '@/components/experimental/stacked-component';
 import { Code } from '@/components/code';
 import { ArrowUpRightIcon } from 'lucide-react';
 import Orbit from './orbit';
 import { DemoContainer } from '@/components/demo-container';
+import { Heading } from '@/components/heading';
 
 export default function Demo1() {
   return (
     <div className="prose max-w-4xl">
-      <h1>CSS Playground</h1>
-      <br />
-      <Separator />
-      <section>
-        <h2>Card Hover</h2>
-        <div className="not-prose">
-          <CardHover title="Project" description="Description goes here..." />
-        </div>
-      </section>
-      <Separator />
+      <Heading as="h1">CSS Playground</Heading>
+      <Heading>Card Hover</Heading>
+      <Heading as="h3">v1 (CSS Modules)</Heading>
+      <DemoContainer>
+        <CardHover title="Project" description="Description goes here..." />
+      </DemoContainer>
+      <Heading as="h3">v2 (Radix + TW)</Heading>
+      <DemoContainer>
+        <CardHover2 title="Project" description="Description goes here..." />
+      </DemoContainer>
+      <Heading>Stacked Cards</Heading>
+      <DemoContainer>
+        <StackedComponent length={3} />
+      </DemoContainer>
 
-      <section>
-        <h2>Stacked Cards</h2>
-        <br />
-
-        <DemoContainer>
-          <StackedComponent length={3} />
-        </DemoContainer>
-      </section>
-      <Separator />
-      <h2>Native Popover</h2>
+      <Heading>Native Popover</Heading>
       <div className="grid grid-cols-2 justify-items-start">
         <Button popoverTarget="my-popover" variant="elevated" className="relative">
           Popover with backdrop
@@ -46,7 +42,7 @@ export default function Demo1() {
           aria-describedby="my-popover-desc"
           className="bg-card fixed inset-y-0 mx-auto my-auto transform overflow-hidden rounded-lg border p-4 opacity-0 shadow-2xl transition-[opacity,transform,translate,scale] transition-discrete duration-300 backdrop:bg-transparent backdrop:transition-colors open:translate-y-0 open:scale-100 open:opacity-100 open:backdrop:bg-black/30 sm:w-full sm:max-w-96 starting:open:translate-y-4 starting:open:scale-90 starting:open:opacity-0 starting:open:backdrop:bg-transparent"
         >
-          <h2 id="my-popover-title" className="mt-0 mb-3 text-base font-medium text-balance">
+          <Heading id="my-popover-title" className="mt-0 mb-3 text-base font-medium text-balance">
             This is a native HTML popover. You can read up on{' '}
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
@@ -58,7 +54,7 @@ export default function Demo1() {
               <ArrowUpRightIcon />
             </a>
             .
-          </h2>
+          </Heading>
           <p id="my-popover-desc">
             Click outside or press <Code>Esc</Code> to dismiss.
           </p>
@@ -86,15 +82,13 @@ export default function Demo1() {
           </p>
         </div>
       </div>
-      <br />
-      <Separator />
-      <h2>Text Reveal</h2>
+
+      <Heading>Text Reveal</Heading>
       <DemoContainer>
         <TextReveal text="Lorem ipsum" />
       </DemoContainer>
 
-      <Separator />
-      <h2>Orbit</h2>
+      <Heading>Orbit</Heading>
       <DemoContainer>
         <Orbit />
       </DemoContainer>

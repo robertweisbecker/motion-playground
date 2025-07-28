@@ -5,6 +5,7 @@ import { Paragraph } from '@/components/paragraph';
 import { ChevronDownIcon, PhoneIcon } from '@heroicons/react/16/solid';
 import { Separator } from '@/components/ui/separator';
 import { useLayoutEffect, useRef, useState } from 'react';
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 
 export function InputExample() {
   // const ref = useRef(null);
@@ -32,15 +33,28 @@ export function InputExample() {
           <Paragraph variant="caption">Description</Paragraph>
         </div>
         <div className="grid w-full max-w-sm items-center gap-1">
-          <Label htmlFor="text-input" info={"Here's some info"}>
+          <Label htmlFor="phone-input" info={"Here's some info"}>
             Label
           </Label>
           <Input
             type="text"
-            id="text-input"
+            id="phone-input"
             placeholder="123-456-7890"
-            startSlot="+1"
+            startSlot="1000000"
             endSlot={<PhoneIcon />}
+          />
+          <Paragraph variant="caption">Description</Paragraph>
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1">
+          <Label htmlFor="cmd" info={"Here's some info"}>
+            Label
+          </Label>
+          <Input
+            type="text"
+            id="cmd"
+            placeholder="Search..."
+            startSlot={<MagnifyingGlassIcon />}
+            cmdk
           />
           <Paragraph variant="caption">Description</Paragraph>
         </div>

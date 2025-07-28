@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import * as React from 'react';
+
 interface KbdProps extends React.ComponentProps<'kbd'> {
   children?: React.ReactNode;
   size?: 'sm' | 'md' | 'lg';
@@ -62,12 +63,12 @@ export function Kbd({ children, size = 'md' }: KbdProps) {
           'inset 0 .5px hsla(0,0%,100%,.3),inset 0 1px 5px var(--color-gray-100),0 0 0 .5px var(--color-gray-200),0 2px 1px -1px var(--color-gray-300),0 1px var(--color-gray-200)',
       }}
       className={cn([
-        'from-bg-card to-bg-muted bg-gradient-to-b text-shadow-[0_0_1px] text-shadow-white/5',
-        'inline-flex w-auto flex-none items-center justify-center gap-1 self-start px-1.5 pt-0.5 pb-0 text-xs font-medium whitespace-nowrap tabular-nums select-none',
+        'from-background to-secondary bg-gradient-to-b text-shadow-[0_0_1px] text-shadow-white/5',
+        'inline-flex w-auto flex-none items-center justify-center gap-1 px-1.5 pt-0.5 pb-0 align-middle text-xs font-[475] whitespace-nowrap tabular-nums select-none',
         'font-sans uppercase',
-        size === 'sm' && 'h-5 rounded-md',
-        size === 'md' && 'h-6 rounded-md',
-        size === 'lg' && 'h-7 rounded-lg',
+        size === 'sm' && 'rounded-2xs h-4.5 min-w-4 px-0.5 text-xs',
+        size === 'md' && 'h-6 min-w-5 rounded-xs',
+        size === 'lg' && 'h-7 min-w-6 rounded-md',
       ])}
     >
       {children}

@@ -15,22 +15,23 @@ import { NavLink } from './nav-link';
 import { ModeToggle } from './theme-switcher';
 import { LucideChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SidebarIcon } from '@/app/icons/icons';
 
 export function Header() {
   return (
-    <header className="rounded-top-xl sticky inset-x-0 top-0 z-50 flex shrink-0 items-center justify-between gap-2 gap-x-0 overflow-x-clip px-4 py-3 sm:px-6">
-      <SidebarTrigger />
-      <Separator orientation="vertical" />
-      <Button asChild variant="ghost">
+    <header className="sticky inset-x-0 top-0 z-50 flex shrink-0 items-center justify-between gap-2 gap-x-0 overflow-x-clip rounded-xl px-2 py-2 sm:px-2">
+      <SidebarTrigger icon={<SidebarIcon />} />
+      <Separator orientation="vertical" className="sm:hidden" />
+      <Button asChild variant="ghost" className="sm:hidden">
         <NavLink href="/" label="Home" />
       </Button>
-      <Button asChild variant="ghost">
+      <Button asChild variant="ghost" className="sm:hidden">
         <NavLink href="/components" label="Components" />
       </Button>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost">
+          <Button variant="ghost" className="hidden">
             Pages <LucideChevronDown />
           </Button>
         </DropdownMenuTrigger>
@@ -74,11 +75,11 @@ export function Header() {
       <div
         className={cn(
           'pointer-events-none absolute -inset-10 -z-1',
-          'from-card to-card/1 via-card/80',
+          'from-card to-card/1 via-card/80 dark:from-background dark:via-background/50',
           'bg-gradient-to-b from-33% via-67% to-100%',
           // 'from-red/90 to-red/0 bg-gradient-to-b',
-          'mask-b-from-card mask-b-to-card/0 mask-b-from-50% mask-b-to-100%',
-          'backdrop-blur-xs',
+          'mask-b-from-card mask-b-to-card/0 dark:mask-b-from-background dark:mask-b-to-background/0 mask-b-from-50% mask-b-to-100%',
+          'blur-xs backdrop-blur-sm',
         )}
       ></div>
     </header>

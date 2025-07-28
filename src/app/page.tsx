@@ -3,77 +3,72 @@ import { LucideLineSquiggle } from 'lucide-react';
 import Link from 'next/link';
 import { Code } from '@/components/code';
 import { Kbd } from '@/components/kbd';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
+import { Heading } from '@/components/heading';
+import { SidebarClosedIcon, SidebarOpenIcon, GitHubIcon } from './icons/icons';
+
+function LinkCard({
+  title,
+  description,
+  href,
+}: {
+  title: string;
+  description?: string;
+  href: string;
+}) {
+  return (
+    <li className="group relative isolate flex flex-col justify-center hover:cursor-pointer sm:py-3">
+      <Link
+        href={href}
+        className="link group-hover:after:bg-accent/50 text-foreground font-medium group-hover:underline after:absolute after:inset-y-0 after:-right-1 after:-left-3 after:-z-10 after:rounded-md hover:z-1"
+      >
+        {title}
+        {/* <ChevronRightIcon className="absolute top-1/2 right-0 my-auto size-4 -translate-y-1/2 opacity-50" /> */}
+      </Link>
+      <p className="text-muted-foreground z-1">{description}</p>
+    </li>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="prose w-full">
-      <div className="relative">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
+      <div className="relative text-gray-400">
         <LucideLineSquiggle
           strokeWidth={2}
           className={'-ms-2 mb-2 size-16 text-gray-300'}
           strokeLinecap="square"
         />
-
-        <h1 className="text-3xl">Playground</h1>
+        <Heading className="" as="h1">
+          Playground
+        </Heading>
       </div>
-      <ul className="text-lg">
-        <li>
-          <Link className="link" href="/components">
-            Components
-          </Link>{' '}
-          ∙ shadcn × Tailwind
-        </li>
-        <li>
-          <Link className="link" href="/experiments/button-hover">
-            Hover Icons
-          </Link>
-        </li>
-        <li>
-          <Link className="link" href="/experiments/css-animations">
-            Card Transforms
-          </Link>
-        </li>
+      <ul className="not-prose mt-5">
+        <LinkCard title="Components" description="Lorem" href="/components" />
 
-        <li>
-          <Link className="link" href="/demos/tab-indicator">
-            Tab Indicator
-          </Link>
-        </li>
-        <li>
-          <Link className="link" href="/demos/toast">
-            Toasts
-          </Link>
-        </li>
-        <li>
-          <Link className="link" href="/experiments/tailwind">
-            Tailwind experiments
-          </Link>
-        </li>
+        <LinkCard href="/experiments/button-hover" title="Hover Icons" />
+
+        <LinkCard href="/experiments/css-animations" title="Card Transforms" />
+
+        <LinkCard href="/demos/tab-indicator" title="Tab Indicator" />
+
+        <LinkCard href="/demos/toast" title="Toasts" />
+
+        <LinkCard href="/experiments/tailwind" title="Tailwind experiments" />
       </ul>
+      <br />
       <p>
         Press <Kbd>⌘</Kbd> + <Kbd>B</Kbd> to toggle sidebar.
       </p>
-      <Code asChild size="default" variant="default">
+      <br />
+      <Code size="default" variant="default">
+        <GitHubIcon />
         <a
           href="https://www.github.com/robertweisbecker/motion-playground"
           rel="noreferrer"
           target="_blank"
-          className="link decoration-current/20"
+          className=""
         >
-          <svg
-            width="15"
-            height="15"
-            viewBox="0 0 15 15"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7.49933 0.25C3.49635 0.25 0.25 3.49593 0.25 7.50024C0.25 10.703 2.32715 13.4206 5.2081 14.3797C5.57084 14.446 5.70302 14.2222 5.70302 14.0299C5.70302 13.8576 5.69679 13.4019 5.69323 12.797C3.67661 13.235 3.25112 11.825 3.25112 11.825C2.92132 10.9874 2.44599 10.7644 2.44599 10.7644C1.78773 10.3149 2.49584 10.3238 2.49584 10.3238C3.22353 10.375 3.60629 11.0711 3.60629 11.0711C4.25298 12.1788 5.30335 11.8588 5.71638 11.6732C5.78225 11.205 5.96962 10.8854 6.17658 10.7043C4.56675 10.5209 2.87415 9.89918 2.87415 7.12104C2.87415 6.32925 3.15677 5.68257 3.62053 5.17563C3.54576 4.99226 3.29697 4.25521 3.69174 3.25691C3.69174 3.25691 4.30015 3.06196 5.68522 3.99973C6.26337 3.83906 6.8838 3.75895 7.50022 3.75583C8.1162 3.75895 8.73619 3.83906 9.31523 3.99973C10.6994 3.06196 11.3069 3.25691 11.3069 3.25691C11.7026 4.25521 11.4538 4.99226 11.3795 5.17563C11.8441 5.68257 12.1245 6.32925 12.1245 7.12104C12.1245 9.9063 10.4292 10.5192 8.81452 10.6985C9.07444 10.9224 9.30633 11.3648 9.30633 12.0413C9.30633 13.0102 9.29742 13.7922 9.29742 14.0299C9.29742 14.2239 9.42828 14.4496 9.79591 14.3788C12.6746 13.4179 14.75 10.7025 14.75 7.50024C14.75 3.49593 11.5036 0.25 7.49933 0.25Z"
-              fill="currentColor"
-              fillRule="evenodd"
-              clipRule="evenodd"
-            ></path>
-          </svg>
           motion-playground
         </a>
       </Code>
