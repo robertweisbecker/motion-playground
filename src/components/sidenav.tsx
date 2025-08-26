@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { motion, AnimatePresence, stagger } from 'framer-motion';
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
@@ -17,8 +18,9 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  SidebarSeparator,
 } from '@/components/ui/sidebar';
-import { HomeIcon, SwatchIcon, ChevronDownIcon } from '@heroicons/react/16/solid';
+import { HomeIcon, SwatchIcon, ChevronDownIcon, Squares2X2Icon } from '@heroicons/react/16/solid';
 
 import { cn } from '@/lib/utils';
 
@@ -30,13 +32,19 @@ const data = {
       icon: <HomeIcon />,
     },
     {
-      title: 'Component Playground',
+      title: 'Components',
       url: '/components',
+      icon: <Squares2X2Icon />,
+    },
+    {
+      title: 'Colors',
+      url: '/colors',
       icon: <SwatchIcon />,
     },
     {
       title: 'Demos',
       url: '/demos',
+      isOpen: undefined,
       items: [
         {
           title: 'Animated Button Icon',
@@ -50,11 +58,16 @@ const data = {
           title: 'Toast',
           url: '/demos/toast',
         },
+        {
+          title: 'Emoji Feedback',
+          url: '/demos/emoji-feedback',
+        },
       ],
     },
     {
       title: 'Experiments',
       url: '#',
+      isOpen: undefined,
       items: [
         {
           title: 'Framer Motion',
@@ -78,85 +91,128 @@ const data = {
   ],
 };
 
+const collapsibleContentVariants = {
+  collapsed: { height: '0' },
+  expanded: {
+    height: '--radix-collapsible-content-height',
+  },
+};
+
 export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const CollapseVariants = {
+    collapsed: { opacity: 0, height: null },
+    expanded: {
+      opacity: 1,
+      height: 'auto',
+      transition: {
+        delayChildren: 0.1,
+      },
+    },
+  };
   const pathname = usePathname();
-  const router = useRouter();
   console.log(pathname);
+  const MCollapsibleContent = motion.create(CollapsibleContent);
+  const MCollapsible = motion.create(Collapsible);
+  const MSidebarMenuSub = motion.create(SidebarMenuSub);
+  const [open, setOpen] = React.useState(false);
 
   return (
     <Sidebar {...props} variant="sidebar">
-      <SidebarHeader className="sm:sr-only">
+      <SidebarHeader className="md:sr-only">
         <span className="text-sm font-medium">bob.fyi/motion-playground</span>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {data.navMain.map((item) =>
-                item.items ? (
-                  <SidebarMenuItem key={item.title} title={item.title}>
-                    <Collapsible defaultOpen className="group/collapsible">
-                      <SidebarMenu className="group/menu">
-                        <SidebarMenuButton
-                          asChild
-                          className={cn(
-                            pathname.includes(item.url) &&
-                              'data-[state=closed]:bg-sidebar-accent/70 data-[state=closed]:text-sidebar-accent-foreground data-[state=closed]:font-medium',
-                          )}
-                        >
-                          <CollapsibleTrigger>
-                            <span
-                              className={cn(
-                                'shadow-sidebar-border grid size-5 place-items-center rounded-full opacity-60',
-                                'group-data-open/collapsible:opacity-100',
-                                // 'group-data-open/collapsible:bg-accent/50',
-                                // 'group-data-open/collapsible:shadow-[inset_0_1px,inset_0_0_0_1px]',
-                              )}
-                            >
-                              <ChevronDownIcon className="ease h-4 w-4 transition-all group-data-open/collapsible:rotate-180" />
-                            </span>
-                            {item.title}
-                            <SidebarMenuBadge className="in-data-[state=open]:hidden">
-                              {item.items.length}
-                            </SidebarMenuBadge>
-                          </CollapsibleTrigger>
-                        </SidebarMenuButton>
-                        <CollapsibleContent>
-                          <SidebarGroupContent>
-                            <SidebarMenuSub>
-                              {item.items.map((item) => (
-                                <SidebarMenuSubItem key={item.title}>
-                                  <SidebarMenuSubButton asChild isActive={pathname === item.url}>
-                                    <Link href={item.url}>{item.title}</Link>
-                                  </SidebarMenuSubButton>
-                                </SidebarMenuSubItem>
-                              ))}
-                            </SidebarMenuSub>
-                          </SidebarGroupContent>
-                        </CollapsibleContent>
-                      </SidebarMenu>
-                    </Collapsible>
-                  </SidebarMenuItem>
-                ) : (
-                  <SidebarMenuItem key={item.title} title={item.title}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={pathname === item.url}
-                      className="data-[active=true]:[&>span]:bg-sidebar-primary data-[active=true]:[&>span]:text-sidebar-primary-foreground data-[active=true]:[&>span]:shadow-button-highlight data-[active=true]:[&>span]:-ring-offset-1 data-[active=true]:[&>span]:ring-1"
-                    >
-                      <Link href={item.url}>
-                        <span className="shadow-button-base size-5 rounded-xs text-center ring-[color-mix(in_oklch,var(--color-sidebar-primary)_80%,var(--color-black))]">
-                          {item.icon}
-                        </span>
-                        {item.title}
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ),
-              )}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <SidebarMenu>
+          {data.navMain.map((item) =>
+            item.items ? (
+              <SidebarMenuItem
+                key={item.title}
+                title={item.title}
+                className={cn(pathname.includes(item.url) && '[&*]:text-red-500')}
+              >
+                <MCollapsible
+                  className={cn('group/collapsible')}
+                  // open={open}
+                  // onOpenChange={setOpen}
+                >
+                  {/* <SidebarMenu className="group/menu"> */}
+                  <SidebarMenuButton
+                    asChild
+                    className={cn(
+                      'data-[state=open]:text-sidebar-accent-foreground',
+                      pathname.includes(item.url) &&
+                        'text-sidebar-accent-foreground data-[state=closed]:bg-sidebar-accent/70 data-[state=closed]:font-medium',
+                    )}
+                  >
+                    <CollapsibleTrigger>
+                      <span
+                        className={cn(
+                          'shadow-sidebar-border grid size-5 place-items-center rounded-full opacity-60',
+                          'group-data-open/collapsible:opacity-100',
+                          // 'group-data-open/collapsible:bg-accent/50',
+                          // 'group-data-open/collapsible:shadow-[inset_0_1px,inset_0_0_0_1px]',
+                        )}
+                      >
+                        <ChevronDownIcon className="ease h-4 w-4 transition-all group-data-open/collapsible:rotate-180" />
+                      </span>
+                      {item.title}
+                      <SidebarMenuBadge className="in-data-[state=open]:hidden">
+                        {item.items.length}
+                      </SidebarMenuBadge>
+                    </CollapsibleTrigger>
+                  </SidebarMenuButton>
+                  <MCollapsibleContent key={item.title} hidden={false}>
+                    <MSidebarMenuSub>
+                      <AnimatePresence>
+                        {item.items.map((item, index) => (
+                          <motion.div
+                            initial={{
+                              // y: -2 * index,
+                              origin: 'top',
+                              x: -5 * index,
+                              opacity: 0.8,
+                              // height: 0,
+                            }}
+                            animate={{ opacity: 1, y: 0, x: 0, height: 'initial' }}
+                            // exit={{ x: -10 * index, opacity: 0, display: 'block !important' }}
+                            transition={{ delay: 0.01 * index, bounce: 0 }}
+                            key={item.title}
+                          >
+                            <SidebarMenuSubItem key={item.title}>
+                              <SidebarMenuSubButton
+                                asChild
+                                isActive={pathname === item.url}
+                                aria-current={pathname === item.url ? 'page' : 'false'}
+                              >
+                                <Link href={item.url}>{item.title}</Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          </motion.div>
+                        ))}
+                      </AnimatePresence>
+                    </MSidebarMenuSub>
+                  </MCollapsibleContent>
+                  {/* </SidebarMenu> */}
+                </MCollapsible>
+              </SidebarMenuItem>
+            ) : (
+              <SidebarMenuItem key={item.title} title={item.title}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === item.url}
+                  className="data-[active=true]:[&>span]:bg-sidebar-primary data-[active=true]:[&>span]:text-sidebar-primary-foreground data-[active=true]:[&>span]:shadow-glass data-[active=true]:[&>span]:-ring-offset-1 data-[active=true]:[&>span]:ring-1"
+                >
+                  <Link href={item.url}>
+                    <span className="shadow-button-base size-5 rounded-xs text-center ring-[color-mix(in_oklch,var(--color-sidebar-primary)_80%,var(--color-black))]">
+                      {item.icon}
+                    </span>
+                    {item.title}
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ),
+          )}
+        </SidebarMenu>
       </SidebarContent>
       {/* <SidebarRail className="group in-data-[state=collapsed]:data-[collapsible=offcanvas]:translate-x-1/2">
         <div

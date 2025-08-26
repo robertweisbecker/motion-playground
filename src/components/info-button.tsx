@@ -15,8 +15,8 @@ interface InfoButtonProps {
 
 export function InfoButton({
   children,
-  variant = 'ghost',
-  size = 'sm',
+  variant = 'invisible',
+  size = 'icon',
   className,
   ...props
 }: InfoButtonProps) {
@@ -37,7 +37,7 @@ export function InfoButton({
             className,
           )}
         >
-          <InformationCircleIcon className="peer text-blue" />
+          <InformationCircleIcon className="peer text-info-400 dark:text-info-300" />
         </Button>
       </PopoverTrigger>
       <PopoverContent {...props}>{children}</PopoverContent>

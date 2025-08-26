@@ -42,12 +42,12 @@ function Input({
         autoComplete="off"
         spellCheck="false"
         className={cn(
-          'selection:bg-blue/50 bg-card h-button inset-ring-border flex w-full min-w-0 rounded-md py-1 ps-2.5 text-base inset-ring outline-0 transition-[background,color,box-shadow,border-color,outline] placeholder:text-gray-400 sm:text-sm',
-          'box-border select-all',
-          'not-disabled:hover:bg-background not-disabled:not-focus-visible:hover:inset-ring-input',
+          'bg-background h-button inset-ring-border flex w-full min-w-0 rounded-md py-1 ps-2.5 text-base inset-ring outline-0 transition-[background,color,box-shadow,border-color,outline] selection:bg-blue-500/20 placeholder:text-neutral-500/50 sm:text-sm',
+          'box-border transition-colors duration-150 select-all',
+          'not-disabled:hover:bg-muted not-disabled:not-focus-visible:hover:inset-ring-input',
           'inset-shadow-2xs',
           'file:text-foreground file:bg-background file:inline-flex file:h-7 file:border-0 file:text-sm file:font-medium',
-          'focus-visible:outline-ring hover:focus-visible:inset-ring-ring focus-visible:outline-1',
+          'focus-visible:outline-ring focus-visible:inset-ring-ring focus-visible:outline-1',
           'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
           'disabled:cursor-not-allowed disabled:opacity-50',
           startSlot && 'ps-[var(--startSlotSize)]',

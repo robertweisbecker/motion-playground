@@ -58,7 +58,7 @@ function Toast({ index, total, ...props }: React.ComponentProps<'div'> & ToastPr
     <div
       className={styles.Toast}
       {...props}
-      style={{ ['--index' as string]: index }}
+      style={{ '--index': index } as React.CSSProperties}
       data-mounted={mounted}
     >
       <div className="flex flex-col gap-1">

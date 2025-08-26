@@ -4,25 +4,28 @@ export function DemoContainer({ children, className, ...props }: React.Component
   return (
     <div
       className={cn(
-        'not-prose border-border min-h-30',
+        'not-prose border-border',
         'rounded-[12px]',
-        'my-6 gap-2 bg-gray-50 p-1',
-        'dark:bg-gray-500/5',
-        'ring-[0.5px] ring-white/10',
+        'bg-muted dark:bg-white-alpha-25 my-6 gap-2 p-1',
+        'ring-border-soft ring-[0.5px]',
         'sm:-mx-4',
       )}
       {...props}
     >
       <div
         className={cn(
-          'bg-card flex min-h-32 w-full items-center justify-center gap-60 overflow-auto rounded-[8px] px-8 py-6 shadow-sm sm:px-12',
-          'dark:bg-black',
-          'dark:inset-ring-[0.5px] dark:inset-ring-white/10',
-          'overscroll-x-contain',
-          className,
+          'bg-card flex w-full items-center justify-center gap-60 overflow-auto rounded-[8px] px-8 py-6 shadow-sm sm:px-12',
+          'dark:bg-muted',
+          'dark:inset-ring-border-alpha-soft dark:inset-ring-[0.5px]',
+          'max-w-full overscroll-x-contain',
         )}
       >
-        <div className="mx-auto flex grow justify-center-safe gap-2 self-center-safe">
+        <div
+          className={cn(
+            'relative mx-auto grid w-full grid-cols-1 justify-items-center gap-x-4 gap-y-2',
+            className,
+          )}
+        >
           {children}
         </div>
       </div>

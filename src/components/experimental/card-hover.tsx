@@ -6,7 +6,10 @@ import { Heading } from '../heading';
 
 interface CardHoverProps {
   title: string;
-  description?: string;
+  description?: React.ReactNode;
+  bgImage?: string;
+  className?: string;
+  href?: string;
 }
 
 export function CardHover({ title = 'Project', description }: CardHoverProps) {
@@ -31,13 +34,29 @@ export function CardHover({ title = 'Project', description }: CardHoverProps) {
   );
 }
 
-export function CardHover2({ title = 'Project', description }: CardHoverProps) {
+export function CardHover2({
+  title = 'Project',
+  description,
+  bgImage,
+  className,
+  href = '#',
+}: CardHoverProps) {
   return (
-    <a href="#" aria-describedby="card-description2" className="group/cardLink w-2xs">
+    <a
+      href={href}
+      target="_blank"
+      aria-describedby="card-description2"
+      className="group/cardLink w-2xs"
+    >
       <Card
-        size="lg"
-        variant="inset"
-        className="group-hover:border-accent relative min-h-64 overflow-hidden"
+        size="md"
+        className={cn(
+          'group-hover:outline-primary relative min-h-80 overflow-hidden bg-cover group-hover:outline',
+          className,
+        )}
+        style={{
+          backgroundImage: `url(${bgImage})`,
+        }}
       >
         <CardContent>
           <CardTitle>Hover me!</CardTitle>
@@ -46,22 +65,26 @@ export function CardHover2({ title = 'Project', description }: CardHoverProps) {
           id="card-description2"
           size="sm"
           className={cn(
-            'translate-y-1/2 opacity-0',
-            'absolute right-3 bottom-3 left-3',
+            'bg-gray-50',
+            'ring-border ring',
+            'gap-0',
+            'translate-y-full opacity-0',
+            'absolute right-1 bottom-1 left-1',
             'w-auto',
             'group-hover/cardLink:translate-y-0 group-hover/cardLink:opacity-100',
-            'transition-[translate,opacity]',
-            'ease-in-quad duration-150',
+            'transition-[transform,translate,opacity]',
+            'group-focus/cardLink:translate-y-0 group-focus/cardLink:opacity-100',
+            'ease-out-expo duration-400',
           )}
         >
           <CardHeader>
             <CardTitle>
-              <Heading size="h4" as="h2">
+              <Heading size="h5" as="h2">
                 {title}
               </Heading>
             </CardTitle>
-            <CardAction>
-              <Maximize2Icon className="h-4 w-4" />
+            <CardAction className="size-5 p-1">
+              <Maximize2Icon className="size-3" />
             </CardAction>
           </CardHeader>
           {description && (

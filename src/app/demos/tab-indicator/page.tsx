@@ -6,14 +6,15 @@ import { Code } from '@/components/code';
 import { Paragraph } from '@/components/paragraph';
 // import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Heading } from '@/components/heading';
 
 export default function Demo1() {
   return (
     <div className="prose max-w-4xl">
       <div>
-        <h1>
-          <span className="text-muted-foreground">Demo: </span>Animated Tabs
-        </h1>
+        <Heading muted={true} as="h1">
+          Demo: Animated Tabs
+        </Heading>
         <Paragraph variant={'prose'} mt={false}>
           Radix UI tabs don't natively support an animatable indicator, but you can fake it without
           an extra DOM element:

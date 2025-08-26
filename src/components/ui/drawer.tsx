@@ -49,21 +49,23 @@ function DrawerContent({
     <DrawerPortal data-slot="drawer-portal">
       <DrawerOverlay />
       <DrawerPrimitive.Content
+        title="Menu"
         data-slot="drawer-content"
         className={cn(
           'group/drawer-content bg-popover/60 fixed z-50 flex h-auto flex-col backdrop-blur-sm',
           'data-[vaul-drawer-direction=top]:inset-x-1 data-[vaul-drawer-direction=top]:top-1 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-[44px]',
           'data-[vaul-drawer-direction=bottom]:inset-x-1 data-[vaul-drawer-direction=bottom]:bottom-1 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-[44px]',
-          'data-[vaul-drawer-direction=left]:rounded-xl data-[vaul-drawer-direction=right]:inset-y-2 data-[vaul-drawer-direction=right]:right-2 data-[vaul-drawer-direction=right]:max-w-3/4 data-[vaul-drawer-direction=right]:min-w-2xs data-[vaul-drawer-direction=right]:sm:max-w-sm',
-          'data-[vaul-drawer-direction=left]:inset-y-2 data-[vaul-drawer-direction=left]:left-2 data-[vaul-drawer-direction=left]:max-w-3/4 data-[vaul-drawer-direction=left]:min-w-2xs data-[vaul-drawer-direction=left]:rounded-xl data-[vaul-drawer-direction=left]:sm:max-w-sm',
-          'shadow-[inset_0_1px_var(--color-gray-300),inset_0_0_0_1px_var(--color-gray-100),var(--shadow-2xl)]',
+          'data-[vaul-drawer-direction=right]:inset-y-2 data-[vaul-drawer-direction=right]:right-2 data-[vaul-drawer-direction=right]:max-w-3/4 data-[vaul-drawer-direction=right]:min-w-2xs data-[vaul-drawer-direction=right]:rounded-l-xl data-[vaul-drawer-direction=right]:sm:max-w-sm',
+          'data-[vaul-drawer-direction=left]:inset-y-2 data-[vaul-drawer-direction=left]:left-2 data-[vaul-drawer-direction=left]:max-w-3/4 data-[vaul-drawer-direction=left]:min-w-2xs data-[vaul-drawer-direction=left]:rounded-r-xl data-[vaul-drawer-direction=left]:sm:max-w-sm',
+          'shadow-[inset_0_1px_var(--color-white-alpha-100),inset_0_0_1px_0px_var(--color-white-alpha-50),0_0_0.5px_0.5px_var(--color-background),var(--shadow-2xl)]',
+
           className,
         )}
         {...props}
       >
         <div className="bg-border relative mx-auto mt-2 hidden h-0.5 w-8 shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
-        <DrawerClose asChild className="absolute top-2 right-2 z-50 flex">
-          <Button variant="ghost" iconOnly size="default">
+        <DrawerClose asChild className="absolute top-4 right-4 z-50 flex md:top-2 md:right-2">
+          <Button variant="ghost" className="rounded-full" iconOnly size="md">
             <XMarkIcon />
           </Button>
         </DrawerClose>
@@ -78,7 +80,7 @@ function DrawerHeader({ className, children, ...props }: React.ComponentProps<'d
     <div
       data-slot="drawer-header"
       className={cn(
-        'flex flex-col gap-0.5 p-4',
+        'flex flex-col gap-0.5 ps-5 pe-8 pt-4 pb-2',
         // 'group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center',
         'md:gap-1.5 md:text-left',
         className,

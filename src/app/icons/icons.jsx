@@ -11,7 +11,14 @@ export function SidebarIcon() {
 
 export function SidebarOpenIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="20"
+      height="20"
+      aria-label="Sidebar expanded"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M16.8066 3.0127C18.0353 3.13668 18.9999 4.16607 19 5.42578V14.5742C18.9999 15.8339 18.0353 16.8633 16.8066 16.9873L16.5576 17H3.44238C2.09763 16.9997 1.00008 15.9179 1 14.5742V5.42578C1.00008 4.08209 2.09763 3.00025 3.44238 3H16.5576L16.8066 3.0127ZM11.0215 16H16.5576L16.7051 15.9922C17.4357 15.9188 17.9999 15.3087 18 14.5742V5.42578C17.9999 4.69133 17.4357 4.08116 16.7051 4.00781L16.5576 4H11.0215V16ZM4.5 12C4.22386 12 4 12.2239 4 12.5C4 12.7761 4.22386 13 4.5 13H6.40039L6.50098 12.9902C6.72876 12.9436 6.90039 12.7416 6.90039 12.5C6.90039 12.2584 6.72876 12.0564 6.50098 12.0098L6.40039 12H4.5ZM4.5 9C4.22386 9 4 9.22386 4 9.5C4 9.77614 4.22386 10 4.5 10H7.5C7.77614 10 8 9.77614 8 9.5C8 9.22386 7.77614 9 7.5 9H4.5ZM4.5 6C4.22386 6 4 6.22386 4 6.5C4 6.77614 4.22386 7 4.5 7H7.5C7.77614 7 8 6.77614 8 6.5C8 6.22386 7.77614 6 7.5 6H4.5Z"
         fill="currentColor"
@@ -22,7 +29,14 @@ export function SidebarOpenIcon() {
 
 export function SidebarClosedIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="20"
+      height="20"
+      aria-label="Sidebar collapsed"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M3.44286 3.5H16.5571M3.44286 3.5C2.36985 3.5 1.5 4.36227 1.5 5.42593V14.5741C1.5 15.6377 2.36985 16.5 3.44286 16.5M3.44286 3.5H9.52143M16.5571 3.5C17.6302 3.5 18.5 4.36227 18.5 5.42593V14.5741C18.5 15.6377 17.6302 16.5 16.5571 16.5M16.5571 3.5H9.52143M16.5571 16.5H3.44286M16.5571 16.5H9.52143M3.44286 16.5H9.52143M9.52143 3.5V16.5"
         stroke="currentColor"
@@ -41,13 +55,118 @@ export function SidebarClosedIcon() {
 
 export function GitHubIcon() {
   return (
-    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="15"
+      height="15"
+      aria-label="Github"
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M7.49933 0.25C3.49635 0.25 0.25 3.49593 0.25 7.50024C0.25 10.703 2.32715 13.4206 5.2081 14.3797C5.57084 14.446 5.70302 14.2222 5.70302 14.0299C5.70302 13.8576 5.69679 13.4019 5.69323 12.797C3.67661 13.235 3.25112 11.825 3.25112 11.825C2.92132 10.9874 2.44599 10.7644 2.44599 10.7644C1.78773 10.3149 2.49584 10.3238 2.49584 10.3238C3.22353 10.375 3.60629 11.0711 3.60629 11.0711C4.25298 12.1788 5.30335 11.8588 5.71638 11.6732C5.78225 11.205 5.96962 10.8854 6.17658 10.7043C4.56675 10.5209 2.87415 9.89918 2.87415 7.12104C2.87415 6.32925 3.15677 5.68257 3.62053 5.17563C3.54576 4.99226 3.29697 4.25521 3.69174 3.25691C3.69174 3.25691 4.30015 3.06196 5.68522 3.99973C6.26337 3.83906 6.8838 3.75895 7.50022 3.75583C8.1162 3.75895 8.73619 3.83906 9.31523 3.99973C10.6994 3.06196 11.3069 3.25691 11.3069 3.25691C11.7026 4.25521 11.4538 4.99226 11.3795 5.17563C11.8441 5.68257 12.1245 6.32925 12.1245 7.12104C12.1245 9.9063 10.4292 10.5192 8.81452 10.6985C9.07444 10.9224 9.30633 11.3648 9.30633 12.0413C9.30633 13.0102 9.29742 13.7922 9.29742 14.0299C9.29742 14.2239 9.42828 14.4496 9.79591 14.3788C12.6746 13.4179 14.75 10.7025 14.75 7.50024C14.75 3.49593 11.5036 0.25 7.49933 0.25Z"
         fill="currentColor"
         fillRule="evenodd"
         clipRule="evenodd"
       ></path>
+    </svg>
+  );
+}
+
+export function LinkOutIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="my-0.5 size-4 flex-none">
+      <rect
+        width="12"
+        height="12"
+        x="2"
+        y="2"
+        rx="3"
+        className="fill-current/10 transition-colors"
+      ></rect>
+      <path
+        className="stroke-current/80 transition-colors"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1"
+        d="m5.75 10.25 4.5-4.5m0 0h-3.5m3.5 0v3.5"
+      ></path>
+    </svg>
+  );
+}
+
+export function MarkdownIcon(props) {
+  return (
+    <svg
+      className={props.className}
+      stroke="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="currentColor"
+      strokeWidth="0"
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M20.553 18.15H3.447a1.443 1.443 0 0 1-1.442-1.441V7.291c0-.795.647-1.441 1.442-1.441h17.105c.795 0 1.442.646 1.442 1.441v9.418a1.441 1.441 0 0 1-1.441 1.441zM6.811 15.268V11.52l1.922 2.402 1.922-2.402v3.748h1.922V8.732h-1.922l-1.922 2.403-1.922-2.403H4.889v6.535h1.922zM19.688 12h-1.922V8.732h-1.923V12h-1.922l2.884 3.364L19.688 12z"></path>
+    </svg>
+  );
+}
+
+export function MonitorIcon(props) {
+  return (
+    <svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* <rect width={16} height={16} fill="white"  /> */}
+      <path
+        d="M12.5 4V9C12.5 9.27614 12.2761 9.5 12 9.5H4C3.72386 9.5 3.5 9.27614 3.5 9V4C3.5 3.72386 3.72386 3.5 4 3.5H12C12.2761 3.5 12.5 3.72386 12.5 4Z"
+        stroke="currentColor"
+        strokeOpacity={1}
+        strokeLinecap="square"
+      />
+      <rect x="6.5" y="10.5" width={3} height={2} stroke="currentColor" strokeOpacity={1} />
+      <path
+        d="M5 13C5 12.4477 5.44772 12 6 12H10C10.5523 12 11 12.4477 11 13H5Z"
+        fill="currentColor"
+        style={{ fill: 'currentColor' }}
+      />
+    </svg>
+  );
+}
+
+export function LaptopIcon(props) {
+  return (
+    <svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12.5 10V5C12.5 4.17157 11.8284 3.5 11 3.5H5C4.17157 3.5 3.5 4.17157 3.5 5V10"
+        stroke="currentColor"
+        strokeLinecap="square"
+      />
+      <path
+        d="M12.5 10.5L14.126 11.584C14.5376 11.8584 14.3433 12.5 13.8486 12.5H2.15139C1.65668 12.5 1.46242 11.8584 1.87404 11.584L3.5 10.5"
+        stroke="currentColor"
+        strokeLinecap="round"
+      />
+      <path
+        d="M5.75 5.5H10.25C10.3881 5.5 10.5 5.61193 10.5 5.75V9.5H5.5V5.75C5.5 5.61193 5.61193 5.5 5.75 5.5Z"
+        stroke="currentColor"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function LaptopIconDuotone(props) {
+  return (
+    <svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12.5 4.5V9.75L13.46 10.47C13.4852 10.4889 13.5 10.5185 13.5 10.55V11.5C13.5 12.0523 13.0523 12.5 12.5 12.5H3.5C2.94771 12.5 2.5 12.0523 2.5 11.5V10.55C2.5 10.5185 2.51482 10.4889 2.54 10.47L3.5 9.75V4.5C3.5 3.94772 3.94772 3.5 4.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5Z"
+        stroke="currentColor"
+        strokeLinecap="round"
+      />
+      {/* <path d="M5.5 5.5H10.5V8.5H5.5V5.5Z" stroke="currentColor" strokeLinecap="round" /> */}
+      <path opacity="0.5" d="M5 5H11V9H5V5Z" fill="currentColor" />
+      <path opacity="0.5" d="M13 11H3V10.75L4 10H12L13 10.75V11Z" fill="currentColor" />
     </svg>
   );
 }

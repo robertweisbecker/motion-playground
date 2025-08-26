@@ -81,32 +81,31 @@ export function AnimatedButton({
   const hiddenLabelClasses = ['opacity-0', 'scale-100', 'blur-xs'];
   const visibleLabelClasses = ['opacity-100', 'scale-100', 'blur-none'];
 
-  function IconContainer() {
-    return (
-      <span className={cn('group/icon grid', iconSide === 'end' && 'ml-auto')}>
-        <div
-          className={cn(
-            baseIconClasses,
-            'opacity-0 group-data-[state=on]/button:opacity-100',
-            'scale-50 group-data-[state=on]/button:scale-100',
-            'blur-xs group-data-[state=on]/button:blur-none',
-          )}
-        >
-          {activeIcon ? activeIcon : icon}
-        </div>
-        <div
-          className={cn(
-            baseIconClasses,
-            'opacity-100 group-data-[state=on]/button:opacity-0',
-            'scale-100 group-data-[state=on]/button:scale-50',
-            'blur-none group-data-[state=on]/button:blur-xs',
-          )}
-        >
-          {icon}
-        </div>
+  const iconContainer = (
+    <div className={cn('group/icon grid', iconSide === 'end' && 'ml-auto')}>
+      <span
+        className={cn(
+          baseIconClasses,
+          'opacity-0 group-data-[state=on]/button:opacity-100',
+          'scale-50 group-data-[state=on]/button:scale-100',
+          'blur-xs group-data-[state=on]/button:blur-none',
+        )}
+      >
+        {activeIcon ? activeIcon : icon}
       </span>
-    );
-  }
+      <span
+        className={cn(
+          baseIconClasses,
+          'opacity-100 group-data-[state=on]/button:opacity-0',
+          'scale-100 group-data-[state=on]/button:scale-50',
+          'blur-none group-data-[state=on]/button:blur-xs',
+        )}
+      >
+        {icon}
+      </span>
+    </div>
+  );
+
   if (iconOnly) {
     return (
       <Tooltip.Tooltip>
@@ -117,7 +116,7 @@ export function AnimatedButton({
             aria-label={label}
             {...props}
           >
-            <IconContainer />
+            {iconContainer}
           </Button>
         </Tooltip.TooltipTrigger>
         <Tooltip.TooltipContent>{label}</Tooltip.TooltipContent>
@@ -126,7 +125,7 @@ export function AnimatedButton({
   } else
     return (
       <Toggle className={cn('group/button relative')} size="lg" data-direction={direction}>
-        {iconSide === 'start' && <IconContainer />}
+        {iconSide === 'start' && iconContainer}
         <div className="relative">
           {activeLabel && (
             <span
@@ -145,7 +144,6 @@ export function AnimatedButton({
             className={cn(
               baseLabelClasses,
               visibleLabelClasses,
-
               activeLabel && [
                 'after:invisible after:block after:h-0 after:content-[attr(data-content)]',
                 // 'group-data-[state=on]/button:absolute group-data-[state=on]/button:scale-50 group-data-[state=on]/button:opacity-0 group-data-[state=on]/button:blur-xs',
@@ -158,7 +156,7 @@ export function AnimatedButton({
           </span>
         </div>
 
-        {iconSide === 'end' && <IconContainer />}
+        {iconSide === 'end' && iconContainer}
       </Toggle>
     );
 }

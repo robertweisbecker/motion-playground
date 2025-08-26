@@ -2,7 +2,7 @@
 // import styles from './theme-switcher.module.css';
 
 import * as React from 'react';
-import { MoonIcon, SunIcon, ComputerDesktopIcon, CogIcon } from '@heroicons/react/16/solid';
+import { MoonIcon, SunIcon, ComputerDesktopIcon, CogIcon } from '@heroicons/react/24/outline';
 import { useTheme } from 'next-themes';
 
 import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
@@ -39,7 +39,7 @@ export function ModeToggle() {
             value="light"
             aria-label="Toggle light mode"
           >
-            <SunIcon className="text-sm" />
+            <SunIcon />
           </ToggleGroupItem>
         </TooltipTrigger>
         <TooltipContent side="top">Light{theme === 'light' && ': On'}</TooltipContent>

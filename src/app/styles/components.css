@@ -1,4 +1,4 @@
-@tailwind components;
+@tailwind utilities;
 
 @layer components {
   .link {

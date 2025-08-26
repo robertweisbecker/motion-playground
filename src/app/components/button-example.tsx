@@ -8,6 +8,7 @@ import { Code } from '@/components/code';
 export function ButtonExample() {
   const variants = [
     'default',
+    'glass',
     'elevated',
     'primary',
     'secondary',

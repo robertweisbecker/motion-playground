@@ -3,6 +3,7 @@
 import * as React from 'react';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
 import { cva, type VariantProps, cx } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
 
 const toggleVariants = cva(
   [
@@ -18,32 +19,35 @@ const toggleVariants = cva(
     variants: {
       variant: {
         default: [
-          'bg-card ring ring-border',
-          'hover:bg-secondary hover:text-accent-foreground',
-          'data-toggled:bg-accent data-toggled:ring-primary data-toggled:text-accent-foreground',
+          'bg-transparent text-muted-foreground ',
+          'hover:bg-muted hover:text-foreground',
+          'data-toggled:bg-secondary data-toggled:ring-primary data-toggled:text-foreground',
         ],
         ghost: [
-          'text-secondary-foreground',
+          'text-muted-foreground',
           'data-toggled:bg-accent data-toggled:text-accent-foreground',
           'hover:bg-secondary hover:text-foreground',
         ],
         outline: [
           'border border-input border-dashed bg-transparent text-foreground',
           'hover:bg-current/10 ',
-          'data-toggled:bg-current/10 data-toggled:inset-ring-1 data-toggled:border-current data-toggled:border-solid data-toggled:text-foreground',
+          'data-toggled:bg-current/10 data-toggled:border-current data-toggled:border-solid data-toggled:text-foreground',
         ],
         destructive: '',
         unstyled: '',
         elevated: [
           'text-muted-foreground',
-          'not-data-toggled:hover:bg-secondary',
-          'active:bg-secondary',
-          'data-toggled:bg-card data-toggled:shadow-xs data-toggled:text-foreground',
-          'data-toggled:ring-[0.5px] data-toggled:ring-border data-toggled:shadow-button-highlight',
+          'not-data-toggled:hover:bg-current/10',
+          // 'active:bg-card ',
+          'data-toggled:bg-current/12 data-toggled:text-foreground',
+          // 'data-toggled:ring-[0.5px] data-toggled:ring-border data-toggled:shadow-button-highlight',
         ],
       },
+      round: {
+        true: 'rounded-full!',
+      },
       size: {
-        default: 'h-8 px-2 min-w-8 text-sm rounded-sm',
+        default: 'h-8 px-2 min-w-8 text-sm rounded-md',
         sm: 'h-8 px-1.5 min-w-8 text-sm rounded-sm',
         lg: 'h-10 px-2.5 min-w-10 text-base rounded-md',
       },
@@ -59,12 +63,13 @@ function Toggle({
   className,
   variant,
   size = 'default',
+  round,
   ...props
 }: React.ComponentProps<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>) {
   return (
     <TogglePrimitive.Root
       data-slot="toggle"
-      className={cx(toggleVariants({ variant, size }), className)}
+      className={cn(toggleVariants({ variant, size, round }), className)}
       {...props}
     />
   );

@@ -2,7 +2,14 @@
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { AlertCircleIcon, CheckCircle2Icon, GalleryHorizontalIcon } from 'lucide-react';
-import { ExclamationCircleIcon, InformationCircleIcon, StarIcon } from '@heroicons/react/16/solid';
+import {
+  CheckBadgeIcon,
+  CheckCircleIcon,
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  StarIcon,
+} from '@heroicons/react/16/solid';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { PopoverExample } from './popover-example';
@@ -38,7 +45,22 @@ import { Kbd } from '@/components/kbd';
 import { DemoContainer } from '@/components/demo-container';
 import { Heading } from '@/components/heading';
 import { HeadingExampleColor, HeadingExampleSize } from './heading-example';
-import { Spinner } from '@/components/experimental/spinner';
+import { Loader, Spinner } from '@/components/experimental/spinner';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { KeyValue, Paragraph } from '@/components/paragraph';
+import { Separator } from '@/components/ui/separator';
+import { Citation } from '@/components/experimental/citation';
+import { TabsDemo } from './tabs-example';
+
+import {
+  AtomIcon,
+  BellIcon,
+  CircleWavyQuestionIcon,
+  ExclamationMarkIcon,
+  FolderOpenIcon,
+  CheckCircleIcon as PhCheckCircleIcon,
+  WarningIcon,
+} from '@phosphor-icons/react';
 
 const data = {
   items: [
@@ -134,9 +156,10 @@ const data = {
 export default function Components() {
   const router = useRouter();
   return (
-    <div className="gap-16 pb-50 sm:grid sm:grid-cols-[1fr_240px]">
+    <div className="gap-8 pb-50 sm:grid sm:grid-cols-[1fr_160px] md:gap-16">
+      <Citation />
       <div className="order-last">
-        <SidebarMenu id="pageNav" className="sticky top-20">
+        <SidebarMenu id="pageNav" className="w- sticky top-20">
           <SidebarGroup>
             <SidebarGroupLabel>Jump to:</SidebarGroupLabel>
             {data.items.map((item) => (
@@ -159,19 +182,34 @@ export default function Components() {
       </div>
 
       <div className={cn('prose col-start-1 mx-auto w-full max-w-4xl')}>
-        <Heading as="h1">Components</Heading>
+        <Heading as="h1" copy>
+          Components
+        </Heading>
+        <Paragraph variant="lead">Components? Components!</Paragraph>
 
         <hr />
         <h2 id="alert">Alert</h2>
         <DemoContainer>
-          <Alert variant={'success'}>
-            <CheckCircle2Icon />
-            <AlertTitle>Success! Your changes have been saved</AlertTitle>
+          <Alert variant={'neutral'} icon={<AtomIcon weight="duotone" />}>
+            <AlertTitle>Neutral</AlertTitle>
             <AlertDescription>This is an alert with icon, title and description.</AlertDescription>
           </Alert>
-          <br />
-          <Alert variant="destructive">
-            <AlertCircleIcon />
+          <Alert variant={'info'} icon={<FolderOpenIcon weight="duotone" />}>
+            <AlertTitle>Sweet!</AlertTitle>
+          </Alert>
+          <Alert variant={'success'} icon={<PhCheckCircleIcon weight="duotone" />}>
+            <AlertTitle>Success! Your changes have been saved</AlertTitle>
+          </Alert>
+          <Alert variant={'warning'} icon={<WarningIcon weight="duotone" />}>
+            <AlertTitle>Warning</AlertTitle>
+          </Alert>
+          <Alert variant={'highlight'} icon={<BellIcon weight="duotone" />}>
+            <AlertTitle>Highlight</AlertTitle>
+          </Alert>
+          <Alert variant={'brand'} icon={<CircleWavyQuestionIcon weight="duotone" />}>
+            <AlertTitle>brand</AlertTitle>
+          </Alert>
+          <Alert variant="destructive" dismissible icon={<AlertCircleIcon />}>
             <AlertTitle>Unable to process your payment.</AlertTitle>
             <AlertDescription>
               Please verify your billing information and try again.
@@ -179,6 +217,17 @@ export default function Components() {
           </Alert>
         </DemoContainer>
         <hr />
+
+        <h2 id="avatar">Avatar</h2>
+        <DemoContainer>
+          <Avatar size={20}>
+            {/* <AvatarImage
+              src="https://avatar.vercel.sh/a"
+              className="mask-linear-90 mask-linear-from-60% mask-linear-to-80% mask-radial-from-100% mask-radial-at-bottom-right mask-add"
+            /> */}
+            <AvatarFallback>A</AvatarFallback>
+          </Avatar>
+        </DemoContainer>
 
         <h2 id="badge">Badge</h2>
         <h3>Hello</h3>
@@ -190,39 +239,47 @@ export default function Components() {
             <Badge variant="destructive">Destructive</Badge>
           </div>
           <div className="flex gap-2">
-            <Badge
-              className={cn(
-                'bg-cyan-400/15 text-cyan-700',
-                'hover:bg-cyan-400/30',
-                'dark:bg-cyan-400/20 dark:text-cyan-300',
-                'dark:hover:bg-cyan-400/15',
-              )}
-            >
+            <Badge color="highlight">
+              <InformationCircleIcon />
+              Highlight
+            </Badge>
+            <Badge color="info">
+              <InformationCircleIcon />
               Info
             </Badge>
-            <Badge
-              className={cn(
-                'bg-amber-400/30 text-amber-800',
-                '[a&]:hover:bg-amber-400/30',
-                'dark:bg-amber-400/20 dark:text-amber-400',
-                'dark:[a&]:hover:bg-amber-400/15',
-              )}
-            >
-              Info
+            <Badge color="warning">
+              <ExclamationTriangleIcon />
+              Warning
+            </Badge>
+            <Badge color="error">
+              <ExclamationCircleIcon />
+              Error
+            </Badge>
+            <Badge color="success">
+              <CheckCircleIcon />
+              Success
             </Badge>
           </div>
           <div className="flex gap-2">
             <Badge variant="outline">
-              <ExclamationCircleIcon className="-ms-0.5 text-amber-600" />
+              <InformationCircleIcon className="text-highlight-400 -ms-0.5" />
+              Highlight
+            </Badge>
+            <Badge variant="outline">
+              <InformationCircleIcon className="text-info-400 -ms-0.5" />
+              Info
+            </Badge>
+            <Badge variant="outline">
+              <ExclamationTriangleIcon className="text-warning-400 -ms-0.5" />
               Warning
             </Badge>
             <Badge variant="outline">
-              <ExclamationCircleIcon className="text-destructive -ms-0.5" />
+              <ExclamationCircleIcon className="text-error-400 -ms-0.5" />
               Error
             </Badge>
             <Badge variant="outline">
-              <InformationCircleIcon className="text-blue -ms-0.5" />
-              Info
+              <CheckCircleIcon className="text-success-400 -ms-0.5" />
+              Success
             </Badge>
           </div>
         </DemoContainer>
@@ -289,7 +346,46 @@ export default function Components() {
 
         <h2 id="kbd">Kbd</h2>
         <DemoContainer>
-          <Kbd>⌘</Kbd> <Kbd>⇧</Kbd> <Kbd>P</Kbd>
+          <div className="flex gap-1">
+            <Kbd>⌘</Kbd> <Kbd>⇧</Kbd> <Kbd>P</Kbd>
+          </div>
+        </DemoContainer>
+        <hr />
+
+        <h2 id="paragraph">Paragraph</h2>
+        <DemoContainer>
+          <KeyValue label="hello">Hello</KeyValue>
+          <Paragraph variant="lead">
+            Lead - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
+            varius blandit sit amet non magna.
+          </Paragraph>
+          <Paragraph variant="prose">
+            Prose - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
+            varius blandit sit amet non magna.
+          </Paragraph>
+          <Paragraph variant="body">
+            Body - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
+            varius blandit sit amet non magna.
+          </Paragraph>
+          <Paragraph variant="small">
+            Body Small - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
+            varius blandit sit amet non magna.
+          </Paragraph>
+
+          <Separator />
+          <Paragraph variant="item">Item - Lorem ipsum dolor sit amet...</Paragraph>
+          <Paragraph variant="label">
+            Label - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
+            varius blandit sit amet non magna.
+          </Paragraph>
+          <Paragraph variant="caption">
+            Caption - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
+            varius blandit sit amet non magna.
+          </Paragraph>
+          <Paragraph variant="error">
+            Error - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
+            varius blandit sit amet non magna.
+          </Paragraph>
         </DemoContainer>
         <hr />
 
@@ -307,12 +403,13 @@ export default function Components() {
 
         <h2 id="spinner">
           Spinner{' '}
-          <Badge variant="default" color="warning">
+          <Badge variant="default" color="warning" className="ms-1">
             Experimental
           </Badge>
         </h2>
         <DemoContainer>
           <Spinner />
+          <Loader />
         </DemoContainer>
 
         <h2 id="tabs">Tabs</h2>
@@ -332,6 +429,10 @@ export default function Components() {
               <GalleryHorizontalIcon className="mx-auto size-6" />
             </TabsContent>
           </Tabs>
+        </DemoContainer>
+
+        <DemoContainer>
+          <TabsDemo />
         </DemoContainer>
         <hr />
 

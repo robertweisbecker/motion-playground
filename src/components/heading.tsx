@@ -1,7 +1,10 @@
+'use client';
 import { cn } from '@/lib/utils';
+import { LinkIcon as PhLinkIcon } from '@phosphor-icons/react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, VariantProps } from 'class-variance-authority';
 import * as React from 'react';
+import { Button } from './ui/button';
 
 export interface HeadingProps {
   children: React.ReactNode;
@@ -9,6 +12,7 @@ export interface HeadingProps {
   asChild?: boolean;
   lines?: number;
   inline?: boolean;
+  copy?: boolean;
 }
 
 const headingVariants = cva(
@@ -23,7 +27,7 @@ const headingVariants = cva(
 
           // 'first-of-type:not-only:pb-8 first-of-type:not-only:border-b',
         ],
-        h2: [' mt-20 text-2xl font-semibold tracking-tight [&+h3]:mt-6 [&~hr]:mt-16'],
+        h2: [' mt-20 text-xl sm:text-2xl font-semibold tracking-tight [&+h3]:mt-6 [&~hr]:mt-16'],
         h3: [
           'text-lg font-medium leading-loose tracking-tight text-balance mt-16',
           // 'has-[+h4]:text-xs has-[+h4]:leading-loose has-[+h4]:font-medium has-[+h4]:font-mono has-[+h4]:tracking-widest has-[+h4]:uppercase has-[+h4]:text-muted-foreground',
@@ -42,6 +46,7 @@ const headingVariants = cva(
       },
       muted: {
         true: 'text-muted-foreground font-medium',
+        false: '',
       },
       color: {
         default: 'text-foreground',
@@ -57,7 +62,7 @@ const headingVariants = cva(
   },
 );
 
-// type HeadingElement = React.ComponentRef<'h1'>;
+// className="line-clamp-1 line-clamp-2 line-clamp-3 line-clamp-4 line-clamp-5 line-clamp-6"
 
 export function Heading({
   children,
@@ -65,11 +70,13 @@ export function Heading({
   as: Tag = 'h2',
   size,
   weight,
+  muted,
   color,
   lines,
   inline,
   asChild = false,
   ref,
+  copy,
   ...props
 }: React.ComponentProps<'h2'> & VariantProps<typeof headingVariants> & HeadingProps) {
   const sizeFallback = size ? size : Tag;
@@ -78,14 +85,35 @@ export function Heading({
       data-accent-color={color}
       {...props}
       className={cn(
-        headingVariants({ size: sizeFallback, weight, color }),
-        'not-prose',
-        lines && `line-clamp-${lines}`,
+        headingVariants({ size: sizeFallback, weight, color, muted }),
+        'not-prose group/heading',
+        copy && 'relative',
+        lines && `line-clamp-${lines} max-w-full truncate`,
         inline ? 'my-0!' : '',
         className,
       )}
     >
-      {asChild ? children : <Tag>{children}</Tag>}
+      {asChild ? (
+        children
+      ) : (
+        <Tag>
+          {children}{' '}
+          {copy && (
+            <Button
+              iconOnly
+              variant="invisible"
+              size="sm"
+              className={cn(
+                'animate-out group-hover/heading:repeat-0 group-hover/heading:animate-fadeIn',
+                // 'ease ms-1 origin-left -translate-x-1 scale-80 align-middle opacity-0 transition-[opacity,scale,translate] duration-50',
+                // 'group-hover/heading:translate-none group-hover/heading:scale-100 group-hover/heading:opacity-100',
+              )}
+            >
+              <PhLinkIcon type="fill" size="1em" />
+            </Button>
+          )}
+        </Tag>
+      )}
     </Slot>
   );
 }

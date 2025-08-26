@@ -19,7 +19,7 @@
     .Card {
       grid-area: 1 - var(--index) / 1;
       /* opacity: 1; */
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-sm);
 
       /* scale: calc(
 				((var(--index) * var(--scale-increment))) + 1 -
@@ -38,7 +38,7 @@
   background: var(--card);
   border-color: var(--border);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   padding: calc(var(--spacing) * 4);
   transition:
     scale 0.2s,

@@ -87,7 +87,7 @@ export default function RootLayout({
             {/*  renders <main> */}
             <SidebarInset>
               <Header />
-              <div className="mx-auto flex w-[calc(100vw-var(--sidebar-width))] max-w-5xl flex-1 flex-col items-stretch gap-4 px-4 py-16 sm:px-8 sm:pb-24 md:px-16">
+              <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col items-stretch gap-4 px-4 py-16 sm:px-8 sm:pb-24 md:px-16 lg:w-[calc(100vw-var(--sidebar-width))]">
                 {children}
               </div>
             </SidebarInset>

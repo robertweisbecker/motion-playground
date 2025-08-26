@@ -19,7 +19,7 @@ import { SidebarIcon } from '@/app/icons/icons';
 
 export function Header() {
   return (
-    <header className="sticky inset-x-0 top-0 z-50 flex shrink-0 items-center justify-between gap-2 gap-x-0 overflow-x-clip rounded-xl px-2 py-2 sm:px-2">
+    <header className="sticky inset-x-0 top-0 z-50 flex shrink-0 items-center justify-between gap-2 gap-x-0 rounded-xl px-2 py-2 sm:px-2">
       <SidebarTrigger icon={<SidebarIcon />} />
       <Separator orientation="vertical" className="sm:hidden" />
       <Button asChild variant="ghost" className="sm:hidden">
@@ -74,12 +74,17 @@ export function Header() {
       </span>
       <div
         className={cn(
-          'pointer-events-none absolute -inset-10 -z-1',
-          'from-card to-card/1 via-card/80 dark:from-background dark:via-background/50',
-          'bg-gradient-to-b from-33% via-67% to-100%',
+          'pointer-events-none absolute inset-0 -z-1 h-[78px]',
+          // 'bg-gradient-to-b to-25%',
+          // 'from-background to-transparent',
           // 'from-red/90 to-red/0 bg-gradient-to-b',
-          'mask-b-from-card mask-b-to-card/0 dark:mask-b-from-background dark:mask-b-to-background/0 mask-b-from-50% mask-b-to-100%',
-          'blur-xs backdrop-blur-sm',
+          // 'mask-b-from-background mask-b-from-50% mask-b-to-transparent',
+          'backdrop-blur-xs',
+          // 'from-background bg-gradient-to-b to-transparent',
+          // 'mask-b-from-background mask-b-from-25% mask-b-to-transparent',
+
+          'from-background to-background/0 bg-gradient-to-b from-10%',
+          'mask-b-from-background mask-b-to-background/0 mask-b-from-50%',
         )}
       ></div>
     </header>

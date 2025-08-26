@@ -180,24 +180,22 @@ function Sidebar({
       <Drawer
         open={openMobile}
         onOpenChange={setOpenMobile}
-        direction={side}
+        direction={'bottom'}
         dismissible={true}
         modal={false}
+        aria-describedby="sidebar-drawer-header"
       >
         <DrawerContent
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0"
+          className="bg-sidebar text-sidebar-foreground p-0 md:w-(--sidebar-width)"
           style={
             {
               '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
             } as React.CSSProperties
           }
         >
-          <DrawerHeader className="sr-only">
-            <DrawerTitle>Menu</DrawerTitle>
-          </DrawerHeader>
           {/* <div className="flex h-full w-full flex-col"> */}
           {children}
           {/* </div> */}
@@ -264,7 +262,7 @@ function SidebarTrigger({
   icon = <SidebarIcon />,
   closeIcon,
   variant = 'ghost',
-  size = 'icon-lg',
+  size = 'icon',
   ...props
 }: React.ComponentProps<typeof Button> & {
   icon?: React.ReactNode;
@@ -280,7 +278,10 @@ function SidebarTrigger({
       variant={variant}
       size={size}
       iconOnly
-      className={cn('', className)}
+      className={cn(
+        'data-toggled:bg-sidebar-accent data-toggled:text-sidebar-accent-foreground',
+        className,
+      )}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
@@ -331,7 +332,7 @@ function SidebarInset({ className, ...props }: React.ComponentProps<'main'>) {
       data-slot="sidebar-inset"
       className={cn(
         'relative flex w-full flex-1 flex-col',
-        'md:peer-data-[variant=inset]:bg-card/90 md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-md md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2',
+        'md:peer-data-[variant=inset]:bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-md md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2',
         'md:overflow-clip',
 
         className,
@@ -354,13 +355,28 @@ function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input
 }
 
 function SidebarHeader({ className, ...props }: React.ComponentProps<'div'>) {
+  const SidebarHeaderClasses =
+    'after:via-border after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-10% after:to-transparent';
+  const { isMobile } = useSidebar();
+  if (isMobile) {
+    return (
+      <DrawerHeader
+        data-sidebar="header"
+        data-slot="sidebar-header"
+        className={cn(SidebarHeaderClasses, className)}
+        {...props}
+      >
+        <DrawerTitle>{props.children}</DrawerTitle>
+      </DrawerHeader>
+    );
+  }
   return (
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
       className={cn(
         'relative flex min-h-15 flex-col items-start justify-center gap-2 ps-5 pe-2 text-base',
-        'after:via-border after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-10% after:to-transparent',
+        SidebarHeaderClasses,
         className,
       )}
       {...props}
@@ -397,7 +413,7 @@ function SidebarContent({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="sidebar-content"
       data-sidebar="content"
       className={cn(
-        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto p-3 group-data-[collapsible=icon]:overflow-hidden md:p-2',
         className,
       )}
       {...props}
