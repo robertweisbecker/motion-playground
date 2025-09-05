@@ -46,7 +46,7 @@ import { DemoContainer } from '@/components/demo-container';
 import { Heading } from '@/components/heading';
 import { HeadingExampleColor, HeadingExampleSize } from './heading-example';
 import { Loader, Spinner } from '@/components/experimental/spinner';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarCutout, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { KeyValue, Paragraph } from '@/components/paragraph';
 import { Separator } from '@/components/ui/separator';
 import { Citation } from '@/components/experimental/citation';
@@ -61,6 +61,10 @@ import {
   CheckCircleIcon as PhCheckCircleIcon,
   WarningIcon,
 } from '@phosphor-icons/react';
+import { AlertExample } from './alert-example';
+import { Switch } from '@/components/ui/switch';
+import { Tag } from '@/components/tag';
+import { CampsiteButton } from '@/components/ui/campsite-button';
 
 const data = {
   items: [
@@ -80,13 +84,36 @@ const data = {
       depth: 1,
     },
     {
+      title: 'Pill',
+      url: '#badge',
+      isDisabled: true,
+      depth: 2,
+    },
+    {
+      title: 'Dot',
+      url: '#badge',
+      isDisabled: true,
+      depth: 2,
+    },
+    {
       title: 'Button',
       url: '#button',
       depth: 1,
     },
     {
+      title: 'Icon Button',
+      url: '#icon-button',
+      depth: 2,
+      isDisabled: true,
+    },
+    {
       title: 'Card',
       url: '#card',
+      depth: 1,
+    },
+    {
+      title: 'Citation',
+      url: '#citation',
       depth: 1,
     },
     {
@@ -117,7 +144,7 @@ const data = {
     {
       title: 'Paragraph',
       url: '#paragraph',
-      isDisabled: true,
+      isDisabled: false,
       depth: 1,
     },
     {
@@ -133,6 +160,16 @@ const data = {
     {
       title: 'Spinner',
       url: '#spinner',
+      depth: 1,
+    },
+    {
+      title: 'Switch',
+      url: '#switch',
+      depth: 1,
+    },
+    {
+      title: 'Tag',
+      url: '#tag',
       depth: 1,
     },
     {
@@ -157,7 +194,6 @@ export default function Components() {
   const router = useRouter();
   return (
     <div className="gap-8 pb-50 sm:grid sm:grid-cols-[1fr_160px] md:gap-16">
-      <Citation />
       <div className="order-last">
         <SidebarMenu id="pageNav" className="w- sticky top-20">
           <SidebarGroup>
@@ -186,46 +222,29 @@ export default function Components() {
           Components
         </Heading>
         <Paragraph variant="lead">Components? Components!</Paragraph>
-
         <hr />
         <h2 id="alert">Alert</h2>
         <DemoContainer>
-          <Alert variant={'neutral'} icon={<AtomIcon weight="duotone" />}>
-            <AlertTitle>Neutral</AlertTitle>
-            <AlertDescription>This is an alert with icon, title and description.</AlertDescription>
-          </Alert>
-          <Alert variant={'info'} icon={<FolderOpenIcon weight="duotone" />}>
-            <AlertTitle>Sweet!</AlertTitle>
-          </Alert>
-          <Alert variant={'success'} icon={<PhCheckCircleIcon weight="duotone" />}>
-            <AlertTitle>Success! Your changes have been saved</AlertTitle>
-          </Alert>
-          <Alert variant={'warning'} icon={<WarningIcon weight="duotone" />}>
-            <AlertTitle>Warning</AlertTitle>
-          </Alert>
-          <Alert variant={'highlight'} icon={<BellIcon weight="duotone" />}>
-            <AlertTitle>Highlight</AlertTitle>
-          </Alert>
-          <Alert variant={'brand'} icon={<CircleWavyQuestionIcon weight="duotone" />}>
-            <AlertTitle>brand</AlertTitle>
-          </Alert>
-          <Alert variant="destructive" dismissible icon={<AlertCircleIcon />}>
-            <AlertTitle>Unable to process your payment.</AlertTitle>
-            <AlertDescription>
-              Please verify your billing information and try again.
-            </AlertDescription>
-          </Alert>
+          <AlertExample />
         </DemoContainer>
         <hr />
 
         <h2 id="avatar">Avatar</h2>
         <DemoContainer>
           <Avatar size={20}>
+            <AvatarImage src="https://avatar.vercel.sh/ab" className="" />
+
+            {/* <AvatarFallback>RW</AvatarFallback> */}
+          </Avatar>
+          <Avatar size={32}>
+            <AvatarFallback>A</AvatarFallback>
+          </Avatar>
+          <Avatar size={48}>
             {/* <AvatarImage
               src="https://avatar.vercel.sh/a"
               className="mask-linear-90 mask-linear-from-60% mask-linear-to-80% mask-radial-from-100% mask-radial-at-bottom-right mask-add"
             /> */}
-            <AvatarFallback>A</AvatarFallback>
+            <AvatarFallback>B</AvatarFallback>
           </Avatar>
         </DemoContainer>
 
@@ -284,6 +303,18 @@ export default function Components() {
           </div>
         </DemoContainer>
         <hr />
+        {/* <div className="grid grid-cols-4 justify-items-center gap-4">
+          <CampsiteButton variant="flat">Flat</CampsiteButton>
+          <CampsiteButton variant="text">Text</CampsiteButton>
+          <CampsiteButton variant="none">None</CampsiteButton>
+          <CampsiteButton variant="plain">Plain</CampsiteButton>
+          <CampsiteButton variant="base">Base</CampsiteButton>
+          <CampsiteButton variant="primary">Primary</CampsiteButton>
+          <CampsiteButton variant="destructive">Destructive</CampsiteButton>
+          <CampsiteButton variant="onboarding">Onboarding</CampsiteButton>
+          <CampsiteButton variant="important">Important</CampsiteButton>
+          <CampsiteButton variant="brand">Brand</CampsiteButton>
+        </div> */}
 
         <h2 id="button">Button</h2>
         <DemoContainer>
@@ -317,9 +348,16 @@ export default function Components() {
         </DemoContainer>
         <hr />
 
+        <h2 id="citation">Citation</h2>
+        <DemoContainer>
+          <Citation />
+        </DemoContainer>
+        <hr />
+
         <h2 id="code">Code</h2>
         <DemoContainer>
           <Code>npx run dev</Code>
+          <Code variant="elevated">yarn install</Code>
         </DemoContainer>
         <hr />
 
@@ -410,6 +448,24 @@ export default function Components() {
         <DemoContainer>
           <Spinner />
           <Loader />
+        </DemoContainer>
+
+        <h2 id="switch">Switch</h2>
+        <DemoContainer>
+          <Switch>Hello</Switch>
+        </DemoContainer>
+
+        <h2 id="tag">Tag</h2>
+        <DemoContainer>
+          <Tag
+            showAvatar
+            avatarInitials="M"
+            onClose={() => {
+              alert('action click');
+            }}
+          >
+            mga@email.com
+          </Tag>
         </DemoContainer>
 
         <h2 id="tabs">Tabs</h2>

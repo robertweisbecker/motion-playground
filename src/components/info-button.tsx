@@ -33,11 +33,16 @@ export function InfoButton({
           size={size}
           variant={variant}
           className={cn(
-            'group rounded-full text-[1.5em] data-[state=open]:[&_svg]:fill-current/20',
+            'group rounded-full text-[1.5em]',
+            // 'data-[state=open]:[&_svg]:fill-current/20',
+            'text-info-400 dark:text-info-300',
+            'hover:text-info-500 dark:hover:text-info-200',
+            'data-[state=open]:text-info-600 dark:data-[state=open]:text-info-200',
+            'data-[state=open]:bg-current/5',
             className,
           )}
         >
-          <InformationCircleIcon className="peer text-info-400 dark:text-info-300" />
+          <InformationCircleIcon className="peer" />
         </Button>
       </PopoverTrigger>
       <PopoverContent {...props}>{children}</PopoverContent>

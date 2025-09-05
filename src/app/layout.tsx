@@ -10,6 +10,7 @@ import './styles/components.css';
 import {
   SidebarInset,
   SidebarProvider,
+  SidebarRail,
   // SidebarRail,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
@@ -86,6 +87,7 @@ export default function RootLayout({
             <SideNav />
             {/*  renders <main> */}
             <SidebarInset>
+              <SidebarRail />
               <Header />
               <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col items-stretch gap-4 px-4 py-16 sm:px-8 sm:pb-24 md:px-16 lg:w-[calc(100vw-var(--sidebar-width))]">
                 {children}

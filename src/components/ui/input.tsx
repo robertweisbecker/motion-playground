@@ -6,12 +6,13 @@ import { Kbd } from '../kbd';
 import { Slot } from '@radix-ui/react-slot';
 import { useResizeObserver } from 'usehooks-ts';
 
-interface InputProps extends React.ComponentProps<'input'> {
+interface InputProps extends Omit<React.ComponentProps<'input'>, 'size'> {
   startSlot?: React.ReactNode;
   endSlot?: React.ReactNode;
   cmdk?: boolean;
   selectableSlot?: boolean;
   action?: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 function Input({
@@ -21,11 +22,12 @@ function Input({
   selectableSlot,
   cmdk,
   className,
+  size = 'md',
   type,
   ...props
 }: InputProps) {
   const slotClasses =
-    'absolute inset-y-0 min-w-button px-2 h-full select-none pointer-events-none inline-flex text-xs gap-1 items-center justify-center [&>svg]:pointer-events-none text-secondary-foreground';
+    'absolute inset-y-0 px-2 inline-flex text-xs gap-1 items-center justify-center text-secondary-foreground';
   const myRef = React.useRef(null);
   const { width = undefined } = useResizeObserver({
     ref: myRef,
@@ -33,7 +35,12 @@ function Input({
   });
   return (
     <div
-      className="h-button relative"
+      className={cn(
+        'relative max-w-full',
+        size === 'lg' && 'h-button-lg rounded-lg',
+        size === 'md' && 'h-button rounded-md',
+        size === 'sm' && 'h-button-sm rounded-md',
+      )}
       style={{ '--startSlotSize': `${width}px` } as React.CSSProperties}
     >
       <input
@@ -42,14 +49,20 @@ function Input({
         autoComplete="off"
         spellCheck="false"
         className={cn(
-          'bg-background h-button inset-ring-border flex w-full min-w-0 rounded-md py-1 ps-2.5 text-base inset-ring outline-0 transition-[background,color,box-shadow,border-color,outline] selection:bg-blue-500/20 placeholder:text-neutral-500/50 sm:text-sm',
+          'inset-ring-input placeholder:text-muted-foreground/60 flex w-full min-w-0 bg-current/2 py-1 text-base inset-ring outline-0 transition-[background,color,box-shadow,border-color,outline] selection:bg-blue-500/20 sm:text-sm',
           'box-border transition-colors duration-150 select-all',
-          'not-disabled:hover:bg-muted not-disabled:not-focus-visible:hover:inset-ring-input',
+          'text-foreground',
+          'not-disabled:hover:bg-card',
           'inset-shadow-2xs',
           'file:text-foreground file:bg-background file:inline-flex file:h-7 file:border-0 file:text-sm file:font-medium',
-          'focus-visible:outline-ring focus-visible:inset-ring-ring focus-visible:outline-1',
+          // 'focus-visible:outline-ring',
+          // 'focus-visible:outline-1',
+          'focus-visible:inset-ring-ring focus-visible:inset-ring-2',
           'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
           'disabled:cursor-not-allowed disabled:opacity-50',
+          size === 'lg' && 'h-button-lg rounded-lg ps-3',
+          size === 'md' && 'h-button rounded-md ps-2.5',
+          size === 'sm' && 'h-button-sm rounded-md ps-2',
           startSlot && 'ps-[var(--startSlotSize)]',
           endSlot && 'pe-button',
           className,
@@ -72,7 +85,9 @@ function Input({
           {endSlot}
         </span>
       )}
-      {action && <Slot className={cn(cmdk ? 'right-14' : 'right-0', slotClasses)}>{action}</Slot>}
+      {action && (
+        <span className={cn(cmdk ? 'right-14' : 'right-0 z-10', slotClasses)}>{action}</span>
+      )}
       {/* Make action and end slot mutually exclusive */}
       {cmdk && (
         <span

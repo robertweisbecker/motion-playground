@@ -12,104 +12,6 @@ import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/heading';
 import { Cog6ToothIcon } from '@heroicons/react/16/solid';
 
-function BannerExample() {
-  return (
-    <div className="not-prose relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
-      <div
-        aria-hidden="true"
-        className="absolute top-1/2 left-[max(-7rem,calc(50%-52rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"
-      >
-        <div
-          style={{
-            clipPath:
-              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
-          }}
-          className="aspect-577/310 w-144.25 bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
-        />
-      </div>
-      <div
-        aria-hidden="true"
-        className="absolute top-1/2 left-[max(45rem,calc(50%+8rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"
-      >
-        <div
-          style={{
-            clipPath:
-              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
-          }}
-          className="aspect-577/310 w-144.25 bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
-        />
-      </div>
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <p className="text-sm/6 text-gray-900">
-          <strong className="font-semibold">GeneriCon 2023</strong>
-          <svg viewBox="0 0 2 2" aria-hidden="true" className="mx-2 inline size-0.5 fill-current">
-            <circle r={1} cx={1} cy={1} />
-          </svg>
-          Join us in Denver from June 7 – 9 to see what’s coming next.
-        </p>
-        <a
-          href="#"
-          className="text-foreground/80 flex-none rounded-full bg-gray-50/8 px-3.5 py-1 text-sm font-semibold shadow-[0px_0px_1.5px_rgba(0,0,0,0.1),0px_0.65px_5px_rgba(0,0,0,0.12),inset_0.65px_0.65px_1px_-0.65px_rgba(255,255,255,0.8),inset_-0.65px_-0.65px_2px_-0.65px_rgba(255,255,255,0.8)] backdrop-blur-sm hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-        >
-          Register now <span aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
-      <div className="flex flex-1 justify-end">
-        <button type="button" className="-m-3 p-3 focus-visible:-outline-offset-4">
-          <span className="sr-only">Dismiss</span>
-          <XMarkIcon aria-hidden="true" className="size-5 text-gray-900" />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function PlusBadge() {
-  return (
-    <span className="not-prose">
-      <a
-        href="/plus?ref=top"
-        className="group relative px-1.5 text-sm/6 text-cyan-800 no-underline decoration-transparent decoration-0 dark:text-cyan-300"
-      >
-        <span className="absolute inset-0 -z-1 w-full border border-dashed border-cyan-300/60 bg-cyan-50 decoration-transparent decoration-0 group-hover:bg-cyan-400/15 dark:border-cyan-300/30"></span>
-        Plus
-        <svg
-          width="5"
-          height="5"
-          viewBox="0 0 5 5"
-          className="absolute top-[-2px] left-[-2px] fill-cyan-300 dark:fill-cyan-300/50"
-        >
-          <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z"></path>
-        </svg>
-        <svg
-          width="5"
-          height="5"
-          viewBox="0 0 5 5"
-          className="absolute top-[-2px] right-[-2px] fill-cyan-300 dark:fill-cyan-300/50"
-        >
-          <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z"></path>
-        </svg>
-        <svg
-          width="5"
-          height="5"
-          viewBox="0 0 5 5"
-          className="absolute bottom-[-2px] left-[-2px] fill-cyan-300 dark:fill-cyan-300/50"
-        >
-          <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z"></path>
-        </svg>
-        <svg
-          width="5"
-          height="5"
-          viewBox="0 0 5 5"
-          className="absolute right-[-2px] bottom-[-2px] fill-cyan-300 dark:fill-cyan-300/50"
-        >
-          <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z"></path>
-        </svg>
-      </a>
-    </span>
-  );
-}
-
 export default function TailwindPage() {
   //   const buildDisplacementImage = () => {
   //   // const border = Math.min(`var(--width)`, config.height) * (config.border * 0.5)
@@ -139,7 +41,166 @@ export default function TailwindPage() {
   //   }
   return (
     <div className="prose max-w-4xl">
-      <h1>Styling w/ Tailwind</h1>
+      <h1>Tailwind Playground</h1>
+      <Heading>Liquid Glass Shadow</Heading>
+      <div className="to-primary from-accent h-[320px] bg-linear-to-br/longer p-20">
+        <div className="bg-[rgba(17, 10, 41, 0.6)] mx-auto flex h-[160px] w-xs flex-col rounded-xl p-2 text-white mix-blend-luminosity shadow-[inset_-1.5px_-1.5px_0px_-1.25px_rgba(255,_255,_255,_0.5),_inset_-1px_-1px_1px_-0.67px_rgba(255,_255,_255,_0.25),_inset_1.5px_1.5px_0.5px_-1.25px_rgba(255,_255,_255),_inset_.5px_.5px_1.5px_-0.5px_rgba(255,_255,_255,_0.5),inset_0px_0px_0.5px_rgba(255,_255,_255,_0.5),0_0_1px_rgba(0,0,0,0.25),var(--shadow-lg)] backdrop-blur-lg">
+          <Button variant="ghost" className="w-full justify-start text-white">
+            Menu item
+          </Button>
+          <Button variant="ghost" className="w-full justify-start text-white">
+            Menu item
+          </Button>
+          <Button variant="ghost" className="w-full justify-start text-white">
+            Menu item
+          </Button>
+        </div>
+      </div>
+      <Heading>Buttons</Heading>
+      <div className="sm-max:flex-row-reverse flex h-88 items-center justify-end gap-16 px-24 transition-all xl:h-120 xl:px-40">
+        <div className="-mx-6 flex justify-end">
+          <div
+            className="flex-center"
+            // style={{ transform: 'none', width: 0, opacity: 0, margin: 0 }}
+          >
+            <button
+              className="group text-foreground bg-foreground/10 relative block rounded-full px-5 py-2.5 text-center text-xs backdrop-blur-[6px] transition-[scale] duration-[200ms] active:[scale:0.99] active:duration-[50ms]"
+              style={{ opacity: 0, filter: 'blur(4px)', transform: 'translateY(-10px)' }}
+            >
+              <div className="absolute inset-0 bg-white/90 transition-all duration-[200ms] group-active:duration-[50ms]">
+                <div className="absolute inset-0 bg-black/6 transition duration-[200ms] group-hover:bg-black/3 group-active:bg-black/7 group-active:duration-[50ms]" />
+                <div
+                  className="absolute inset-0 opacity-32 transition duration-[200ms] group-active:opacity-0 group-active:duration-[50ms]"
+                  style={{
+                    background:
+                      'linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%)',
+                  }}
+                />
+                <div
+                  className="absolute inset-0 opacity-8 transition duration-[200ms] group-active:opacity-12 group-active:duration-[50ms]"
+                  style={{
+                    background:
+                      'radial-gradient(65.62% 65.62% at 50% 50%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)',
+                  }}
+                />
+                <div
+                  className="absolute inset-0 transition duration-[200ms] group-active:opacity-0 group-active:duration-[50ms]"
+                  style={{
+                    background:
+                      'linear-gradient(99deg, rgba(255, 255, 255, 0) 27.7%, rgba(255, 255, 255, 0.12) 60.19%, rgba(255, 255, 255, 0) 86.06%)',
+                  }}
+                />
+                {/* <div
+                  className="mask-border absolute inset-0 p-1 opacity-12"
+                  style={{
+                    background:
+                      'linear-gradient(transparent 0%, rgb(255, 255, 255) 55%, transparent 80%, rgb(255, 255, 255) 95%)',
+                  }}
+                /> */}
+              </div>
+              <div className="relative">Home</div>
+            </button>
+          </div>
+        </div>
+        <div
+          className="sm-max:hidden size-2 rounded-full bg-black/22 transition-colors"
+          style={{ opacity: 1, filter: 'blur(0px)', transform: 'none' }}
+        />
+        <div>
+          <a className="contents" href="/contact">
+            <button
+              className="group relative block rounded-full px-5 py-2.5 text-center text-xs text-white/90 backdrop-blur-[6px] transition-[scale] duration-[200ms] active:[scale:0.99] active:duration-[50ms]"
+              style={{ opacity: 1, filter: 'blur(0px)', transform: 'none' }}
+            >
+              <div className="overlay button-background bg-black/56 transition-all duration-[200ms] group-active:duration-[50ms]">
+                <div
+                  className="overlay opacity-12 transition duration-[200ms] group-hover:opacity-16 group-active:opacity-0 group-active:duration-[50ms]"
+                  style={{
+                    background:
+                      'linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%)',
+                  }}
+                />
+                <div
+                  className="overlay opacity-32 transition duration-[200ms] group-active:opacity-44 group-active:duration-[50ms]"
+                  style={{
+                    background:
+                      'radial-gradient(65.62% 65.62% at 50% 50%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)',
+                  }}
+                />
+                <div
+                  className="overlay mask-border p-1 opacity-24"
+                  style={{
+                    background:
+                      'linear-gradient(rgb(255, 255, 255) 0%, rgb(153, 153, 153) 55%, rgb(255, 255, 255) 80%, rgb(153, 153, 153) 95%)',
+                  }}
+                />
+              </div>
+              <div className="relative">Get in touch</div>
+            </button>
+          </a>
+        </div>
+      </div>
+      <Heading>Gradients</Heading>
+      <div
+        style={{
+          width: '200px',
+          height: '200px',
+          backgroundColor: 'white',
+          backgroundImage:
+            'repeating-radial-gradient(ellipse at top right,hsl(0 0 0 / 50%),transparent,hsl(0 0 0 / 5%),radial-gradient(ellipse at top right,hsl(0 0 0 / 10%),transparent,hsl(0 0 0 / 5%)',
+          backgroundSize: '16px',
+          backgroundPosition: 'center',
+        }}
+        className="text-2xl text-shadow-[0_0px_2px] text-shadow-white"
+      >
+        hello
+      </div>
+      <style>{`
+        @keyframes fluted-glass {
+          0% {
+            background-position: left center; 
+          }
+          50% {
+            background-position: center center; 
+            }
+          100% {
+            background-position: right center; 
+            }
+          }
+          .animated-glass { 
+          animation: fluted-glass 5s linear infinite alternate;
+          transition-property: all;
+            background: repeating-radial-gradient(ellipse at 50% 50%, white, gray 90%, black);
+            background-position: center center; 
+            background-size: 10px 200%;
+            background-repeat: repeat-x;
+          
+          }
+      `}</style>
+      <div
+        className="animated-glass size-20"
+        // style={{
+        //   background:
+        //     'repeating-radial-gradient(ellipse farthest-corner at 0% 50%, white,gray 90%, black) center center / 20px 200% repeat-x',
+        // }}
+      >
+        animated
+      </div>
+      <div className="w-fit rounded-lg bg-gradient-to-bl from-white to-black/5">
+        <div className="relative isolate grid size-40 place-items-center overflow-clip rounded-[inherit] bg-radial-[ellipse_at_0%_150%] from-black/10 via-transparent to-black/5 bg-size-[.5em] bg-center text-2xl text-shadow-[0_0px_2px] text-shadow-white">
+          <span className="absolute -inset-full rotate-135 bg-radial-[ellipse_at_0%_200%] from-black/5 via-transparent to-black/10 bg-size-[.5em]"></span>
+          <div className="[grid-area:1/1]">A</div>
+          <div className="h-[2em] translate-x-[.25em] translate-y-[.5em] translate-z-20 scale-x-125 scale-y-75 rotate-x-180 rotate-z-30 -skew-30 mask-t-to-transparent mask-t-to-100% [grid-area:1/1] perspective-near dark:translate-x-0 dark:font-normal">
+            A
+          </div>
+        </div>
+      </div>
+      <div style={{ width: '200px', height: '200px', background: 'rgba(255,50,50,0.5)' }}>
+        hello
+      </div>
+      <div className="size-20 bg-[radial-gradient(farthest-side_at_bottom_left,plum,transparent),radial-gradient(farthest-corner_at_bottom_right,lightpink,transparent),linear-gradient(lightseagreen)] text-white">
+        Hello
+      </div>
       <Heading>Avatar Mask</Heading>
       <div className="relative flex flex-col gap-10">
         <div className="relative aspect-square size-100 overflow-hidden rounded-xl after:absolute after:-inset-[0%] after:-z-1 after:rounded-[inherit] after:ring-[24px] after:ring-green-200">
@@ -985,5 +1046,103 @@ export default function TailwindPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function BannerExample() {
+  return (
+    <div className="not-prose relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+      <div
+        aria-hidden="true"
+        className="absolute top-1/2 left-[max(-7rem,calc(50%-52rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+      >
+        <div
+          style={{
+            clipPath:
+              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
+          }}
+          className="aspect-577/310 w-144.25 bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute top-1/2 left-[max(45rem,calc(50%+8rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+      >
+        <div
+          style={{
+            clipPath:
+              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
+          }}
+          className="aspect-577/310 w-144.25 bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
+        />
+      </div>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <p className="text-sm/6 text-gray-900">
+          <strong className="font-semibold">GeneriCon 2023</strong>
+          <svg viewBox="0 0 2 2" aria-hidden="true" className="mx-2 inline size-0.5 fill-current">
+            <circle r={1} cx={1} cy={1} />
+          </svg>
+          Join us in Denver from June 7 – 9 to see what’s coming next.
+        </p>
+        <a
+          href="#"
+          className="text-foreground/80 flex-none rounded-full bg-gray-50/8 px-3.5 py-1 text-sm font-semibold shadow-[0px_0px_1.5px_rgba(0,0,0,0.1),0px_0.65px_5px_rgba(0,0,0,0.12),inset_0.65px_0.65px_1px_-0.65px_rgba(255,255,255,0.8),inset_-0.65px_-0.65px_2px_-0.65px_rgba(255,255,255,0.8)] backdrop-blur-sm hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+        >
+          Register now <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+      <div className="flex flex-1 justify-end">
+        <button type="button" className="-m-3 p-3 focus-visible:-outline-offset-4">
+          <span className="sr-only">Dismiss</span>
+          <XMarkIcon aria-hidden="true" className="size-5 text-gray-900" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function PlusBadge() {
+  return (
+    <span className="not-prose">
+      <a
+        href="/plus?ref=top"
+        className="group relative px-1.5 text-sm/6 text-cyan-800 no-underline decoration-transparent decoration-0 dark:text-cyan-300"
+      >
+        <span className="absolute inset-0 -z-1 w-full border border-dashed border-cyan-300/60 bg-cyan-50 decoration-transparent decoration-0 group-hover:bg-cyan-400/15 dark:border-cyan-300/30"></span>
+        Plus
+        <svg
+          width="5"
+          height="5"
+          viewBox="0 0 5 5"
+          className="absolute top-[-2px] left-[-2px] fill-cyan-300 dark:fill-cyan-300/50"
+        >
+          <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z"></path>
+        </svg>
+        <svg
+          width="5"
+          height="5"
+          viewBox="0 0 5 5"
+          className="absolute top-[-2px] right-[-2px] fill-cyan-300 dark:fill-cyan-300/50"
+        >
+          <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z"></path>
+        </svg>
+        <svg
+          width="5"
+          height="5"
+          viewBox="0 0 5 5"
+          className="absolute bottom-[-2px] left-[-2px] fill-cyan-300 dark:fill-cyan-300/50"
+        >
+          <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z"></path>
+        </svg>
+        <svg
+          width="5"
+          height="5"
+          viewBox="0 0 5 5"
+          className="absolute right-[-2px] bottom-[-2px] fill-cyan-300 dark:fill-cyan-300/50"
+        >
+          <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z"></path>
+        </svg>
+      </a>
+    </span>
   );
 }

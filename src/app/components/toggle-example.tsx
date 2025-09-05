@@ -11,7 +11,6 @@ export function ToggleExample() {
   return (
     <div className="not-prose grid w-full grid-cols-2 justify-items-start gap-4">
       <p>Icon</p>
-
       <Toggle variant="ghost" className="data-[state=on]:[&_svg]:fill-current">
         <OutlineStarIcon />
       </Toggle>
@@ -19,11 +18,9 @@ export function ToggleExample() {
       <Toggle variant="ghost" className="data-[state=on]:[&_svg]:fill-current">
         <OutlineStarIcon /> Favorite
       </Toggle>
-
-      <Toggle variant="ghost" size="lg" pressed={toggled} onPressedChange={setToggled}>
+      {/* <Toggle variant="ghost" size="lg" pressed={toggled} onPressedChange={setToggled}>
         {toggled ? <SidebarOpenIcon /> : <SidebarClosedIcon />}
-      </Toggle>
-
+      </Toggle> */}
       <p>Group</p>
       <ToggleGroup variant="ghost" type="multiple">
         <ToggleGroupItem value="bold" aria-label="Toggle bold">
@@ -33,6 +30,18 @@ export function ToggleExample() {
           <ItalicIcon />
         </ToggleGroupItem>
         <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough">
+          <UnderlineIcon />
+        </ToggleGroupItem>
+      </ToggleGroup>
+      + Outline
+      <ToggleGroup variant="outline" type="multiple">
+        <ToggleGroupItem value="bold-outline" aria-label="Toggle bold">
+          <BoldIcon />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="italic-outline" aria-label="Toggle italic">
+          <ItalicIcon />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="strikethrough-outline" aria-label="Toggle strikethrough">
           <UnderlineIcon />
         </ToggleGroupItem>
       </ToggleGroup>

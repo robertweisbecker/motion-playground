@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { LinkOutIcon } from '../icons/icons';
 import { Badge } from '@/components/ui/badge';
 
-export default function ThemePage() {
+export default function StylesPage() {
   const hues = [
     'ruby',
     'red',
@@ -46,113 +46,61 @@ export default function ThemePage() {
     <>
       <div className="">
         <Heading as="h1">Theme</Heading>
-        <button
-          className={colorScheme.blue.solid.initial}
-          // className={cn(...Object.values(colorScheme.blue.solid), 'h-button rounded-md px-3')}
-        >
-          Solid
-        </button>
+        <Heading as="h2" muted>
+          Shadow
+        </Heading>
 
-        <button className={cn(Object.entries(colorScheme.blue.solid), 'h-button rounded-md px-3')}>
-          Solid
-        </button>
-        <button className={cn(Object.entries(colorScheme.blue.subtle), 'h-button rounded-md px-3')}>
-          Outline
-        </button>
-        <button
-          className={cn(Object.entries(colorScheme.blue.outline), 'h-button rounded-md px-3')}
-        >
-          Subtle
-        </button>
-
-        <button
-          className={cn(Object.entries(colorScheme.orange.solid), 'h-button rounded-md px-3')}
-        >
-          Solid
-        </button>
-        <button
-          className={cn(Object.entries(colorScheme.orange.subtle), 'h-button rounded-md px-3')}
-        >
-          Outline
-        </button>
-        <button
-          className={cn(Object.entries(colorScheme.orange.outline), 'h-button rounded-md px-3')}
-        >
-          Subtle
-        </button>
-        <div className="flex flex-col gap-2">
-          Hue
-          {palettes.map((value) => (
+        <div className="grid grid-cols-7 gap-4">
+          <div className={`bg-card rounded-md p-10 shadow-2xs`}>
+            <Heading size="h4">2xs</Heading>
+          </div>
+          <div className={`bg-card rounded-md p-10 shadow-xs`}>
+            <Heading size="h4">xs</Heading>
+          </div>
+          <div className={`bg-card rounded-md p-10 shadow-sm`}>
+            <Heading size="h4">sm</Heading>
+          </div>
+          <div className={`bg-card rounded-md p-10 shadow-md`}>
+            <Heading size="h4">md</Heading>
+          </div>
+          <div className={`bg-card rounded-md p-10 shadow-lg`}>
+            <Heading size="h4">lg</Heading>
+          </div>
+          <div className={`bg-card rounded-md p-10 shadow-xl`}>
+            <Heading size="h4">xl</Heading>
+          </div>
+          <div className={`bg-card rounded-md p-10 shadow-2xl`}>
+            <Heading size="h4">2xl</Heading>
+          </div>
+          <div className={`bg-card shadow-popover rounded-md p-10`}>
+            <Heading size="h4">Popover</Heading>
+          </div>
+          <div className="bg-elevated shadow-popover flex flex-col rounded-lg border border-transparent py-1 transition-all duration-75 dark:border-neutral-800 dark:bg-[#1E1E1E]">
+            <p className="mx-2 text-xs/6">Label</p>
             <div
-              key={value}
-              className={`hue hue-${value} bg-muted relative flex gap-1 rounded-lg p-4 shadow-xs`}
+              className={cn(
+                'group relative mx-1 flex h-8.5 cursor-pointer items-center rounded-[5px] border-none px-3 text-sm font-medium outline-none',
+                'shadow-dropdown-item bg-black/5 dark:bg-white/10',
+              )}
             >
-              <Badge className="absolute top-1 right-1">{value}</Badge>
-              <Button variant="primary">Primary</Button>
-              <Button variant="secondary">
-                Secondary <LinkOutIcon />
-              </Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="default">Default</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="link">Link</Button>
+              Dropdown
             </div>
-          ))}
+            <div
+              className={cn(
+                'group relative mx-1 flex h-8.5 cursor-pointer items-center rounded-[5px] border-none px-3 text-sm font-medium outline-none',
+                // 'shadow-dropdown-item bg-black-5',
+              )}
+            >
+              Dropdown
+            </div>
+          </div>
         </div>
         <Heading>Palette</Heading>
-        {/* <div className={cn(swatchClass)} style={{ background: `var(--color-navy-25)` }} />
-                <div className={cn(swatchClass)} style={{ background: `var(--color-navy-50)` }} />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-100)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-200)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-300)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-400)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-500)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-600)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-700)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-800)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-900)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-950)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-975)` }}
-                />
-              </div>
-            </div> */}
-        <div className="flex flex-col gap-0">
+        <div className="flex flex-col">
           {hues.map((hue) => (
-            <div key={hue} className="flex w-full items-center gap-0">
+            <div key={hue} className="flex w-full items-center gap-1">
               <p className="w-1/3 font-mono text-[11px] leading-none">{hue}</p>
-              <div className="bg-muted grid w-full grid-cols-13 gap-0">
+              <div className="bg-muted grid w-full grid-cols-13 dark:bg-white">
                 <div className={cn(swatchClass)} style={{ background: `var(--color-${hue}-25)` }} />
                 <div className={cn(swatchClass)} style={{ background: `var(--color-${hue}-50)` }} />
                 <div

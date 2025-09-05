@@ -7,10 +7,9 @@ import { cn } from '@/lib/utils';
 const codeVariants = cva(
   [
     'inline-flex items-center justify-center w-fit shrink-0 gap-2',
-    'self-middle  align-baseline',
+    'self-middle align-baseline',
     'overflow-hidden max-w-full truncate',
-    'inset-ring inset-ring-current/12',
-    'font-mono tabular-nums leading-none',
+    'font-mono tabular-nums leading-none font-medium',
     // '[font-size-adjust:0.95]',
     'tracking-[-0.007em]',
     'word-spacing-[-0.05em]',
@@ -22,13 +21,12 @@ const codeVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'bg-gray-alpha-50 has-[a]:hover:bg-hover text-gray-alpha-500 dark:text-white-alpha-500 dark:bg-gray-alpha-200',
+        default: ['bg-black-alpha-25 has-[a]:hover:bg-hover text-muted-foreground', 'border'],
         elevated:
-          'bg-gradient-to-b from-popover text-accent-foreground to-muted from-60% font-normal  shadow-[0_1px_2px] shadow-input',
+          'bg-gradient-to-b to-secondary text-foreground from-white/10 to-80% font-medium  shadow-button inset-ring-0 ring ring-border-alpha-soft',
       },
       size: {
-        default: 'h-6 min-w-5 rounded-sm px-1.5 py-0.5 gap-2 text-sm',
+        default: 'h-6 min-w-5 rounded-md px-1.5 py-0.5 gap-2 text-sm',
         inherit: 'h-auto min-w-5 rounded-[0.25em] px-[0.25em] py-[0.1em] text-[0.85em] font-medium',
       },
       color: {

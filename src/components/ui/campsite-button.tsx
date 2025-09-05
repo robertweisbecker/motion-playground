@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
+import { motion } from 'framer-motion';
 
 // import { Link, LinkProps } from '../Link';
 import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
@@ -8,82 +9,161 @@ import { Badge } from './badge';
 import Link from 'next/link';
 
 export const ANIMATIONS = {
-  whileTap: { scale: 0.9 },
+  whileTap: { scale: 0.98 },
   initial: { scale: 1 },
   animate: { scale: 1 },
   transition: {
     type: 'spring',
     stiffness: 600,
     damping: 30,
+    duration: 50,
   },
-};
+} as const;
+
+// export const buttonVariants = cva(
+//   [
+//     'relative font-medium shrink-0 group inline-flex items-center justify-center select-none transform-gpu initial:border-none disabled:opacity-50 text-shadow-xs text-shadow-button-shadow',
+//     'focus:!outline-none focus:!ring-0 active:!outline-none active:!ring-0',
+//     'after:pointer-events-none after:absolute after:-inset-[3px] after:rounded-lg after:border after:border-blue-500 after:opacity-0 after:ring-2 after:ring-blue-500/20 after:transition-opacity focus-visible:after:opacity-100 active:after:opacity-0',
+//     'before:pointer-events-none before:bg-gradient-to-b before:transition-opacity before:from-white/[0.12] before:absolute before:inset-0 before:z-2 before:rounded-[inherit] before:opacity-0',
+//   ],
+//   {
+//     variants: {
+//       variant: {
+//         base: [
+//           'bg-gray-100 dark:bg-gray-750',
+//           'text-gray-900 dark:text-gray-50',
+//           'shadow-button-base',
+//           'hover:before:opacity-100 dark:hover:before:opacity-50',
+//         ],
+//         primary: [
+//           'bg-red-600 dark:bg-gray-100',
+//           'text-gray-50 dark:text-gray-900',
+//           // 'border border-gray-950/50',
+//           'hover:bg-gray-750',
+//           'shadow-button-inset dark:shadow-button-primary',
+//           'hover:before:opacity-100',
+//           'text-shadow-xs text-shadow-black/12',
+//         ],
+//         flat: ['bg-black/[0.06] hover:bg-black/[0.08] dark:bg-white/[0.08] dark:hover:bg-white/10'],
+//         plain: [
+//           'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
+//           'data-[state=open]:bg-gray-150 dark:data-[state=open]:bg-gray-750',
+//           'disabled:hover:bg-transparent dark:disabled:hover:bg-transparent',
+//         ],
+//         destructive: [
+//           'bg-red-500',
+//           'text-gray-50',
+//           'dark:shadow-button-base',
+//           'hover:before:opacity-100',
+//           'text-shadow-xs text-shadow-black/12',
+//         ],
+//         important: [
+//           'bg-blue-500 dark:bg-blue-600',
+//           'text-white dark:text-gray-50',
+//           'dark:shadow-[0px_0px_4px_rgba(30,_58,_138,_0.6),_0px_0px_0px_0.5px_rgb(0_0_0_/_0.94),_inset_0px_0.5px_0px_rgba(255,_255,_255,_0.12),_inset_0px_0px_1px_0px_rgba(255,_255,_255,_0.4),_inset_0px_-4px_8px_-4px_rgba(30,_58,_138,_0.4)]',
+//           'hover:before:opacity-100',
+//           'text-shadow-xs text-shadow-black/12',
+//         ],
+//         brand: [
+//           'bg-gradient-to-tl to-[#ff591e] from-[#fb432c] saturate-[105%]',
+//           'text-white',
+//           'hover:before:opacity-100',
+//           'shadow-[inset_0px_0.5px_0px_rgb(255_255_255_/_0.32)]',
+//           'text-shadow-xs text-shadow-black/12',
+//         ],
+//         onboarding: [
+//           'bg-green-600',
+//           'text-gray-50',
+//           'shadow-[0px_0px_4px_rgba(20,_83,_45,_0.1),_0px_0px_0px_0.5px_rgba(20,_83,_45,_0.6),_inset_0px_0.5px_0px_rgba(255,_255,_255,_0.08),_inset_0px_0px_1px_1px_rgba(255,_255,_255,_0.12),_inset_0px_-1px_1px_rgba(20,_83,_45,_0.24),_inset_0px_-4px_8px_-4px_rgba(20,_83,_45,_0.08)]',
+//           'dark:shadow-[0px_0px_4px_rgba(20,_83,_45,_0.4),_0px_0px_0px_0.5px_rgba(20,_83,_45,_0.94),_inset_0px_0.5px_0px_rgba(255,_255,_255,_0.24),_inset_0px_0px_1px_0px_rgba(255,_255,_255,_0.4),_inset_0px_-4px_8px_-4px_rgba(20,_83,_45,_0.4)]',
+//           'hover:before:opacity-100',
+//           'text-shadow-xs text-shadow-black/12',
+//         ],
+//         text: ['h-auto! p-0! text-blue-600 dark:text-blue-500'],
+//         none: '',
+//       },
+//       size: {
+//         // 13.01px font size so that chrome doesn't render it 1px vertically off center
+//         sm: ['h-6.5 text-[13.01px] rounded-md'],
+//         base: ['h-7.5 text-[14.01px] rounded-md'],
+//         large: ['px-10 h-10 py-3 text-[15.01px] rounded-lg'],
+//       },
+//       fullWidth: {
+//         true: 'w-full flex-1',
+//       },
+//       loading: {
+//         true: 'opacity-50 cursor-wait',
+//       },
+//       rightSlot: {
+//         true: 'flex items-center justify-center',
+//       },
+//       round: {
+//         true: 'rounded-full after:rounded-full before:rounded-full',
+//       },
+//     },
+//     defaultVariants: {
+//       variant: 'base',
+//     },
+//   },
+// );
 
 export const buttonVariants = cva(
   [
-    'relative font-medium shrink-0 group inline-flex items-center justify-center select-none transform-gpu initial:border-none disabled:opacity-50 text-shadow-xs text-shadow-button-shadow',
+    'relative font-medium shrink-0 group inline-flex items-center justify-center select-none transform-gpu initial:border-none disabled:opacity-50',
     'focus:!outline-none focus:!ring-0 active:!outline-none active:!ring-0',
-    'after:pointer-events-none after:absolute after:-inset-[3px] after:rounded-lg after:border after:border-blue-500 after:opacity-0 after:ring-2 after:ring-blue-500/20 after:transition-opacity focus-visible:after:opacity-100 active:after:opacity-0',
-    'before:pointer-events-none before:bg-gradient-to-b before:transition-opacity before:from-white/[0.12] before:absolute before:inset-0 before:z-2 before:rounded-[inherit] before:opacity-0',
+    'after:pointer-events-none after:absolute after:-inset-[3px] after:rounded-lg after:border after:border-ring after:opacity-0 after:ring-2 after:ring-ring/20 after:transition-opacity focus-visible:after:opacity-100 active:after:opacity-0',
+    'before:pointer-events-none before:bg-gradient-to-b before:transition-opacity before:from-white/12 before:absolute before:inset-0 before:z-1 before:rounded-[inherit] before:opacity-0',
   ],
   {
     variants: {
       variant: {
         base: [
-          'bg-gray-100 dark:bg-gray-750',
-          'text-gray-900 dark:text-gray-50',
+          'bg-white dark:bg-neutral-800',
+          'text-neutral-900 dark:text-neutral-50',
           'shadow-button-base',
           'hover:before:opacity-100 dark:hover:before:opacity-50',
         ],
         primary: [
-          'bg-red-600 dark:bg-gray-100',
-          'text-gray-50 dark:text-gray-900',
-          // 'border border-gray-950/50',
-          'hover:bg-gray-750',
-          'shadow-button-inset dark:shadow-button-primary',
+          'bg-neutral-700 dark:bg-neutral-200',
+          'text-neutral-50 dark:text-neutral-900',
+          'dark:shadow-button-primary',
           'hover:before:opacity-100',
-          'text-shadow-xs text-shadow-black/12',
         ],
-        flat: ['bg-black/[0.06] hover:bg-black/[0.08] dark:bg-white/[0.08] dark:hover:bg-white/10'],
+        flat: [
+          'bg-black/[0.06] text-foreground hover:bg-black/[0.08] dark:bg-white/[0.08] dark:hover:bg-white/10',
+        ],
         plain: [
           'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
-          'data-[state=open]:bg-gray-150 dark:data-[state=open]:bg-gray-750',
+          'data-[state=open]:bg-neutral-200 dark:data-[state=open]:bg-neutral-700',
           'disabled:hover:bg-transparent dark:disabled:hover:bg-transparent',
         ],
-        destructive: [
-          'bg-red-500',
-          'text-gray-50',
-          'dark:shadow-button-base',
-          'hover:before:opacity-100',
-          'text-shadow-xs text-shadow-black/12',
-        ],
+        destructive: ['bg-destructive', 'text-destructive-foreground', 'hover:before:opacity-100'],
         important: [
           'bg-blue-500 dark:bg-blue-600',
-          'text-white dark:text-gray-50',
+          'text-white dark:text-neutral-50',
           'dark:shadow-[0px_0px_4px_rgba(30,_58,_138,_0.6),_0px_0px_0px_0.5px_rgb(0_0_0_/_0.94),_inset_0px_0.5px_0px_rgba(255,_255,_255,_0.12),_inset_0px_0px_1px_0px_rgba(255,_255,_255,_0.4),_inset_0px_-4px_8px_-4px_rgba(30,_58,_138,_0.4)]',
           'hover:before:opacity-100',
-          'text-shadow-xs text-shadow-black/12',
         ],
         brand: [
-          'bg-gradient-to-tl to-[#ff591e] from-[#fb432c] saturate-[105%]',
+          'bg-gradient-to-tl to-primary from-primary-hover saturate-[105%]',
           'text-white',
           'hover:before:opacity-100',
           'shadow-[inset_0px_0.5px_0px_rgb(255_255_255_/_0.32)]',
-          'text-shadow-xs text-shadow-black/12',
         ],
         onboarding: [
           'bg-green-600',
-          'text-gray-50',
+          'text-neutral-50',
           'shadow-[0px_0px_4px_rgba(20,_83,_45,_0.1),_0px_0px_0px_0.5px_rgba(20,_83,_45,_0.6),_inset_0px_0.5px_0px_rgba(255,_255,_255,_0.08),_inset_0px_0px_1px_1px_rgba(255,_255,_255,_0.12),_inset_0px_-1px_1px_rgba(20,_83,_45,_0.24),_inset_0px_-4px_8px_-4px_rgba(20,_83,_45,_0.08)]',
           'dark:shadow-[0px_0px_4px_rgba(20,_83,_45,_0.4),_0px_0px_0px_0.5px_rgba(20,_83,_45,_0.94),_inset_0px_0.5px_0px_rgba(255,_255,_255,_0.24),_inset_0px_0px_1px_0px_rgba(255,_255,_255,_0.4),_inset_0px_-4px_8px_-4px_rgba(20,_83,_45,_0.4)]',
           'hover:before:opacity-100',
-          'text-shadow-xs text-shadow-black/12',
         ],
-        text: ['h-auto! p-0! text-blue-600 dark:text-blue-500'],
+        text: ['!h-auto !p-0 text-blue-500 dark:text-blue-400'],
         none: '',
       },
       size: {
         // 13.01px font size so that chrome doesn't render it 1px vertically off center
-        sm: ['h-6.5 text-[13.01px] rounded-md'],
+        sm: ['h-6.5 text-[13.01px] rounded'],
         base: ['h-7.5 text-[14.01px] rounded-md'],
         large: ['px-10 h-10 py-3 text-[15.01px] rounded-lg'],
       },
@@ -105,7 +185,6 @@ export const buttonVariants = cva(
     },
   },
 );
-
 export interface ButtonProps {
   id?: string;
   align?: 'center' | 'left';
@@ -193,7 +272,7 @@ export const CampsiteButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, 
           // label={tooltip}
           // shortcut={tooltipShortcut}
         >
-          <Link
+          <motion.a
             id={id}
             href={href}
             className={cn(
@@ -247,7 +326,7 @@ export const CampsiteButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, 
                 <span className="inline-flex flex-none justify-center">{rightSlot}</span>
               )}
             </span>
-          </Link>
+          </motion.a>
         </Tooltip>
       );
     }
@@ -255,7 +334,12 @@ export const CampsiteButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, 
     return (
       <Tooltip disableHoverableContent>
         <TooltipTrigger asChild>
-          <button
+          <motion.button
+            variants={ANIMATIONS}
+            whileTap={ANIMATIONS.whileTap}
+            initial={ANIMATIONS.initial}
+            animate={ANIMATIONS.animate}
+            transition={ANIMATIONS.transition}
             id={id}
             className={cn(
               'outline-none',
@@ -309,7 +393,7 @@ export const CampsiteButton = forwardRef<HTMLButtonElement & HTMLAnchorElement, 
                 <span className="inline-flex flex-none justify-center">{rightSlot}</span>
               )}
             </span>
-          </button>
+          </motion.button>
         </TooltipTrigger>
         {tooltip && (
           <TooltipContent>

@@ -10,7 +10,7 @@ const cardVariants = cva(['group/card flex w-full flex-col '], {
       inset: 'bg-muted text-foreground inset-ring-[0.5px] inset-ring-border shadow-none!',
     },
     size: {
-      lg: 'py-6 gap-5 rounded-2xl shadow-lg',
+      lg: 'py-6 gap-5 rounded-2xl',
       md: 'py-4 gap-3 rounded-xl shadow-md',
       sm: 'py-3 gap-3 rounded-lg shadow-md',
     },
@@ -19,6 +19,13 @@ const cardVariants = cva(['group/card flex w-full flex-col '], {
       size: 'md',
     },
   },
+  compoundVariants: [
+    {
+      size: 'lg',
+      variant: 'default',
+      className: 'shadow-lg ring ring-border-alpha-soft',
+    },
+  ],
 });
 
 // function Card({
@@ -58,7 +65,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="card-header"
       className={cn(
-        '@container/card-header relative grid auto-rows-min grid-rows-[auto_auto] items-start gap-1 gap-y-0 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6',
+        '@container/card-header relative grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 gap-y-1 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6',
         'group-data-[size=lg]/card:px-6 group-data-[size=md]/card:px-4 group-data-[size=sm]/card:px-3',
         className,
       )}
@@ -72,7 +79,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="card-title"
       className={cn(
-        'leading-tight font-medium',
+        'text-foreground leading-tight font-medium',
         'group-data-[size=lg]/card:text-xl group-data-[size=md]/card:text-base group-data-[size=sm]/card:text-sm',
         className,
       )}
@@ -113,7 +120,7 @@ function CardContent({ className, ref, ...props }: React.ComponentProps<'div'>) 
       ref={ref}
       data-slot="card-content"
       className={cn(
-        'text-muted-foreground relative gap-2',
+        'text-muted-foreground relative flex flex-col gap-3',
         'group-data-[size=lg]/card:px-6 group-data-[size=md]/card:px-4 group-data-[size=sm]/card:px-3',
         className,
       )}

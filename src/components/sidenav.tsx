@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { motion, AnimatePresence, stagger } from 'framer-motion';
+import { motion, AnimatePresence, stagger, LayoutGroup } from 'framer-motion';
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
@@ -123,95 +123,97 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
-          {data.navMain.map((item) =>
-            item.items ? (
-              <SidebarMenuItem
-                key={item.title}
-                title={item.title}
-                className={cn(pathname.includes(item.url) && '[&*]:text-red-500')}
-              >
-                <MCollapsible
-                  className={cn('group/collapsible')}
-                  // open={open}
-                  // onOpenChange={setOpen}
+          <LayoutGroup>
+            {data.navMain.map((item) =>
+              item.items ? (
+                <SidebarMenuItem
+                  key={item.title}
+                  title={item.title}
+                  className={cn(pathname.includes(item.url) && '[&*]:text-red-500')}
                 >
-                  {/* <SidebarMenu className="group/menu"> */}
+                  <MCollapsible
+                    className={cn('group/collapsible')}
+                    // open={open}
+                    // onOpenChange={setOpen}
+                  >
+                    {/* <SidebarMenu className="group/menu"> */}
+                    <SidebarMenuButton
+                      asChild
+                      className={cn(
+                        'data-[state=open]:text-sidebar-accent-foreground',
+                        pathname.includes(item.url) &&
+                          'text-sidebar-accent-foreground data-[state=closed]:bg-sidebar-accent/70 data-[state=closed]:font-medium',
+                      )}
+                    >
+                      <CollapsibleTrigger>
+                        <span
+                          className={cn(
+                            'shadow-sidebar-border grid size-5 place-items-center rounded-full opacity-60',
+                            'group-data-open/collapsible:opacity-100',
+                            // 'group-data-open/collapsible:bg-accent/50',
+                            // 'group-data-open/collapsible:shadow-[inset_0_1px,inset_0_0_0_1px]',
+                          )}
+                        >
+                          <ChevronDownIcon className="ease h-4 w-4 transition-all group-data-open/collapsible:rotate-180" />
+                        </span>
+                        {item.title}
+                        <SidebarMenuBadge className="in-data-[state=open]:hidden">
+                          {item.items.length}
+                        </SidebarMenuBadge>
+                      </CollapsibleTrigger>
+                    </SidebarMenuButton>
+                    <MCollapsibleContent key={item.title} hidden={false} layout>
+                      <MSidebarMenuSub layout>
+                        <AnimatePresence mode="popLayout">
+                          {item.items.map((item, index) => (
+                            <motion.div
+                              initial={{
+                                // y: -2 * index,
+                                origin: 'top',
+                                y: -5 * index,
+                                opacity: 0.8,
+                                // height: 0,
+                              }}
+                              animate={{ opacity: 1, y: 0, height: 'initial' }}
+                              exit={{ y: -10 * index, opacity: 0 }}
+                              transition={{ delay: 0.01 * index, bounce: 0 }}
+                              key={item.title}
+                            >
+                              <SidebarMenuSubItem key={item.title}>
+                                <SidebarMenuSubButton
+                                  asChild
+                                  isActive={pathname === item.url}
+                                  aria-current={pathname === item.url ? 'page' : 'false'}
+                                >
+                                  <Link href={item.url}>{item.title}</Link>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            </motion.div>
+                          ))}
+                        </AnimatePresence>
+                      </MSidebarMenuSub>
+                    </MCollapsibleContent>
+                    {/* </SidebarMenu> */}
+                  </MCollapsible>
+                </SidebarMenuItem>
+              ) : (
+                <SidebarMenuItem key={item.title} title={item.title}>
                   <SidebarMenuButton
                     asChild
-                    className={cn(
-                      'data-[state=open]:text-sidebar-accent-foreground',
-                      pathname.includes(item.url) &&
-                        'text-sidebar-accent-foreground data-[state=closed]:bg-sidebar-accent/70 data-[state=closed]:font-medium',
-                    )}
+                    isActive={pathname === item.url}
+                    className="data-[active=true]:[&>span]:bg-sidebar-primary data-[active=true]:[&>span]:text-sidebar-primary-foreground data-[active=true]:[&>span]:shadow-button-highlight"
                   >
-                    <CollapsibleTrigger>
-                      <span
-                        className={cn(
-                          'shadow-sidebar-border grid size-5 place-items-center rounded-full opacity-60',
-                          'group-data-open/collapsible:opacity-100',
-                          // 'group-data-open/collapsible:bg-accent/50',
-                          // 'group-data-open/collapsible:shadow-[inset_0_1px,inset_0_0_0_1px]',
-                        )}
-                      >
-                        <ChevronDownIcon className="ease h-4 w-4 transition-all group-data-open/collapsible:rotate-180" />
+                    <Link href={item.url}>
+                      <span className="bg-sidebar-accent text-sidebar-foreground/60 inset-ring-border-alpha grid-stack size-5 rounded-[5px] bg-linear-to-br text-center">
+                        {item.icon}
                       </span>
                       {item.title}
-                      <SidebarMenuBadge className="in-data-[state=open]:hidden">
-                        {item.items.length}
-                      </SidebarMenuBadge>
-                    </CollapsibleTrigger>
+                    </Link>
                   </SidebarMenuButton>
-                  <MCollapsibleContent key={item.title} hidden={false}>
-                    <MSidebarMenuSub>
-                      <AnimatePresence>
-                        {item.items.map((item, index) => (
-                          <motion.div
-                            initial={{
-                              // y: -2 * index,
-                              origin: 'top',
-                              x: -5 * index,
-                              opacity: 0.8,
-                              // height: 0,
-                            }}
-                            animate={{ opacity: 1, y: 0, x: 0, height: 'initial' }}
-                            // exit={{ x: -10 * index, opacity: 0, display: 'block !important' }}
-                            transition={{ delay: 0.01 * index, bounce: 0 }}
-                            key={item.title}
-                          >
-                            <SidebarMenuSubItem key={item.title}>
-                              <SidebarMenuSubButton
-                                asChild
-                                isActive={pathname === item.url}
-                                aria-current={pathname === item.url ? 'page' : 'false'}
-                              >
-                                <Link href={item.url}>{item.title}</Link>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          </motion.div>
-                        ))}
-                      </AnimatePresence>
-                    </MSidebarMenuSub>
-                  </MCollapsibleContent>
-                  {/* </SidebarMenu> */}
-                </MCollapsible>
-              </SidebarMenuItem>
-            ) : (
-              <SidebarMenuItem key={item.title} title={item.title}>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === item.url}
-                  className="data-[active=true]:[&>span]:bg-sidebar-primary data-[active=true]:[&>span]:text-sidebar-primary-foreground data-[active=true]:[&>span]:shadow-glass data-[active=true]:[&>span]:-ring-offset-1 data-[active=true]:[&>span]:ring-1"
-                >
-                  <Link href={item.url}>
-                    <span className="shadow-button-base size-5 rounded-xs text-center ring-[color-mix(in_oklch,var(--color-sidebar-primary)_80%,var(--color-black))]">
-                      {item.icon}
-                    </span>
-                    {item.title}
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ),
-          )}
+                </SidebarMenuItem>
+              ),
+            )}
+          </LayoutGroup>
         </SidebarMenu>
       </SidebarContent>
       {/* <SidebarRail className="group in-data-[state=collapsed]:data-[collapsible=offcanvas]:translate-x-1/2">

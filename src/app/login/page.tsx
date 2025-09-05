@@ -1,19 +1,23 @@
-import { GalleryVerticalEnd } from "lucide-react"
+import { GalleryVerticalEnd } from 'lucide-react';
 
-import { LoginForm } from "@/components/login-form"
+import { LoginForm } from '@/components/login-form';
+import { ApertureIcon } from '@phosphor-icons/react/dist/ssr';
 
 export default function LoginPage() {
   return (
-    <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+    <div className="from-accent to-primary via-primary/50 flex flex-col items-center justify-center gap-6 bg-linear-145 from-28% via-70% p-6">
       <div className="flex w-full max-w-sm flex-col gap-6">
-        <a href="#" className="flex items-center gap-2 self-center font-medium">
+        <a
+          href="#"
+          className="text-foreground bg-secondary/80 flex items-center gap-2 self-center rounded-xl p-2 font-medium shadow-xs"
+        >
           <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-            <GalleryVerticalEnd className="size-4" />
+            <ApertureIcon weight="fill" />
           </div>
           Acme Inc.
         </a>
         <LoginForm />
       </div>
     </div>
-  )
+  );
 }

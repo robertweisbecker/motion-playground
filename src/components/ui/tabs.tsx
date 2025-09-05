@@ -43,7 +43,7 @@ function TabsList({
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        'rounded-inherit group relative z-0 flex gap-0 rounded-t-lg px-0.5 py-0 font-medium',
+        'rounded-inherit group text-md relative z-0 flex gap-0 rounded-t-lg px-0.5 py-0 font-medium',
         'overflow-auto',
         bordered &&
           'shadow-border divide-border-border divide-border divide-dashed shadow-[inset_0_-1px]',
@@ -80,6 +80,7 @@ function TabsTrigger({
           'sm:data-[state=active]:before:translate-y-0 sm:data-[state=active]:before:scale-y-100',
           'sm:before:translate-x-[initial]! sm:before:scale-x-[initial]!',
           'sm:after:hidden',
+          'sm:px-2 sm:before:inset-x-0 sm:before:inset-y-1',
         ],
         '**:data-[slot=icon]:-ms-1',
         stretch && 'w-full flex-1',

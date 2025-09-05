@@ -2,9 +2,11 @@
 
 import * as React from 'react';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import { CheckIcon, ChevronRightIcon, CircleDotIcon } from 'lucide-react';
+// import { CheckIcon, ChevronRightIcon, CircleDotIcon } from 'lucide-react';
+import { CheckIcon, ChevronRightIcon, CheckCircleIcon } from '@heroicons/react/20/solid';
 
 import { cn } from '@/lib/utils';
+import { Kbd } from '../kbd';
 
 function DropdownMenu({ ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
   return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
@@ -41,13 +43,15 @@ function DropdownMenuContent({
         data-slot="dropdown-menu-content"
         sideOffset={sideOffset}
         className={cn(
-          'inset-ring-border-alpha-soft ring-black-alpha-800 bg-gray-800/80 text-gray-50 ring-[0.5px] inset-ring-1 backdrop-blur-sm dark:ring-inset',
+          'dark:inset-ring-border-alpha-soft ring-border-alpha text-foreground bg-popover/60 relative ring-[0.5px] backdrop-blur-sm dark:inset-ring',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
           'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
           'data-[side=bottom]:slide-in-from-top-2", "data-[side=left]:slide-in-from-right-2", "data-[side=right]:slide-in-from-left-2", "data-[side=top]:slide-in-from-bottom-2',
           'z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem]',
           'origin-(--radix-dropdown-menu-content-transform-origin)',
           'overflow-x-hidden overflow-y-auto rounded-xl p-1 shadow-2xl',
+          'backdrop-blur-md',
+          // 'after:shadow-button after:border-alpha after:absolute after:inset-1 after:-z-1 after:rounded-[inherit] after:border-2 after:blur-[2px]',
 
           className,
         )}
@@ -71,7 +75,7 @@ function DropdownMenuGroup({
 }
 
 const itemClasses = [
-  'before:absolute before:inset-0 before:rounded-md before:pointer-events-none',
+  'before:absolute before:inset-0 before:rounded-lg before:pointer-events-none',
   'before:opacity-0 before:-z-1',
 
   // 'group-hover:first-of-type:before:bg-red-500!',
@@ -105,13 +109,13 @@ function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        'focus:bg-current/8 focus:text-white',
+        'focus:text-foreground focus:bg-current/8',
         'hover:bg-current/16',
         'active:bg-current/4',
         'data-[variant=destructive]:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive',
         'data-[inset]:pl-8',
         'data-[disabled]:pointer-events-none data-[disabled]:text-current/40',
-        'peer relative flex cursor-default items-center gap-2 rounded-md py-1.5 ps-2.5 pe-2 text-sm outline-hidden select-none',
+        'peer relative flex cursor-default items-center gap-2 rounded-lg py-1.5 ps-2.5 pe-2 text-sm outline-hidden select-none',
         "[&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         // itemClasses,
         className,
@@ -175,7 +179,7 @@ function DropdownMenuRadioItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <CircleDotIcon className="size-2 fill-current" />
+          <CheckCircleIcon className="size-2 fill-current" />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -195,7 +199,7 @@ function DropdownMenuLabel({
       data-slot="dropdown-menu-label"
       data-inset={inset}
       className={cn(
-        'peer ps-2.5 pt-2 pb-1 text-xs font-[450] text-current/70 data-[inset]:pl-8',
+        'peer text-muted-foreground ps-2.5 pt-2 pb-1.5 text-xs font-[550] data-[inset]:pl-8',
         className,
       )}
       {...props}
@@ -210,7 +214,7 @@ function DropdownMenuSeparator({
   return (
     <DropdownMenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
-      className={cn('peer bg-border/20 mx-2.5 my-1 h-px', className)}
+      className={cn('peer bg-border-alpha mx-2.5 my-1 h-px', className)}
       {...props}
     />
   );
@@ -218,14 +222,17 @@ function DropdownMenuSeparator({
 
 function DropdownMenuShortcut({ className, ...props }: React.ComponentProps<'span'>) {
   return (
-    <span
-      data-slot="dropdown-menu-shortcut"
-      className={cn(
-        'bg-white-alpha-50 ring-border-alpha-soft ml-auto rounded-xs px-0.5 py-px text-xs font-normal tracking-widest text-current/70 tabular-nums bg-blend-multiply shadow-sm ring-[0.5px]',
-        className,
-      )}
-      {...props}
-    />
+    <>
+      <span
+        data-slot="dropdown-menu-shortcut"
+        className={cn(
+          'inset-ring-border-alpha-soft -me-0.5 ml-auto rounded-sm bg-current/10 px-0.5 py-px text-xs font-medium tracking-[.25em] text-current/60 tabular-nums bg-blend-multiply shadow-2xs inset-ring-[0.5px]',
+          className,
+        )}
+        {...props}
+      />
+      {/* <Kbd size="sm">{props.children}</Kbd> */}
+    </>
   );
 }
 
@@ -246,7 +253,7 @@ function DropdownMenuSubTrigger({
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        'peer relative flex cursor-default items-center rounded-md px-2 py-1.5 text-sm outline-hidden select-none focus:bg-current/10 focus:text-current data-[inset]:pl-8 data-[state=open]:bg-current/10 data-[state=open]:text-current',
+        'peer focus:text-foreground relative flex cursor-default items-center rounded-md px-2 py-1.5 text-sm outline-hidden select-none focus:bg-current/8 data-[inset]:pl-8 data-[state=open]:text-current not-focus:data-[state=open]:bg-current/5',
         // itemClasses,
         className,
       )}
@@ -280,10 +287,10 @@ function DropdownMenuSubContent({
         'data-[state=closed]:-translate-x-2 data-[state=open]:translate-x-0',
 
         'ease transition-[transform,translate,opacity] duration-200',
-        'z-50 min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-lg p-1 shadow-2xl',
+        'z-50 min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-xl p-1 shadow-2xl',
         // 'text-popover-foreground dark:ring-border bg-inherit backdrop-blur-md dark:ring-1 dark:ring-inset',
         'mx-0.5 -my-1',
-        'ring-border-alpha-soft bg-gray-800/80 text-gray-50 ring-1 backdrop-blur-md dark:ring-inset',
+        'ring-border-alpha-soft bg-popover/60 ring-1 backdrop-blur-md dark:ring-inset',
         className,
       )}
       {...props}

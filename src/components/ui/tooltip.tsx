@@ -42,7 +42,7 @@ function TooltipContent({
         data-slot="tooltip-content"
         sideOffset={sideOffset}
         className={cn(
-          'animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-2 backdrop-blur-2xs dark:bg-popover/80 z-100 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md bg-gray-800/80 p-1.5 py-1 text-xs leading-tight font-[450] text-balance text-white text-shadow-xs',
+          'animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-2 backdrop-blur-2xs dark:bg-popover/80 z-100 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-sm bg-gray-800/80 p-1.5 py-1 text-xs leading-tight font-[450] text-balance text-white text-shadow-xs',
           'isolate dark:bg-blend-screen',
           // 'dark:[backdrop-filter:blur(3px)_contrast(1.2)]',
           'max-w-3xs',

@@ -245,10 +245,10 @@ export default function FramerPage() {
         <AnimatePresence>
           {feedbackOpen && (
             <motion.div
-              className="absolute w-xs rounded-[calc(var(--radius-lg)+.25rem)] bg-[var(--wrapper)] p-1 shadow-sm [--wrapper:var(--card)]"
+              className="absolute w-xs rounded-[calc(var(--radius-lg)+.25rem)] bg-[var(--wrapper)] p-1 shadow-sm [--wrapper:var(--popover)]"
               layoutId="trigger"
             >
-              <MotionCard size="sm" className="bg-popover dark:shadow-background shadow-2xs">
+              <MotionCard size="sm" className="bg-card dark:shadow-background shadow-2xs">
                 <CardContent className="">
                   <form className="relative" id="feedbackForm">
                     <Textarea

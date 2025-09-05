@@ -9,7 +9,7 @@ import { toggleVariants } from '@/components/ui/toggle';
 
 const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariants>>({
   size: 'default',
-  variant: 'ghost',
+  variant: 'default',
   round: false,
 });
 
@@ -31,11 +31,14 @@ function ToggleGroup({
       data-size={size}
       data-orientation={orientation}
       className={cn(
-        'group/toggle-group inline-flex w-auto grow-0 items-center self-center rounded-lg p-0.5',
+        'group/toggle-group inline-flex w-auto grow-0 items-center self-center rounded-lg',
         'data-[orientation=vertical]:flex-col',
-        variant === 'ghost' && 'bg-muted ring-border-alpha gap-px ring-[0.5px]',
-        variant === 'elevated' && 'bg-popover dark:shadow-glass gap-px shadow-sm backdrop-blur-xs',
-        variant === 'default' && 'gap-px p-0',
+        variant !== 'ghost' && variant !== 'outline' && 'p-0.5',
+        variant !== 'outline' && 'gap-px',
+        variant === 'ghost' && 'gap-px bg-transparent',
+        variant === 'elevated' && 'bg-card dark:shadow-glass shadow-sm backdrop-blur-xs',
+        variant === 'outline' && 'inset-ring-input rounded-md p-0 inset-ring',
+        // variant === 'default' && 'gap-px',
         round && 'rounded-full',
         className,
       )}
@@ -68,10 +71,14 @@ function ToggleGroupItem({
           size: context.size || size,
           round: context.round,
         }),
-        'peer min-w-0 shrink-0 focus:z-10 focus-visible:z-10',
+        'peer min-w-0 shrink-0 focus:z-1 focus-visible:z-10 [&:data-toggled]:data-toggled:rounded-b-none [&data-toggled+data-toggled]:rounded-t-none',
+        'data-[state=on]:z-2',
+        '[&:has(+[data-state=on])]:data-[state=on]:rounded-r-none! [&[data-state=on]+[data-state=on]]:rounded-l-none!',
         // 'peer-data-[state=on]:rounded-l-none',
-        variant === 'outline' &&
-          'first:rounded-l-inherit last:rounded-r-inherit rounded-none border-l-0 first:border-l',
+        context.variant === 'outline' &&
+          'rounded-none not-first:-ms-px first:rounded-l-[inherit] first:border-l last:rounded-r-[inherit] active:bg-transparent',
+        // 'data-pressed:inset-ring data-[state=on]:inset-ring-current',
+        // 'data-[variant=outline]:rounded-none data-[variant=outline]:border-[initial] data-[variant=outline]:first:rounded-l-[inherit] data-[variant=outline]:last:rounded-r-[inherit]',
         className,
       )}
       {...props}

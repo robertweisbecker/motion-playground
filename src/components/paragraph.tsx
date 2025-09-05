@@ -15,7 +15,7 @@ const textVariants = cva([''], {
       label: 'text-sm leading-none font-medium text-foreground not-prose line-clamp-1',
       small: 'text-secondary-foreground text-sm leading-6 not-prose',
       caption: 'text-muted-foreground text-xs leading-5 not-prose',
-      error: 'text-destructive text-xs leading-5 not-prose',
+      error: 'text-error-500 dark:text-error-300 text-xs leading-5 not-prose',
     },
   },
   defaultVariants: {

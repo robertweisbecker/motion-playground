@@ -20,7 +20,7 @@ function Label({ className, children, label, info, required, ...props }: LabelPr
     <LabelPrimitive.Root
       data-slot="label"
       className={cn(
-        'group-data-[disabled=true]:text-gray-alpha-400 peer-disabled:text-gray-alpha-400 text-muted-foreground flex items-center gap-1 py-1 text-sm font-[450] select-none group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed',
+        'group-data-[disabled=true]:text-gray-alpha-400 peer-disabled:text-gray-alpha-400 text-secondary-foreground flex items-center gap-1 py-1 text-sm font-[450] select-none group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed',
         className,
       )}
       {...props}

@@ -4,38 +4,39 @@ import { StarIcon } from '@heroicons/react/24/solid';
 import { Fragment } from 'react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { Code } from '@/components/code';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 export function ButtonExample() {
   const variants = [
     'default',
-    'glass',
     'elevated',
     'primary',
     'secondary',
     'outline',
     'ghost',
     'link',
+    'glass',
     'destructive',
   ];
+  const sizes = ['sm', 'md', 'lg'];
   return (
-    <div className="not-prose my-4 flex w-full flex-col gap-2">
-      <div className="align-start grid grid-cols-3 justify-items-start gap-4 rounded-md">
-        {variants.map((variant) => (
-          <Fragment key={variant}>
-            <Button variant={variant as keyof typeof buttonVariants}>
+    <div className="not-prose my-4 flex w-full flex-col gap-8">
+      <Button shape="pill">Hello</Button>
+
+      {variants.map((variant) => (
+        <div key={variant} className="flex items-start justify-around gap-4">
+          {sizes.map((size) => (
+            <Button
+              key={`${variant}-${size}`}
+              variant={variant as keyof typeof buttonVariants}
+              size={size as keyof typeof buttonVariants}
+            >
               {variant.charAt(0).toUpperCase() + variant.slice(1)}
+              <ChevronDownIcon className="" />
             </Button>
-            <Button variant={variant as keyof typeof buttonVariants}>
-              <LucideSettings className="" />
-              {variant.charAt(0).toUpperCase() + variant.slice(1)}
-            </Button>
-            <Button variant={variant as keyof typeof buttonVariants}>
-              {variant.charAt(0).toUpperCase() + variant.slice(1)}
-              <LucideChevronDown className="" />
-            </Button>
-          </Fragment>
-        ))}
-      </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }

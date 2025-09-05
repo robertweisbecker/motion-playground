@@ -66,11 +66,11 @@ export function Kbd({ children, size = 'md' }: KbdProps) {
         // 'from-background to-secondary bg-gradient-to-b from-25% text-shadow-[0_0px_1px] text-shadow-white/5',
         'bg-glass-light',
         // 'dark:shadow-glass bg-white/20 dark:border-black/50 dark:bg-gray-600/5',
-        'inline-flex w-auto flex-none items-center justify-center gap-1 pt-px pb-0 align-middle text-sm font-normal whitespace-nowrap tabular-nums select-none',
+        'inline-flex w-auto flex-none items-center justify-center gap-1 pt-px pb-0 align-middle text-sm font-normal tracking-widest whitespace-nowrap tabular-nums select-none',
         'text-secondary-foreground font-sans uppercase',
-        size === 'sm' && 'h-4.5 min-w-4 rounded-xs px-0.5 text-xs',
+        size === 'sm' && 'h-4.5 min-w-4 rounded-sm px-0.5 py-px text-[0.625rem]',
         size === 'md' && 'h-6 min-w-5 rounded-sm px-1',
-        size === 'lg' && 'h-7 min-w-6 rounded-sm px-1.5',
+        size === 'lg' && 'h-7 min-w-6 rounded-md px-1.5',
       ])}
     >
       {children}

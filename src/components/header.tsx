@@ -1,3 +1,4 @@
+'use client';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -15,12 +16,16 @@ import { NavLink } from './nav-link';
 import { ModeToggle } from './theme-switcher';
 import { LucideChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { SidebarIcon } from '@/app/icons/icons';
+// import { SidebarIcon } from '@/app/icons/icons';
+import { SidebarSimpleIcon as PhSidebarSimpleIcon } from '@phosphor-icons/react';
 
 export function Header() {
   return (
-    <header className="sticky inset-x-0 top-0 z-50 flex shrink-0 items-center justify-between gap-2 gap-x-0 rounded-xl px-2 py-2 sm:px-2">
-      <SidebarTrigger icon={<SidebarIcon />} />
+    <header className="sticky inset-x-0 top-0 z-50 flex shrink-0 items-center justify-between gap-2 gap-x-0 rounded-xl px-2 py-3.5 sm:px-2">
+      <SidebarTrigger
+        icon={<PhSidebarSimpleIcon weight="light" />}
+        closeIcon={<PhSidebarSimpleIcon weight="duotone" />}
+      />
       <Separator orientation="vertical" className="sm:hidden" />
       <Button asChild variant="ghost" className="sm:hidden">
         <NavLink href="/" label="Home" />
@@ -72,6 +77,7 @@ export function Header() {
           <div className="hidden 2xl:block">2xl</div>
         </Badge>
       </span>
+
       <div
         className={cn(
           'pointer-events-none absolute inset-0 -z-1 h-[78px]',
@@ -83,7 +89,7 @@ export function Header() {
           // 'from-background bg-gradient-to-b to-transparent',
           // 'mask-b-from-background mask-b-from-25% mask-b-to-transparent',
 
-          'from-background to-background/0 bg-gradient-to-b from-10%',
+          'from-background to-background/0 bg-gradient-to-b from-25%',
           'mask-b-from-background mask-b-to-background/0 mask-b-from-50%',
         )}
       ></div>

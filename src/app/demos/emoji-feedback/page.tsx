@@ -30,7 +30,9 @@ export default function EmojiFeedbackPage() {
         </a>
       </Paragraph>
       <DemoContainer>
-        <EmojiFeedback />
+        <div className="min-h-[240px]">
+          <EmojiFeedback />
+        </div>
       </DemoContainer>
     </div>
   );

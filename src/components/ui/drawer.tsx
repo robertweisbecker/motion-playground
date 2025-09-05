@@ -31,8 +31,8 @@ function DrawerOverlay({
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
       className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/20 data-[state=closed]:duration-300 data-[state=open]:duration-150',
-        'backdrop-blur-[1px]',
+        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-linear-to-b from-black/15 to-black/40 data-[state=closed]:duration-300 data-[state=open]:duration-150',
+        'backdrop-blur-[.5px]',
         className,
       )}
       {...props}
@@ -52,20 +52,21 @@ function DrawerContent({
         title="Menu"
         data-slot="drawer-content"
         className={cn(
-          'group/drawer-content bg-popover/60 fixed z-50 flex h-auto flex-col backdrop-blur-sm',
-          'data-[vaul-drawer-direction=top]:inset-x-1 data-[vaul-drawer-direction=top]:top-1 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-[44px]',
-          'data-[vaul-drawer-direction=bottom]:inset-x-1 data-[vaul-drawer-direction=bottom]:bottom-1 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-[44px]',
+          'group/drawer-content bg-card fixed z-50 flex h-auto flex-col backdrop-blur-sm',
+          'data-[vaul-drawer-direction=top]:inset-x-1 data-[vaul-drawer-direction=top]:top-1 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-[38px]',
+          'data-[vaul-drawer-direction=bottom]:inset-x-1 data-[vaul-drawer-direction=bottom]:bottom-1 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-[38px]',
           'data-[vaul-drawer-direction=right]:inset-y-2 data-[vaul-drawer-direction=right]:right-2 data-[vaul-drawer-direction=right]:max-w-3/4 data-[vaul-drawer-direction=right]:min-w-2xs data-[vaul-drawer-direction=right]:rounded-l-xl data-[vaul-drawer-direction=right]:sm:max-w-sm',
           'data-[vaul-drawer-direction=left]:inset-y-2 data-[vaul-drawer-direction=left]:left-2 data-[vaul-drawer-direction=left]:max-w-3/4 data-[vaul-drawer-direction=left]:min-w-2xs data-[vaul-drawer-direction=left]:rounded-r-xl data-[vaul-drawer-direction=left]:sm:max-w-sm',
           'shadow-[inset_0_1px_var(--color-white-alpha-100),inset_0_0_1px_0px_var(--color-white-alpha-50),0_0_0.5px_0.5px_var(--color-background),var(--shadow-2xl)]',
+          'outline-black-alpha-100 outline',
 
           className,
         )}
         {...props}
       >
-        <div className="bg-border relative mx-auto mt-2 hidden h-0.5 w-8 shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
-        <DrawerClose asChild className="absolute top-4 right-4 z-50 flex md:top-2 md:right-2">
-          <Button variant="ghost" className="rounded-full" iconOnly size="md">
+        <div className="bg-border-alpha relative mx-auto mt-[5px] hidden h-[5px] w-9 shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block hover:cursor-grab" />
+        <DrawerClose asChild className="absolute top-4 right-4 z-50 flex">
+          <Button variant="elevated" size="lg" className="rounded-full" iconOnly>
             <XMarkIcon />
           </Button>
         </DrawerClose>
@@ -88,11 +89,11 @@ function DrawerHeader({ className, children, ...props }: React.ComponentProps<'d
       {...props}
     >
       {children}
-      <DrawerClose asChild className="absolute top-4 right-4">
-        <Button variant="ghost">
+      {/* <DrawerClose asChild className="absolute top-6 right-6">
+        <Button variant="elevated" className="rounded-full" iconOnly>
           <XMarkIcon />
         </Button>
-      </DrawerClose>
+      </DrawerClose> */}
     </div>
   );
 }
@@ -111,7 +112,11 @@ function DrawerTitle({ className, ...props }: React.ComponentProps<typeof Drawer
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      className={cn('text-foreground font-semibold', className)}
+      className={cn(
+        'text-foreground font-semibold',
+        'max-md:mx-auto max-md:pl-[44px] max-md:text-center',
+        className,
+      )}
       {...props}
     />
   );

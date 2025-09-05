@@ -182,14 +182,15 @@ function Sidebar({
         onOpenChange={setOpenMobile}
         direction={'bottom'}
         dismissible={true}
-        modal={false}
+        modal={true}
         aria-describedby="sidebar-drawer-header"
+        // snapPoints={['.5, .5, .67']}
       >
         <DrawerContent
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="bg-sidebar text-sidebar-foreground p-0 md:w-(--sidebar-width)"
+          className="light:bg-popover p-0 md:w-(--sidebar-width)"
           style={
             {
               '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
@@ -279,7 +280,7 @@ function SidebarTrigger({
       size={size}
       iconOnly
       className={cn(
-        'data-toggled:bg-sidebar-accent data-toggled:text-sidebar-accent-foreground',
+        // 'data-toggled:bg-sidebar-accent data-toggled:text-sidebar-accent-foreground',
         className,
       )}
       onClick={(event) => {
@@ -302,21 +303,19 @@ function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
       data-sidebar="rail"
       data-slot="sidebar-rail"
       aria-label="Toggle Sidebar"
-      tabIndex={-1}
+      // tabIndex={-1}
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        'bg-muted absolute inset-y-0 z-100 hidden w-4 -translate-x-1/2 transition-all ease-out',
-        // 'group-data-[side=left]:-right-4 group-data-[side=right]:left-0',
-        'group-data-[side=left]:-right-4 group-data-[side=right]:left-0',
-        'after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-gray-400 sm:flex',
-        'in-data-[side=left]:cursor-pointer in-data-[side=right]:cursor-pointer',
-        '[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize',
-        'hover:group-data-[collapsible=offcanvas]:bg-gray-200',
-        // 'group-data-[collapsible=offcanvas]:translate-x-0',
-        // 'group-data-[collapsible=offcanvas]:after:left-full',
+        'absolute inset-y-1/2 z-20 size-8 rounded-full bg-white shadow-sm group-data-[side=left]:-right-4',
+        // 'hover:after:bg-sidebar-border absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/3 after:z-1000 after:w-[4px] sm:flex',
+        // 'in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize',
+        '[data-side=left][data-state=collapsed]:-translate-x-1/2 [[data-side=left][data-state=collapsed]_&]:cursor-e-resize',
+        '[[data-side=right][data-state=collapsed]_&]:cursor-w-resize',
+        'in-data-[side=left]:group-data-[state=collapsed]:top-0!',
+        'hover:group-data-[collapsible=offcanvas]:bg-sidebar group-data-[collapsible=offcanvas]:bg-green! group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full',
         // '[[data-side=left][data-collapsible=offcanvas]_&]:-right-2',
-        '[[data-side=right][data-collapsible=offcanvas]_&]:-left-2',
+        // '[[data-side=right][data-collapsible=offcanvas]_&]:-left-2',
         className,
       )}
       {...props}
@@ -523,10 +522,10 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<'li'>) {
 
 const sidebarMenuButtonVariants = cva(
   [
-    'peer/menu-button flex w-full relative items-center justify-start truncate gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding]',
+    'peer/menu-button flex w-full relative items-center justify-start truncate gap-2 overflow-hidden rounded-lg p-2 min-h-button text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding]',
     'hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground focus-visible:ring-2',
     'active:bg-sidebar-accent active:text-sidebar-accent-foreground',
-    'disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent  data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:min-w-4 [&>svg]:shrink-0',
+    'disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:shadow-dropdown-item  data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:min-w-4 [&>svg]:shrink-0',
   ],
   {
     variants: {
@@ -645,7 +644,7 @@ function SidebarMenuBadge({ className, ...props }: React.ComponentProps<'div'>) 
       data-slot="sidebar-menu-badge"
       data-sidebar="menu-badge"
       className={cn(
-        'text-muted-foreground bg-background pointer-events-none absolute right-1.5 flex h-4 min-w-4 items-center justify-center rounded-xs px-1 text-xs font-normal tabular-nums select-none',
+        'text-muted-foreground bg-muted pointer-events-none absolute right-2 flex h-4 min-w-4 items-center justify-center rounded-sm px-1 text-xs font-normal tabular-nums shadow-xs select-none',
         'peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground',
         'peer-data-[size=sm]/menu-button:top-1',
         'peer-data-[size=default]/menu-button:top-1.5',

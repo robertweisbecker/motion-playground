@@ -17,7 +17,7 @@ export interface HeadingProps {
 
 const headingVariants = cva(
   [
-    ' scroll-32 lg:scroll-18 [&+hr]:my-16 [&+[data-slot="separator"]]:my-16 first:mt-0 last:mb-0 [&+p]:mt-2 [&+*]:mt-6',
+    'scroll-32 lg:scroll-18 [&+hr]:my-16 [&+[data-slot="separator"]]:my-16 first:mt-0 last:mb-0 [&+p]:mt-2 [&+*]:mt-6',
   ],
   {
     variants: {
@@ -29,10 +29,10 @@ const headingVariants = cva(
         ],
         h2: [' mt-20 text-xl sm:text-2xl font-semibold tracking-tight [&+h3]:mt-6 [&~hr]:mt-16'],
         h3: [
-          'text-lg font-medium leading-loose tracking-tight text-balance mt-16',
+          'text-[1.25rem] font-medium leading-normal tracking-tight text-balance mt-16',
           // 'has-[+h4]:text-xs has-[+h4]:leading-loose has-[+h4]:font-medium has-[+h4]:font-mono has-[+h4]:tracking-widest has-[+h4]:uppercase has-[+h4]:text-muted-foreground',
         ],
-        h4: ' text-base font-[550] tracking-snug leading-tight mt-12 opacity-90',
+        h4: ' text-base font-medium tracking-snug leading-tight mt-12 opacity-90',
         h5: ' text-sm font-[550] leading-normal tracking-normal mt-12 ',
         h6: 'text-xs leading-loose font-medium font-mono tracking-widest uppercase opacity-80',
       },
@@ -45,17 +45,45 @@ const headingVariants = cva(
         900: 'font-black',
       },
       muted: {
-        true: 'text-muted-foreground font-medium',
+        true: 'font-medium',
         false: '',
       },
       color: {
         default: 'text-foreground',
-        info: 'text-blue-800',
-        error: 'text-red-800',
-        warning: 'text-yellow-700 dark:text-yellow-400',
-        success: 'text-green-800 dark:text-green-500',
+        muted: 'text-muted-foreground',
+        info: 'text-info-600 dark:text-info-300',
+        error: 'text-error-600 dark:text-error-300',
+        warning: 'text-warning-600 dark:text-warning-300',
+        success: 'text-success-600 dark:text-success-300',
       },
     },
+    compoundVariants: [
+      {
+        color: 'default',
+        muted: true,
+        className: 'text-muted-foreground',
+      },
+      {
+        color: 'info',
+        muted: true,
+        className: 'text-info-500',
+      },
+      {
+        color: 'error',
+        muted: true,
+        className: 'text-error-500',
+      },
+      {
+        color: 'warning',
+        muted: true,
+        className: 'text-warning-500',
+      },
+      {
+        color: 'success',
+        muted: true,
+        className: 'text-success-500',
+      },
+    ],
     defaultVariants: {
       color: 'default',
     },

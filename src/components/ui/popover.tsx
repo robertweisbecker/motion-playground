@@ -31,10 +31,10 @@ function PopoverContent({
         arrowPadding={arrowPadding}
         className={cn(
           'dark:inset-ring-border ring-foreground/10 dark:ring-0 dark:inset-ring',
-          'ring-border-alpha-soft text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-80 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 bg-popover z-50 flex max-w-64 min-w-14 origin-(--radix-popover-content-transform-origin) flex-col items-center gap-1 rounded-xl p-2 text-sm leading-tight ring outline-hidden',
+          'ring-border-alpha-soft text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-80 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 bg-popover z-50 flex max-w-64 min-w-14 origin-(--radix-popover-content-transform-origin) flex-col items-center gap-1 rounded-xl p-3 text-sm leading-tight ring outline-hidden',
           'data-[side=left]:min-h-14 data-[side=right]:min-h-14',
           // 'shadow-[0_4px_64px_14px_rgb(0_0_0_/_8%),_var(--shadow-sm)]',
-          'drop-shadow-black-alpha-200 drop-shadow-lg',
+          'shadow-popover drop-shadow-sm',
           'data-[side=left]:rounded-r-[0.8125rem] data-[side=right]:rounded-l-[0.8125rem]',
           className,
         )}

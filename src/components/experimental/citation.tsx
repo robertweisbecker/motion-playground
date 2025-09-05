@@ -34,14 +34,14 @@ export function Citation() {
                 example.com +5
               </button>
             </PopoverTrigger>
-            <PopoverContent>
-              <Card size="sm">
+            <PopoverContent className="p-1">
+              <Card size="sm" className="shadow-sm">
                 <CardHeader>
                   <CardTitle>Hello</CardTitle>
                 </CardHeader>
                 <CardContent>Lorem ipsum dolor sit amet</CardContent>
               </Card>
-              <div className="flex w-full items-center justify-between">
+              <div className="flex w-full items-center justify-between px-1 pb-1">
                 <div className="inline-flex">
                   <Button iconOnly size="sm" variant="ghost">
                     <ChevronLeftIcon />

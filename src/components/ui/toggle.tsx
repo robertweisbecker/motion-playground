@@ -13,7 +13,7 @@ const toggleVariants = cva(
     "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 ",
     'aria-invalid:outline-destructive',
     'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-none disabled:text-gray-400',
-    'focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-ring',
+    'focus-visible:border-ring focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:z-10 focus-visible:outline-ring',
   ],
   {
     variants: {
@@ -29,9 +29,14 @@ const toggleVariants = cva(
           'hover:bg-secondary hover:text-foreground',
         ],
         outline: [
-          'border border-input border-dashed bg-transparent text-foreground',
-          'hover:bg-current/10 ',
-          'data-toggled:bg-current/10 data-toggled:border-current data-toggled:border-solid data-toggled:text-foreground',
+          'border border-border bg-background text-secondary-foreground',
+          'hover:bg-muted',
+          'data-toggled:bg-accent data-toggled:border-current data-toggled:text-accent-foreground',
+        ],
+        dashed: [
+          'border border-dashed bg-muted text-muted-foreground',
+          'hover:border-dotted',
+          'data-toggled:bg-card data-toggled:border-solid data-toggled:text-foreground',
         ],
         destructive: '',
         unstyled: '',
@@ -44,14 +49,21 @@ const toggleVariants = cva(
         ],
       },
       round: {
-        true: 'rounded-full!',
+        true: 'rounded-full',
       },
       size: {
         default: 'h-8 px-2 min-w-8 text-sm rounded-md',
-        sm: 'h-8 px-1.5 min-w-8 text-sm rounded-sm',
-        lg: 'h-10 px-2.5 min-w-10 text-base rounded-md',
+        sm: 'h-button-sm px-1.5 min-w-button-sm text-sm rounded-sm',
+        lg: 'h-button-lg px-2.5 min-w-button-lg text-base rounded-md',
       },
     },
+    compoundVariants: [
+      {
+        round: true,
+        size: 'default',
+        className: 'rounded-full',
+      },
+    ],
     defaultVariants: {
       variant: 'ghost',
       size: 'default',
@@ -63,15 +75,20 @@ function Toggle({
   className,
   variant,
   size = 'default',
+  children,
+  pressed,
   round,
   ...props
 }: React.ComponentProps<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>) {
   return (
     <TogglePrimitive.Root
       data-slot="toggle"
+      pressed={pressed}
       className={cn(toggleVariants({ variant, size, round }), className)}
       {...props}
-    />
+    >
+      {children}
+    </TogglePrimitive.Root>
   );
 }
 
