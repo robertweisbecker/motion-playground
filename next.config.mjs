@@ -1,17 +1,9 @@
-import type { NextConfig } from 'next';
+// @ts-check
 
 /**
- * Next.js Configuration
- *
- * Best Practice: Static export (`output: 'export'`) is only enabled in production.
- * In development, this setting is disabled to allow:
- * - Hot Module Replacement (HMR)
- * - Server-side rendering features
- * - Proper file watching and Fast Refresh
- *
- * @see https://nextjs.org/docs/app/building-your-application/deploying/static-exports
+ * @type {import('next').NextConfig}
  */
-const nextConfig: NextConfig = {
+const nextConfig = {
   // Only enable static export for production builds
   // This is the recommended approach per Next.js documentation
   // ...(process.env.NODE_ENV === 'production' && { output: 'export' }),
