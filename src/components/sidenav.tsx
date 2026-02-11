@@ -4,12 +4,18 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion, AnimatePresence, stagger, LayoutGroup } from 'framer-motion';
 
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
+  SidebarGroupAction,
   SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuBadge,
@@ -20,9 +26,23 @@ import {
   SidebarMenuSubItem,
   SidebarSeparator,
 } from '@/components/ui/sidebar';
-import { HomeIcon, SwatchIcon, ChevronDownIcon, Squares2X2Icon } from '@heroicons/react/16/solid';
+import {
+  HomeIcon,
+  SwatchIcon,
+  ChevronDownIcon,
+  Squares2X2Icon,
+  RectangleStackIcon,
+  PaintBrushIcon,
+  PlayIcon,
+  BoltIcon,
+  Bars3Icon,
+  BellIcon,
+  FaceSmileIcon,
+  Square3Stack3DIcon,
+} from '@heroicons/react/16/solid';
 
 import { cn } from '@/lib/utils';
+import { Button } from './ui/button';
 
 const data = {
   navMain: [
@@ -40,34 +60,57 @@ const data = {
       title: 'Colors',
       url: '/colors',
       icon: <SwatchIcon />,
+      isGroup: true,
+      items: [
+        {
+          title: 'Palettes',
+          url: '/colors',
+          icon: <RectangleStackIcon />,
+        },
+        {
+          title: 'Theming',
+          url: '/colors/theme',
+          icon: <PaintBrushIcon />,
+        },
+      ],
     },
     {
       title: 'Demos',
       url: '/demos',
-      isOpen: undefined,
+      icon: <PlayIcon />,
+      isOpen: true,
       items: [
         {
-          title: 'Animated Button Icon',
+          title: 'Icon Effects',
           url: '/demos/button-hover',
+          icon: <BoltIcon />,
         },
         {
           title: 'Tab Indicator',
           url: '/demos/tab-indicator',
+          icon: <Bars3Icon />,
         },
         {
           title: 'Toast',
           url: '/demos/toast',
+          icon: <BellIcon />,
         },
         {
           title: 'Emoji Feedback',
           url: '/demos/emoji-feedback',
+          icon: <FaceSmileIcon />,
+        },
+        {
+          title: 'Shadows',
+          url: '/demos/shadows',
+          icon: <Square3Stack3DIcon />,
         },
       ],
     },
     {
       title: 'Experiments',
       url: '#',
-      isOpen: undefined,
+      isOpen: true,
       items: [
         {
           title: 'Framer Motion',
@@ -81,10 +124,17 @@ const data = {
           title: 'Forms',
           url: '/experiments/forms',
         },
-
+        {
+          title: 'Comboboxes',
+          url: '/experiments/comboboxes',
+        },
         {
           title: 'Tailwind Testing',
           url: '/experiments/tailwind',
+        },
+        {
+          title: 'Timeline',
+          url: '/experiments/timeline',
         },
       ],
     },
@@ -117,7 +167,7 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Sidebar {...props} variant="sidebar">
+    <Sidebar {...props} variant="inset">
       <SidebarHeader className="md:sr-only">
         <span className="text-sm font-medium">bob.fyi/motion-playground</span>
       </SidebarHeader>
@@ -125,45 +175,72 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <LayoutGroup>
             {data.navMain.map((item) =>
-              item.items ? (
-                <SidebarMenuItem
-                  key={item.title}
-                  title={item.title}
-                  className={cn(pathname.includes(item.url) && '[&*]:text-red-500')}
-                >
+              item.isGroup ? (
+                <SidebarGroup key={item.title}>
+                  <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+                  <SidebarGroupAction>
+                    <ChevronDownIcon />
+                  </SidebarGroupAction>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {item.items?.map((subItem) => (
+                        <SidebarMenuItem
+                          key={subItem.title}
+                          title={subItem.title}
+                        >
+                          <SidebarMenuButton
+                            variant="elevated"
+                            asChild
+                            isActive={pathname === subItem.url}
+                            className="truncate"
+                          >
+                            <Link href={subItem.url}>
+                              {subItem.icon ? (
+                                <span
+                                  className={cn(
+                                    'grid-stack size-5 -translate-x-px rounded-[5px] bg-accent text-icon',
+                                    'in-data-[active=true]:bg-current/1 in-data-[active=true]:text-sidebar-foreground in-data-[active=true]:shadow-button-highlight',
+                                  )}
+                                >
+                                  {subItem.icon}
+                                </span>
+                              ) : (
+                                <span className="size-5 -translate-x-px" />
+                              )}
+
+                              {subItem.title}
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </SidebarGroup>
+              ) : item.items ? (
+                <SidebarMenuItem key={item.title} title={item.title}>
                   <MCollapsible
                     className={cn('group/collapsible')}
-                    // open={open}
-                    // onOpenChange={setOpen}
+                    defaultOpen={pathname.includes(item.url)}
                   >
                     {/* <SidebarMenu className="group/menu"> */}
-                    <SidebarMenuButton
-                      asChild
-                      className={cn(
-                        'data-[state=open]:text-sidebar-accent-foreground',
-                        pathname.includes(item.url) &&
-                          'text-sidebar-accent-foreground data-[state=closed]:bg-sidebar-accent/70 data-[state=closed]:font-medium',
-                      )}
-                    >
+                    <SidebarMenuButton asChild>
                       <CollapsibleTrigger>
                         <span
                           className={cn(
-                            'shadow-sidebar-border grid size-5 place-items-center rounded-full opacity-60',
+                            'grid size-5 place-items-center rounded-[5px] text-icon',
                             'group-data-open/collapsible:opacity-100',
-                            // 'group-data-open/collapsible:bg-accent/50',
+                            'group-data-open/collapsible:bg-accent/0 group-data-open/collapsible:text-sidebar-foreground',
                             // 'group-data-open/collapsible:shadow-[inset_0_1px,inset_0_0_0_1px]',
                           )}
                         >
-                          <ChevronDownIcon className="ease h-4 w-4 transition-all group-data-open/collapsible:rotate-180" />
+                          <ChevronDownIcon className="ease size-4 transition-all group-data-open/collapsible:rotate-180" />
                         </span>
                         {item.title}
-                        <SidebarMenuBadge className="in-data-[state=open]:hidden">
-                          {item.items.length}
-                        </SidebarMenuBadge>
+                        <SidebarMenuBadge>{item.items.length}</SidebarMenuBadge>
                       </CollapsibleTrigger>
                     </SidebarMenuButton>
-                    <MCollapsibleContent key={item.title} hidden={false} layout>
-                      <MSidebarMenuSub layout>
+                    <MCollapsibleContent key={item.title}>
+                      <MSidebarMenuSub>
                         <AnimatePresence mode="popLayout">
                           {item.items.map((item, index) => (
                             <motion.div
@@ -183,7 +260,9 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                 <SidebarMenuSubButton
                                   asChild
                                   isActive={pathname === item.url}
-                                  aria-current={pathname === item.url ? 'page' : 'false'}
+                                  aria-current={
+                                    pathname === item.url ? 'page' : 'false'
+                                  }
                                 >
                                   <Link href={item.url}>{item.title}</Link>
                                 </SidebarMenuSubButton>
@@ -200,11 +279,17 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuItem key={item.title} title={item.title}>
                   <SidebarMenuButton
                     asChild
+                    variant="elevated"
                     isActive={pathname === item.url}
-                    className="data-[active=true]:[&>span]:bg-sidebar-primary data-[active=true]:[&>span]:text-sidebar-primary-foreground data-[active=true]:[&>span]:shadow-button-highlight"
+                    // className="data-[active=true]:[&>span]:bg-primary data-[active=true]:[&>span]:text-primary-foreground data-[active=true]:[&>span]:shadow-button-highlight"
                   >
                     <Link href={item.url}>
-                      <span className="bg-sidebar-accent text-sidebar-foreground/60 inset-ring-border-alpha grid-stack size-5 rounded-[5px] bg-linear-to-br text-center">
+                      <span
+                        className={cn(
+                          'grid-stack size-5 -translate-x-px rounded-[5px] bg-muted text-icon',
+                          'in-data-[active=true]:bg-sidebar-accent in-data-[active=true]:text-sidebar-accent-foreground in-data-[active=true]:shadow-button',
+                        )}
+                      >
                         {item.icon}
                       </span>
                       {item.title}

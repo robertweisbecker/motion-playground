@@ -6,10 +6,10 @@ import { cn } from '@/lib/utils';
 
 const codeVariants = cva(
   [
-    'inline-flex items-center justify-center w-fit shrink-0 gap-2',
+    'inline-flex items-center justify-center w-fit shrink-0 gap-1',
     'self-middle align-baseline',
     'overflow-hidden max-w-full truncate',
-    'font-mono tabular-nums leading-none font-medium',
+    'font-mono tabular-nums font-normal',
     // '[font-size-adjust:0.95]',
     'tracking-[-0.007em]',
     'word-spacing-[-0.05em]',
@@ -21,18 +21,27 @@ const codeVariants = cva(
   {
     variants: {
       variant: {
-        default: ['bg-black-alpha-25 has-[a]:hover:bg-hover text-muted-foreground', 'border'],
+        default: [
+          'bg-accent has-[a]:hover:bg-hover text-foreground [&>svg]:text-icon ',
+        ],
         elevated:
-          'bg-gradient-to-b to-secondary text-foreground from-white/10 to-80% font-medium  shadow-button inset-ring-0 ring ring-border-alpha-soft',
+          '[background-color:var(--background)] text-shadow-xs dark:text-shadow-black bg-gradient-to-b from-accent/50 to-background text-foreground shadow-button from-25%',
       },
       size: {
-        default: 'h-6 min-w-5 rounded-md px-1.5 py-0.5 gap-2 text-sm',
-        inherit: 'h-auto min-w-5 rounded-[0.25em] px-[0.25em] py-[0.1em] text-[0.85em] font-medium',
+        default:
+          'h-6 min-w-5 rounded-sm px-1.5 py-1 gap-1.5 text-sm leading-none',
+        inherit:
+          'h-auto min-w-5 rounded-[0.375em] px-[0.25em] py-[.125em] text-[0.85em] font-normal leading-none',
       },
       color: {
-        info: 'text-blue',
-        error: 'text-destructive',
-        warning: 'text-yellow-600',
+        primary: 'text-brand-500',
+        info: 'text-info-500',
+        error: 'text-error-500',
+        warning: 'text-warning-500',
+        inherit: [
+          'bg-current/5 has-[a]:hover:bg-current/10 text-current/72 [&>svg]:text-current/64',
+          'border border-current/10',
+        ],
       },
     },
     defaultVariants: {
@@ -47,17 +56,20 @@ function Code({
   variant,
   color,
   size,
+  hue,
   asChild = false,
   ...props
-}: React.ComponentProps<'span'> &
+}: React.ComponentProps<'code'> &
   VariantProps<typeof codeVariants> & {
     asChild?: boolean;
+    hue?: string;
   }) {
   const Comp = asChild ? Slot : 'code';
 
   return (
     <Comp
       data-slot="badge"
+      data-hue={hue}
       className={cn(
         codeVariants({
           variant,

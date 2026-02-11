@@ -5,39 +5,37 @@ import { Mona_Sans, Inter, Geist_Mono, Onest } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 
 import './styles/globals.css';
-import './styles/components.css';
+import './styles/hues.css';
+// import './styles/components.css';
 
 import {
   SidebarInset,
   SidebarProvider,
   SidebarRail,
-  // SidebarRail,
-  SidebarTrigger,
+  // SidebarRail, // imported from SideNav
+  // SidebarTrigger, // imported from SideNav
 } from '@/components/ui/sidebar';
 import { SideNav } from '@/components/sidenav';
 
 import { Header } from '@/components/header';
+// import { TooltipProvider } from '@/components/ui/tooltip'; // imported from SideNav
+import { ToastProvider } from '@/components/toast';
+import { cn } from '@/lib/utils';
 
-const monaSans = Mona_Sans({
-  variable: '--font-mona',
-  subsets: ['latin'],
-});
+// disabled in favor of native mono
+//
+// const geistMono = Geist_Mono({
+//   variable: '--font-geist-mono',
+//   subsets: ['latin'],
+// });
 
-const onest = Onest({
-  variable: '--font-onest',
-  subsets: ['latin'],
-});
-
+// Fallback Inter v3 from Google
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
-
+// Inter v4 from localFont
 const Inter_Variable = localFont({
   variable: '--font-inter-var',
   display: 'swap',
@@ -75,7 +73,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff"></meta>
       </head> */}
       <body
-        className={`${inter.variable} ${Inter_Variable.variable} bg-background relative min-h-screen max-w-screen overflow-x-clip scroll-smooth antialiased`}
+        className={`${inter.variable} ${Inter_Variable.variable} safe-area-inset-bottom relative min-h-[calc(100vh-env(safe-area-inset-bottom))] max-w-screen overflow-x-clip scroll-smooth bg-background antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -83,17 +81,25 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider className="">
-            <SideNav />
-            {/*  renders <main> */}
-            <SidebarInset>
-              <SidebarRail />
-              <Header />
-              <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col items-stretch gap-4 px-4 py-16 sm:px-8 sm:pb-24 md:px-16 lg:w-[calc(100vw-var(--sidebar-width))]">
-                {children}
-              </div>
-            </SidebarInset>
-          </SidebarProvider>
+          <ToastProvider>
+            <SidebarProvider>
+              <SideNav />
+              {/*  renders <main> */}
+              <SidebarInset>
+                <SidebarRail />
+                <Header />
+                <div
+                  className={cn(
+                    'lg:max-w-8xl isolate mx-auto w-full flex-1 items-stretch',
+                    'px-8 pt-8 lg:px-16 lg:pt-12',
+                    // 'overflow-y-auto',
+                  )}
+                >
+                  {children}
+                </div>
+              </SidebarInset>
+            </SidebarProvider>
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>

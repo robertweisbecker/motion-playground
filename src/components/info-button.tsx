@@ -1,5 +1,6 @@
-import { useRef, createRef } from 'react';
-import { useHover } from 'usehooks-ts';
+'use client';
+// import { useRef, createRef } from 'react';
+// import { useHover } from 'usehooks-ts';
 import { cn } from '@/lib/utils';
 
 import { InformationCircleIcon } from '@heroicons/react/24/outline';

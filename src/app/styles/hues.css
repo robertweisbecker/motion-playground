@@ -1,0 +1,554 @@
+/* HUE ATTRIBUTES */
+@layer theme {
+  [data-hue] {
+    /* override root vars */
+    --background: var(--hue-25);
+    --muted: var(--hue-25);
+    --muted-hover: var(--hue-50);
+    --muted-active: var(--hue-100);
+    --secondary: var(--hue-50);
+    --secondary-hover: var(--hue-100);
+    --secondary-active: var(--hue-200);
+    --sidebar: var(--hue-25);
+    --accent: var(--hue-100);
+    --accent-hover: var(--hue-200);
+    --accent-active: var(--hue-300);
+    --border: var(--hue-200);
+    --input: var(--hue-300);
+    --primary: var(--hue-500);
+    --primary-hover: var(--hue-600);
+    --primary-active: var(--hue-700);
+    --primary-foreground: var(--color-white);
+    --muted-foreground: var(--hue-500);
+    --accent-foreground: var(--hue-700);
+    --secondary-foreground: var(--hue-600);
+    --foreground: var(--hue-800);
+    --sidebar-foreground: var(--hue-950);
+    /* --card: var(--hue-25); */
+
+    /* Override ring and border alpha for shadows */
+    --ring: var(--hue-400);
+    --border-alpha-soft: color-mix(in oklch, var(--hue-950) 3.3%, transparent);
+    --border-alpha: color-mix(in oklch, var(--hue-950) 15%, transparent);
+    --border-alpha-strong: color-mix(in oklch, var(--hue-950) 29%, transparent);
+    --outline: color-mix(in oklch, var(--hue-950) 9%, transparent);
+
+    /* Explicitly override Tailwind color mappings for shadows */
+    --color-border: var(--border);
+    --color-primary: var(--primary);
+    --color-ring: var(--ring);
+
+    /* temporarily enable in tw classes until moving to global*/
+    /* --color-background: var(--hue-25);
+    --color-muted: var(--hue-50);
+    --color-secondary: var(--hue-50);
+    --color-sidebar: var(--hue-25);
+    --color-accent: var(--hue-100);
+    --color-border: var(--hue-200);
+    --color-input: var(--hue-400);
+    --color-primary: var(--hue-500);
+    --color-muted-foreground: var(--hue-500);
+    --color-accent-foreground: var(--hue-700);
+    --color-secondary-foreground: var(--hue-600);
+    --color-foreground: var(--hue-800);
+    --color-sidebar-foreground: var(--hue-950);
+    --color-card: var(--hue-25); */
+
+    ::selection {
+      background: var(--hue-300);
+      color: var(--hue-800);
+    }
+  }
+
+  /* Dark mode hue overrides - using .dark [data-hue] selector to ensure proper scoping */
+  .dark [data-hue] {
+    --background: var(--color-black-1000);
+    --muted: var(--hue-975);
+    --muted-hover: var(--hue-950);
+    --muted-active: var(--hue-900);
+    --secondary: var(--hue-950);
+    --secondary-hover: var(--hue-900);
+    --secondary-active: var(--hue-800);
+    --sidebar: var(--hue-975);
+    --accent: var(--hue-800);
+    --accent-hover: var(--hue-700);
+    --accent-active: var(--hue-600);
+    --border: var(--hue-800);
+    --input: var(--hue-600);
+    --primary: var(--hue-500);
+    --primary-hover: var(--hue-600);
+    --primary-active: var(--hue-700);
+    --muted-foreground: var(--hue-300);
+    --accent-foreground: var(--hue-300);
+    --secondary-foreground: var(--hue-300);
+    --foreground: var(--hue-200);
+    --sidebar-foreground: var(--hue-50);
+    --card: var(--hue-950);
+    --popover: var(--hue-900);
+
+    /* Override ring and border alpha for shadows in dark mode */
+    --ring: var(--hue-400);
+    --border-alpha-soft: color-mix(in oklch, var(--hue-50) 9%, transparent);
+    --border-alpha: color-mix(in oklch, var(--hue-50) 16%, transparent);
+    --border-alpha-strong: color-mix(in oklch, var(--hue-50) 32%, transparent);
+    --outline: color-mix(in oklch, var(--hue-50) 4.4%, transparent);
+
+    /* Explicitly override Tailwind color mappings for shadows in dark mode */
+    --color-border: var(--border);
+    --color-primary: var(--primary);
+    --color-ring: var(--ring);
+
+    ::selection {
+      background: var(--hue-700);
+      color: var(--hue-200);
+    }
+  }
+}
+[data-hue='gray'] {
+  --hue-25: var(--color-gray-25);
+  --hue-50: var(--color-gray-50);
+  --hue-75: var(--color-gray-75);
+  --hue-100: var(--color-gray-100);
+  --hue-200: var(--color-gray-200);
+  --hue-300: var(--color-gray-300);
+  --hue-400: var(--color-gray-400);
+  --hue-500: var(--color-gray-500);
+  --hue-600: var(--color-gray-600);
+  --hue-700: var(--color-gray-700);
+  --hue-800: var(--color-gray-800);
+  --hue-900: var(--color-gray-900);
+  --hue-950: var(--color-gray-950);
+  --hue-975: var(--color-gray-975);
+}
+[data-hue='zinc'] {
+  --hue-25: var(--color-zinc-25);
+  --hue-50: var(--color-zinc-50);
+  --hue-75: var(--color-zinc-75);
+  --hue-100: var(--color-zinc-100);
+  --hue-200: var(--color-zinc-200);
+  --hue-300: var(--color-zinc-300);
+  --hue-400: var(--color-zinc-400);
+  --hue-500: var(--color-zinc-500);
+  --hue-600: var(--color-zinc-600);
+  --hue-700: var(--color-zinc-700);
+  --hue-800: var(--color-zinc-800);
+  --hue-900: var(--color-zinc-900);
+  --hue-950: var(--color-zinc-950);
+  --hue-975: var(--color-zinc-975);
+}
+[data-hue='steel'] {
+  --hue-25: var(--color-steel-25);
+  --hue-50: var(--color-steel-50);
+  --hue-75: var(--color-steel-75);
+  --hue-100: var(--color-steel-100);
+  --hue-200: var(--color-steel-200);
+  --hue-300: var(--color-steel-300);
+  --hue-400: var(--color-steel-400);
+  --hue-500: var(--color-steel-500);
+  --hue-600: var(--color-steel-600);
+  --hue-700: var(--color-steel-700);
+  --hue-800: var(--color-steel-800);
+  --hue-900: var(--color-steel-900);
+  --hue-950: var(--color-steel-950);
+  --hue-975: var(--color-steel-975);
+}
+[data-hue='black'] {
+  --hue-25: var(--color-black-25);
+  --hue-50: var(--color-black-50);
+  --hue-75: var(--color-black-75);
+  --hue-100: var(--color-black-100);
+  --hue-200: var(--color-black-200);
+  --hue-300: var(--color-black-300);
+  --hue-400: var(--color-black-400);
+  --hue-500: var(--color-black-500);
+  --hue-600: var(--color-black-600);
+  --hue-700: var(--color-black-700);
+  --hue-800: var(--color-black-800);
+  --hue-900: var(--color-black-900);
+  --hue-950: var(--color-black-950);
+  --hue-975: var(--color-black-975);
+}
+[data-hue='sage'] {
+  --hue-25: var(--color-sage-25);
+  --hue-50: var(--color-sage-50);
+  --hue-75: var(--color-sage-75);
+  --hue-100: var(--color-sage-100);
+  --hue-200: var(--color-sage-200);
+  --hue-300: var(--color-sage-300);
+  --hue-400: var(--color-sage-400);
+  --hue-500: var(--color-sage-500);
+  --hue-600: var(--color-sage-600);
+  --hue-700: var(--color-sage-700);
+  --hue-800: var(--color-sage-800);
+  --hue-900: var(--color-sage-900);
+  --hue-950: var(--color-sage-950);
+  --hue-975: var(--color-sage-975);
+}
+[data-hue='sand'] {
+  --hue-25: var(--color-sand-25);
+  --hue-50: var(--color-sand-50);
+  --hue-75: var(--color-sand-75);
+  --hue-100: var(--color-sand-100);
+  --hue-200: var(--color-sand-200);
+  --hue-300: var(--color-sand-300);
+  --hue-400: var(--color-sand-400);
+  --hue-500: var(--color-sand-500);
+  --hue-600: var(--color-sand-600);
+  --hue-700: var(--color-sand-700);
+  --hue-800: var(--color-sand-800);
+  --hue-900: var(--color-sand-900);
+  --hue-950: var(--color-sand-950);
+  --hue-975: var(--color-sand-975);
+}
+[data-hue='plum'] {
+  --hue-25: var(--color-plum-25);
+  --hue-50: var(--color-plum-50);
+  --hue-75: var(--color-plum-75);
+  --hue-100: var(--color-plum-100);
+  --hue-200: var(--color-plum-200);
+  --hue-300: var(--color-plum-300);
+  --hue-400: var(--color-plum-400);
+  --hue-500: var(--color-plum-500);
+  --hue-600: var(--color-plum-600);
+  --hue-700: var(--color-plum-700);
+  --hue-800: var(--color-plum-800);
+  --hue-900: var(--color-plum-900);
+  --hue-950: var(--color-plum-950);
+  --hue-975: var(--color-plum-975);
+}
+[data-hue='ash'] {
+  --hue-25: var(--color-ash-25);
+  --hue-50: var(--color-ash-50);
+  --hue-75: var(--color-ash-75);
+  --hue-100: var(--color-ash-100);
+  --hue-200: var(--color-ash-200);
+  --hue-300: var(--color-ash-300);
+  --hue-400: var(--color-ash-400);
+  --hue-500: var(--color-ash-500);
+  --hue-600: var(--color-ash-600);
+  --hue-700: var(--color-ash-700);
+  --hue-800: var(--color-ash-800);
+  --hue-900: var(--color-ash-900);
+  --hue-950: var(--color-ash-950);
+  --hue-975: var(--color-ash-975);
+}
+[data-hue='red'] {
+  --hue-25: var(--color-red-25);
+  --hue-50: var(--color-red-50);
+  --hue-75: var(--color-red-75);
+  --hue-100: var(--color-red-100);
+  --hue-200: var(--color-red-200);
+  --hue-300: var(--color-red-300);
+  --hue-400: var(--color-red-400);
+  --hue-500: var(--color-red-500);
+  --hue-600: var(--color-red-600);
+  --hue-700: var(--color-red-700);
+  --hue-800: var(--color-red-800);
+  --hue-900: var(--color-red-900);
+  --hue-950: var(--color-red-950);
+  --hue-975: var(--color-red-975);
+}
+[data-hue='orange'] {
+  --hue-25: var(--color-orange-25);
+  --hue-50: var(--color-orange-50);
+  --hue-75: var(--color-orange-75);
+  --hue-100: var(--color-orange-100);
+  --hue-200: var(--color-orange-200);
+  --hue-300: var(--color-orange-300);
+  --hue-400: var(--color-orange-400);
+  --hue-500: var(--color-orange-500);
+  --hue-600: var(--color-orange-600);
+  --hue-700: var(--color-orange-700);
+  --hue-800: var(--color-orange-800);
+  --hue-900: var(--color-orange-900);
+  --hue-950: var(--color-orange-950);
+  --hue-975: var(--color-orange-975);
+}
+[data-hue='yellow'] {
+  --hue-25: var(--color-yellow-25);
+  --hue-50: var(--color-yellow-50);
+  --hue-75: var(--color-yellow-75);
+  --hue-100: var(--color-yellow-100);
+  --hue-200: var(--color-yellow-200);
+  --hue-300: var(--color-yellow-300);
+  --hue-400: var(--color-yellow-400);
+  --hue-500: var(--color-yellow-500);
+  --hue-600: var(--color-yellow-600);
+  --hue-700: var(--color-yellow-700);
+  --hue-800: var(--color-yellow-800);
+  --hue-900: var(--color-yellow-900);
+  --hue-950: var(--color-yellow-950);
+  --hue-975: var(--color-yellow-975);
+}
+[data-hue='gold'] {
+  --hue-25: var(--color-gold-25);
+  --hue-50: var(--color-gold-50);
+  --hue-75: var(--color-gold-75);
+  --hue-100: var(--color-gold-100);
+  --hue-200: var(--color-gold-200);
+  --hue-300: var(--color-gold-300);
+  --hue-400: var(--color-gold-400);
+  --hue-500: var(--color-gold-500);
+  --hue-600: var(--color-gold-600);
+  --hue-700: var(--color-gold-700);
+  --hue-800: var(--color-gold-800);
+  --hue-900: var(--color-gold-900);
+  --hue-950: var(--color-gold-950);
+  --hue-975: var(--color-gold-975);
+}
+[data-hue='lime'] {
+  --hue-25: var(--color-lime-25);
+  --hue-50: var(--color-lime-50);
+  --hue-75: var(--color-lime-75);
+  --hue-100: var(--color-lime-100);
+  --hue-200: var(--color-lime-200);
+  --hue-300: var(--color-lime-300);
+  --hue-400: var(--color-lime-400);
+  --hue-500: var(--color-lime-500);
+  --hue-600: var(--color-lime-600);
+  --hue-700: var(--color-lime-700);
+  --hue-800: var(--color-lime-800);
+  --hue-900: var(--color-lime-900);
+  --hue-950: var(--color-lime-950);
+  --hue-975: var(--color-lime-975);
+}
+[data-hue='green'] {
+  --hue-25: var(--color-green-25);
+  --hue-50: var(--color-green-50);
+  --hue-75: var(--color-green-75);
+  --hue-100: var(--color-green-100);
+  --hue-200: var(--color-green-200);
+  --hue-300: var(--color-green-300);
+  --hue-400: var(--color-green-400);
+  --hue-500: var(--color-green-500);
+  --hue-600: var(--color-green-600);
+  --hue-700: var(--color-green-700);
+  --hue-800: var(--color-green-800);
+  --hue-900: var(--color-green-900);
+  --hue-950: var(--color-green-950);
+  --hue-975: var(--color-green-975);
+}
+[data-hue='jade'] {
+  --hue-25: var(--color-jade-25);
+  --hue-50: var(--color-jade-50);
+  --hue-75: var(--color-jade-75);
+  --hue-100: var(--color-jade-100);
+  --hue-200: var(--color-jade-200);
+  --hue-300: var(--color-jade-300);
+  --hue-400: var(--color-jade-400);
+  --hue-500: var(--color-jade-500);
+  --hue-600: var(--color-jade-600);
+  --hue-700: var(--color-jade-700);
+  --hue-800: var(--color-jade-800);
+  --hue-900: var(--color-jade-900);
+  --hue-950: var(--color-jade-950);
+  --hue-975: var(--color-jade-975);
+}
+[data-hue='teal'] {
+  --hue-25: var(--color-teal-25);
+  --hue-50: var(--color-teal-50);
+  --hue-75: var(--color-teal-75);
+  --hue-100: var(--color-teal-100);
+  --hue-200: var(--color-teal-200);
+  --hue-300: var(--color-teal-300);
+  --hue-400: var(--color-teal-400);
+  --hue-500: var(--color-teal-500);
+  --hue-600: var(--color-teal-600);
+  --hue-700: var(--color-teal-700);
+  --hue-800: var(--color-teal-800);
+  --hue-900: var(--color-teal-900);
+  --hue-950: var(--color-teal-950);
+  --hue-975: var(--color-teal-975);
+}
+[data-hue='cyan'] {
+  --hue-25: var(--color-cyan-25);
+  --hue-50: var(--color-cyan-50);
+  --hue-75: var(--color-cyan-75);
+  --hue-100: var(--color-cyan-100);
+  --hue-200: var(--color-cyan-200);
+  --hue-300: var(--color-cyan-300);
+  --hue-400: var(--color-cyan-400);
+  --hue-500: var(--color-cyan-500);
+  --hue-600: var(--color-cyan-600);
+  --hue-700: var(--color-cyan-700);
+  --hue-800: var(--color-cyan-800);
+  --hue-900: var(--color-cyan-900);
+  --hue-950: var(--color-cyan-950);
+  --hue-975: var(--color-cyan-975);
+}
+[data-hue='blue'] {
+  --hue-25: var(--color-blue-25);
+  --hue-50: var(--color-blue-50);
+  --hue-75: var(--color-blue-75);
+  --hue-100: var(--color-blue-100);
+  --hue-200: var(--color-blue-200);
+  --hue-300: var(--color-blue-300);
+  --hue-400: var(--color-blue-400);
+  --hue-500: var(--color-blue-500);
+  --hue-600: var(--color-blue-600);
+  --hue-700: var(--color-blue-700);
+  --hue-800: var(--color-blue-800);
+  --hue-900: var(--color-blue-900);
+  --hue-950: var(--color-blue-950);
+  --hue-975: var(--color-blue-975);
+}
+[data-hue='navy'] {
+  --hue-25: var(--color-navy-25);
+  --hue-50: var(--color-navy-50);
+  --hue-75: var(--color-navy-75);
+  --hue-100: var(--color-navy-100);
+  --hue-200: var(--color-navy-200);
+  --hue-300: var(--color-navy-300);
+  --hue-400: var(--color-navy-400);
+  --hue-500: var(--color-navy-500);
+  --hue-600: var(--color-navy-600);
+  --hue-700: var(--color-navy-700);
+  --hue-800: var(--color-navy-800);
+  --hue-900: var(--color-navy-900);
+  --hue-950: var(--color-navy-950);
+  --hue-975: var(--color-navy-975);
+}
+[data-hue='indigo'] {
+  --hue-25: var(--color-indigo-25);
+  --hue-50: var(--color-indigo-50);
+  --hue-75: var(--color-indigo-75);
+  --hue-100: var(--color-indigo-100);
+  --hue-200: var(--color-indigo-200);
+  --hue-300: var(--color-indigo-300);
+  --hue-400: var(--color-indigo-400);
+  --hue-500: var(--color-indigo-500);
+  --hue-600: var(--color-indigo-600);
+  --hue-700: var(--color-indigo-700);
+  --hue-800: var(--color-indigo-800);
+  --hue-900: var(--color-indigo-900);
+  --hue-950: var(--color-indigo-950);
+  --hue-975: var(--color-indigo-975);
+}
+[data-hue='violet'] {
+  --hue-25: var(--color-violet-25);
+  --hue-50: var(--color-violet-50);
+  --hue-75: var(--color-violet-75);
+  --hue-100: var(--color-violet-100);
+  --hue-200: var(--color-violet-200);
+  --hue-300: var(--color-violet-300);
+  --hue-400: var(--color-violet-400);
+  --hue-500: var(--color-violet-500);
+  --hue-600: var(--color-violet-600);
+  --hue-700: var(--color-violet-700);
+  --hue-800: var(--color-violet-800);
+  --hue-900: var(--color-violet-900);
+  --hue-950: var(--color-violet-950);
+  --hue-975: var(--color-violet-975);
+}
+[data-hue='purple'] {
+  --hue-25: var(--color-purple-25);
+  --hue-50: var(--color-purple-50);
+  --hue-75: var(--color-purple-75);
+  --hue-100: var(--color-purple-100);
+  --hue-200: var(--color-purple-200);
+  --hue-300: var(--color-purple-300);
+  --hue-400: var(--color-purple-400);
+  --hue-500: var(--color-purple-500);
+  --hue-600: var(--color-purple-600);
+  --hue-700: var(--color-purple-700);
+  --hue-800: var(--color-purple-800);
+  --hue-900: var(--color-purple-900);
+  --hue-950: var(--color-purple-950);
+  --hue-975: var(--color-purple-975);
+}
+[data-hue='magenta'] {
+  --hue-25: var(--color-magenta-25);
+  --hue-50: var(--color-magenta-50);
+  --hue-75: var(--color-magenta-75);
+  --hue-100: var(--color-magenta-100);
+  --hue-200: var(--color-magenta-200);
+  --hue-300: var(--color-magenta-300);
+  --hue-400: var(--color-magenta-400);
+  --hue-500: var(--color-magenta-500);
+  --hue-600: var(--color-magenta-600);
+  --hue-700: var(--color-magenta-700);
+  --hue-800: var(--color-magenta-800);
+  --hue-900: var(--color-magenta-900);
+  --hue-950: var(--color-magenta-950);
+  --hue-975: var(--color-magenta-975);
+}
+[data-hue='pink'] {
+  --hue-25: var(--color-pink-25);
+  --hue-50: var(--color-pink-50);
+  --hue-75: var(--color-pink-75);
+  --hue-100: var(--color-pink-100);
+  --hue-200: var(--color-pink-200);
+  --hue-300: var(--color-pink-300);
+  --hue-400: var(--color-pink-400);
+  --hue-500: var(--color-pink-500);
+  --hue-600: var(--color-pink-600);
+  --hue-700: var(--color-pink-700);
+  --hue-800: var(--color-pink-800);
+  --hue-900: var(--color-pink-900);
+  --hue-950: var(--color-pink-950);
+  --hue-975: var(--color-pink-975);
+}
+[data-hue='ruby'] {
+  --hue-25: var(--color-ruby-25);
+  --hue-50: var(--color-ruby-50);
+  --hue-75: var(--color-ruby-75);
+  --hue-100: var(--color-ruby-100);
+  --hue-200: var(--color-ruby-200);
+  --hue-300: var(--color-ruby-300);
+  --hue-400: var(--color-ruby-400);
+  --hue-500: var(--color-ruby-500);
+  --hue-600: var(--color-ruby-600);
+  --hue-700: var(--color-ruby-700);
+  --hue-800: var(--color-ruby-800);
+  --hue-900: var(--color-ruby-900);
+  --hue-950: var(--color-ruby-950);
+  --hue-975: var(--color-ruby-975);
+}
+[data-hue='black-alpha'] {
+  --hue-25: var(--color-black-alpha-25);
+  --hue-50: var(--color-black-alpha-50);
+  --hue-75: var(--color-black-alpha-75);
+  --hue-100: var(--color-black-alpha-100);
+  --hue-200: var(--color-black-alpha-200);
+  --hue-300: var(--color-black-alpha-300);
+  --hue-400: var(--color-black-alpha-400);
+  --hue-500: var(--color-black-alpha-500);
+  --hue-600: var(--color-black-alpha-600);
+  --hue-700: var(--color-black-alpha-700);
+  --hue-800: var(--color-black-alpha-800);
+  --hue-900: var(--color-black-alpha-900);
+  --hue-950: var(--color-black-alpha-950);
+  --hue-975: var(--color-black-alpha-975);
+}
+[data-hue='white-alpha'] {
+  --hue-25: var(--color-white-alpha-25);
+  --hue-50: var(--color-white-alpha-50);
+  --hue-75: var(--color-white-alpha-75);
+  --hue-100: var(--color-white-alpha-100);
+  --hue-200: var(--color-white-alpha-200);
+  --hue-300: var(--color-white-alpha-300);
+  --hue-400: var(--color-white-alpha-400);
+  --hue-500: var(--color-white-alpha-500);
+  --hue-600: var(--color-white-alpha-600);
+  --hue-700: var(--color-white-alpha-700);
+  --hue-800: var(--color-white-alpha-800);
+  --hue-900: var(--color-white-alpha-900);
+  --hue-950: var(--color-white-alpha-950);
+  --hue-975: var(--color-white-alpha-975);
+}
+[data-hue='gray-alpha'] {
+  --hue-25: var(--color-neutral-alpha-25);
+  --hue-50: var(--color-neutral-alpha-50);
+  --hue-75: var(--color-neutral-alpha-75);
+  --hue-100: var(--color-neutral-alpha-100);
+  --hue-200: var(--color-neutral-alpha-200);
+  --hue-300: var(--color-neutral-alpha-300);
+  --hue-400: var(--color-neutral-alpha-400);
+  --hue-500: var(--color-neutral-alpha-500);
+  --hue-600: var(--color-neutral-alpha-600);
+  --hue-700: var(--color-neutral-alpha-700);
+  --hue-800: var(--color-neutral-alpha-800);
+  --hue-900: var(--color-neutral-alpha-900);
+  --hue-950: var(--color-neutral-alpha-950);
+  --hue-975: var(--color-neutral-alpha-975);
+}

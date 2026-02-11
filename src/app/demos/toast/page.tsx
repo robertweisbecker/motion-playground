@@ -1,5 +1,5 @@
 import { StackedComponent } from '@/components/experimental/stacked-component';
-import Toaster from '@/components/experimental/toast';
+import { ToasterAnimation } from '@/components/experimental/toast-animation';
 
 export default function ToastPage() {
   return (
@@ -11,8 +11,8 @@ export default function ToastPage() {
       </section>
       <section>
         <h2>Toaster</h2>
-        <div className="bg-muted flex size-[360px] flex-col justify-end overflow-y-auto rounded-2xl border p-4">
-          <Toaster />
+        <div className="flex size-[360px] flex-col justify-end overflow-y-auto rounded-2xl border bg-muted p-4">
+          <ToasterAnimation />
         </div>
       </section>
     </>

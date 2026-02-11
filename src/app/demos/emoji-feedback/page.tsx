@@ -30,7 +30,7 @@ export default function EmojiFeedbackPage() {
         </a>
       </Paragraph>
       <DemoContainer>
-        <div className="min-h-[240px]">
+        <div className="flex min-h-[240px]">
           <EmojiFeedback />
         </div>
       </DemoContainer>
@@ -71,7 +71,7 @@ function EmojiFeedback() {
           )}
           animate={{
             height: emojiOpen ? innerHeight : null,
-            width: emojiOpen ? 'var(--container-lg)' : null,
+            width: emojiOpen ? 'var(--container-md)' : null,
             borderRadius: emojiOpen ? 'var(--radius-lg)' : 'var(--radius-3xl)',
           }}
         >

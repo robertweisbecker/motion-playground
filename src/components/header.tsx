@@ -21,7 +21,7 @@ import { SidebarSimpleIcon as PhSidebarSimpleIcon } from '@phosphor-icons/react'
 
 export function Header() {
   return (
-    <header className="sticky inset-x-0 top-0 z-50 flex shrink-0 items-center justify-between gap-2 gap-x-0 rounded-xl px-2 py-3.5 sm:px-2">
+    <header className="sticky inset-x-0 top-0 z-50 flex shrink-0 items-center justify-between gap-2 gap-x-0 rounded-xl px-2 py-2 sm:px-2">
       <SidebarTrigger
         icon={<PhSidebarSimpleIcon weight="light" />}
         closeIcon={<PhSidebarSimpleIcon weight="duotone" />}
@@ -57,10 +57,14 @@ export function Header() {
           <DropdownMenuGroup>
             <DropdownMenuLabel>Experiments</DropdownMenuLabel>
             <DropdownMenuItem asChild>
-              <NavLink href="/experiments/card-transitions">Card Transitions</NavLink>
+              <NavLink href="/experiments/card-transitions">
+                Card Transitions
+              </NavLink>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <NavLink href="/experiments/tailwind">Tailwind Playground</NavLink>
+              <NavLink href="/experiments/tailwind">
+                Tailwind Playground
+              </NavLink>
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
@@ -89,8 +93,8 @@ export function Header() {
           // 'from-background bg-gradient-to-b to-transparent',
           // 'mask-b-from-background mask-b-from-25% mask-b-to-transparent',
 
-          'from-background to-background/0 bg-gradient-to-b from-25%',
-          'mask-b-from-background mask-b-to-background/0 mask-b-from-50%',
+          'bg-gradient-to-b from-background from-25% to-background/0',
+          'mask-b-from-background mask-b-from-50% mask-b-to-background/0',
         )}
       ></div>
     </header>

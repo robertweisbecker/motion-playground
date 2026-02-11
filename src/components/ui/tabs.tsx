@@ -68,7 +68,7 @@ function TabsTrigger({
         'peer text-muted-foreground relative flex h-10 cursor-pointer items-center justify-center gap-1.5 px-4 break-keep whitespace-nowrap transition-[opacity,scale,translate,background] select-none',
         'hover:text-foreground',
         'before:ease dark:before:shadow-white-alpha-25 before:absolute before:inset-x-1 before:inset-y-1.5 before:-z-1 before:rounded-sm before:transition-[opacity,scale,translate,background] before:duration-200 dark:data-[state=active]:before:shadow-[inset_0_1px]',
-        'data-[state=active]:before:bg-accent data-[state=active]:text-accent-foreground',
+        'data-[state=active]:before:bg-secondary data-[state=active]:text-secondary-foreground',
         'after:bg-border/75 after:absolute after:inset-x-[-0.5px] after:h-[1em] after:w-px first:after:content-none',
         'data-[state=inactive]:after:-z-1',
 

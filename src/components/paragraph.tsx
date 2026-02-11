@@ -8,14 +8,16 @@ import { InfoButton } from './info-button';
 const textVariants = cva([''], {
   variants: {
     variant: {
-      lead: 'text-muted-foreground text-xl font-[425] leading-snug tracking-tight text-balance',
-      body: 'text-md text-secondary-foreground not-prose',
+      lead: 'not-prose text-muted-foreground text-xl font-[425] leading-snug tracking-tight text-balance',
+      body: 'text-sm text-muted-foreground leading-6 not-prose',
       prose: 'text-base text-foreground leading-8 mt-2 mb-4',
-      item: 'text-md font-[450] text-foreground not-prose',
-      label: 'text-sm leading-none font-medium text-foreground not-prose line-clamp-1',
-      small: 'text-secondary-foreground text-sm leading-6 not-prose',
-      caption: 'text-muted-foreground text-xs leading-5 not-prose',
-      error: 'text-error-500 dark:text-error-300 text-xs leading-5 not-prose',
+      item: 'text-sm/4 font-[450] text-foreground not-prose',
+      label:
+        'text-sm/4 leading-none font-medium text-foreground not-prose line-clamp-1',
+      small: 'text-muted-foreground text-xs leading-6 not-prose',
+      caption: 'text-muted-foreground text-2xs not-prose',
+      error:
+        'text-error-500 dark:text-error-300 text-xs font-[350] leading-5 not-prose',
     },
   },
   defaultVariants: {
@@ -46,7 +48,11 @@ export function Paragraph({
   const Comp = asChild ? Slot : 'p';
   return (
     <Comp
-      className={cx(textVariants({ variant }), [!mt && 'mt-0', !mb && 'mb-0'], className)}
+      className={cx(
+        textVariants({ variant }),
+        [!mt && 'mt-0', !mb && 'mb-0'],
+        className,
+      )}
       {...props}
     >
       {children}

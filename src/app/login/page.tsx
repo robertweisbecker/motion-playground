@@ -5,11 +5,11 @@ import { ApertureIcon } from '@phosphor-icons/react/dist/ssr';
 
 export default function LoginPage() {
   return (
-    <div className="from-accent to-primary via-primary/50 flex flex-col items-center justify-center gap-6 bg-linear-145 from-28% via-70% p-6">
+    <div className="from-background to-accent via-accent/40 flex flex-col items-center justify-center gap-6 bg-linear-65 from-18% via-70% p-6">
       <div className="flex w-full max-w-sm flex-col gap-6">
         <a
           href="#"
-          className="text-foreground bg-secondary/80 flex items-center gap-2 self-center rounded-xl p-2 font-medium shadow-xs"
+          className="text-foreground bg-accent/80 flex items-center gap-2 self-center rounded-xl p-2 font-medium shadow-xs"
         >
           <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
             <ApertureIcon weight="fill" />

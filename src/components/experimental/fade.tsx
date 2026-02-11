@@ -4,7 +4,7 @@ import styles from './fade.module.css';
 
 export function BlurFade() {
   return (
-    <div className="relative inline-flex py-0 [--bg:var(--color-background)] max-sm:scale-50">
+    <div className="relative inline-flex py-0 [--fader-bg:var(--color-background)] max-sm:scale-50">
       <Fade
         background="var(--color-background)"
         className="inset-0"
@@ -13,10 +13,7 @@ export function BlurFade() {
         stop="50%"
         debug
       />
-      <p className="flex items-center gap-3 text-3xl">
-        {/* <Logo size={40} /> */}
-        fadeeeeee
-      </p>
+      <p className="flex items-center gap-3 text-3xl">fadeeeeee</p>
     </div>
   );
 }
@@ -25,20 +22,24 @@ export function Fade({
   stop,
   blur,
   side = 'top',
+  height,
   className,
   background,
   style,
   ref,
   debug,
+  children,
 }: {
   stop?: string;
   blur?: string;
+  height?: number;
   side: 'top' | 'bottom' | 'left' | 'right';
   className?: string;
   background: string;
   debug?: boolean;
   style?: React.CSSProperties;
   ref?: React.Ref<HTMLDivElement>;
+  children?: React.ReactNode;
 }) {
   return (
     <div
@@ -48,9 +49,10 @@ export function Fade({
       data-side={side}
       style={
         {
-          '--stop': stop,
-          '--blur': blur,
-          '--background': background,
+          '--fader-stop': stop,
+          '--fader-blur': blur,
+          '--fader-bg': background,
+          height: height ? `${height}px` : undefined,
           ...(debug && {
             outline: '2px solid var(--color-orange-500)',
             outlineOffset: '-2px',
@@ -58,7 +60,9 @@ export function Fade({
           ...style,
         } as React.CSSProperties
       }
-    />
+    >
+      {children}
+    </div>
   );
 }
 

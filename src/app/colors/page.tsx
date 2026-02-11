@@ -1,13 +1,10 @@
 'use client';
 import { Heading } from '@/components/heading';
 import { cn } from '@/lib/utils';
-import { Fragment } from 'react';
-import { colorScheme } from '@/components/utils/colorScheme';
-import { Button } from '@/components/ui/button';
-import { LinkOutIcon } from '../icons/icons';
-import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
+import { Paragraph } from '@/components/paragraph';
 
-export default function ThemePage() {
+export default function ColorsPage() {
   const hues = [
     'ruby',
     'red',
@@ -40,114 +37,23 @@ export default function ThemePage() {
     'white-alpha',
     'gray-alpha',
   ];
-  const palettes = [...hues, ...neutrals];
   const swatchClass = 'w-full h-10';
+
   return (
-    <>
-      <div className="">
-        <Heading as="h1">Theme</Heading>
-        <button
-          className={colorScheme.blue.solid.initial}
-          // className={cn(...Object.values(colorScheme.blue.solid), 'h-button rounded-md px-3')}
-        >
-          Solid
-        </button>
+    <div className="flex flex-col gap-8">
+      <div>
+        <Heading as="h1">Colors</Heading>
+        <Paragraph className="mt-2 text-muted-foreground">
+          okLCH color palettes & testing. View{' '}
+          <Link href="/colors/theme" className="underline hover:text-foreground">
+            theming examples
+          </Link>{' '}
+          for button variants across different color palettes.
+        </Paragraph>
+      </div>
 
-        <button className={cn(Object.entries(colorScheme.blue.solid), 'h-button rounded-md px-3')}>
-          Solid
-        </button>
-        <button className={cn(Object.entries(colorScheme.blue.subtle), 'h-button rounded-md px-3')}>
-          Outline
-        </button>
-        <button
-          className={cn(Object.entries(colorScheme.blue.outline), 'h-button rounded-md px-3')}
-        >
-          Subtle
-        </button>
-
-        <button
-          className={cn(Object.entries(colorScheme.orange.solid), 'h-button rounded-md px-3')}
-        >
-          Solid
-        </button>
-        <button
-          className={cn(Object.entries(colorScheme.orange.subtle), 'h-button rounded-md px-3')}
-        >
-          Outline
-        </button>
-        <button
-          className={cn(Object.entries(colorScheme.orange.outline), 'h-button rounded-md px-3')}
-        >
-          Subtle
-        </button>
-        <div className="flex flex-col gap-2">
-          Hue
-          {palettes.map((value) => (
-            <div
-              key={value}
-              className={`hue hue-${value} bg-muted relative flex gap-1 rounded-lg p-4 shadow-xs`}
-            >
-              <Badge className="absolute top-1 right-1">{value}</Badge>
-              <Button variant="primary">Primary</Button>
-              <Button variant="secondary">
-                Secondary <LinkOutIcon />
-              </Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="default">Default</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="link">Link</Button>
-            </div>
-          ))}
-        </div>
-        <Heading>Palette</Heading>
-        {/* <div className={cn(swatchClass)} style={{ background: `var(--color-navy-25)` }} />
-                <div className={cn(swatchClass)} style={{ background: `var(--color-navy-50)` }} />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-100)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-200)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-300)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-400)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-500)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-600)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-700)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-800)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-900)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-950)` }}
-                />
-                <div
-                  className={cn(swatchClass)}
-                  style={{ background: `var(--color-navy-975)` }}
-                />
-              </div>
-            </div> */}
+      <div className="flex flex-col gap-4">
+        <Heading as="h2">Palette</Heading>
         <div className="flex flex-col gap-0">
           {hues.map((hue) => (
             <div key={hue} className="flex w-full items-center gap-0">
@@ -267,6 +173,6 @@ export default function ThemePage() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

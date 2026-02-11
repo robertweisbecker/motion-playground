@@ -6,13 +6,18 @@ interface StackedComponentProps {
   unstack?: boolean;
   className?: string;
 }
-export function StackedComponent({ length = 3, unstack, className }: StackedComponentProps) {
+export function StackedComponent({
+  length = 3,
+  unstack,
+  className,
+}: StackedComponentProps) {
   return (
     <div className={cn(`${styles.Wrapper}`, 'mt-5 w-full', className)}>
       {new Array(length).fill(0).map((_, i) => (
         <div
           className={cn(
             `${styles.Card}`,
+            'shadow-md ring ring-border-alpha-soft',
             length > 1 && !unstack && `${styles.Stacked}`,
             length - i > 3 && 'opacity-100',
           )}

@@ -9,12 +9,12 @@ export function Citation() {
   return (
     <div className="not-prose max-h-[500px] overflow-y-auto rounded-md border p-4">
       <p className="text-sm leading-relaxed">
-        According to recent studies, artificial intelligence has shown remarkable progress in
-        natural language processing.{' '}
+        According to recent studies, artificial intelligence has shown
+        remarkable progress in natural language processing.{' '}
         <span className="group/citation inline items-center gap-1">
           <span className="group-hover/citation:bg-info-100 dark:group-hover/citation:bg-info-900 group-hover/citation:text-info-800 dark:group-hover/citation:text-info-200 rounded-sm transition-colors">
-            The technology continues to evolve rapidly, with new breakthroughs being announced
-            regularly
+            The technology continues to evolve rapidly, with new breakthroughs
+            being announced regularly
           </span>
           <Popover>
             <PopoverTrigger asChild>
@@ -24,8 +24,8 @@ export function Citation() {
                   'focus-visible:border-ring focus-visible:ring-ring/50',
                   'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
                   'border-border-soft hover:border-border border',
-                  'bg-muted text-muted-foreground hover:text-secondary-foreground hover:bg-secondary hover:cursor-pointer',
-                  'data-open:bg-accent',
+                  'bg-card text-card-foreground hover:text-info-500 hover:bg-info-25 dark:hover:text-info-400 dark:hover:bg-info-900 hover:cursor-pointer',
+                  'data-open:bg-secondary',
                   'ml-1 inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-2',
                   '[&_svg]:pointer-events-none [&_svg]:size-3',
                 )}

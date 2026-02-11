@@ -15,12 +15,19 @@ interface LabelProps extends React.ComponentProps<typeof LabelPrimitive.Root> {
   required?: boolean;
 }
 
-function Label({ className, children, label, info, required, ...props }: LabelProps) {
+function Label({
+  className,
+  children,
+  label,
+  info,
+  required,
+  ...props
+}: LabelProps) {
   return (
     <LabelPrimitive.Root
       data-slot="label"
       className={cn(
-        'group-data-[disabled=true]:text-gray-alpha-400 peer-disabled:text-gray-alpha-400 text-secondary-foreground flex items-center gap-1 py-1 text-sm font-[450] select-none group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed',
+        'flex items-center gap-1 text-sm font-[450] text-foreground select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:text-gray-alpha-400 peer-disabled:cursor-not-allowed peer-disabled:text-gray-alpha-400',
         className,
       )}
       {...props}
@@ -30,11 +37,21 @@ function Label({ className, children, label, info, required, ...props }: LabelPr
       {info && (
         <Popover>
           <PopoverTrigger asChild>
-            <Button size="xs" iconOnly variant="ghost" className="lucide-duo -my-1">
+            <Button
+              size="xs"
+              iconOnly
+              variant="invisible"
+              className="lucide-duo -my-1"
+            >
               <InformationCircleIcon />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="text-sm" sideOffset={-4} align="end" side="top">
+          <PopoverContent
+            className="text-sm"
+            sideOffset={-4}
+            align="end"
+            side="top"
+          >
             {info}
           </PopoverContent>
         </Popover>

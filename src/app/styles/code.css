@@ -1,0 +1,71 @@
+/* 
+  Make shiki code themes respond to the dark or light mode.
+  The key: Set color variables on the <html> depending on mode,
+  then use those variables for shiki token colors and backgrounds.
+*/
+:root {
+  --shiki-foreground: var(--foreground);
+  --shiki-background: var(--background);
+  --shiki-dark: var(--foreground);
+  --shiki-dark-bg: var(--background);
+  --shiki-token-constant: var(--destructive);
+  --shiki-token-string: var(--primary);
+  --shiki-token-comment: var(--muted-foreground);
+  --shiki-token-keyword: var(--colors-blue-500);
+  --shiki-token-parameter: var(--accent-foreground);
+  --shiki-token-function: var(--accent-foreground);
+  --shiki-token-string-expression: var(--accent-foreground);
+  --shiki-token-punctuation: var(--muted-foreground);
+  --shiki-token-link: var(--primary);
+
+  --shiki-foreground: #434447;
+  --shiki-token-constant: #2286a6;
+  --shiki-token-string: #b2762e;
+  --shiki-token-comment: #8d949b;
+  --shiki-token-keyword: #dc155e;
+  --shiki-token-parameter: #009033;
+  --shiki-token-function: #009033;
+  --shiki-token-string-expression: #b2762e;
+  --shiki-token-punctuation: #d15a8b;
+  --shiki-token-link: #d15a8b;
+  --shiki-token-number: #676dff;
+  --shiki-token-property: #2286a6;
+  --shiki-token-diff-deleted: #ff605e;
+  --shiki-token-diff-inserted: #009033;
+}
+
+.dark {
+  --shiki-foreground: #ffffff;
+  --shiki-token-constant: #1ac8ff;
+  --shiki-token-string: #dfd473;
+  --shiki-token-comment: #807796;
+  --shiki-token-keyword: #ff659c;
+  --shiki-token-parameter: #1ac8ff;
+  --shiki-token-function: #73dfa5;
+  --shiki-token-string-expression: #dfd473;
+  --shiki-token-punctuation: #ff659c;
+  --shiki-token-link: #ff659c;
+  --shiki-token-number: #7a7ffd;
+  --shiki-token-property: #1ac8ff;
+  --shiki-token-diff-deleted: #ff605e;
+  --shiki-token-diff-inserted: #73dfa5;
+}
+
+/* Main shiki code styling */
+/* .shiki,
+.shiki span {
+  color: var(--shiki-foreground) !important;
+  background-color: var(--shiki-background) !important;
+} */
+
+/* For dark mode, override with appropriate variables. 
+ * If you use a .dark class on <html>, this targets .shiki blocks in dark mode.
+ */
+/* html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark, var(--foreground)) !important;
+  background-color: var(--shiki-dark-bg, var(--background)) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+} */

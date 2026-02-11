@@ -48,13 +48,12 @@
     }
   } */
 
-  color: var(--prose-color);
-  font-size: var(--text-sm);
-  line-height: 2;
-
   &
     > :where(:not(.not-prose, .not-prose *))
     + *:where(:not(.not-prose, .not-prose *)) {
+    color: var(--prose-color);
+    font-size: var(--text-sm);
+    line-height: 2;
     margin-top: calc(var(--spacing) * 6);
   }
 

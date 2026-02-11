@@ -2,7 +2,7 @@
   "tabWidth": 2,
   "useTabs": false,
   "singleQuote": true,
-  "printWidth": 100,
+  "printWidth": 80,
   "overrides": [
     {
       "files": "*.css",
@@ -11,5 +11,6 @@
       }
     }
   ],
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./src/app/styles/globals.css"
 }

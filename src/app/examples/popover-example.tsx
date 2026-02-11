@@ -1,4 +1,8 @@
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 
 export function PopoverExample() {
@@ -7,33 +11,41 @@ export function PopoverExample() {
       <div className="col-span-2">
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="secondary">Top</Button>
+            <Button>Top</Button>
           </PopoverTrigger>
-          <PopoverContent side="top">Place content for the popover here.</PopoverContent>
+          <PopoverContent side="top">
+            Place content for the popover here.
+          </PopoverContent>
         </Popover>
       </div>
       <div className="col-span-1">
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="secondary">Left</Button>
+            <Button>Left</Button>
           </PopoverTrigger>
-          <PopoverContent side="left">Place content for the popover here.</PopoverContent>
+          <PopoverContent side="left">
+            Place content for the popover here.
+          </PopoverContent>
         </Popover>
       </div>
       <div className="col-span-1">
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="secondary">Right</Button>
+            <Button>Right</Button>
           </PopoverTrigger>
-          <PopoverContent side="right">Place content for the popover here.</PopoverContent>
+          <PopoverContent side="right">
+            Place content for the popover here.
+          </PopoverContent>
         </Popover>
       </div>
       <div className="col-span-2">
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="secondary">Bottom</Button>
+            <Button>Bottom</Button>
           </PopoverTrigger>
-          <PopoverContent side="bottom">Place content for the popover here.</PopoverContent>
+          <PopoverContent side="bottom">
+            Place content for the popover here.
+          </PopoverContent>
         </Popover>
       </div>
     </div>

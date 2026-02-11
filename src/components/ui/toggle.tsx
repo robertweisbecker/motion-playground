@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
-import { cva, type VariantProps, cx } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const toggleVariants = cva(
@@ -12,40 +12,40 @@ const toggleVariants = cva(
     'font-medium whitespace-nowrap',
     "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 ",
     'aria-invalid:outline-destructive',
-    'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-none disabled:text-gray-400',
+    'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-none disabled:text-muted-foreground',
     'focus-visible:border-ring focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:z-10 focus-visible:outline-ring',
   ],
   {
     variants: {
       variant: {
         default: [
-          'bg-transparent text-muted-foreground ',
-          'hover:bg-muted hover:text-foreground',
-          'data-toggled:bg-secondary data-toggled:ring-primary data-toggled:text-foreground',
+          'text-muted-foreground bg-none',
+          'hover:text-accent-foreground hover:bg-accent',
+          'data-toggled:bg-muted data-toggled:text-foreground',
         ],
         ghost: [
           'text-muted-foreground',
-          'data-toggled:bg-accent data-toggled:text-accent-foreground',
-          'hover:bg-secondary hover:text-foreground',
+          'hover:bg-accent hover:text-accent-foreground hover:[&_svg]:not-only:fill-current/50',
+          'data-toggled:bg-secondary data-toggled:text-secondary-foreground',
         ],
         outline: [
-          'border border-border bg-background text-secondary-foreground',
-          'hover:bg-muted',
-          'data-toggled:bg-accent data-toggled:border-current data-toggled:text-accent-foreground',
+          'border border-border text-muted-foreground',
+          'hover:bg-accent hover:text-foreground hover:not-data-toggled:border-input',
+          'data-toggled:bg-secondary data-toggled:text-secondary-foreground data-toggled:border-ring data-toggled:rounded-md',
         ],
         dashed: [
-          'border border-dashed bg-muted text-muted-foreground',
-          'hover:border-dotted',
-          'data-toggled:bg-card data-toggled:border-solid data-toggled:text-foreground',
+          'border border-dashed border-border text-muted-foreground bg-accent/50',
+          'hover:bg-accent',
+          'data-toggled:bg-card data-toggled:text-card-foreground data-toggled:border-solid data-toggled:border-current',
         ],
-        destructive: '',
         unstyled: '',
         elevated: [
           'text-muted-foreground',
           'not-data-toggled:hover:bg-current/10',
-          // 'active:bg-card ',
-          'data-toggled:bg-current/12 data-toggled:text-foreground',
-          // 'data-toggled:ring-[0.5px] data-toggled:ring-border data-toggled:shadow-button-highlight',
+          'border-none',
+          'data-toggled:bg-current/12 data-toggled:text-card-foreground',
+          'data-toggled:bg-card',
+          'data-toggled:shadow-dropdown-item',
         ],
       },
       round: {
@@ -79,7 +79,8 @@ function Toggle({
   pressed,
   round,
   ...props
-}: React.ComponentProps<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>) {
+}: React.ComponentProps<typeof TogglePrimitive.Root> &
+  VariantProps<typeof toggleVariants>) {
   return (
     <TogglePrimitive.Root
       data-slot="toggle"

@@ -53,7 +53,7 @@ export default function FramerPage() {
         <MotionConfig transition={{ duration: 0.4 }}>
           <motion.div
             className={cn(
-              'm-auto flex h-12 origin-bottom flex-col overflow-hidden p-1',
+              'bg-card m-auto flex h-12 origin-bottom flex-col overflow-hidden p-1',
               emojiOpen ? 'rounded-md shadow-md' : 'rounded-full shadow-sm',
             )}
             // initial={{ height: 48, borderRadius: 12 }}

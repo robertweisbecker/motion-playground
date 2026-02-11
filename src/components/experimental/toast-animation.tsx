@@ -4,20 +4,27 @@ import { Code } from '../code';
 import styles from './toastDemo.module.css';
 import { useEffect, useState } from 'react';
 import { Badge } from '../ui/badge';
+import { cn } from '@/lib/utils';
 
-interface ToastProps {
+interface ToastAnimationProps {
   index: number;
   total: number;
 }
 
-export default function Toaster() {
+export function ToasterAnimation() {
   const [toasts, setToasts] = useState(0);
 
   return (
     <div className={styles.Wrapper}>
-      <div className={styles.Toaster} style={{ '--total': toasts } as React.CSSProperties}>
+      <div
+        className={cn(
+          `${styles.Toaster}`,
+          'shadow-sm outline -outline-offset-1 outline-border-alpha-soft',
+        )}
+        style={{ '--total': toasts } as React.CSSProperties}
+      >
         {Array.from({ length: toasts }).map((_, i) => (
-          <Toast key={i} index={toasts - (i + 1)} total={toasts} />
+          <ToastAnimation key={i} index={toasts - (i + 1)} total={toasts} />
         ))}
       </div>
       <div className="flex flex-row gap-2">
@@ -39,7 +46,7 @@ export default function Toaster() {
           }}
         >
           Clear
-          <Badge size="default" className="-me-1">
+          <Badge size="default" variant="outline" className="-me-1">
             {toasts}
           </Badge>
         </Button>
@@ -48,7 +55,11 @@ export default function Toaster() {
   );
 }
 
-function Toast({ index, total, ...props }: React.ComponentProps<'div'> & ToastProps) {
+function ToastAnimation({
+  index,
+  total,
+  ...props
+}: React.ComponentProps<'div'> & ToastAnimationProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -68,3 +79,4 @@ function Toast({ index, total, ...props }: React.ComponentProps<'div'> & ToastPr
     </div>
   );
 }
+

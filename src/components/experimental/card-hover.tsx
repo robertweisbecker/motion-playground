@@ -65,7 +65,7 @@ export function CardHover2({
           id="card-description2"
           size="sm"
           className={cn(
-            'bg-gray-50',
+            'bg-popover',
             'ring-border ring',
             'gap-0',
             'translate-y-full opacity-0',

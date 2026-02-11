@@ -34,20 +34,25 @@ import { cva } from 'class-variance-authority';
 //   },
 // });
 
-function Switch({ className, ...props }: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+function Switch({
+  className,
+  ...props
+}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
   return (
     <SwitchPrimitive.Root
       data-slot="switch"
       className={cn([
-        'peer rounded-full transition-all',
+        'peer group/switch rounded-full transition-all',
         'inline-flex h-7 w-11 shrink-0 items-center p-0.5',
-        'data-[state=unchecked]:bg-icon inset-ring-border-alpha inset-shadow-2xs inset-ring',
-        'hover:data-[state=unchecked]:bg-icon-hover hover:inset-ring-border-alpha-strong',
+        'inset-shadow-2xs inset-ring inset-ring-border-alpha data-[state=unchecked]:bg-icon',
+        'transition-colors',
+        'hover:inset-ring-border-alpha-strong hover:data-[state=unchecked]:bg-icon-hover',
         'active:data-[state=unchecked]:bg-icon-active',
         'data-[state=checked]:bg-primary',
-        'active:data-[state=checked]:bg-primary/90',
-        'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2',
-        'disabled:bg-muted disabled:cursor-not-allowed',
+        'active:data-[state=checked]:bg-primary-active',
+        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+        'disabled:cursor-not-allowed disabled:bg-muted',
+        // 'active:[&>[data-slot="switch-thumb"]]:bg-red-500!',
         className,
       ])}
       {...props}
@@ -56,12 +61,15 @@ function Switch({ className, ...props }: React.ComponentProps<typeof SwitchPrimi
         data-slot="switch-thumb"
         className={cn([
           'pointer-events-none block size-6',
-          'ease-out-quart rounded-full ring-0 transition-transform duration-100',
-          'bg-card ring-black-alpha-100 shadow-2xs ring',
+          // 'pointer-events-none block h-6 min-w-6',
+          // 'ease-out-quint rounded-full ring-0 duration-100',
+          'shadow-2xs ring ring-black-alpha-100',
           'relative self-end',
-          'data-[state=checked]:translate-x-2/3 data-[state=unchecked]:translate-x-0',
-          'dark:data-[state=unchecked]:bg-foreground',
-          'dark:data-[state=checked]:bg-primary-foreground',
+          'data-[state=checked]:bg-white',
+          'bg-white/90 group-hover/switch:bg-white',
+          'inset-ring-1 inset-ring-white/5',
+          'rounded-[calc(--spacing(6)/2)] transition-[translate,width,height] ease-out-quint group-active/switch:w-7 data-[state=checked]:translate-x-2/3 data-[state=unchecked]:translate-x-0',
+          'group-active/switch:data-[state=checked]:translate-x-[calc(--spacing(3))]',
         ])}
       />
     </SwitchPrimitive.Root>

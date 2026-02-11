@@ -7,19 +7,27 @@ import { cn } from '@/lib/utils';
 import { Button } from './button';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 
-function Drawer({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
+function Drawer({
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Root>) {
   return <DrawerPrimitive.Root data-slot="drawer" {...props} />;
 }
 
-function DrawerTrigger({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
+function DrawerTrigger({
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
   return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />;
 }
 
-function DrawerPortal({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
+function DrawerPortal({
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
   return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />;
 }
 
-function DrawerClose({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Close>) {
+function DrawerClose({
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Close>) {
   return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />;
 }
 
@@ -31,7 +39,7 @@ function DrawerOverlay({
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
       className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-linear-to-b from-black/15 to-black/40 data-[state=closed]:duration-300 data-[state=open]:duration-150',
+        'fixed inset-0 z-50 bg-linear-to-b from-black/15 to-black/40 data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:duration-150 data-[state=open]:fade-in-0',
         'backdrop-blur-[.5px]',
         className,
       )}
@@ -52,21 +60,26 @@ function DrawerContent({
         title="Menu"
         data-slot="drawer-content"
         className={cn(
-          'group/drawer-content bg-card fixed z-50 flex h-auto flex-col backdrop-blur-sm',
+          'group/drawer-content fixed z-50 flex h-auto flex-col bg-card backdrop-blur-sm',
           'data-[vaul-drawer-direction=top]:inset-x-1 data-[vaul-drawer-direction=top]:top-1 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-[38px]',
           'data-[vaul-drawer-direction=bottom]:inset-x-1 data-[vaul-drawer-direction=bottom]:bottom-1 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-[38px]',
           'data-[vaul-drawer-direction=right]:inset-y-2 data-[vaul-drawer-direction=right]:right-2 data-[vaul-drawer-direction=right]:max-w-3/4 data-[vaul-drawer-direction=right]:min-w-2xs data-[vaul-drawer-direction=right]:rounded-l-xl data-[vaul-drawer-direction=right]:sm:max-w-sm',
           'data-[vaul-drawer-direction=left]:inset-y-2 data-[vaul-drawer-direction=left]:left-2 data-[vaul-drawer-direction=left]:max-w-3/4 data-[vaul-drawer-direction=left]:min-w-2xs data-[vaul-drawer-direction=left]:rounded-r-xl data-[vaul-drawer-direction=left]:sm:max-w-sm',
           'shadow-[inset_0_1px_var(--color-white-alpha-100),inset_0_0_1px_0px_var(--color-white-alpha-50),0_0_0.5px_0.5px_var(--color-background),var(--shadow-2xl)]',
-          'outline-black-alpha-100 outline',
+          'outline outline-black-alpha-100',
 
           className,
         )}
         {...props}
       >
-        <div className="bg-border-alpha relative mx-auto mt-[5px] hidden h-[5px] w-9 shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block hover:cursor-grab" />
-        <DrawerClose asChild className="absolute top-4 right-4 z-50 flex">
-          <Button variant="elevated" size="lg" className="rounded-full" iconOnly>
+        <div className="relative mx-auto mt-[5px] hidden h-[5px] w-9 shrink-0 rounded-full bg-border-alpha group-data-[vaul-drawer-direction=bottom]/drawer-content:block hover:cursor-grab" />
+        <DrawerClose asChild className="absolute top-2 right-2 z-50 flex">
+          <Button
+            // variant="elevated"
+            size="icon"
+            className="rounded-full"
+            iconOnly
+          >
             <XMarkIcon />
           </Button>
         </DrawerClose>
@@ -76,7 +89,11 @@ function DrawerContent({
   );
 }
 
-function DrawerHeader({ className, children, ...props }: React.ComponentProps<'div'>) {
+function DrawerHeader({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="drawer-header"
@@ -108,12 +125,15 @@ function DrawerFooter({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function DrawerTitle({ className, ...props }: React.ComponentProps<typeof DrawerPrimitive.Title>) {
+function DrawerTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Title>) {
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
       className={cn(
-        'text-foreground font-semibold',
+        'font-semibold text-foreground',
         'max-md:mx-auto max-md:pl-[44px] max-md:text-center',
         className,
       )}
@@ -129,7 +149,7 @@ function DrawerDescription({
   return (
     <DrawerPrimitive.Description
       data-slot="drawer-description"
-      className={cn('text-muted-foreground text-sm', className)}
+      className={cn('text-sm text-muted-foreground', className)}
       {...props}
     />
   );

@@ -11,7 +11,7 @@
     0px 1px 1.5px 0px rgba(0, 0, 0, 0.32),
     0px 0px 0px 0.5px #1a94ff;
   position: relative;
-  :has[data-slot='spinner'] {
+  &:has([data-slot='spinner']) {
     cursor: wait;
   }
 }

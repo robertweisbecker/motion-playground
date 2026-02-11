@@ -1,36 +1,15 @@
 'use client';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { AlertCircleIcon, CheckCircle2Icon, GalleryHorizontalIcon } from 'lucide-react';
-import {
-  CheckBadgeIcon,
-  CheckCircleIcon,
-  ExclamationCircleIcon,
-  ExclamationTriangleIcon,
-  InformationCircleIcon,
-  StarIcon,
-} from '@heroicons/react/16/solid';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { PopoverExample } from './popover-example';
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
 import { Badge } from '@/components/ui/badge';
-import { ButtonExample, IconButtonExample } from './button-example';
-import { ToggleExample } from './toggle-example';
-import { DropdownExample } from './dropdown-example';
-import { InputExample } from './input-example';
-import { TooltipExample } from './tooltip-example';
-import { InfoButton } from '@/components/info-button';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -38,35 +17,80 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-
-import { Code } from '@/components/code';
-import { Kbd } from '@/components/kbd';
-// import { PageNav } from './toc';
 import { DemoContainer } from '@/components/demo-container';
 import { Heading } from '@/components/heading';
-import { HeadingExampleColor, HeadingExampleSize } from './heading-example';
-import { Loader, Spinner } from '@/components/experimental/spinner';
-import { Avatar, AvatarCutout, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { KeyValue, Paragraph } from '@/components/paragraph';
-import { Separator } from '@/components/ui/separator';
-import { Citation } from '@/components/experimental/citation';
-import { TabsDemo } from './tabs-example';
-
+import { Paragraph } from '@/components/paragraph';
+import { InfoButton } from '@/components/info-button';
+import { AlertExample } from '../examples/alert-example';
+import { AvatarExample } from '../examples/avatar-example';
+import { BadgeExample } from '../examples/badge-example';
+import { BrowserExample } from '../examples/browser-example';
 import {
-  AtomIcon,
-  BellIcon,
-  CircleWavyQuestionIcon,
-  ExclamationMarkIcon,
-  FolderOpenIcon,
-  CheckCircleIcon as PhCheckCircleIcon,
-  WarningIcon,
-} from '@phosphor-icons/react';
-import { AlertExample } from './alert-example';
-import { Switch } from '@/components/ui/switch';
-import { Tag } from '@/components/tag';
-import { CampsiteButton } from '@/components/ui/campsite-button';
+  ButtonExample,
+  CustomButtonExample,
+  IconButtonExample,
+} from '../examples/button-example';
+import { ButtonGroupExample } from '../examples/button-group-example';
+import { CardExample } from '../examples/card-example';
+import { CarouselExample } from '../examples/carousel-example';
+import { CitationExample } from '../examples/citation-example';
+import { CodeExample } from '../examples/code-example';
+import { CodeBlockExample } from '../examples/code-block-example';
+import { CollapsibleExample } from '../examples/collapsible-example';
+import { DescriptionListExample } from '../examples/description-list-example';
+import { DrawerExample } from '../examples/drawer-example';
+import {
+  DropdownExample,
+  DropdownCheckboxExample,
+  DropdownRadioExample,
+} from '../examples/dropdown-example';
+import {
+  HeadingExampleColor,
+  HeadingExampleSize,
+  HeadingExampleWithSubtitle,
+} from '../examples/heading-example';
+import { HoverCardExample } from '../examples/hover-card-example';
+import { InlineCitationExample } from '../examples/inline-citation-example';
+import { InputExample } from '../examples/input-example';
+import { InputGroupExample } from '../examples/input-group-example';
+import { ItemExample } from '../examples/item-example';
+import { KbdExample } from '../examples/kbd-example';
+import { LabelExample } from '../examples/label-example';
+import { NavigationMenuExample } from '../examples/navigation-menu-example';
+import { ParagraphExample } from '../examples/paragraph-example';
+import { PopoverExample } from '../examples/popover-example';
+import { SelectExample } from '../examples/select-example';
+import { SeparatorExample } from '../examples/separator-example';
+import { SheetExample } from '../examples/sheet-example';
+import { SliderExample } from '../examples/slider-example';
+import { SkeletonExample } from '../examples/skeleton-example';
+import { SpinnerExample } from '../examples/spinner-example';
+import { SwitchExample } from '../examples/switch-example';
+import { TagExample } from '../examples/tag-example';
+import { TabsBasicExample } from '../examples/tabs-basic-example';
+import { TabsDemo } from '../examples/tabs-example';
+import { TextareaExample } from '../examples/textarea-example';
+import { ToggleExample } from '../examples/toggle-example';
+import { ToggleGroupExample } from '../examples/toggle-group-example';
+import { TooltipExample } from '../examples/tooltip-example';
+import {
+  ToastExample,
+  ToastWithActionExample,
+  ToastPromiseExample,
+  ToastVaryingHeightsExample,
+  ToastManualDismissExample,
+} from '../examples/toast-example';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
+import { Separator } from '@/components/ui/separator';
 
-const data = {
+type NavigationItem = {
+  title: string;
+  url: string;
+  depth: number;
+  isDisabled?: boolean;
+};
+
+const data: { items: NavigationItem[] } = {
   items: [
     {
       title: 'Alert',
@@ -84,16 +108,9 @@ const data = {
       depth: 1,
     },
     {
-      title: 'Pill',
-      url: '#badge',
-      isDisabled: true,
-      depth: 2,
-    },
-    {
-      title: 'Dot',
-      url: '#badge',
-      isDisabled: true,
-      depth: 2,
+      title: 'Browser',
+      url: '#browser',
+      depth: 1,
     },
     {
       title: 'Button',
@@ -104,11 +121,20 @@ const data = {
       title: 'Icon Button',
       url: '#icon-button',
       depth: 2,
-      isDisabled: true,
+    },
+    {
+      title: 'Button Group',
+      url: '#button-group',
+      depth: 2,
     },
     {
       title: 'Card',
       url: '#card',
+      depth: 1,
+    },
+    {
+      title: 'Carousel',
+      url: '#carousel',
       depth: 1,
     },
     {
@@ -122,6 +148,26 @@ const data = {
       depth: 1,
     },
     {
+      title: 'Code Block',
+      url: '#code-block',
+      depth: 1,
+    },
+    {
+      title: 'Collapsible',
+      url: '#collapsible',
+      depth: 1,
+    },
+    {
+      title: 'Drawer',
+      url: '#drawer',
+      depth: 1,
+    },
+    {
+      title: 'Description List',
+      url: '#description-list',
+      depth: 1,
+    },
+    {
       title: 'Dropdown',
       url: '#dropdown',
       depth: 1,
@@ -132,8 +178,28 @@ const data = {
       depth: 1,
     },
     {
+      title: 'Hover Card',
+      url: '#hover-card',
+      depth: 1,
+    },
+    {
+      title: 'Inline Citation',
+      url: '#inline-citation',
+      depth: 1,
+    },
+    {
       title: 'Input',
       url: '#input',
+      depth: 1,
+    },
+    {
+      title: 'Input Group',
+      url: '#input-group',
+      depth: 2,
+    },
+    {
+      title: 'Item',
+      url: '#item',
       depth: 1,
     },
     {
@@ -142,9 +208,18 @@ const data = {
       depth: 1,
     },
     {
+      title: 'Label',
+      url: '#label',
+      depth: 1,
+    },
+    {
+      title: 'Navigation Menu',
+      url: '#navigation-menu',
+      depth: 1,
+    },
+    {
       title: 'Paragraph',
       url: '#paragraph',
-      isDisabled: false,
       depth: 1,
     },
     {
@@ -156,6 +231,31 @@ const data = {
       title: 'Info Button',
       url: '#info-button',
       depth: 2,
+    },
+    {
+      title: 'Select',
+      url: '#select',
+      depth: 1,
+    },
+    {
+      title: 'Separator',
+      url: '#separator',
+      depth: 1,
+    },
+    {
+      title: 'Slider',
+      url: '#slider',
+      depth: 1,
+    },
+    {
+      title: 'Sheet',
+      url: '#sheet',
+      depth: 1,
+    },
+    {
+      title: 'Skeleton',
+      url: '#skeleton',
+      depth: 1,
     },
     {
       title: 'Spinner',
@@ -173,13 +273,28 @@ const data = {
       depth: 1,
     },
     {
+      title: 'Toast',
+      url: '#toast',
+      depth: 1,
+    },
+    {
       title: 'Tabs',
       url: '#tabs',
       depth: 1,
     },
     {
+      title: 'Textarea',
+      url: '#textarea',
+      depth: 1,
+    },
+    {
       title: 'Toggle',
       url: '#toggle',
+      depth: 1,
+    },
+    {
+      title: 'Toggle Group',
+      url: '#toggle-group',
       depth: 1,
     },
     {
@@ -193,314 +308,455 @@ const data = {
 export default function Components() {
   const router = useRouter();
   return (
-    <div className="gap-8 pb-50 sm:grid sm:grid-cols-[1fr_160px] md:gap-16">
-      <div className="order-last">
-        <SidebarMenu id="pageNav" className="w- sticky top-20">
-          <SidebarGroup>
-            <SidebarGroupLabel>Jump to:</SidebarGroupLabel>
-            {data.items.map((item) => (
-              <SidebarMenuItem key={item.title} title={item.title}>
-                <SidebarMenuButton
-                  disabled={item.isDisabled}
-                  size="sm"
-                  onClick={() => router.replace(item.url, { scroll: true })}
-                  style={{ '--indent': item.depth } as React.CSSProperties}
-                >
-                  {/* <NavLink href={item.url}>{item.title}</NavLink> */}
-                  <span className={cn(item.depth > 1 && 'pl-[calc(var(--indent)*0.5rem)]')}>
-                    {item.title}
-                  </span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarGroup>
-        </SidebarMenu>
-      </div>
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start lg:gap-16">
+      <SidebarMenu
+        id="pageNav"
+        className="order-last h-full max-md:hidden md:sticky md:top-16 md:max-h-[calc(100vh_-_--spacing(24))] md:w-[160px] md:shrink-0 md:overflow-y-auto"
+      >
+        <SidebarGroup className="pt-0 pb-8">
+          <SidebarGroupLabel className="sticky top-0 isolate z-1 text-muted-foreground/80 before:pointer-events-none before:absolute before:inset-0 before:-z-1 before:h-12 before:bg-linear-to-b before:from-background before:from-50%">
+            Jump to:
+          </SidebarGroupLabel>
+          {data.items.map((item) => (
+            <SidebarMenuItem key={item.title} title={item.title}>
+              <SidebarMenuButton
+                variant="plain"
+                disabled={item.isDisabled ?? false}
+                size="sm"
+                onClick={() => router.replace(item.url, { scroll: true })}
+                style={{ '--indent': item.depth } as React.CSSProperties}
+                className={cn(item.depth > 1 && 'text-xs font-normal')}
+              >
+                {item.depth > 1 && (
+                  <>
+                    <Separator
+                      orientation="horizontal"
+                      className="max-w-[calc(var(--indent)*0.5ch)]"
+                    />
+                    {/* <span
+                        className={cn('ps-[calc(var(--indent)*0.5ch)]')}
+                      ></span> */}
+                  </>
+                )}
+                {item.title}
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarGroup>
+      </SidebarMenu>
 
-      <div className={cn('prose col-start-1 mx-auto w-full max-w-4xl')}>
-        <Heading as="h1" copy>
+      <div className={cn('prose mx-auto w-full min-w-0 lg:max-w-4xl')}>
+        <div className="sticky top-8 z-10 mb-6 max-md:block md:hidden">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="w-full justify-between">
+                Jump to component
+                <ChevronRightIcon className="size-4 rotate-90" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="max-h-[60vh] w-[calc(100vw-2rem)] overflow-y-auto">
+              {data.items
+                .filter((item) => !item.isDisabled && item.depth === 1)
+                .map((item) => (
+                  <DropdownMenuItem
+                    key={item.title}
+                    onClick={() => {
+                      router.replace(item.url, { scroll: true });
+                    }}
+                  >
+                    {item.title}
+                  </DropdownMenuItem>
+                ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <Heading as="h1" copy id="components">
           Components
         </Heading>
         <Paragraph variant="lead">Components? Components!</Paragraph>
         <hr />
-        <h2 id="alert">Alert</h2>
+
+        <Heading as="h2" copy id="alert">
+          Alert
+        </Heading>
         <DemoContainer>
           <AlertExample />
         </DemoContainer>
         <hr />
 
-        <h2 id="avatar">Avatar</h2>
+        <Heading as="h2" copy id="avatar">
+          Avatar
+        </Heading>
         <DemoContainer>
-          <Avatar size={20}>
-            <AvatarImage src="https://avatar.vercel.sh/ab" className="" />
-
-            {/* <AvatarFallback>RW</AvatarFallback> */}
-          </Avatar>
-          <Avatar size={32}>
-            <AvatarFallback>A</AvatarFallback>
-          </Avatar>
-          <Avatar size={48}>
-            {/* <AvatarImage
-              src="https://avatar.vercel.sh/a"
-              className="mask-linear-90 mask-linear-from-60% mask-linear-to-80% mask-radial-from-100% mask-radial-at-bottom-right mask-add"
-            /> */}
-            <AvatarFallback>B</AvatarFallback>
-          </Avatar>
-        </DemoContainer>
-
-        <h2 id="badge">Badge</h2>
-        <h3>Hello</h3>
-        <DemoContainer>
-          <div className="flex gap-2">
-            <Badge variant="default">Primary</Badge>
-            <Badge variant="secondary">Secondary</Badge>
-            <Badge variant="outline">Outline</Badge>
-            <Badge variant="destructive">Destructive</Badge>
-          </div>
-          <div className="flex gap-2">
-            <Badge color="highlight">
-              <InformationCircleIcon />
-              Highlight
-            </Badge>
-            <Badge color="info">
-              <InformationCircleIcon />
-              Info
-            </Badge>
-            <Badge color="warning">
-              <ExclamationTriangleIcon />
-              Warning
-            </Badge>
-            <Badge color="error">
-              <ExclamationCircleIcon />
-              Error
-            </Badge>
-            <Badge color="success">
-              <CheckCircleIcon />
-              Success
-            </Badge>
-          </div>
-          <div className="flex gap-2">
-            <Badge variant="outline">
-              <InformationCircleIcon className="text-highlight-400 -ms-0.5" />
-              Highlight
-            </Badge>
-            <Badge variant="outline">
-              <InformationCircleIcon className="text-info-400 -ms-0.5" />
-              Info
-            </Badge>
-            <Badge variant="outline">
-              <ExclamationTriangleIcon className="text-warning-400 -ms-0.5" />
-              Warning
-            </Badge>
-            <Badge variant="outline">
-              <ExclamationCircleIcon className="text-error-400 -ms-0.5" />
-              Error
-            </Badge>
-            <Badge variant="outline">
-              <CheckCircleIcon className="text-success-400 -ms-0.5" />
-              Success
-            </Badge>
-          </div>
+          <AvatarExample />
         </DemoContainer>
         <hr />
-        {/* <div className="grid grid-cols-4 justify-items-center gap-4">
-          <CampsiteButton variant="flat">Flat</CampsiteButton>
-          <CampsiteButton variant="text">Text</CampsiteButton>
-          <CampsiteButton variant="none">None</CampsiteButton>
-          <CampsiteButton variant="plain">Plain</CampsiteButton>
-          <CampsiteButton variant="base">Base</CampsiteButton>
-          <CampsiteButton variant="primary">Primary</CampsiteButton>
-          <CampsiteButton variant="destructive">Destructive</CampsiteButton>
-          <CampsiteButton variant="onboarding">Onboarding</CampsiteButton>
-          <CampsiteButton variant="important">Important</CampsiteButton>
-          <CampsiteButton variant="brand">Brand</CampsiteButton>
-        </div> */}
 
-        <h2 id="button">Button</h2>
+        <Heading as="h2" copy id="badge">
+          Badge
+        </Heading>
+        <DemoContainer>
+          <BadgeExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="browser">
+          Browser
+        </Heading>
+        <DemoContainer>
+          <BrowserExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="button">
+          Button
+        </Heading>
         <DemoContainer>
           <ButtonExample />
         </DemoContainer>
+        <Heading as="h3" id="custom-button">
+          Custom Button
+        </Heading>
+        <DemoContainer>
+          <CustomButtonExample />
+        </DemoContainer>
+        <Heading as="h3" id="icon-button">
+          Icon Button
+        </Heading>
         <DemoContainer>
           <IconButtonExample />
         </DemoContainer>
+        <Heading as="h3" id="button-group">
+          Button Group
+        </Heading>
+        <DemoContainer>
+          <ButtonGroupExample />
+        </DemoContainer>
         <hr />
 
-        <h2 id="card">Card</h2>
+        <Heading as="h2" copy id="card">
+          Card
+        </Heading>
         <DemoContainer className="not-prose">
-          <Card>
-            <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-              <CardAction>
-                <Button size="icon">
-                  <StarIcon />
-                </Button>
-              </CardAction>
-            </CardHeader>
-            <CardContent>
-              <p>Card Content</p>
-            </CardContent>
-            <CardFooter>
-              <Button>Action</Button>
-              <Button>Action</Button>
-            </CardFooter>
-          </Card>
+          <CardExample />
         </DemoContainer>
         <hr />
 
-        <h2 id="citation">Citation</h2>
+        <Heading as="h2" copy id="carousel">
+          Carousel
+        </Heading>
         <DemoContainer>
-          <Citation />
+          <CarouselExample />
         </DemoContainer>
         <hr />
 
-        <h2 id="code">Code</h2>
+        <Heading as="h2" copy id="citation">
+          Citation
+        </Heading>
         <DemoContainer>
-          <Code>npx run dev</Code>
-          <Code variant="elevated">yarn install</Code>
+          <CitationExample />
         </DemoContainer>
         <hr />
 
-        <h2 id="dropdown">Dropdown Menu</h2>
+        <Heading as="h2" copy id="code">
+          Code
+        </Heading>
+        <DemoContainer>
+          <CodeExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="code-block">
+          Code Block
+        </Heading>
+        <DemoContainer>
+          <CodeBlockExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="collapsible">
+          Collapsible
+        </Heading>
+        <DemoContainer>
+          <CollapsibleExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="drawer">
+          Drawer
+        </Heading>
+        <DemoContainer>
+          <DrawerExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="description-list">
+          Description List
+        </Heading>
+        <DemoContainer>
+          <DescriptionListExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="dropdown">
+          Dropdown Menu
+        </Heading>
         <DemoContainer>
           <DropdownExample />
         </DemoContainer>
+        <Heading as="h3" id="dropdown-checkbox">
+          With Checkboxes
+        </Heading>
+        <DemoContainer>
+          <DropdownCheckboxExample />
+        </DemoContainer>
+        <Heading as="h3" id="dropdown-radio">
+          With Radio Items
+        </Heading>
+        <DemoContainer>
+          <DropdownRadioExample />
+        </DemoContainer>
         <hr />
 
-        <Heading as="h2">Heading</Heading>
+        <Heading as="h2" copy id="heading">
+          Heading
+        </Heading>
         <DemoContainer>
           <HeadingExampleSize />
+        </DemoContainer>
+        <Heading as="h3">With subtitle</Heading>
+        <DemoContainer>
+          <HeadingExampleWithSubtitle />
         </DemoContainer>
         <Heading as="h3">Color</Heading>
         <DemoContainer>
           <HeadingExampleColor />
         </DemoContainer>
+        <hr />
 
-        <h2 id="input">Input</h2>
+        <Heading as="h2" copy id="hover-card">
+          Hover Card
+        </Heading>
+        <DemoContainer>
+          <HoverCardExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="inline-citation">
+          Inline Citation
+        </Heading>
+        <DemoContainer>
+          <InlineCitationExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="input">
+          Input
+        </Heading>
         <DemoContainer>
           <InputExample />
         </DemoContainer>
-        <hr />
-
-        <h2 id="kbd">Kbd</h2>
+        <Heading as="h3" id="input-group">
+          Input Group
+        </Heading>
         <DemoContainer>
-          <div className="flex gap-1">
-            <Kbd>⌘</Kbd> <Kbd>⇧</Kbd> <Kbd>P</Kbd>
-          </div>
+          <InputGroupExample />
         </DemoContainer>
         <hr />
 
-        <h2 id="paragraph">Paragraph</h2>
-        <DemoContainer>
-          <KeyValue label="hello">Hello</KeyValue>
-          <Paragraph variant="lead">
-            Lead - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
-            varius blandit sit amet non magna.
-          </Paragraph>
-          <Paragraph variant="prose">
-            Prose - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
-            varius blandit sit amet non magna.
-          </Paragraph>
-          <Paragraph variant="body">
-            Body - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
-            varius blandit sit amet non magna.
-          </Paragraph>
-          <Paragraph variant="small">
-            Body Small - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
-            varius blandit sit amet non magna.
-          </Paragraph>
-
-          <Separator />
-          <Paragraph variant="item">Item - Lorem ipsum dolor sit amet...</Paragraph>
-          <Paragraph variant="label">
-            Label - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
-            varius blandit sit amet non magna.
-          </Paragraph>
-          <Paragraph variant="caption">
-            Caption - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
-            varius blandit sit amet non magna.
-          </Paragraph>
-          <Paragraph variant="error">
-            Error - Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus
-            varius blandit sit amet non magna.
-          </Paragraph>
+        <Heading as="h2" copy id="item">
+          Item
+        </Heading>
+        <DemoContainer className="w-full">
+          <ItemExample />
         </DemoContainer>
         <hr />
 
-        <h2 className="" id="popover">
+        <Heading as="h2" copy id="kbd">
+          Kbd
+        </Heading>
+        <DemoContainer>
+          <KbdExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="label">
+          Label
+        </Heading>
+        <DemoContainer>
+          <LabelExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="navigation-menu">
+          Navigation Menu
+        </Heading>
+        <div className="not-prose my-6">
+          <NavigationMenuExample />
+        </div>
+        <hr />
+
+        <Heading as="h2" copy id="paragraph">
+          Paragraph
+        </Heading>
+        <DemoContainer>
+          <ParagraphExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="popover">
           Popover
-        </h2>
+        </Heading>
         <DemoContainer>
           <PopoverExample />
         </DemoContainer>
-        <h3 id="info-button">InfoButton</h3>
+        <Heading as="h3" id="info-button">
+          InfoButton
+        </Heading>
         <DemoContainer>
           <InfoButton>Some more info here</InfoButton>
         </DemoContainer>
         <hr />
 
-        <h2 id="spinner">
+        <Heading as="h2" copy id="select">
+          Select
+        </Heading>
+        <DemoContainer>
+          <SelectExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="separator">
+          Separator
+        </Heading>
+        <DemoContainer>
+          <SeparatorExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="slider">
+          Slider
+        </Heading>
+        <DemoContainer>
+          <SliderExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="sheet">
+          Sheet
+        </Heading>
+        <DemoContainer>
+          <SheetExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="skeleton">
+          Skeleton
+        </Heading>
+        <DemoContainer>
+          <SkeletonExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="spinner">
           Spinner{' '}
           <Badge variant="default" color="warning" className="ms-1">
             Experimental
           </Badge>
-        </h2>
+        </Heading>
         <DemoContainer>
-          <Spinner />
-          <Loader />
+          <SpinnerExample />
         </DemoContainer>
+        <hr />
 
-        <h2 id="switch">Switch</h2>
+        <Heading as="h2" copy id="switch">
+          Switch
+        </Heading>
         <DemoContainer>
-          <Switch>Hello</Switch>
+          <SwitchExample />
         </DemoContainer>
+        <hr />
 
-        <h2 id="tag">Tag</h2>
+        <Heading as="h2" copy id="tag">
+          Tag
+        </Heading>
         <DemoContainer>
-          <Tag
-            showAvatar
-            avatarInitials="M"
-            onClose={() => {
-              alert('action click');
-            }}
-          >
-            mga@email.com
-          </Tag>
+          <TagExample />
         </DemoContainer>
+        <hr />
 
-        <h2 id="tabs">Tabs</h2>
+        <Heading as="h2" copy id="tabs">
+          Tabs
+        </Heading>
         <DemoContainer>
-          <Tabs defaultValue="account">
-            <TabsList>
-              <TabsTrigger value="account">Account</TabsTrigger>
-              <TabsTrigger value="profile">Profile</TabsTrigger>
-              <TabsTrigger value="password">Password</TabsTrigger>
-
-              <TabsTrigger value="projects">Projects</TabsTrigger>
-            </TabsList>
-            <TabsContent value="account">Make changes to your account here.</TabsContent>
-            <TabsContent value="profile">Change your Profile here.</TabsContent>
-            <TabsContent value="password">Change your password here.</TabsContent>
-            <TabsContent value="projects">
-              <GalleryHorizontalIcon className="mx-auto size-6" />
-            </TabsContent>
-          </Tabs>
+          <TabsBasicExample />
         </DemoContainer>
-
         <DemoContainer>
           <TabsDemo />
         </DemoContainer>
         <hr />
 
-        <h2 id="toggle">Toggle</h2>
+        <Heading as="h2" copy id="textarea">
+          Textarea
+        </Heading>
+        <DemoContainer>
+          <TextareaExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="toggle">
+          Toggle
+        </Heading>
         <DemoContainer>
           <ToggleExample />
         </DemoContainer>
         <hr />
 
-        <h2 id="tooltip">Tooltip</h2>
+        <Heading as="h2" copy id="toggle-group">
+          Toggle Group
+        </Heading>
+        <DemoContainer>
+          <ToggleGroupExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="tooltip">
+          Tooltip
+        </Heading>
         <DemoContainer>
           <TooltipExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="toast">
+          Toast
+        </Heading>
+        <DemoContainer>
+          <ToastExample />
+        </DemoContainer>
+        <Heading as="h3" id="toast-action">
+          With Action
+        </Heading>
+        <DemoContainer>
+          <ToastWithActionExample />
+        </DemoContainer>
+        <Heading as="h3" id="toast-promise">
+          Promise
+        </Heading>
+        <DemoContainer>
+          <ToastPromiseExample />
+        </DemoContainer>
+        <Heading as="h3" id="toast-heights">
+          With Varying Heights
+        </Heading>
+        <DemoContainer>
+          <ToastVaryingHeightsExample />
+        </DemoContainer>
+        <Heading as="h3" id="toast-manual-dismiss">
+          Manual Dismiss
+        </Heading>
+        <DemoContainer>
+          <ToastManualDismissExample />
         </DemoContainer>
         <hr />
       </div>

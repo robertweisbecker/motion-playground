@@ -46,41 +46,41 @@ export default function StylesPage() {
     <>
       <div className="">
         <Heading as="h1">Theme</Heading>
-        <Heading as="h2" muted>
+        <Heading as="h2" sub>
           Shadow
         </Heading>
 
         <div className="grid grid-cols-7 gap-4">
-          <div className={`bg-card rounded-md p-10 shadow-2xs`}>
+          <div className={`rounded-md bg-card p-10 shadow-2xs`}>
             <Heading size="h4">2xs</Heading>
           </div>
-          <div className={`bg-card rounded-md p-10 shadow-xs`}>
+          <div className={`rounded-md bg-card p-10 shadow-xs`}>
             <Heading size="h4">xs</Heading>
           </div>
-          <div className={`bg-card rounded-md p-10 shadow-sm`}>
+          <div className={`rounded-md bg-card p-10 shadow-sm`}>
             <Heading size="h4">sm</Heading>
           </div>
-          <div className={`bg-card rounded-md p-10 shadow-md`}>
+          <div className={`rounded-md bg-card p-10 shadow-md`}>
             <Heading size="h4">md</Heading>
           </div>
-          <div className={`bg-card rounded-md p-10 shadow-lg`}>
+          <div className={`rounded-md bg-card p-10 shadow-lg`}>
             <Heading size="h4">lg</Heading>
           </div>
-          <div className={`bg-card rounded-md p-10 shadow-xl`}>
+          <div className={`rounded-md bg-card p-10 shadow-xl`}>
             <Heading size="h4">xl</Heading>
           </div>
-          <div className={`bg-card rounded-md p-10 shadow-2xl`}>
+          <div className={`rounded-md bg-card p-10 shadow-2xl`}>
             <Heading size="h4">2xl</Heading>
           </div>
-          <div className={`bg-card shadow-popover rounded-md p-10`}>
+          <div className={`rounded-md bg-card p-10 shadow-popover`}>
             <Heading size="h4">Popover</Heading>
           </div>
-          <div className="bg-elevated shadow-popover flex flex-col rounded-lg border border-transparent py-1 transition-all duration-75 dark:border-neutral-800 dark:bg-[#1E1E1E]">
+          <div className="bg-elevated flex flex-col rounded-lg border border-transparent py-1 shadow-popover transition-all duration-75 dark:border-neutral-800 dark:bg-[#1E1E1E]">
             <p className="mx-2 text-xs/6">Label</p>
             <div
               className={cn(
                 'group relative mx-1 flex h-8.5 cursor-pointer items-center rounded-[5px] border-none px-3 text-sm font-medium outline-none',
-                'shadow-dropdown-item bg-black/5 dark:bg-white/10',
+                'bg-black/5 shadow-dropdown-item dark:bg-white/10',
               )}
             >
               Dropdown
@@ -100,9 +100,15 @@ export default function StylesPage() {
           {hues.map((hue) => (
             <div key={hue} className="flex w-full items-center gap-1">
               <p className="w-1/3 font-mono text-[11px] leading-none">{hue}</p>
-              <div className="bg-muted grid w-full grid-cols-13 dark:bg-white">
-                <div className={cn(swatchClass)} style={{ background: `var(--color-${hue}-25)` }} />
-                <div className={cn(swatchClass)} style={{ background: `var(--color-${hue}-50)` }} />
+              <div className="grid w-full grid-cols-13 bg-muted dark:bg-white">
+                <div
+                  className={cn(swatchClass)}
+                  style={{ background: `var(--color-${hue}-25)` }}
+                />
+                <div
+                  className={cn(swatchClass)}
+                  style={{ background: `var(--color-${hue}-50)` }}
+                />
                 <div
                   className={cn(swatchClass)}
                   style={{ background: `var(--color-${hue}-100)` }}
@@ -152,8 +158,10 @@ export default function StylesPage() {
           ))}
           {neutrals.map((neutral) => (
             <div key={neutral} className="flex w-full items-center gap-1">
-              <p className="w-1/3 font-mono text-[11px] leading-none">{neutral}</p>
-              <div className="bg-black-500 grid w-full grid-cols-14">
+              <p className="w-1/3 font-mono text-[11px] leading-none">
+                {neutral}
+              </p>
+              <div className="grid w-full grid-cols-14 bg-black-500">
                 <div
                   className={cn(swatchClass)}
                   style={{ background: `var(--color-${neutral}-25)` }}

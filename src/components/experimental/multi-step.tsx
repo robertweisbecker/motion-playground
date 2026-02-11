@@ -5,8 +5,15 @@ import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 // import useMeasure from "react-use-measure";
 import { useResizeObserver } from 'usehooks-ts';
 import styles from './multi-step.module.css';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../ui/card';
 import { Button } from '../ui/button';
+import { DemoContainer } from '../demo-container';
 
 // return (
 //   <motion.ul animate="visible">
@@ -44,8 +51,8 @@ export function MultiStepComponent() {
           <>
             <h2 className={styles.heading}>This is step one</h2>
             <p>
-              Usually in this step we would explain why this thing exists and what it does. Also, we
-              would show a button to go to the next step.
+              Usually in this step we would explain why this thing exists and
+              what it does. Also, we would show a button to go to the next step.
             </p>
             <div className={styles.skeletons}>
               <div className={styles.skeleton} style={{ width: 256 }} />
@@ -60,8 +67,8 @@ export function MultiStepComponent() {
           <>
             <h2 className={styles.heading}>This is step two</h2>
             <p>
-              Usually in this step we would explain why this thing exists and what it does. Also, we
-              would show a button to go to the next step.
+              Usually in this step we would explain why this thing exists and
+              what it does. Also, we would show a button to go to the next step.
             </p>
             <div className={styles.skeletons}>
               <div className={styles.skeleton} style={{ width: 256 }} />
@@ -75,8 +82,8 @@ export function MultiStepComponent() {
           <>
             <h2 className={styles.heading}>This is step three</h2>
             <p>
-              Usually in this step we would explain why this thing exists and what it does. Also, we
-              would show a button to go to the next step.
+              Usually in this step we would explain why this thing exists and
+              what it does. Also, we would show a button to go to the next step.
             </p>
             <div className={styles.skeletons}>
               <div className={styles.skeleton} style={{ width: 256 }} />
@@ -91,11 +98,18 @@ export function MultiStepComponent() {
   }, [currentStep]);
 
   return (
-    <Card>
+    <DemoContainer>
       <MotionConfig transition={{ duration: 0.5, type: 'spring', bounce: 0 }}>
-        <motion.div animate={{ height: height }} className={styles['multi-step-wrapper']}>
+        <motion.div
+          animate={{ height: height }}
+          className={styles['multi-step-wrapper']}
+        >
           <div className={styles['multi-step-inner']} ref={ref}>
-            <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+            <AnimatePresence
+              mode="popLayout"
+              custom={direction}
+              initial={false}
+            >
               <motion.div
                 key={currentStep}
                 variants={variants}
@@ -141,7 +155,7 @@ export function MultiStepComponent() {
           </div>
         </motion.div>
       </MotionConfig>
-    </Card>
+    </DemoContainer>
   );
 }
 
@@ -167,8 +181,8 @@ export function Wizard() {
           <>
             <h2 className={styles.heading}>This is step one</h2>
             <p>
-              Usually in this step we would explain why this thing exists and what it does. Also, we
-              would show a button to go to the next step.
+              Usually in this step we would explain why this thing exists and
+              what it does. Also, we would show a button to go to the next step.
             </p>
             <div className={styles.skeletons}>
               <div className={styles.skeleton} style={{ width: 256 }} />
@@ -183,8 +197,8 @@ export function Wizard() {
           <>
             <h2 className={styles.heading}>This is step two</h2>
             <p>
-              Usually in this step we would explain why this thing exists and what it does. Also, we
-              would show a button to go to the next step.
+              Usually in this step we would explain why this thing exists and
+              what it does. Also, we would show a button to go to the next step.
             </p>
             <div className={styles.skeletons}>
               <div className={styles.skeleton} style={{ width: 256 }} />
@@ -198,8 +212,8 @@ export function Wizard() {
           <>
             <h2 className={styles.heading}>This is step three</h2>
             <p>
-              Usually in this step we would explain why this thing exists and what it does. Also, we
-              would show a button to go to the next step.
+              Usually in this step we would explain why this thing exists and
+              what it does. Also, we would show a button to go to the next step.
             </p>
             <div className={styles.skeletons}>
               <div className={styles.skeleton} style={{ width: 256 }} />
@@ -240,12 +254,13 @@ export function Wizard() {
                   {showStep === 0 && <p>This is the first paragraph....</p>}
                   {showStep === 1 && (
                     <p>
-                      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla
-                      vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus, nisi
-                      erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus
-                      ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                      sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non
-                      magna.
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur et. Nulla vitae elit libero, a pharetra augue.
+                      Duis mollis, est non commodo luctus, nisi erat porttitor
+                      ligula, eget lacinia odio sem nec elit. Fusce dapibus,
+                      tellus ac cursus commodo, tortor mauris condimentum nibh,
+                      ut fermentum massa justo sit amet risus. Maecenas sed diam
+                      eget risus varius blandit sit amet non magna.
                     </p>
                   )}
                 </motion.div>

@@ -1,43 +1,48 @@
 .root {
-  --blur: 4px;
-  --stop: 25%;
+  --fader-blur: 4px;
+  --fader-stop: 25%;
+  border-radius: inherit;
   position: absolute;
   pointer-events: none;
   user-select: none;
-  backdrop-filter: blur(var(--blur));
+  backdrop-filter: blur(var(--fader-blur, 4px));
 
   &[data-side='top'] {
-    background: linear-gradient(to top, transparent, var(--background));
+    background: linear-gradient(to top, transparent, var(--fader-bg));
+    top: 0;
     mask-image: linear-gradient(
       to bottom,
-      var(--background) var(--stop),
+      var(--fader-bg) var(--fader-stop),
       transparent
     );
   }
 
   &[data-side='left'] {
-    background: linear-gradient(to left, transparent, var(--background));
+    background: linear-gradient(to left, transparent, var(--fader-bg));
+    left: 0;
     mask-image: linear-gradient(
       to right,
-      var(--background) var(--stop),
+      var(--fader-bg) var(--fader-stop),
       transparent
     );
   }
 
   &[data-side='right'] {
-    background: linear-gradient(to right, transparent, var(--background));
+    background: linear-gradient(to right, transparent, var(--fader-bg));
+    right: 0;
     mask-image: linear-gradient(
       to left,
-      var(--background) var(--stop),
+      var(--fader-bg) var(--fader-stop),
       transparent
     );
   }
 
   &[data-side='bottom'] {
-    background: linear-gradient(to bottom, transparent, var(--background));
+    background: linear-gradient(to bottom, transparent, var(--fader-bg));
+    bottom: 0;
     mask-image: linear-gradient(
       to top,
-      var(--background) var(--stop),
+      var(--fader-bg) var(--fader-stop),
       transparent
     );
   }

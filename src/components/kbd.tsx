@@ -64,11 +64,11 @@ export function Kbd({ children, size = 'md' }: KbdProps) {
       // }}
       className={cn([
         // 'from-background to-secondary bg-gradient-to-b from-25% text-shadow-[0_0px_1px] text-shadow-white/5',
-        'bg-glass-light',
+        'bg-glass-light bg-blend-multiply',
         // 'dark:shadow-glass bg-white/20 dark:border-black/50 dark:bg-gray-600/5',
-        'inline-flex w-auto flex-none items-center justify-center gap-1 pt-px pb-0 align-middle text-sm font-normal tracking-widest whitespace-nowrap tabular-nums select-none',
-        'text-secondary-foreground font-sans uppercase',
-        size === 'sm' && 'h-4.5 min-w-4 rounded-sm px-0.5 py-px text-[0.625rem]',
+        'inline-flex w-auto flex-none items-center justify-center gap-1 pt-px pb-0 align-middle text-sm font-normal whitespace-nowrap tabular-nums select-none',
+        'text-center font-sans text-foreground/72 uppercase [word-spacing:0.125em]',
+        size === 'sm' && 'h-4.5 min-w-4 rounded px-0.5 py-px text-2xs',
         size === 'md' && 'h-6 min-w-5 rounded-sm px-1',
         size === 'lg' && 'h-7 min-w-6 rounded-md px-1.5',
       ])}

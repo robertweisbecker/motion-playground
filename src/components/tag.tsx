@@ -17,24 +17,22 @@ export function Tag({
   showAvatar,
   avatarInitials,
   onClose,
+  isSelected,
   ...props
 }: TagProps) {
   return (
     <span
       className={cn(
-        'text-md/5 inline-flex items-center gap-x-1.5 rounded-md px-1.5 py-1 font-[450] shadow-sm sm:text-sm/5',
-        // 'bg-gray-400/20',
-        // 'text-gray-600 group-data-hover:bg-gray-400/30',
-        // 'dark:bg-gray-400/10 dark:text-gray-300 dark:group-data-hover:bg-gray-400/15',
-        'bg-black-alpha-75',
-        'text-neutral-600 group-hover:bg-gray-600',
-        // 'dark:bg-gray-400/10 dark:text-gray-300 dark:group-data-hover:bg-gray-400/15',
+        'inline-flex w-fit items-center gap-x-1.5 rounded-sm px-1.5 py-1 text-sm font-[450] shadow-2xs outline-[0.5px] outline-muted',
+        'bg-muted text-foreground dark:bg-neutral-700',
         'forced-colors:outline',
+        isSelected && 'bg-secondary text-secondary-foreground outline-primary',
+        className,
       )}
       {...props}
     >
       {showAvatar && (
-        <Avatar size={24} className="-my-0.5 -ms-1" radius={4}>
+        <Avatar size={24} className="-my-0.5 -ms-1" radius={4} inset={1.5}>
           <AvatarFallback>{avatarInitials}</AvatarFallback>
           <AvatarImage></AvatarImage>
         </Avatar>
@@ -43,9 +41,9 @@ export function Tag({
 
       {onClose && (
         <Button
-          size="xs"
+          size="icon-xs"
           iconOnly
-          className="-mx-1 -my-2 size-5 w-5 text-current"
+          className="-mx-1 -my-2 text-current"
           variant="ghost"
           onClick={onClose}
         >

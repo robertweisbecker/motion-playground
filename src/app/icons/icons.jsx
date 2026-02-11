@@ -1,6 +1,13 @@
 export function SidebarIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="size-4"
+    >
       <path
         d="M16.7847 2.97681C18.2909 2.97691 19.0513 3.74551 19.0513 5.22876V14.6516C19.0512 16.127 18.2908 16.8956 16.7847 16.8958H3.31885C1.82031 16.8957 1.05139 16.1347 1.05127 14.6516V5.22876C1.05127 3.73776 1.82019 2.97684 3.31885 2.97681H16.7847ZM3.33447 3.92993C2.47367 3.92993 2.0044 4.39081 2.00439 5.27466V14.5979C2.00455 15.4892 2.47381 15.9426 3.33447 15.9426H6.77002V3.92993H3.33447ZM7.69971 15.9426H16.769C17.6143 15.9426 18.098 15.4891 18.0981 14.5979V5.27466C18.0981 4.39082 17.6144 3.92995 16.769 3.92993H7.69971V15.9426ZM5.30225 10.1555C5.49422 10.1557 5.65576 10.317 5.65576 10.509C5.65554 10.6932 5.49409 10.8545 5.30225 10.8547H3.48779C3.29588 10.8546 3.12669 10.6933 3.12646 10.509C3.12646 10.317 3.29575 10.1557 3.48779 10.1555H5.30225ZM5.30225 8.12622C5.49422 8.12643 5.65575 8.28759 5.65576 8.47192C5.65576 8.66394 5.49422 8.82523 5.30225 8.82544H3.48779C3.29575 8.8253 3.12646 8.66399 3.12646 8.47192C3.12647 8.28755 3.29575 8.12636 3.48779 8.12622H5.30225ZM5.30225 6.08911C5.49413 6.08932 5.65561 6.25073 5.65576 6.44263C5.65576 6.62696 5.49422 6.79592 5.30225 6.79614H3.48779C3.29575 6.796 3.12646 6.62701 3.12646 6.44263C3.12663 6.25068 3.29584 6.08925 3.48779 6.08911H5.30225Z"
         fill="currentColor"
@@ -75,7 +82,12 @@ export function GitHubIcon() {
 
 export function LinkOutIcon() {
   return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="my-0.5 size-4 flex-none">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+      className="my-0.5 size-4 flex-none"
+    >
       <rect
         width="12"
         height="12"
@@ -116,7 +128,13 @@ export function MarkdownIcon(props) {
 
 export function MonitorIcon(props) {
   return (
-    <svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width={16}
+      height={16}
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       {/* <rect width={16} height={16} fill="white"  /> */}
       <path
         d="M12.5 4V9C12.5 9.27614 12.2761 9.5 12 9.5H4C3.72386 9.5 3.5 9.27614 3.5 9V4C3.5 3.72386 3.72386 3.5 4 3.5H12C12.2761 3.5 12.5 3.72386 12.5 4Z"
@@ -124,7 +142,14 @@ export function MonitorIcon(props) {
         strokeOpacity={1}
         strokeLinecap="square"
       />
-      <rect x="6.5" y="10.5" width={3} height={2} stroke="currentColor" strokeOpacity={1} />
+      <rect
+        x="6.5"
+        y="10.5"
+        width={3}
+        height={2}
+        stroke="currentColor"
+        strokeOpacity={1}
+      />
       <path
         d="M5 13C5 12.4477 5.44772 12 6 12H10C10.5523 12 11 12.4477 11 13H5Z"
         fill="currentColor"
@@ -136,7 +161,13 @@ export function MonitorIcon(props) {
 
 export function LaptopIcon(props) {
   return (
-    <svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width={16}
+      height={16}
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M12.5 10V5C12.5 4.17157 11.8284 3.5 11 3.5H5C4.17157 3.5 3.5 4.17157 3.5 5V10"
         stroke="currentColor"
@@ -158,7 +189,13 @@ export function LaptopIcon(props) {
 
 export function LaptopIconDuotone(props) {
   return (
-    <svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width={16}
+      height={16}
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M12.5 4.5V9.75L13.46 10.47C13.4852 10.4889 13.5 10.5185 13.5 10.55V11.5C13.5 12.0523 13.0523 12.5 12.5 12.5H3.5C2.94771 12.5 2.5 12.0523 2.5 11.5V10.55C2.5 10.5185 2.51482 10.4889 2.54 10.47L3.5 9.75V4.5C3.5 3.94772 3.94772 3.5 4.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5Z"
         stroke="currentColor"
@@ -166,7 +203,11 @@ export function LaptopIconDuotone(props) {
       />
       {/* <path d="M5.5 5.5H10.5V8.5H5.5V5.5Z" stroke="currentColor" strokeLinecap="round" /> */}
       <path opacity="0.5" d="M5 5H11V9H5V5Z" fill="currentColor" />
-      <path opacity="0.5" d="M13 11H3V10.75L4 10H12L13 10.75V11Z" fill="currentColor" />
+      <path
+        opacity="0.5"
+        d="M13 11H3V10.75L4 10H12L13 10.75V11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }

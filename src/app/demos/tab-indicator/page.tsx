@@ -12,7 +12,7 @@ export default function Demo1() {
   return (
     <div className="prose max-w-4xl">
       <div>
-        <Heading muted={true} as="h1">
+        <Heading sub as="h1">
           Demo: Animated Tabs
         </Heading>
         <Paragraph variant={'prose'} mt={false}>

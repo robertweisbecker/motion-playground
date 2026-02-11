@@ -17,9 +17,12 @@ function Separator({
       decorative={decorative}
       orientation={orientation}
       className={cn(
-        'bg-border-alpha min-w-0',
-        'data-[orientation=horizontal]:my-1 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full',
-        'data-[orientation=vertical]:mx-2 data-[orientation=vertical]:my-auto data-[orientation=vertical]:max-h-full data-[orientation=vertical]:min-h-[calc(100%-0.5em)] data-[orientation=vertical]:w-px',
+        // 'min-w-0 bg-border-alpha dark:border-[groove]',
+        // 'data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=horizontal]:[&:not([class*="my-"])]:my-2',
+        // 'data-[orientation=vertical]:mx-2 data-[orientation=vertical]:my-auto data-[orientation=vertical]:h-[calc(100%-0.5em)] data-[orientation=vertical]:max-h-full data-[orientation=vertical]:w-px',
+
+        'min-w-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:min-h-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch',
+
         className,
       )}
       {...props}

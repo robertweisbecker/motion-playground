@@ -36,9 +36,10 @@
   width: 356px;
   height: 74px;
   background: var(--card);
-  border-color: var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  /* outline: 1px solid var(--border-alpha);
+  outline-offset: -1px; */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   padding: calc(var(--spacing) * 4);
   transition:
     scale 0.2s,

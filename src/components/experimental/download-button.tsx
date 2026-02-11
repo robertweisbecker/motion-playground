@@ -32,7 +32,9 @@ export function DownloadButton({
   function IconContainer() {
     return (
       <span className={styles.IconWrapper}>
-        <span className={cn(`${styles.Icon}`)}>{hoverIcon ? hoverIcon : icon}</span>
+        <span className={cn(`${styles.Icon}`)}>
+          {hoverIcon ? hoverIcon : icon}
+        </span>
         <span className={cn(`${styles.Icon}`)}>{icon}</span>
       </span>
     );
@@ -76,13 +78,19 @@ export function AnimatedButton({
   ...props
 }: DownloadButtonProps) {
   const baseIconClasses =
-    'col-start-1 row-start-1 duration-150 ease-out transition-[transform,scale,opacity,filter] origin-center group-active/button:scale-75';
-  const baseLabelClasses = ' ease transition-[filter,blur,opacity] duration-100';
+    'col-start-1 row-start-1 grid duration-150 ease-out transition-[transform,scale,opacity,filter] origin-center group-active/button:scale-75';
+  const baseLabelClasses =
+    ' ease transition-[filter,blur,opacity] duration-100';
   const hiddenLabelClasses = ['opacity-0', 'scale-100', 'blur-xs'];
   const visibleLabelClasses = ['opacity-100', 'scale-100', 'blur-none'];
 
   const iconContainer = (
-    <div className={cn('group/icon grid', iconSide === 'end' && 'ml-auto')}>
+    <div
+      className={cn(
+        'group/icon grid size-[1em] place-items-center',
+        iconSide === 'end' && 'ml-auto',
+      )}
+    >
       <span
         className={cn(
           baseIconClasses,
@@ -124,7 +132,11 @@ export function AnimatedButton({
     );
   } else
     return (
-      <Toggle className={cn('group/button relative')} size="lg" data-direction={direction}>
+      <Toggle
+        className={cn('group/button relative')}
+        size="lg"
+        data-direction={direction}
+      >
         {iconSide === 'start' && iconContainer}
         <div className="relative">
           {activeLabel && (
@@ -133,7 +145,9 @@ export function AnimatedButton({
                 baseLabelClasses,
                 'absolute left-0',
                 hiddenLabelClasses,
-                visibleLabelClasses.map((value) => `group-data-[state=on]/button:${value}`),
+                visibleLabelClasses.map(
+                  (value) => `group-data-[state=on]/button:${value}`,
+                ),
               )}
             >
               {activeLabel}
@@ -147,7 +161,9 @@ export function AnimatedButton({
               activeLabel && [
                 'after:invisible after:block after:h-0 after:content-[attr(data-content)]',
                 // 'group-data-[state=on]/button:absolute group-data-[state=on]/button:scale-50 group-data-[state=on]/button:opacity-0 group-data-[state=on]/button:blur-xs',
-                hiddenLabelClasses.map((value) => `group-data-[state=on]/button:${value}`),
+                hiddenLabelClasses.map(
+                  (value) => `group-data-[state=on]/button:${value}`,
+                ),
                 // visibleLabelClasses.map((value) => `group-data-[state=off]/button:${value}`),
               ],
             )}
