@@ -41,7 +41,7 @@ export default function TimelinePage() {
           <Collapsible
             open={isOpen}
             onOpenChange={setIsOpen}
-            className="relative before:absolute before:inset-1 before:-z-1 before:rounded-md before:bg-transparent before:transition-[background-color,inset] before:duration-200 before:ease-out-expo data-[state=open]:before:-inset-2 data-[state=open]:before:bg-accent/50"
+            className="relative before:absolute before:inset-1 before:-z-1 before:rounded-md before:bg-transparent before:transition-[background-color,inset] before:duration-200 before:ease-out-expo data-[state=open]:before:-inset-2 data-[state=open]:before:bg-accent"
           >
             <h3 className="font-medium">
               <CollapsibleTrigger className="flex cursor-pointer items-center gap-1 underline decoration-current/48 decoration-1 underline-offset-5 hover:decoration-current data-[state=open]:decoration-transparent">

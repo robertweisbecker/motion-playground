@@ -12,8 +12,7 @@ const textVariants = cva([''], {
       body: 'text-sm text-muted-foreground leading-6 not-prose',
       prose: 'text-base text-foreground leading-8 mt-2 mb-4',
       item: 'text-sm/4 font-[450] text-foreground not-prose',
-      label:
-        'text-sm/4 leading-none font-medium text-foreground not-prose line-clamp-1',
+      label: 'text-sm/4 font-medium text-foreground not-prose line-clamp-1',
       small: 'text-muted-foreground text-xs leading-6 not-prose',
       caption: 'text-muted-foreground text-2xs not-prose',
       error:

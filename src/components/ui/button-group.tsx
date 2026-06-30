@@ -4,15 +4,15 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
-import { buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 
 const buttonGroupVariants = cva(
-  "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2",
+  "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2 [&>button[data-variant=outline]]:mask-[inset(1px_1px_0_1px)]",
   {
     variants: {
       orientation: {
         horizontal:
-          '[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none',
+          'data-[variant=elevated]:gap-px [&>button:not(:first-child)]:rounded-l-none [&>*:not(:last-child)]:rounded-r-none [&>[data-variant=outline]]:not-first:-ms-px!  [&>[data-variant=outline]]:not-first:not-last:[clip-path:inset(0_0.5px)] [&>[data-variant=outline]]:first:[clip-path:inset(0_.5px_0_0)] [&>[data-variant=outline]]:last:[clip-path:inset(0_0_0_.5px)] [&_button]:first:origin-right [&_button]:last:origin-left',
         vertical:
           'flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none',
       },
@@ -23,11 +23,55 @@ const buttonGroupVariants = cva(
   },
 );
 
-type ButtonSize = VariantProps<typeof buttonVariants>['size'];
+const ButtonGroupContext = React.createContext<
+  VariantProps<typeof buttonVariants>
+>({
+  size: 'md',
+  variant: 'default',
+  shape: 'default',
+});
 
-const ButtonGroupContext = React.createContext<{
-  size?: ButtonSize;
-}>({});
+function ButtonGroup({
+  className,
+  variant,
+  size,
+  shape,
+  orientation = 'horizontal',
+  children,
+  ...props
+}: React.ComponentProps<'div'> &
+  VariantProps<typeof buttonGroupVariants> &
+  VariantProps<typeof buttonVariants>) {
+  const injectedChildren = React.Children.map(children, (child) => {
+    if (!React.isValidElement(child) || child.type !== Button) return child;
+    const prev = child.props as {
+      variant?: unknown;
+      size?: unknown;
+      shape?: unknown;
+    };
+    return React.cloneElement(child, {
+      variant: prev.variant ?? variant,
+      size: prev.size ?? size,
+      shape: prev.shape ?? shape,
+    } as React.ComponentProps<typeof Button>);
+  });
+
+  return (
+    <div
+      role="group"
+      data-slot="button-group"
+      data-orientation={orientation}
+      data-size={size}
+      data-variant={variant}
+      className={cn(buttonGroupVariants({ orientation }), className)}
+      {...props}
+    >
+      <ButtonGroupContext.Provider value={{ size, variant, shape }}>
+        {injectedChildren}
+      </ButtonGroupContext.Provider>
+    </div>
+  );
+}
 
 const buttonGroupTextVariants = cva(
   'flex items-center border bg-background text-muted-foreground ',
@@ -68,48 +112,25 @@ const buttonGroupTextVariants = cva(
   },
 );
 
-function ButtonGroup({
-  className,
-  orientation,
-  size,
-  children,
-  ...props
-}: React.ComponentProps<'div'> &
-  VariantProps<typeof buttonGroupVariants> & {
-    size?: ButtonSize;
-  }) {
-  return (
-    <div
-      role="group"
-      data-slot="button-group"
-      data-orientation={orientation}
-      data-size={size}
-      className={cn(buttonGroupVariants({ orientation }), className)}
-      {...props}
-    >
-      <ButtonGroupContext.Provider value={{ size }}>
-        {children}
-      </ButtonGroupContext.Provider>
-    </div>
-  );
-}
-
 function ButtonGroupText({
   className,
   asChild = false,
-  size,
+  size = 'md',
   ...props
 }: React.ComponentProps<'div'> & {
   asChild?: boolean;
-  size?: ButtonSize;
+  size?: VariantProps<typeof buttonVariants>['size'];
 }) {
   const context = React.useContext(ButtonGroupContext);
-  const sizeFallback = context.size || size || 'md';
+  const sizeFallback = context.size || size;
   const Comp = asChild ? Slot : 'div';
 
   return (
     <Comp
-      className={cn(buttonGroupTextVariants({ size: sizeFallback }), className)}
+      className={cn(
+        buttonGroupTextVariants({ size: sizeFallback ?? size }),
+        className,
+      )}
       {...props}
     />
   );
@@ -140,5 +161,3 @@ export {
   ButtonGroupContext,
   buttonGroupVariants,
 };
-
-export type { ButtonSize };

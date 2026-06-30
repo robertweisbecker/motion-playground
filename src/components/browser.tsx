@@ -9,6 +9,8 @@ import {
 import { UserIcon } from '@heroicons/react/24/solid';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback } from './ui/avatar';
+import { ButtonGroup } from './ui/button-group';
+import { InfoButton } from './info-button';
 
 export function Browser({
   children,
@@ -18,47 +20,49 @@ export function Browser({
   title?: string;
 }) {
   return (
-    <div className="aspect-video min-h-96 w-full overflow-hidden rounded-2xl bg-background bg-clip-padding shadow-lg outline outline-border-alpha dark:-outline-offset-1">
-      <div className="flex flex-wrap items-center gap-x-2 border-b border-outline bg-card px-1.5 py-1 md:flex-nowrap md:p-2">
-        <div className="flex gap-1.5 self-start ps-2 pt-2 md:pt-3">
-          <span className="size-2.5 rounded-full bg-red-300 inset-ring inset-ring-border-alpha" />
-          <span className="size-2.5 rounded-full bg-yellow-200 inset-ring inset-ring-border-alpha" />
-          <span className="size-2.5 rounded-full bg-green-300 inset-ring inset-ring-border-alpha" />
+    <div className="aspect-video min-h-96 w-full overflow-hidden rounded-2xl bg-background bg-clip-padding shadow-lg outline outline-outline dark:-outline-offset-1">
+      <div className="flex flex-wrap items-center gap-x-2 border-b border-outline px-1.5 py-1 md:flex-nowrap md:p-2">
+        <div className="flex gap-1.5 self-start ps-2 pt-2">
+          <span className="size-3 rounded-full bg-red-300 inset-ring inset-ring-border-alpha" />
+          <span className="size-3 rounded-full bg-yellow-200 inset-ring inset-ring-border-alpha" />
+          <span className="size-3 rounded-full bg-green-300 inset-ring inset-ring-border-alpha" />
         </div>
-        <div className="hidden w-full flex-1 items-center gap-1.5 md:flex">
-          <Button variant="invisible" size="xs" iconOnly shape="pill">
-            <ChevronLeftIcon className="size-3 text-icon" />
+        <div className="flex flex-1 items-center max-md:hidden">
+          <Button iconOnly size="icon-sm" variant="ghost" shape="pill">
+            <ChevronLeftIcon />
           </Button>
-          <Button variant="invisible" size="xs" iconOnly shape="pill">
-            <ChevronRightIcon className="size-3 text-icon" />
+          <Button iconOnly size="icon-sm" variant="ghost" shape="pill">
+            <ChevronRightIcon />
           </Button>
-          <Button variant="invisible" size="xs" iconOnly shape="pill">
-            <ArrowPathIcon className="size-3 text-icon" />
+          <Button iconOnly size="icon-sm" variant="ghost" shape="pill">
+            <ArrowPathIcon />
           </Button>
         </div>
-        <div className="order-last flex w-full basis-full items-center justify-between gap-1 rounded-full bg-muted p-1 md:order-[initial] md:basis-auto dark:ring dark:ring-outline">
-          <Paragraph variant="caption" className="flex-1 px-2">
+        <div className="order-last flex w-full basis-full items-center justify-between gap-1 rounded-full bg-sidebar p-0.5 md:order-[initial] md:basis-auto dark:ring dark:ring-outline">
+          <Button iconOnly size="icon-xs" variant="ghost" shape="pill" asChild>
+            <InfoButton>This is a tooltip</InfoButton>
+          </Button>
+          <Paragraph variant="caption" className="flex-1 px-2 text-center">
             {title}
           </Paragraph>
-          <Button variant="invisible" size="xs" iconOnly shape="pill">
-            <StarIcon className="size-3 text-icon" />
-          </Button>
-          <Button variant="invisible" size="xs" iconOnly shape="pill">
-            <BookmarkIcon className="size-3 text-icon" />
+
+          <Button iconOnly size="icon-xs" variant="ghost" shape="pill">
+            <StarIcon />
           </Button>
         </div>
-        <Avatar
-          size={24}
-          inset={2}
-          radius={12}
-          className="order-2 my-1 ms-auto shrink-0 shadow-none md:order-last md:ms-0"
-        >
-          <AvatarFallback>
-            <UserIcon className="size-3 text-icon" />
-          </AvatarFallback>
-        </Avatar>
+        <Button iconOnly size="icon-sm" variant="ghost" shape="pill">
+          <Avatar
+            size={24}
+            radius={14}
+            className="order-2 ms-auto shrink-0 shadow-none md:order-last md:ms-0"
+          >
+            <AvatarFallback>
+              <UserIcon className="size-3 text-icon" />
+            </AvatarFallback>
+          </Avatar>
+        </Button>
       </div>
-      <div className="h-full w-full overflow-y-scroll">{children}</div>
+      <div className="h-full w-full overflow-y-scroll bg-card">{children}</div>
     </div>
   );
 }

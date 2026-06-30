@@ -148,6 +148,9 @@ const collapsibleContentVariants = {
   },
 };
 
+const sidebarIconClasses =
+  'grid-stack size-5 -translate-x-px rounded-[5px] bg-sidebar-accent text-icon in-data-[active=true]:bg-sidebar-primary in-data-[active=true]:text-sidebar-primary-foreground in-data-[active=true]:shadow-button-highlight';
+
 export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const CollapseVariants = {
     collapsed: { opacity: 0, height: null },
@@ -167,9 +170,9 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Sidebar {...props} variant="inset">
+    <Sidebar {...props}>
       <SidebarHeader className="md:sr-only">
-        <span className="text-sm font-medium">bob.fyi/motion-playground</span>
+        <span className="text-sm font-medium">Playground</span>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
@@ -196,12 +199,7 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                           >
                             <Link href={subItem.url}>
                               {subItem.icon ? (
-                                <span
-                                  className={cn(
-                                    'grid-stack size-5 -translate-x-px rounded-[5px] bg-accent text-icon',
-                                    'in-data-[active=true]:bg-current/1 in-data-[active=true]:text-sidebar-foreground in-data-[active=true]:shadow-button-highlight',
-                                  )}
-                                >
+                                <span className={cn(sidebarIconClasses)}>
                                   {subItem.icon}
                                 </span>
                               ) : (
@@ -284,12 +282,7 @@ export function SideNav({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     // className="data-[active=true]:[&>span]:bg-primary data-[active=true]:[&>span]:text-primary-foreground data-[active=true]:[&>span]:shadow-button-highlight"
                   >
                     <Link href={item.url}>
-                      <span
-                        className={cn(
-                          'grid-stack size-5 -translate-x-px rounded-[5px] bg-muted text-icon',
-                          'in-data-[active=true]:bg-sidebar-accent in-data-[active=true]:text-sidebar-accent-foreground in-data-[active=true]:shadow-button',
-                        )}
-                      >
+                      <span className={cn(sidebarIconClasses)}>
                         {item.icon}
                       </span>
                       {item.title}

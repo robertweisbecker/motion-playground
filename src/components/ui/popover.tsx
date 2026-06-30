@@ -62,7 +62,7 @@ function PopoverContent({
           // Spacing
           'p-3',
           // Container
-          'rounded-2xl',
+          'rounded-xl',
           'bg-popover text-popover-foreground',
           // Shadows
           'shadow-[0_4px_64px_14px_rgb(0_0_0_/_8%),_var(--shadow-sm)] drop-shadow-xl dark:inset-shadow-outlined dark:drop-shadow-black-alpha-500',

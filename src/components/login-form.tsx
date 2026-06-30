@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from './ui/separator';
 import { EyeClosedIcon, EyeIcon } from '@phosphor-icons/react';
+import Image from 'next/image';
 import { Toggle } from './ui/toggle';
 import React from 'react';
 
@@ -96,11 +97,13 @@ export function LoginForm({
             Log in with Apple
           </Button>
           <Button className="w-full">
-            <img
-              width="14"
-              height="14"
-              className="icon size-3"
+            <Image
+              width={14}
+              height={14}
+              className="icon size-3.5"
               src="https://cdn.brandfetch.io/id6O2oGzv-/theme/dark/symbol.svg?c=1bxid64Mup7aczewSAYMX&t=1755835725776"
+              alt=""
+              aria-hidden
             />
             Log in with Google
           </Button>

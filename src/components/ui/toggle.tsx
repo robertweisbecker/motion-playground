@@ -20,8 +20,8 @@ const toggleVariants = cva(
       variant: {
         default: [
           'text-muted-foreground bg-none',
-          'hover:text-accent-foreground hover:bg-accent',
-          'data-toggled:bg-muted data-toggled:text-foreground',
+          'hover:text-accent-foreground hover:bg-accent-hover',
+          'data-toggled:bg-accent-active data-toggled:text-foreground',
         ],
         ghost: [
           'text-muted-foreground',
@@ -31,7 +31,7 @@ const toggleVariants = cva(
         outline: [
           'border border-border text-muted-foreground',
           'hover:bg-accent hover:text-foreground hover:not-data-toggled:border-input',
-          'data-toggled:bg-secondary data-toggled:text-secondary-foreground data-toggled:border-ring data-toggled:rounded-md',
+          'data-toggled:bg-secondary data-toggled:text-secondary-foreground data-toggled:border-primary data-toggled:rounded-md',
         ],
         dashed: [
           'border border-dashed border-border text-muted-foreground bg-accent/50',

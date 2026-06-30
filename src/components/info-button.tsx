@@ -16,8 +16,8 @@ interface InfoButtonProps {
 
 export function InfoButton({
   children,
-  variant = 'invisible',
-  size = 'icon',
+  variant = 'ghost',
+  size = 'icon-sm',
   className,
   ...props
 }: InfoButtonProps) {
@@ -34,12 +34,12 @@ export function InfoButton({
           size={size}
           variant={variant}
           className={cn(
-            'group rounded-full text-[1.5em]',
+            'group',
             // 'data-[state=open]:[&_svg]:fill-current/20',
-            'text-info-400 dark:text-info-300',
-            'hover:text-info-500 dark:hover:text-info-200',
-            'data-[state=open]:text-info-600 dark:data-[state=open]:text-info-200',
-            'data-[state=open]:bg-current/5',
+            // 'text-info-400 dark:text-info-300',
+            // 'hover:text-info-500 dark:hover:text-info-200',
+            // 'data-[state=open]:text-info-600 dark:data-[state=open]:text-info-200',
+            // 'data-[state=open]:bg-current/5',
             className,
           )}
         >

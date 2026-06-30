@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import styles from './card-hover.module.css';
 import { Maximize2Icon } from 'lucide-react';
+import Image from 'next/image';
 import { Card, CardAction, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Heading } from '../heading';
 
@@ -51,13 +52,20 @@ export function CardHover2({
       <Card
         size="md"
         className={cn(
-          'group-hover:outline-primary relative min-h-80 overflow-hidden bg-cover group-hover:outline',
+          'group-hover:outline-primary relative min-h-80 overflow-hidden group-hover:outline',
           className,
         )}
-        style={{
-          backgroundImage: `url(${bgImage})`,
-        }}
       >
+        {bgImage && (
+          <Image
+            src={bgImage}
+            alt=""
+            fill
+            sizes="320px"
+            className="-z-10 object-cover"
+            aria-hidden
+          />
+        )}
         <CardContent>
           <CardTitle>Hover me!</CardTitle>
         </CardContent>

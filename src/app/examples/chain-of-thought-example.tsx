@@ -8,6 +8,7 @@ import {
   ChainOfThoughtStep,
 } from '@/components/experimental/chain-of-thought';
 import { ImageIcon, SearchIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export const ChainOfThoughtExample = () => (
   <ChainOfThought defaultOpen>
@@ -37,10 +38,12 @@ export const ChainOfThoughtExample = () => (
         status="complete"
       >
         <ChainOfThoughtImage caption="Image caption">
-          <img
+          <Image
             src="https://avatar.vercel.sh/mg"
             alt="Example generated image"
-            className="aspect-square h-[150px] border"
+            width={150}
+            height={150}
+            className="aspect-square h-[150px] border object-cover"
           />
         </ChainOfThoughtImage>
       </ChainOfThoughtStep>

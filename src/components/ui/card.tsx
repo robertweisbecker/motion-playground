@@ -113,7 +113,9 @@ function CardMedia({
           className="size-full object-cover"
           src={src}
           alt={alt}
-          {...(!aspectRatio ? { width: 400, height: 200 } : { fill: true })}
+          {...(!aspectRatio
+            ? { width: 400, height: 200, sizes: '(max-width: 768px) 100vw, 400px' }
+            : { fill: true, sizes: '(max-width: 768px) 100vw, 400px' })}
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
         />

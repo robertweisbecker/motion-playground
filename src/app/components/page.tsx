@@ -26,6 +26,11 @@ import { AvatarExample } from '../examples/avatar-example';
 import { BadgeExample } from '../examples/badge-example';
 import { BrowserExample } from '../examples/browser-example';
 import {
+  CalendarModeExample,
+  CalendarCaptionLayoutExample,
+  CalendarButtonVariantExample,
+} from '../examples/calendar-example';
+import {
   ButtonExample,
   CustomButtonExample,
   IconButtonExample,
@@ -126,6 +131,11 @@ const data: { items: NavigationItem[] } = {
       title: 'Button Group',
       url: '#button-group',
       depth: 2,
+    },
+    {
+      title: 'Calendar',
+      url: '#calendar',
+      depth: 1,
     },
     {
       title: 'Card',
@@ -431,6 +441,26 @@ export default function Components() {
         </Heading>
         <DemoContainer>
           <ButtonGroupExample />
+        </DemoContainer>
+        <hr />
+
+        <Heading as="h2" copy id="calendar">
+          Calendar
+        </Heading>
+        <DemoContainer>
+          <CalendarModeExample />
+        </DemoContainer>
+        <Heading as="h3" id="calendar-caption-layout">
+          Caption layout
+        </Heading>
+        <DemoContainer>
+          <CalendarCaptionLayoutExample />
+        </DemoContainer>
+        <Heading as="h3" id="calendar-button-variant">
+          Button variant
+        </Heading>
+        <DemoContainer>
+          <CalendarButtonVariantExample />
         </DemoContainer>
         <hr />
 

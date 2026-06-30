@@ -59,7 +59,7 @@ export function DemoContainer({
         'relative my-6 gap-2 bg-muted p-1',
         // 'ring-border-alpha ring-2',
         'inset-shadow-2xs',
-        'dark:ring dark:ring-black',
+        'dark:ring dark:ring-border-alpha-soft',
         'lg:-mx-4',
         // 'transition-[height,width]',
       )}
@@ -100,7 +100,7 @@ export function DemoContainer({
           // GRID
           // 'bg-card bg-[linear-gradient(to_right,var(--border-alpha-soft)_1px,transparent_1px),linear-gradient(to_bottom,var(--border-alpha-soft)_1px,transparent_1px)] bg-size-[0.5rem_0.5rem]',
           // DOTS
-          'bg-[radial-gradient(var(--border)_1px,transparent_1px)] bg-size-[--spacing(4)_--spacing(4)]',
+          'bg-[radial-gradient(var(--border-alpha-soft)_1px,transparent_1px)] bg-size-[--spacing(4)_--spacing(4)]',
 
           'max-w-full overscroll-x-contain',
           'relative',

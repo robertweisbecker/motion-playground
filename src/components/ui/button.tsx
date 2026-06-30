@@ -40,13 +40,13 @@ const buttonVariants = cva(
         ],
         md: [
           'min-h-button min-w-button rounded-lg px-2.5 gap-1.5 text-sm supports-[corner-shape:squircle]:[corner-shape:superellipse(1.4)] supports-[corner-shape:squircle]:rounded-[calc(var(--radius-md)_*_1.4)]',
-          '[&>svg:not([class*="size-"])]:size-4.5',
+          // '[&>svg:not([class*="size-"])]:size-4.5',
           '[&>svg]:-mx-1',
         ],
         sm: [
-          'min-h-button-sm min-w-button-sm rounded-md px-2 gap-1 text-sm',
-          '[&>svg:not([class*="size-"])]:size-4',
-          '[&>svg]:-mx-0.5',
+          'min-h-button-sm min-w-button-sm rounded-md px-2 gap-1.5 text-sm',
+          // '[&>svg:not([class*="size-"])]:size-4',
+          '[&>svg]:-mx-1',
         ],
         xs: [
           'min-h-button-xs min-w-button-xs rounded-sm px-1.5 text-xs gap-1 [&_svg:not([class*="size-"])]:size-4',
@@ -57,7 +57,8 @@ const buttonVariants = cva(
         icon: 'w-button h-button rounded-md [&_svg:not([class*="size-"])]:size-5',
         'icon-lg':
           'w-button-lg h-button-lg rounded-lg [&_svg:not([class*="size-"])]:size-6',
-        'icon-xs': 'size-button-xs rounded [&_svg]:size-5',
+        'icon-xs':
+          'size-button-xs rounded-sm [&_svg:not([class*="size-"])]:size-4',
         'icon-sm':
           'size-button-sm rounded-sm [&_svg:not([class*="size-"])]:size-4',
       },
@@ -122,17 +123,17 @@ const buttonVariants = cva(
           'active:bg-current/12',
           'data-toggled:text-accent-foreground data-toggled:bg-accent',
           // 'data-[state=active]:bg-current/12',
-          '[&>svg:first-child:not(:last-child)]:ms-0',
+          // '[&>svg:first-child:not(:last-child)]:me-0',
           ' disabled:bg-transparent',
         ],
         invisible: [
-          'p-0 relative',
+          'p-0! relative',
           'hover:before:bg-current/8 hover:text-foreground',
           'active:before:bg-current/16',
           'data-toggled:bg-current/16',
           'before:absolute before:rounded-[inherit]!',
           '[&>svg:first-child:not(:last-child)]:ms-0',
-          'before:absolute before:-inset-1',
+          'before:absolute before:-inset-0.5',
           ' disabled:bg-transparent',
         ],
         link: [
@@ -140,13 +141,14 @@ const buttonVariants = cva(
           'shadow-none self-center inline-flex font-[450]',
           'underline underline-offset-[0.25em] decoration-1 decoration-current/48',
           'text-accent-foreground',
-          'after:absolute after:rounded',
+          'after:absolute after:rounded-[inherit] after:inset-0',
           'not-disabled:hover:text-foreground',
           'not-disabled:hover:decoration-current/72',
           'not-disabled:hover:after:bg-current/4',
           'not-disabled:active:after:bg-current/8',
           'not-disabled:active:decoration-current',
           'disabled:no-underline disabled:bg-transparent',
+          'rounded-md!',
         ],
         'clerk-link': [
           'underline decoration-gray-200 decoration-2 underline-offset-[0.25em]',
@@ -198,14 +200,16 @@ const buttonVariants = cva(
     compoundVariants: [
       {
         variant: 'invisible',
-        iconOnly: undefined,
+        iconOnly: false,
+        // shape: 'default',
         className:
-          'min-h-0! h-auto! p-0 rounded-[inherit] before:-inset-x-1 before:inset-y-0 me-1',
+          'min-h-0! h-auto! p-0 rounded-[inherit] after:-inset-x-1 after:inset-y-0 mx-1',
       },
       {
         variant: 'invisible',
         iconOnly: true,
-        className: 'min-w-[1em]! min-h-[1em]! size-[1lh]! p-0 rounded-full ',
+        className:
+          'min-w-[1em]! min-h-[1em]! size-[1em]! p-0 rounded-full after:inset-0',
       },
       {
         size: 'lg',
@@ -262,6 +266,7 @@ function Button({
       data-slot="button"
       data-size={size}
       data-icon={iconOnly}
+      data-variant={variant}
       className={cn(
         buttonVariants({
           variant,

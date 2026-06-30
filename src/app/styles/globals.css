@@ -301,7 +301,7 @@
   --primary-foreground: var(--color-brand-25);
   --secondary: var(--color-brand-50);
   --secondary-foreground: var(--color-brand-700);
-  --muted: var(--color-gray-alpha-100);
+  --muted: var(--color-neutral-100);
   --muted-foreground: var(--color-neutral-500);
   --accent: var(--color-neutral-50);
   --accent-foreground: var(--color-neutral-900);
@@ -318,13 +318,13 @@
   --border-alpha-strong: var(--color-black-alpha-300);
   --input-alpha: var(--color-black-alpha-400);
   --ring: var(--color-blue-500);
-  --outline: var(--color-black-alpha-100);
+  --outline: var(--color-black-alpha-50);
   /* Sidebar */
   --sidebar: var(--color-neutral-75);
   --sidebar-foreground: var(--color-neutral-600);
   --sidebar-primary: var(--color-neutral-600);
   --sidebar-primary-foreground: var(--color-neutral-100);
-  --sidebar-accent: var(--color-neutral-200);
+  --sidebar-accent: var(--color-gray-alpha-50);
   --sidebar-accent-foreground: var(--color-neutral-800);
   --sidebar-border: var(--color-border);
   --sidebar-ring: var(--ring);
@@ -362,7 +362,7 @@
 
 .dark {
   --tw-shadow-color: rgba(0, 0, 0, 0.5);
-  --background: var(--color-neutral-950);
+  --background: var(--color-neutral-975);
   --foreground: var(--color-neutral-100);
   --card: var(--color-neutral-900);
   --card-foreground: var(--color-neutral-300);
@@ -370,15 +370,16 @@
   --popover-foreground: var(--color-neutral-300);
   --primary: var(--color-brand-500);
   --primary-foreground: var(--color-white);
-  --secondary: var(--color-brand-800);
+  --secondary: var(--color-brand-950);
   --secondary-hover: var(--color-brand-900);
-  --secondary-active: var(--color-brand-950);
+  --secondary-active: var(--color-brand-600);
   --secondary-foreground: var(--color-brand-300);
   --muted: var(--color-black-alpha-500);
   --muted-hover: var(--color-white-alpha-100);
   --muted-foreground: var(--color-white-alpha-500);
   --accent: var(--color-white-alpha-100);
   --accent-hover: var(--color-neutral-700);
+  --accent-active: var(--color-neutral-600);
   --accent-foreground: var(--color-neutral-50);
 
   --destructive: var(--color-error-600);
@@ -386,7 +387,7 @@
   --destructive-hover: var(--color-error-700);
   --destructive-active: var(--color-error-800);
 
-  --sidebar: var(--color-neutral-1000);
+  --sidebar: var(--color-neutral-950);
   --sidebar-foreground: var(--color-neutral-300);
   --sidebar-primary: var(--color-neutral-600);
   --sidebar-primary-foreground: var(--color-neutral-100);
@@ -404,7 +405,7 @@
   --border: var(--color-neutral-700);
   --border-alpha: var(--color-white-alpha-200);
   --border-soft: var(--color-neutral-800);
-  --border-alpha-soft: var(--color-white-alpha-100);
+  --border-alpha-soft: var(--color-white-alpha-50);
   --border-strong: var(--color-neutral-500);
   --border-alpha-strong: var(--color-white-alpha-400);
   --input-alpha: var(--color-white-alpha-400);
@@ -586,7 +587,7 @@
 }
 
 @utility bg-glass-2 {
-  @apply relative after:absolute after:inset-px after:-z-1 after:translate-y-px after:rounded-[inherit] after:bg-gradient-to-br after:from-background/5 after:to-foreground/0 after:bg-clip-border after:opacity-10 after:mix-blend-difference after:shadow-xs after:shadow-border after:outline after:-outline-offset-1 after:outline-border-alpha-soft after:blur-[20px] after:saturate-[180%];
+  @apply relative after:absolute after:inset-px after:-z-1 after:translate-y-px after:rounded-[inherit] after:bg-linear-to-br after:from-background/5 after:to-foreground/0 after:bg-clip-border after:opacity-10 after:mix-blend-difference after:shadow-xs after:shadow-border after:outline after:-outline-offset-1 after:outline-border-alpha-soft after:blur-[20px] after:saturate-180;
   /* background-blend-mode: screen; */
   /* backdrop-filter: blur(2px) saturate(1.5) brightness(1.1); */
   /* backdrop-filter: blur(1px) saturate(0.75) brightness(0.9) hue-rotate(10deg)
@@ -679,7 +680,7 @@
       color-mix(
         in oklch shorter hue,
         currentColor 40%,
-        var(--current-bg, #000000)
+        var(--current-bg, var(--border-alpha))
       ),
     inset 0 0px 0px 1.5px color-mix(in hsl, currentColor 16%, transparent),
     inset 0 -1px 0 -1px oklch(from var(--current-bg, #000000) calc(l* 0.75) c h),

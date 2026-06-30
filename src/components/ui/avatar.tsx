@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
 
 import { cn } from '@/lib/utils';
@@ -51,14 +52,14 @@ function Avatar({
       }
       className={cn(
         'not-prose',
-        'isolate aspect-square bg-popover drop-shadow-xs',
+        'isolate aspect-square bg-card drop-shadow-xs',
         'relative shrink-0',
         // 'outline-[0.5px] outline-outline dark:-outline-offset-[0.5px]',
-        'rounded-[var(--avatar-radius,inherit)]',
+        'rounded-(--avatar-radius,inherit)',
         status &&
           !round &&
           'rounded-br-[calc(var(--avatar-radius)+var(--avatar-inset))]',
-        size ? 'size-10' : 'size-[var(--avatar-size)]',
+        size ? 'size-10' : 'size-(--avatar-size)',
         className,
       )}
       {...props}
@@ -67,7 +68,7 @@ function Avatar({
         className={cn(
           'absolute inset-0 block size-full',
           'relative overflow-hidden rounded-[inherit]',
-          'p-[var(--avatar-inset)]',
+          'p-(--avatar-inset)',
           status &&
             'mask-radial mask-b-from-black mask-b-from-100% mask-b-to-black mask-radial-from-100% mask-exclude mask-alpha',
           // 'mask-radial-at-[calc(100%-var(--avatar-inset)-var(--avatar-radius))_calc(100%-var(--avatar-inset)-var(--avatar-radius))]',
@@ -86,11 +87,11 @@ function Avatar({
           size="dot"
           color={status}
           className={cn(
-            'absolute -z-10 size-[25%] shadow-[0_0_0.5px_var(--color-foreground),_2px_3px_4px_1px_var(--color-black-alpha-50),0_2px_1px_-1px_var(--color-black-alpha-200),var(--shadow-sm)] shadow-black-alpha-100',
+            'absolute -z-10 size-[25%] shadow-[0_0_0.5px_var(--color-foreground),2px_3px_4px_1px_var(--color-black-alpha-50),0_2px_1px_-1px_var(--color-black-alpha-200),var(--shadow-sm)] shadow-black-alpha-100',
             // 'ring-2 ring-red/10',
             // 'right-[var(--avatar-inset)] bottom-[var(--avatar-inset)]',
             'right-0 bottom-0',
-            'm-[var(--avatar-inset)]',
+            'm-(--avatar-inset)',
           )}
         />
       )}
@@ -100,18 +101,32 @@ function Avatar({
 
 function AvatarImage({
   className,
+  src,
+  alt = '',
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+  if (!src || typeof src !== 'string') {
+    return null;
+  }
+
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
       className={cn(
-        '-outline-offset-border-alpha aspect-square size-full rounded-[var(--avatar-inset-radius,inherit)] bg-background outline -outline-offset-1 outline-outline',
-
+        'relative aspect-square size-full overflow-hidden rounded-(--avatar-inset-radius,inherit) bg-background outline -outline-offset-1 outline-outline',
         className,
       )}
+      asChild
       {...props}
-    />
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 768px) 80px, 40px"
+        className="rounded-(--avatar-inset-radius,inherit) object-cover"
+      />
+    </AvatarPrimitive.Image>
   );
 }
 
@@ -127,8 +142,8 @@ function AvatarFallback({
       data-slot="avatar-fallback"
       data-content={children as string}
       className={cn(
-        'grid-stack relative isolate size-full h-full overflow-hidden rounded-[var(--avatar-inset-radius)] text-center leading-none! tracking-tight text-muted-foreground',
-        '[&>svg]:size-full [&>svg]:translate-y-[min(calc(var(--avatar-inset)*2+1px),calc(var(--avatar-radius)/3)))] [&>svg]:text-icon',
+        'grid-stack relative isolate size-full h-full overflow-hidden rounded-(--avatar-inset-radius) text-center leading-none! tracking-tight text-muted-foreground',
+        '[&>svg]:size-full [&>svg]:translate-y-[min(calc(var(--avatar-inset)*2+4px),calc(var(--avatar-radius)/3))] [&>svg]:text-icon',
         // 'bg-linear-to-b from-67% dark:bg-linear-to-t',
         'text-[length:calc(var(--avatar-size)/2)] font-medium',
         // 'dark:text-shadow-black',
