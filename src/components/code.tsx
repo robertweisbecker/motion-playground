@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { mergeProps } from '@base-ui/react/merge-props';
+import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
@@ -57,30 +58,32 @@ function Code({
   color,
   size,
   hue,
-  asChild = false,
+  render,
   ...props
-}: React.ComponentProps<'code'> &
+}: useRender.ComponentProps<'code'> &
   VariantProps<typeof codeVariants> & {
-    asChild?: boolean;
     hue?: string;
   }) {
-  const Comp = asChild ? Slot : 'code';
-
-  return (
-    <Comp
-      data-slot="badge"
-      data-hue={hue}
-      className={cn(
-        codeVariants({
-          variant,
-          color,
-          size,
-        }),
-        className,
-      )}
-      {...props}
-    />
-  );
+  return useRender({
+    defaultTagName: 'code',
+    render,
+    props: mergeProps<'code'>(
+      {
+        'data-slot': 'badge',
+        'data-hue': hue,
+        className: cn(
+          codeVariants({
+            variant,
+            color,
+            size,
+          }),
+          className,
+        ),
+      } as React.ComponentProps<'code'>,
+      props,
+    ),
+    state: { slot: 'code', variant, color, size, hue },
+  });
 }
 
 export { Code, codeVariants };

@@ -5,7 +5,7 @@ import { ArrowRightIcon } from 'lucide-react';
 import { Paragraph } from '@/components/paragraph';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
-import * as SwitchPrimitive from '@radix-ui/react-switch';
+import { Switch as SwitchPrimitive } from '@base-ui/react/switch';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { PencilIcon } from '@heroicons/react/24/solid';
 import { Button } from '@/components/ui/button';
@@ -587,21 +587,21 @@ export default function TailwindPage() {
       </div>
       <h2>Switch / Toggle</h2>
       <Paragraph>iOS 26</Paragraph>
-      <Paragraph>Radix unstyled</Paragraph>
-      <SwitchPrimitive.Root className="group flex h-7 w-16 flex-row rounded-full bg-gray-100 p-0.5 data-[state=checked]:bg-green-300">
+      <Paragraph>Base UI unstyled</Paragraph>
+      <SwitchPrimitive.Root className="group flex h-7 w-16 flex-row rounded-full bg-gray-100 p-0.5 data-checked:bg-green-300">
         <SwitchPrimitive.Thumb
           className={cn(
-            'ease bg-glass-2 hover:bg-glass-2 h-6 w-10 origin-right rounded-[12px] backdrop-blur-xs transition-all hover:scale-x-120 hover:scale-y-130 data-[state=checked]:origin-left data-[state=checked]:translate-x-[20px]',
+            'ease bg-glass-2 hover:bg-glass-2 h-6 w-10 origin-right rounded-[12px] backdrop-blur-xs transition-all hover:scale-x-120 hover:scale-y-130 data-checked:origin-left data-checked:translate-x-[20px]',
             'hover:ring-[0.5px] hover:ring-gray-700/15',
-            'active:bg-card/10 data-[state=unchecked]:hover:bg-card/0 data-[state=unchecked]:mix-blend-screen data-[state=unchecked]:backdrop-blur-[2px]',
+            'active:bg-card/10 data-unchecked:hover:bg-card/0 data-unchecked:mix-blend-screen data-unchecked:backdrop-blur-[2px]',
           )}
         ></SwitchPrimitive.Thumb>
       </SwitchPrimitive.Root>
-      <SwitchPrimitive.Root className="group flex h-7 w-16 flex-row rounded-full bg-gray-100 p-0.5 data-[state=checked]:bg-pink-400">
+      <SwitchPrimitive.Root className="group flex h-7 w-16 flex-row rounded-full bg-gray-100 p-0.5 data-checked:bg-pink-400">
         <SwitchPrimitive.Thumb
           className={cn(
-            'ease bg-glass-2 group-hover:bg-card/0 h-6 w-10 origin-right rounded-[12px] transition-all group-hover:scale-x-120 group-hover:scale-y-130 data-[state=checked]:origin-left data-[state=checked]:translate-x-[20px]',
-            'group-hover:bg-glass-2 data-[state=unchecked]:hover:bg-card/0',
+            'ease bg-glass-2 group-hover:bg-card/0 h-6 w-10 origin-right rounded-[12px] transition-all group-hover:scale-x-120 group-hover:scale-y-130 data-checked:origin-left data-checked:translate-x-[20px]',
+            'group-hover:bg-glass-2 data-unchecked:hover:bg-card/0',
           )}
         ></SwitchPrimitive.Thumb>
       </SwitchPrimitive.Root>

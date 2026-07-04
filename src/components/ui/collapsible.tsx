@@ -1,37 +1,43 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
+import { Collapsible as CollapsiblePrimitive } from '@base-ui/react/collapsible';
 
-function Collapsible({
-  ...props
-}: React.ComponentProps<typeof CollapsiblePrimitive.Root>) {
+import { cn } from '@/lib/utils';
+import { resolveRenderProp } from '@/lib/resolve-render';
+
+function Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {
   return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />;
 }
 
 function CollapsibleTrigger({
+  render,
+  asChild = false,
+  children,
   ...props
-}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleTrigger>) {
+}: CollapsiblePrimitive.Trigger.Props & { asChild?: boolean }) {
   return (
-    <CollapsiblePrimitive.CollapsibleTrigger
+    <CollapsiblePrimitive.Trigger
       data-slot="collapsible-trigger"
+      render={resolveRenderProp(render, asChild, children)}
       {...props}
-    />
+    >
+      {resolveRenderProp(render, asChild, children) ? undefined : children}
+    </CollapsiblePrimitive.Trigger>
   );
 }
 
 function CollapsibleContent({
   className,
   ...props
-}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) {
+}: CollapsiblePrimitive.Panel.Props) {
   return (
-    <CollapsiblePrimitive.CollapsibleContent
+    <CollapsiblePrimitive.Panel
       data-slot="collapsible-content"
       {...props}
       className={cn(
         'overflow-hidden',
-        'data-[state=closed]:animate-collapse',
-        'data-[state=open]:animate-expand',
+        'data-closed:animate-collapse',
+        'data-open:animate-expand',
         className,
       )}
     />

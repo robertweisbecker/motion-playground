@@ -1,7 +1,8 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { LinkIcon as PhLinkIcon } from '@phosphor-icons/react';
-import { Slot } from '@radix-ui/react-slot';
+import { mergeProps } from '@base-ui/react/merge-props';
+import { useRender } from '@base-ui/react/use-render';
 import { cva, VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { Button } from './ui/button';
@@ -111,23 +112,27 @@ export function Heading({
     </>
   );
 
-  const content = (
-    <Slot
-      data-hue={hue}
-      id={id}
-      {...props}
-      className={cn(
-        headingVariants({ size: sizeFallback, sub }),
-        'group/heading not-prose',
-        copy && 'relative',
-        lines && `line-clamp-${lines} max-w-full truncate`,
-        inline ? 'my-0!' : '',
-        className,
-      )}
-    >
-      {asChild ? children : React.createElement(tag, {}, elementChildren)}
-    </Slot>
-  );
+  const content = useRender({
+    defaultTagName: tag,
+    render: asChild ? (children as React.ReactElement) : undefined,
+    props: mergeProps<typeof tag>(
+      {
+        'data-hue': hue,
+        id,
+        className: cn(
+          headingVariants({ size: sizeFallback, sub }),
+          'group/heading not-prose',
+          copy && 'relative',
+          lines && `line-clamp-${lines} max-w-full truncate`,
+          inline ? 'my-0!' : '',
+          className,
+        ),
+        children: asChild ? undefined : elementChildren,
+      } as React.ComponentProps<typeof tag>,
+      props,
+    ),
+    state: { slot: 'heading', size: sizeFallback, sub },
+  });
 
   return (
     <HeadingContext.Provider

@@ -1,6 +1,5 @@
 'use client';
 
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { Badge } from '@/components/ui/badge';
 import {
   Collapsible,
@@ -15,8 +14,8 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import type { ComponentProps } from 'react';
-import { createContext, memo, useContext } from 'react';
-import { Separator } from '@radix-ui/react-separator';
+import { createContext, memo, useContext, useState } from 'react';
+import { Separator } from '@/components/ui/separator';
 
 type ChainOfThoughtContextValue = {
   isOpen: boolean;
@@ -52,11 +51,14 @@ export const ChainOfThought = memo(
     children,
     ...props
   }: ChainOfThoughtProps) => {
-    const [isOpen, setIsOpen] = useControllableState({
-      prop: open,
-      defaultProp: defaultOpen,
-      onChange: onOpenChange,
-    });
+    const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
+    const isOpen = open ?? uncontrolledOpen;
+    const setIsOpen = (nextOpen: boolean) => {
+      onOpenChange?.(nextOpen);
+      if (open === undefined) {
+        setUncontrolledOpen(nextOpen);
+      }
+    };
 
     return (
       <ChainOfThoughtContext.Provider value={{ isOpen, setIsOpen }}>

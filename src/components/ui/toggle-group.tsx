@@ -1,7 +1,9 @@
 'use client';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
-import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
+import { ToggleGroup as ToggleGroupPrimitive } from '@base-ui/react/toggle-group';
+import { Toggle as TogglePrimitive } from '@base-ui/react/toggle';
 import { type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
@@ -15,6 +17,25 @@ const ToggleGroupContext = React.createContext<
   round: false,
 });
 
+type LegacyToggleGroupProps = {
+  type?: 'single' | 'multiple';
+  value?: string | readonly string[];
+  defaultValue?: string | readonly string[];
+  onValueChange?: (value: string) => void;
+};
+
+function normalizeToggleGroupValue(
+  value: string | readonly string[] | undefined,
+): string[] | undefined {
+  if (value === undefined) {
+    return undefined;
+  }
+  if (typeof value === 'string') {
+    return value ? [value] : [];
+  }
+  return [...value];
+}
+
 function ToggleGroup({
   className,
   variant,
@@ -23,16 +44,39 @@ function ToggleGroup({
   orientation = 'horizontal',
   children,
   id,
+  type,
+  value,
+  defaultValue,
+  onValueChange,
+  multiple: multipleProp,
   ...props
-}: React.ComponentProps<typeof ToggleGroupPrimitive.Root> &
-  VariantProps<typeof toggleVariants>) {
+}: Omit<ToggleGroupPrimitive.Props, 'value' | 'defaultValue' | 'onValueChange'> &
+  VariantProps<typeof toggleVariants> &
+  LegacyToggleGroupProps) {
+  const multiple = type === 'multiple' || multipleProp;
+  const normalizedValue = normalizeToggleGroupValue(value);
+  const normalizedDefaultValue = normalizeToggleGroupValue(defaultValue);
+
   return (
-    <ToggleGroupPrimitive.Root
+    <ToggleGroupPrimitive
       id={id}
       data-slot="toggle-group"
       data-variant={variant}
       data-size={size}
       data-orientation={orientation}
+      multiple={multiple}
+      value={normalizedValue}
+      defaultValue={normalizedDefaultValue}
+      onValueChange={(nextValue) => {
+        if (!onValueChange) {
+          return;
+        }
+        if (multiple) {
+          onValueChange(nextValue.join(',') as string);
+          return;
+        }
+        onValueChange(nextValue[0] ?? '');
+      }}
       className={cn(
         'group/toggle-group inline-flex w-fit grow-0 items-center self-center',
         'data-[orientation=vertical]:flex-col',
@@ -44,7 +88,6 @@ function ToggleGroup({
         variant === 'outline' &&
           '-space-x-px rounded-md bg-clip-padding p-0 inset-ring inset-ring-border',
         variant === 'dashed' && 'gap-0 -space-x-px rounded-md p-0',
-        // variant === 'default' && 'gap-px',
         round && 'rounded-full',
         className,
       )}
@@ -53,7 +96,7 @@ function ToggleGroup({
       <ToggleGroupContext.Provider value={{ variant, size, round }}>
         {children}
       </ToggleGroupContext.Provider>
-    </ToggleGroupPrimitive.Root>
+    </ToggleGroupPrimitive>
   );
 }
 
@@ -62,13 +105,14 @@ function ToggleGroupItem({
   children,
   variant = 'ghost',
   size,
+  value,
   ...props
-}: React.ComponentProps<typeof ToggleGroupPrimitive.Item> &
-  VariantProps<typeof toggleVariants>) {
+}: TogglePrimitive.Props & VariantProps<typeof toggleVariants>) {
   const context = React.useContext(ToggleGroupContext);
 
   return (
-    <ToggleGroupPrimitive.Item
+    <TogglePrimitive
+      value={value}
       data-slot="toggle-group-item"
       data-variant={context.variant || variant}
       data-size={context.size || size}
@@ -78,25 +122,19 @@ function ToggleGroupItem({
           size: context.size || size,
           round: context.round,
         }),
-        'peer [~[data-state="on"]+[data-state="on"]]:rounded-t-none min-w-0 shrink-0 hover:z-1 focus:z-1 focus-visible:z-10 [[data-state="on"]+[data-state="on"]]:[data-state="on"]:rounded-b-none',
-        'data-[state=on]:z-2',
-        '[&:has(+[data-state=on])]:data-[state=on]:rounded-r-none! [&[data-state=on]+[data-state=on]]:rounded-l-none!',
-        // 'peer-data-[state=on]:rounded-l-none',
+        'peer [~[data-pressed]+[data-pressed]]:rounded-t-none min-w-0 shrink-0 hover:z-1 focus:z-1 focus-visible:z-10 [[data-pressed]+[data-pressed]]:[data-pressed]:rounded-b-none',
+        'data-pressed:z-2',
+        '[&:has(+[data-pressed])]:data-pressed:rounded-r-none! [&[data-pressed]+[data-pressed]]:rounded-l-none!',
         (context.variant === 'outline' || context.variant === 'dashed') && [
           'rounded-none',
-          'first:rounded-l-[inherit] last:rounded-r-[inherit] [&:has(+[data-state=on])]:data-[state=off]:not-hover:border-r-transparent! [&[data-state=on]+[data-state=off]:not(:hover)]:border-l-transparent!',
+          'first:rounded-l-[inherit] last:rounded-r-[inherit] [&:has(+[data-pressed])]:data-[pressed=false]:not-hover:border-r-transparent! [&[data-pressed]+[data-pressed=false]:not(:hover)]:border-l-transparent!',
         ],
-        // context.variant === 'dashed' && [
-        //   'rounded-none first:rounded-l-[inherit] first:border-l last:rounded-r-[inherit] [&:has(+[data-state=on])]:data-[state=off]:border-r-transparent! [&[data-state=on]+[data-state=off]]:border-l-transparent!',
-        // ],
-        // 'data-pressed:inset-ring data-[state=on]:inset-ring-current',
-        // 'data-[variant=outline]:rounded-none data-[variant=outline]:border-[initial] data-[variant=outline]:first:rounded-l-[inherit] data-[variant=outline]:last:rounded-r-[inherit]',
         className,
       )}
       {...props}
     >
       {children}
-    </ToggleGroupPrimitive.Item>
+    </TogglePrimitive>
   );
 }
 
@@ -118,21 +156,20 @@ const CampsiteToggleGroup = ({
   const layoutId = React.useId();
 
   return (
-    <ToggleGroupPrimitive.Root
+    <ToggleGroupPrimitive
       className={cn(
         '[--toggle-radius:var(--radius-lg)]',
         'inline-flex h-8 flex-1 overflow-visible rounded-(--toggle-radius) bg-accent',
         className,
       )}
-      type="single"
-      value={value}
+      value={value ? [value] : []}
       aria-label={ariaLabel}
-      onValueChange={onValueChange}
+      onValueChange={(nextValue) => onValueChange(nextValue[0] ?? '')}
     >
       {items.map((item) => {
         const isActive = item.value === value;
         return (
-          <ToggleGroupPrimitive.Item
+          <TogglePrimitive
             key={item.value}
             value={item.value}
             aria-label={item.label}
@@ -142,7 +179,6 @@ const CampsiteToggleGroup = ({
               'focus-visible:outline-2 focus-visible:outline-ring',
               'before:pointer-events-none before:absolute before:inset-1 before:rounded-sm',
               'hover:text-accent-foreground hover:before:border-border-alpha hover:before:bg-muted',
-              // 'before:transition-[inset] before:duration-200 data-toggled:before:inset-px data-toggled:before:rounded-[inherit]',
               {
                 'text-foreground': isActive,
               },
@@ -153,10 +189,7 @@ const CampsiteToggleGroup = ({
                 layoutId={layoutId}
                 className={cn([
                   'shadow-button',
-                  // 'ring ring-border-alpha-soft dark:border-none',
-                  // 'dark:shadow-[inset_0px_1px_0px_rgb(255_255_255_/_0.08),var(--shadow-button-base)]',
-                  // 'dark:ring-1 dark:ring-neutral-800',
-                  'absolute inset-1 rounded-[inherit] bg-card transition-[inset] in-data-toggled:inset-px',
+                  'absolute inset-1 rounded-[inherit] bg-card transition-[inset] in-data-pressed:inset-px',
                 ])}
                 initial={{ inset: '2px' }}
                 animate={{ inset: '1px' }}
@@ -168,10 +201,10 @@ const CampsiteToggleGroup = ({
             <span className="pointer-events-none relative">
               {item.icon || item.label}
             </span>
-          </ToggleGroupPrimitive.Item>
+          </TogglePrimitive>
         );
       })}
-    </ToggleGroupPrimitive.Root>
+    </ToggleGroupPrimitive>
   );
 };
 

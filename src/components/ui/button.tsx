@@ -1,16 +1,8 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
-// import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { cn } from '@/lib/utils';
-
-interface ButtonProps
-  extends React.ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
-  startSlot?: React.ReactNode;
-  endSlot?: React.ReactNode;
-  asChild?: boolean;
-  label?: string;
-}
+import { resolveRenderProp } from '@/lib/resolve-render';
 
 const buttonVariants = cva(
   [
@@ -67,8 +59,8 @@ const buttonVariants = cva(
           'bg-current/6 text-foreground',
           'hover:bg-current/8',
           'hover:text-foreground active:bg-current/12',
-          'data-[state=on]:bg-secondary data-[state=on]:text-secondary-foreground data-[state=on]:border-current',
-          'data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
+          'data-pressed:bg-secondary data-pressed:text-secondary-foreground data-pressed:border-current',
+          'data-popup-open:bg-accent data-popup-open:text-accent-foreground',
         ],
         media: [
           'bg-black/20 text-white',
@@ -250,19 +242,16 @@ function Button({
   size,
   iconOnly,
   shape,
-  // startSlot,
-  // label,
-  // endSlot,
+  render,
   asChild = false,
+  children,
   ...props
-}: React.ComponentProps<'button'> &
+}: ButtonPrimitive.Props &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   }) {
-  const Comp = asChild ? Slot : 'button';
-
   return (
-    <Comp
+    <ButtonPrimitive
       data-slot="button"
       data-size={size}
       data-icon={iconOnly}
@@ -276,8 +265,11 @@ function Button({
           shape,
         }),
       )}
+      render={resolveRenderProp(render, asChild, children)}
       {...props}
-    />
+    >
+      {resolveRenderProp(render, asChild, children) ? undefined : children}
+    </ButtonPrimitive>
   );
 }
 
@@ -286,19 +278,16 @@ function IconButton({
   variant,
   size,
   iconOnly,
-  // startSlot,
-  // label,
-  // endSlot,
+  render,
   asChild = false,
+  children,
   ...props
-}: React.ComponentProps<'button'> &
+}: ButtonPrimitive.Props &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   }) {
-  const Comp = asChild ? Slot : 'button';
-
   return (
-    <Comp
+    <ButtonPrimitive
       data-slot="button"
       data-size={size}
       data-icon={iconOnly}
@@ -311,8 +300,11 @@ function IconButton({
         }),
         !iconOnly && '[&>svg]:first:-ms-[0.25em] [&>svg]:last:-me-[0.25em]',
       )}
+      render={resolveRenderProp(render, asChild, children)}
       {...props}
-    />
+    >
+      {resolveRenderProp(render, asChild, children) ? undefined : children}
+    </ButtonPrimitive>
   );
 }
 
