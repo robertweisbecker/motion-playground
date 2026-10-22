@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { mergeProps } from '@base-ui/react/merge-props';
+import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
+import { resolveRenderProp } from '@/lib/resolve-render';
 
 const badgeVariants = cva(
   'inline-flex items-center justify-center text-center font-medium tracking-none whitespace-nowrap shrink-0 [&>svg]:pointer-events-none transition-[color,box-shadow,border-color] overflow-hidden tabular-nums max-w-full truncate tracking-normal align-middle self-center [&>svg]:first:-ms-0.5 min-h-fit min-w-fit ',
@@ -14,14 +16,12 @@ const badgeVariants = cva(
           'bg-secondary text-secondary-foreground',
           '[a&]:hover:bg-secondary [a&]:hover:text-secondary-foreground',
           'dark:shadow-[inset_0_.5px_0.5px_0.5px_var(--color-white-alpha-25),0_.5px_.5px_var(--color-black-alpha-900),var(--shadow-sm)]',
-          // 'shadow-glass-1',
         ],
         secondary:
           'bg-accent text-accent-foreground [a&]:hover:bg-secondary [button&]:hover:bg-secondary [a&]:hover:text-secondary-foreground [button&]:hover:text-secondary-foreground dark:shadow-[inset_0_.5px_0.5px_0.5px_var(--color-white-alpha-25),0_.5px_.5px_var(--color-black-alpha-400),var(--shadow-sm)]',
         destructive: [
           'text-error-25 bg-error-500 dark:bg-error-700 dark:text-error-200',
           'light:shadow-button-base light:shadow-red-300 dark:shadow-red-600',
-          // 'dark:shadow-[inset_0_-1px_3px_-2px_var(--color-red-900),inset_0_.5px_0px_var(--color-red-500),inset_0_.0px_.5px_.5px_var(--color-red-600)]',
           'dark:shadow-[inset_0_.5px_0.5px_0.5px_var(--color-white-alpha-25),0_.5px_.5px_var(--color-black-alpha-900),var(--shadow-button-base)]',
         ],
         beta: ['bg-info-50 border-info-200 border-dashed rounded-none'],
@@ -57,32 +57,27 @@ const badgeVariants = cva(
         info: [
           'text-info-600 [&_svg]:text-info-500 bg-info-100',
           'dark:text-info-400 dark:[&_svg]:text-info-600 dark:bg-info-975',
-          // 'ring-1 ring-info-200',
           'dark:ring-0 dark:shadow-info-900',
           'dark:shadow-[inset_0_.5px_0.5px_0.5px_var(--color-white-alpha-25),0_.5px_.5px_var(--color-black-alpha-900),var(--shadow-sm)]',
         ],
         highlight: [
           'text-highlight-600 [&_svg]:text-highlight-500 bg-highlight-100',
           'dark:text-highlight-400 dark:[&_svg]:text-highlight-600 dark:bg-highlight-975',
-          // 'ring-1 ring-highlight-200',
           'dark:ring-inset dark:ring-highlight-900',
         ],
         error: [
           'text-error-600 [&_svg]:text-error-500 bg-error-100',
           'dark:text-error-400 dark:[&_svg]:text-error-600 dark:bg-error-975',
-          // 'ring-1 ring-error-200',
           'dark:ring-inset dark:ring-error-900',
         ],
         warning: [
           'text-warning-600 [&_svg]:text-warning-500 bg-warning-100',
           'dark:text-warning-400 dark:[&_svg]:text-warning-600 dark:bg-warning-975',
-          // 'ring-1 ring-warning-200',
           'dark:ring-inset dark:ring-warning-900',
         ],
         success: [
           'text-success-600 [&_svg]:text-success-500 bg-success-100',
           'dark:text-success-400 dark:[&_svg]:text-success-600 dark:bg-success-975',
-          // 'ring-1 ring-success-200',
           'dark:ring-inset dark:ring-success-900',
         ],
       },
@@ -127,34 +122,44 @@ function Badge({
   shape,
   size,
   children,
+  render,
   asChild = false,
   ...props
-}: React.ComponentProps<'span'> &
-  VariantProps<typeof badgeVariants> & {
-    asChild?: boolean;
-  }) {
-  const Comp = asChild ? Slot : 'span';
-
-  return (
-    <Comp
-      data-slot="badge"
-      data-color={color}
-      className={cn(
-        badgeVariants({
-          variant,
-          color,
-          size,
-          shape,
-          disabled,
-        }),
-        `hue-${color}`,
-        className,
-      )}
-      {...props}
-    >
-      {size !== 'dot' && children}
-    </Comp>
-  );
+}: useRender.ComponentProps<'span'> &
+  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
+  const resolvedRender = resolveRenderProp(render, asChild, children);
+  return useRender({
+    defaultTagName: 'span',
+    render: resolvedRender,
+    props: mergeProps<"span">(
+      {
+        'data-slot': 'badge',
+        'data-color': color,
+        className: cn(
+          badgeVariants({
+            variant,
+            color,
+            size,
+            shape,
+            disabled,
+          }),
+          `hue-${color}`,
+          className,
+        ),
+        children:
+          resolvedRender || size === 'dot' ? undefined : children,
+      } as React.ComponentProps<'span'>,
+      props,
+    ),
+    state: {
+      slot: 'badge',
+      variant,
+      color,
+      size,
+      shape,
+      disabled,
+    },
+  });
 }
 
 export { Badge, badgeVariants };

@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { mergeProps } from '@base-ui/react/merge-props';
+import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps, cx } from 'class-variance-authority';
-import { Slot } from '@radix-ui/react-slot';
 import { MarkdownIcon } from '@/app/icons/icons';
 import { cn } from '@/lib/utils';
 import { InfoButton } from './info-button';
@@ -41,22 +42,25 @@ export function Paragraph({
   mt,
   mb,
   className,
-  asChild = false,
+  render,
   ...props
-}: VariantProps<typeof textVariants> & TextProps) {
-  const Comp = asChild ? Slot : 'p';
-  return (
-    <Comp
-      className={cx(
-        textVariants({ variant }),
-        [!mt && 'mt-0', !mb && 'mb-0'],
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </Comp>
-  );
+}: VariantProps<typeof textVariants> & TextProps & useRender.ComponentProps<'p'>) {
+  return useRender({
+    defaultTagName: 'p',
+    render,
+    props: mergeProps<'p'>(
+      {
+        className: cx(
+          textVariants({ variant }),
+          [!mt && 'mt-0', !mb && 'mb-0'],
+          className,
+        ),
+        children,
+      } as React.ComponentProps<'p'>,
+      props,
+    ),
+    state: { slot: 'paragraph', variant },
+  });
 }
 
 export function KeyValue({
@@ -66,17 +70,27 @@ export function KeyValue({
   mt,
   mb,
   className,
-  asChild = false,
+  render,
   ...props
-}: KeyValueProps) {
-  const Comp = asChild ? Slot : 'p';
-  return (
-    <Comp {...props} className={cn('flex gap-1', className)}>
-      <Slot>{icon}</Slot>
-      <span className={cn(textVariants({ variant: 'label' }))}>
-        {label} <InfoButton>Hello</InfoButton>
-      </span>
-      {children}
-    </Comp>
-  );
+}: KeyValueProps & useRender.ComponentProps<'p'>) {
+  return useRender({
+    defaultTagName: 'p',
+    render,
+    props: mergeProps<'p'>(
+      {
+        className: cn('flex gap-1', className),
+        children: (
+          <>
+            <span>{icon}</span>
+            <span className={cn(textVariants({ variant: 'label' }))}>
+              {label} <InfoButton>Hello</InfoButton>
+            </span>
+            {children}
+          </>
+        ),
+      } as React.ComponentProps<'p'>,
+      props,
+    ),
+    state: { slot: 'key-value' },
+  });
 }

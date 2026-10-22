@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 import { Kbd } from '../kbd';
-import { Slot } from '@radix-ui/react-slot';
 import { useResizeObserver } from 'usehooks-ts';
 import { cva, VariantProps } from 'class-variance-authority';
 

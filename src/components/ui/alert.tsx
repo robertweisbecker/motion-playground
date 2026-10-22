@@ -3,13 +3,11 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 import { Button } from './button';
-import { XCircleIcon, XIcon } from '@phosphor-icons/react';
-import { Slot } from '@radix-ui/react-slot';
+import { XIcon } from '@phosphor-icons/react';
 
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from './tooltip';
 
@@ -109,23 +107,25 @@ function Alert({
           data-slot="icon"
           className="relative grid size-5 place-items-center after:absolute after:-inset-0.5 after:rounded-sm after:bg-current/4"
         >
-          <Slot className="z-1 size-4">{icon}</Slot>
+          <span className="z-1 size-4">{icon}</span>
         </span>
       )}
       {children}
       {dismissible && (
         <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              data-slot="alert-close"
-              aria-label="Close"
-              iconOnly
-              size="sm"
-              className="absolute end-1.5 top-1.5 text-inherit"
-              variant="ghost"
-            >
-              <XIcon weight="bold" />
-            </Button>
+          <TooltipTrigger
+            render={
+              <Button
+                data-slot="alert-close"
+                aria-label="Close"
+                iconOnly
+                size="sm"
+                className="absolute end-1.5 top-1.5 text-inherit"
+                variant="ghost"
+              />
+            }
+          >
+            <XIcon weight="bold" />
           </TooltipTrigger>
           <TooltipContent side="left">Dismiss</TooltipContent>
         </Tooltip>

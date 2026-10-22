@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { mergeProps } from '@base-ui/react/merge-props';
+import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
+import { resolveRenderProp } from '@/lib/resolve-render';
 import { Separator } from '@/components/ui/separator';
 
 function ItemGroup({ className, ...props }: React.ComponentProps<'div'>) {
@@ -58,21 +60,34 @@ function Item({
   className,
   variant = 'default',
   size = 'default',
+  render,
   asChild = false,
   inline = false,
+  children,
   ...props
-}: React.ComponentProps<'div'> &
+}: useRender.ComponentProps<'div'> &
   VariantProps<typeof itemVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : 'div';
-  return (
-    <Comp
-      data-slot="item"
-      data-variant={variant}
-      data-size={size}
-      className={cn(itemVariants({ variant, size, inline, className }))}
-      {...props}
-    />
-  );
+  const resolvedRender = resolveRenderProp(render, asChild, children);
+  return useRender({
+    defaultTagName: 'div',
+    render: resolvedRender,
+    props: mergeProps<'div'>(
+      {
+        'data-slot': 'item',
+        'data-variant': variant,
+        'data-size': size,
+        className: cn(itemVariants({ variant, size, inline, className })),
+        children: resolvedRender ? undefined : children,
+      } as React.ComponentProps<'div'>,
+      props,
+    ),
+    state: {
+      slot: 'item',
+      variant,
+      size,
+      inline,
+    },
+  });
 }
 
 const itemMediaVariants = cva(
@@ -84,7 +99,6 @@ const itemMediaVariants = cva(
         icon: "size-8 ring-1 ring-border-alpha rounded-md shadow-xs bg-card text-card-foreground [&_svg:not([class*='size-'])]:size-3.5",
         'icon-frame': [
           "size-10 bg-card overflow-hidden shadow-2xs  rounded-lg bg-clip-padding border-border-alpha-soft border-4  bg-card text-card-foreground [&_svg:not([class*='size-'])]:size-3.5",
-          // 'after:absolute after:bg-muted after:bg-radial-[at_50%_50%] after:from-50% after:to-50% after:-z-1 after:inset-0.5 after:from-card after:rounded-[calc(var(--radius-md)_-_--spacing(0.5))]',
         ],
         image:
           'size-12 rounded-md overflow-hidden [&_img]:size-full [&_img]:object-cover',

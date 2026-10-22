@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { mergeProps } from '@base-ui/react/merge-props';
+import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
@@ -114,26 +115,32 @@ const buttonGroupTextVariants = cva(
 
 function ButtonGroupText({
   className,
-  asChild = false,
+  render,
   size = 'md',
   ...props
-}: React.ComponentProps<'div'> & {
-  asChild?: boolean;
+}: useRender.ComponentProps<'div'> & {
   size?: VariantProps<typeof buttonVariants>['size'];
 }) {
   const context = React.useContext(ButtonGroupContext);
   const sizeFallback = context.size || size;
-  const Comp = asChild ? Slot : 'div';
 
-  return (
-    <Comp
-      className={cn(
-        buttonGroupTextVariants({ size: sizeFallback ?? size }),
-        className,
-      )}
-      {...props}
-    />
-  );
+  return useRender({
+    defaultTagName: 'div',
+    render,
+    props: mergeProps<'div'>(
+      {
+        className: cn(
+          buttonGroupTextVariants({ size: sizeFallback ?? size }),
+          className,
+        ),
+      } as React.ComponentProps<'div'>,
+      props,
+    ),
+    state: {
+      slot: 'button-group-text',
+      size: sizeFallback ?? size,
+    },
+  });
 }
 
 function ButtonGroupSeparator({
