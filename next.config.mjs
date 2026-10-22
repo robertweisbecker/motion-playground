@@ -19,7 +19,7 @@ const remotePatterns = [
   },
   {
     protocol: 'https',
-    hostname: '**.public.blob.vercel-storage.com',
+    hostname: 'lftz25oez4aqbxpq.public.blob.vercel-storage.com',
     pathname: '/**',
   },
   {
