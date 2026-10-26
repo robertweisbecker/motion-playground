@@ -41,20 +41,20 @@ If changes to `.tsx` files (especially variant definitions) aren't being detecte
 
 1. **Default dev server uses Turbopack** (recommended):
    ```bash
-   npm run dev
+   pnpm dev
    ```
    Turbopack is Next.js 15's modern bundler with superior file watching. This is the default and recommended approach.
 
 2. **If you need webpack instead:**
    ```bash
-   npm run dev:webpack
+   pnpm dev:webpack
    ```
    Only use this if you have specific webpack plugins or configurations that require it.
 
 3. **Clear Next.js cache if issues persist:**
    ```bash
    rm -rf .next
-   npm run dev
+   pnpm dev
    ```
 
 4. **For unreliable file systems (NFS, VMs, Docker volumes):**

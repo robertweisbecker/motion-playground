@@ -1,0 +1,5 @@
+# Fail installation if a new dependency build script has not been reviewed.
+strictDepBuilds: true
+allowBuilds:
+  sharp@0.34.5: true
+  unrs-resolver@1.11.1: true
