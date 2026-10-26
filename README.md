@@ -2,18 +2,23 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-Use Node.js 24.22.1 or a newer 24.x release (`nvm install && nvm use` selects the version in `.nvmrc`) before installing dependencies or starting the development server. This includes the Node.js security fixes for [CVE-2026-111497](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases). The `engines.node` requirement describes the supported range; npm may only warn on an unsupported runtime. Vercel selects the major version and manages runtime patches; this pin does not prove the patch version of a deployed function. See the [Vercel advisory](https://vercel.com/kb/bulletin/node-js-security-advisory) for rollout status.
+Use Node.js 24.22.1 or a newer 24.x release (`nvm install && nvm use` selects the version in `.nvmrc`) before installing dependencies or starting the development server. This includes the Node.js security fixes for [CVE-2026-111497](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases). The `engines.node` requirement describes the supported range; package managers may only warn on an unsupported runtime. Vercel selects the major version and manages runtime patches; this pin does not prove the patch version of a deployed function. See the [Vercel advisory](https://vercel.com/kb/bulletin/node-js-security-advisory) for rollout status.
 
-First, run the development server:
+Use pnpm 12.15.0, pinned in `packageManager`. Install that exact version using your preferred package-manager setup (for example, `npm install --global pnpm@12.15.0`), then install dependencies and start the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install --frozen-lockfile
 pnpm dev
-# or
-bun dev
+```
+
+Commit `pnpm-lock.yaml` whenever dependencies change; do not generate an npm or Yarn lockfile. Use `pnpm add` / `pnpm remove` for dependency changes and `pnpm exec` for installed CLI tools. The reviewed dependency build-script allowlist in `pnpm-workspace.yaml` permits only the reviewed sharp 0.34.5 and unrs-resolver 1.11.1 builds. New or upgraded dependency build scripts fail installation until reviewed; do not approve them wholesale.
+
+Validation commands:
+
+```bash
+pnpm lint
+pnpm exec tsc --noEmit
+pnpm build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -36,3 +41,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Package manager on Vercel
+
+Keep pnpm as the only lockfile-based package manager. Use the same pinned version in preview and production builds. If using Vercel Corepack selection, set `ENABLE_EXPERIMENTAL_COREPACK=1` in the project settings so it honors `packageManager`, and remove any old npm install override. Confirm `pnpm 12.15.0` in a preview build log and use `pnpm install --frozen-lockfile` / `pnpm build`. These settings are not changed by this repository migration.
